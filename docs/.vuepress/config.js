@@ -33,7 +33,7 @@ module.exports = {
   docsRepo: 'sustc/sustech-online-ng',
   editLinkText: '一起完善这本手册！',
   docsDir: 'docs',
-  repoLabel: 'Source Code',
+  repoLabel: '在Github上查看',
   editLinks: true,
   sidebarDepth: 2,
   sidebar: {
@@ -43,6 +43,7 @@ module.exports = {
       '/contact/',
       '/calendar/',
       '/service/',
+      '/study/',
       '/network/',
       '/media/',
       '/catering/',
