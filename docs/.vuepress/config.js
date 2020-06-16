@@ -10,14 +10,31 @@ module.exports = {
     '@vuepress/google-analytics',
     {
       'ga': 'UA-169618277-1' // UA-00000000-0
-    }
-  ]
+    },
+  ],
+  [
+    '@vuepress/last-updated',
+      {
+        transformer: (timestamp, lang) => {
+          // 不要忘了安装 moment
+          const moment = require('moment')
+          moment.locale(lang)
+          return moment(timestamp).fromNow()
+        },
+      },
+  ],
 ],
   themeConfig: {
   nav: [
     { text: '主页', link: '/' },
     { text: '关于', link: '/about/' },
   ],
+  repo: 'sustc/sustech-online-ng',
+  docsRepo: 'sustc/sustech-online-ng',
+  editLinkText: '一起完善这本手册！',
+  docsDir: 'docs',
+  repoLabel: 'Source Code',
+  editLinks: true,
   sidebarDepth: 2,
   sidebar: {
     '/': [
