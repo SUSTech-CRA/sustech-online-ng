@@ -2,11 +2,13 @@
 
 ## 官方媒体
 
-|          名称          |                         网址/微信号                          |                             介绍                             |
+|          名称          |                         网址/微信号                          |                            二维码                            |
 | :--------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 |    南方科技大学主页    |       [https://sustech.edu.cn](https://sustech.edu.cn)       |                                                              |
-| 南方科技大学微信公众号 |                         SUSTech14325                         | ![](https://open.weixin.qq.com/qr/code?username=SUSTech14325#.jpg) |
+| 南方科技大学微信公众号 |                         SUSTech14325                         | ![code?username=SUSTech14325#.jpg](https://open.weixin.qq.com/qr/code?username=SUSTech14325#.jpg) |
 |  南方科技大学Bilibili  | [https://space.bilibili.com/330683960](https://space.bilibili.com/330683960) |                                                              |
+|  南方科技大学Twitter   | [https://twitter.com/sustechsz](https://twitter.com/sustechsz) |                                                              |
+|  南方科技大学Facebook  | [https://www.facebook.com/SUSTechSZ/](https://www.facebook.com/SUSTechSZ/) |                                                              |
 
 ## 自媒体
 
@@ -56,7 +58,11 @@
 
 ## 网站
 
-|                  名称                   |                         网址                         |     介绍     |
-| :-------------------------------------: | :--------------------------------------------------: | :----------: |
-| [南科wiki](https://sustc.wiki/南科wiki) |      [https://sustc.wiki/](https://sustc.wiki/)      | 南科人的wiki |
-|             SUSTechFlow.top             | [https://sustechflow.top/](https://sustechflow.top/) | 课程评价网站 |
+- 南科wiki [https://sustc.wiki](https://sustc.wiki)
+- 校友地图 [https://sustech-application.github.io/SUSTech-Alumni-Map/](https://sustech-application.github.io/SUSTech-Alumni-Map/)
+- SUSTech Flow | 公开评教网站 [https://sustechflow.top/](https://sustechflow.top/)
+- 南科导航｜南科大网址导航 [https://suste.ch](https://suste.ch)
+- 2020飞跃手册 [https://sustech-application.github.io/2020-Fall/#/](https://sustech-application.github.io/2020-Fall/#/)
+- 南方科技大学开源软件镜像站|SUSTech Mirror [https://mirrors.cra.moe/](https://mirrors.cra.moe/)
+- 南方科技大学超算中心镜像站| CCSE Mirrors [https://mirrors.sustech.rocks/](https://mirrors.sustech.rocks/)
+
