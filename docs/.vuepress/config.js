@@ -1,9 +1,19 @@
+let ogprefix = 'og: http://ogp.me/ns#'
+let title = '南科手册'
+let description = 'Online manual for sustecher'
+let color = '#49BF7C'
+let author = 'sustech.online'
+
 module.exports = {
   title: '南科手册',
   lang:'zh-CN',
   description: 'Online manual for sustecher',
   head: [
-    ['link', { rel: 'icon', href: `/favicon.ico` }], //标签页的ico图标，href后面填写你的图标地址（可以本地或者远程）
+      ['link', { rel: 'icon', href: `/assets/favicon.ico` }],
+      ['meta', { name: 'theme-color', content: color }],
+      ['meta', { prefix: ogprefix, property: 'og:type', content: 'article' }],
+      ['meta', { prefix: ogprefix, property: 'og:image', content: 'https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/assests/og-image.png' }],
+      ['meta', { prefix: ogprefix, property: 'og:article:author', content: author }],
   ],
   plugins: [
   [
