@@ -36,10 +36,10 @@ module.exports = {
       },
     ],
     [
-    'sitemap',
-     {
-      hostname: 'https://sustech.online'
-    },
+      'sitemap',
+      {
+        hostname: 'https://sustech.online'
+      },
     ],
   ],
   themeConfig: {
@@ -54,20 +54,34 @@ module.exports = {
     repoLabel: '在Github上查看',
     editLinks: true,
     sidebarDepth: 2,
-    sidebar: {
-      '/': [
-        '',     /* /foo/ */
-        '/facility/',
-        '/contact/',
-        '/calendar/',
-        '/service/',
-        '/study/',
-        '/network/',
-        '/media/',
-        '/catering/',
-        '/transport/',
-        '/surroundings/',
-      ],
-    }
+    sidebar: [
+      '/',
+      '/facility/',
+      '/contact/',
+      {
+        title: '📅校历',   // 必要的
+        // path: '/calendar/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+        collapsable: false, // 可选的, 默认值是 true,
+        sidebarDepth: 1,    // 可选的, 默认值是 1
+        children: [
+          ['/calendar/', '2019-2020 学年'],
+          {
+            title: '历史校历（存档）',
+            children: [
+              ['/calendar/2020-2021.md', '2020-2021 学年'],
+              ['/calendar/2019-2020.md', '2019-2020 学年'],
+              ['/calendar/2018-2019.md', '2018-2019 学年'],
+            ]
+          }
+        ],
+      },
+      '/service/',
+      '/study/',
+      '/network/',
+      '/media/',
+      '/catering/',
+      '/transport/',
+      '/surroundings/',
+    ]
   }
 }
