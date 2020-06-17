@@ -7,29 +7,8 @@
 
 <img class="calender-camp" src="./pic/192023.jpg">
 
+## 历史校历（存档）
 
-<client-only>
-<link href="https://cdn.bootcss.com/imageviewer/1.1.0/viewer.min.css" rel="stylesheet">
-<script type="text/javascript">
-
-    function init_viewer(){
-        $.getScript("https://cdn.bootcss.com/imageviewer/1.1.0/viewer.min.js", function(){
-            var $image = $('.calender-camp');
-
-            $image.viewer({
-            backdrop: true,
-            rotatable: false,
-            scalable: false,
-            });
-        });
-       
-    }
-
-    document.addEventListener('DOMContentLoaded', init_viewer, false);
-
-    $(document).ready(function(){
-        init_viewer();
-    });
-
-</script>
-</client-only>
+* [2020-2021 学年（预发布）](2020-2021.md)
+* [2019-2020 学年](2019-2020.md)
+* [2018-2019 学年](2018-2019.md)
