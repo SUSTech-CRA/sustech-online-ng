@@ -31,9 +31,15 @@ module.exports = {
           // 不要忘了安装 moment
           const moment = require('moment')
           moment.locale(lang)
-          return moment(timestamp).fromNow()
+          return moment(timestamp).format("YYYY-MM-DD HH:mm")
         },
       },
+    ],
+    [
+    'sitemap',
+     {
+      hostname: 'https://sustech.online'
+    },
     ],
   ],
   themeConfig: {

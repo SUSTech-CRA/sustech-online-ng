@@ -10,6 +10,8 @@
     "docs:cname": "echo \"sustech.online\"> docs/.vuepress/dist/CNAME"
   },
   "dependencies": {
-    "moment": "^2.26.0"
+    "esm": "^3.2.25",
+    "moment": "^2.26.0",
+    "vuepress-plugin-sitemap": "^2.3.1"
   }
 }
