@@ -8,9 +8,8 @@
 <img class="calender-camp" src="./pic/192023.jpg">
 
 
-
+<client-only>
 <link href="https://cdn.bootcss.com/imageviewer/1.1.0/viewer.min.css" rel="stylesheet">
-
 <script type="text/javascript">
 
     function init_viewer(){
@@ -23,7 +22,7 @@
             scalable: false,
             });
         });
-
+       
     }
 
     document.addEventListener('DOMContentLoaded', init_viewer, false);
@@ -31,3 +30,6 @@
     $(document).ready(function(){
         init_viewer();
     });
+
+</script>
+</client-only>
