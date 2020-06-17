@@ -1,4 +1,4 @@
-# 📚南科 Gitbook
+# 📚南科手册
 
 为 SUSTecher 提供快捷信息查询服务。
 
@@ -10,3 +10,6 @@
 * [邮箱服务](http://www.sustech.edu.cn/mail/)
 * [Sakai](http://sakai.sustech.edu.cn), [Blackboard](https://bb.sustech.edu.cn/)
 * [联创打印服务](http://pms.sustech.edu.cn)
+
+## 备案
+[粤ICP备18047383号](http://www.beian.miit.gov.cn/)
