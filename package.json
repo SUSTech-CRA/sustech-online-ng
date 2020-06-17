@@ -6,7 +6,8 @@
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "docs:cname": "echo \"sustech.online\"> docs/.vuepress/dist/CNAME"
   },
   "dependencies": {
     "moment": "^2.26.0"
