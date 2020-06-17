@@ -9,11 +9,16 @@ module.exports = {
   lang: 'zh-CN',
   description: 'Online manual for sustecher',
   head: [
-    ['link', { rel: 'icon', href: `/assets/favicon.ico` }],
+    ['link', { rel: 'icon', href: `/logo-assets/touch/homescreen192.png` }],
     ['meta', { name: 'theme-color', content: color }],
     ['meta', { prefix: ogprefix, property: 'og:type', content: 'article' }],
     ['meta', { prefix: ogprefix, property: 'og:image', content: 'https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/assests/og-image.png' }],
     ['meta', { prefix: ogprefix, property: 'og:article:author', content: author }],
+    ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
+    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
+    ['link', { rel: 'apple-touch-icon', href: '/logo-assets/touch/homescreen168.png' }],
+    ['meta', { name: 'msapplication-TileImage', content: '/logo-assets/touch/homescreen144.png' }],
+    ['meta', { name: 'msapplication-TileColor', content: '#000000' }],
     ['meta', { name: 'google-site-verification', content: 'Av-srANCmFA_yZ8Iasa1yQsIPJCF_zlP5AoD35m6_Ww' }],
   ],
   plugins: [
@@ -24,6 +29,13 @@ module.exports = {
       },
     ],
     'fulltext-search',
+    [
+    '@vuepress/pwa',
+    {
+      serviceWorker: true,
+      updatePopup: true,
+    },
+    ],
     [
       '@vuepress/last-updated',
       {
@@ -82,6 +94,7 @@ module.exports = {
       '/catering/',
       '/transport/',
       '/surroundings/',
+      '/site-help/',
     ]
   }
 }
