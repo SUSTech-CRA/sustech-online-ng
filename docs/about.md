@@ -1,6 +1,6 @@
 # 帮助我们完善
 
-项目托管在 [SUSTC/sustc.github.io](https://github.com/sustc/sustc.github.io)
+项目托管在 [SUSTC/sustech-online-ng](https://github.com/sustc/sustech-online-ng)
 
 ## 如何贡献
 1. Pull request
