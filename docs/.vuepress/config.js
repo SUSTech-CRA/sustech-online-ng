@@ -24,6 +24,16 @@ module.exports = {
   ],
   plugins: [
     [
+      '@vuepress/medium-zoom', {
+        selector: 'img.calender-camp',
+        // medium-zoom options here
+        // See: https://github.com/francoischalifour/medium-zoom#options
+        options: {
+          margin: 16,
+        }
+      }
+    ],
+    [
       '@vuepress/google-analytics',
       {
         'ga': 'UA-169618277-1' // UA-00000000-0
@@ -31,9 +41,9 @@ module.exports = {
     ],
     'fulltext-search',
     [
-    '@vuepress/pwa',
-    {
-      serviceWorker: true,
+      '@vuepress/pwa',
+      {
+        serviceWorker: true,
         updatePopup: {
           message: "发现新内容可用",
           buttonText: "刷新"
