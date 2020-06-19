@@ -62,6 +62,7 @@ module.exports = {
     nav: [
       { text: '主页', link: '/' },
       { text: '关于', link: '/about/' },
+      { text: '站点帮助', link: '/site-help/' },
     ],
     repo: 'sustc/sustech-online-ng',
     docsRepo: 'sustc/sustech-online-ng',
@@ -99,7 +100,6 @@ module.exports = {
       '/catering/',
       '/transport/',
       '/surroundings/',
-      '/site-help/',
     ]
   }
 }
