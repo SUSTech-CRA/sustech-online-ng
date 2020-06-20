@@ -1,9 +1,22 @@
 # 🚄交通
 
 ## 🚌校园巴士
-| [工作日](./workday.md) | [节假日](./holiday.md) | 
-| :------ | :-------- |
-|                   |
+
+<div id="button-div">
+<div class='bt-sub'><a href="./workday.html">工作日</a></div>
+<div class='bt-sub'><a href="./holiday.html">节假日</a></div>
+</div>
+
+<ClientOnly>
+<style>
+.bt-sub {
+    margin-top: 1%;
+    display: inline-block;
+    width: 49%;
+    text-align: center;
+}
+</style>
+</ClientOnly>
 
 ## 来往南方科技大学的交通
 ### 公交
