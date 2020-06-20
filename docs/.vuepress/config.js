@@ -84,7 +84,7 @@ module.exports = {
       {
         title: '📅校历',   // 必要的
         // path: '/calendar/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-        collapsable: false, // 可选的, 默认值是 true,
+        // collapsable: false, // 可选的, 默认值是 true,
         sidebarDepth: 1,    // 可选的, 默认值是 1
         children: [
           ['/calendar/', '2019-2020 学年'],
@@ -103,7 +103,17 @@ module.exports = {
       '/network/',
       '/media/',
       '/catering/',
-      '/transport/',
+      {
+        title: '🚄交通',   // 必要的
+        // path: '/calendar/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+        // collapsable: false, // 可选的, 默认值是 true,
+        sidebarDepth: 1,    // 可选的, 默认值是 1
+        children: [
+          ['/transport/workday.md', '🚌校园巴士-工作日'],
+          ['/transport/holiday.md', '🚌校园巴士-节假日'],
+          ['/transport/', '周围交通'],
+        ],
+      },
       '/surroundings/',
     ]
   }
