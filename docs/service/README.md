@@ -18,3 +18,4 @@
 
 1. [Sakai | 文件分享](./sakai)
 2. [联创 | 扫描](./unifound)
+3. [Blackboard｜将Blackboard中作业，DDL等日程添加到系统日历](./blackboard/retrive-ics-url/)
