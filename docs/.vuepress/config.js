@@ -5,9 +5,13 @@ let color = '#49BF7C'
 let author = 'sustech.online'
 
 module.exports = {
-  title: '南科手册',
-  lang: 'zh-CN',
-  description: 'Online manual for sustecher',
+  locales: {
+    '/': {
+      title: '南科手册',
+      lang: 'zh-CN',
+      description: 'Online manual for sustecher',
+    }
+  },
   head: [
     ['link', { rel: 'icon', href: `/logo-assets/touch/homescreen192.png` }],
     ['meta', { name: 'theme-color', content: color }],
