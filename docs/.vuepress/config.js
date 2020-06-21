@@ -103,7 +103,7 @@ module.exports = {
         ],
       },
       '/service/',
-      '/study/',
+      '/study-and-organization/',
       '/network/',
       '/media/',
       '/catering/',
