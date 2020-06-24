@@ -1,4 +1,4 @@
-# 将Blackboard中作业，DDL等日程添加到系统日历
+# BB | 将Blackboard中作业，DDL等日程添加到系统日历
 
 ## 什么是ICS
 
