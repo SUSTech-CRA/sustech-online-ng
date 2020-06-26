@@ -39,6 +39,9 @@ module.exports = {
       },
     ],
     'fulltext-search',
+    '@vuepress/medium-zoom',
+    '@vuepress/nprogress',
+    '@vuepress/back-to-top',
     [
       '@vuepress/pwa',
       {
