@@ -3,16 +3,16 @@
 ## 大型商城
 
 ### 塘朗城
-![](../assests/badge/szmc/5.svg)塘朗站
+![](../assets/badge/szmc/5.svg)塘朗站
 
 ### 宝能城
-![](../assests/badge/szmc/5.svg)塘朗站
+![](../assets/badge/szmc/5.svg)塘朗站
 
 ### 益田假日里
-![](../assests/badge/szmc/5.svg)大学城站
+![](../assets/badge/szmc/5.svg)大学城站
 
 ### 九方
-![](../assests/badge/szmc/4.svg)红山站
+![](../assets/badge/szmc/4.svg)红山站
 
 ## 城中村
 ### 田寮村

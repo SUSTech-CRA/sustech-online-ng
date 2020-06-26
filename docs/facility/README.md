@@ -14,6 +14,8 @@
 
 #### 琳恩图书馆
 
+![图书馆与行政楼](https://assets.sustech.online/img/facility/buildings/library-and-administration-building.jpg)
+
 琳恩图书馆是南科大的第一个，也是最大图书馆，在2020年前，他同时是南科大的唯一图书馆。图书馆名字中“LYNN”的来历，是因为一位匿名的香港友好人士向南方科技大学教育基金会捐赠港币2000万元，因此他将图书馆冠名为“琳恩图书馆”（LYNN LIBRARY）。
 
 - [琳恩图书馆|sustc.wiki](https://sustc.wiki/琳恩图书馆)
@@ -26,6 +28,8 @@
 
 #### 第一教学楼
 
+![第一教学楼](https://assets.sustech.online/img/facility/buildings/第一教学楼.jpg)
+
 简称“**一教**”。在学校二期工程完成之前，本科生绝大部分基础课都会在第一教学楼上。
 
 一教分为南北两翼，南翼主要是教室：一楼的大部分教室都是可以容纳150人+的**大型教室**，平时主要用于上通识基础课和思政课；二楼主要用作了**自习室**；三楼和四楼有几间教室平时固定用于英语课程，其他的教室则是用于人数较少的课程。
@@ -37,6 +41,8 @@
 在一教的楼顶可以看到整个山下，和建设中的公共教学楼和理学院。
 
 #### 检测中心
+
+
 
 内部主要是一些实验室，包括安装了光刻设备的超净间等。
 
@@ -74,19 +80,25 @@
 
 #### 国际会议中心
 
+![国际会议中心](https://assets.sustech.online/img/facility/buildings/interview-center.jpg)
+
 将在2020年四季度落成。
 
 ### 湖畔
 
-![湖畔与二期宿舍](https://assets.sustech.online/img/facility/buildings/lakeside-and-phase2-dorm.jpg)
+![湖畔宿舍航拍](https://assets.sustech.online/img/facility/buildings/lakeside-aerial.jpg)
 
-在上图中，中间按顺时针顺序依次是是湖畔宿舍，九华苑，游泳馆和风雨操场。图中北侧为二期宿舍。
+在上图中，中间按顺时针顺序依次是是湖畔宿舍，九华苑，游泳馆和风雨操场。
 
 #### 湖畔宿舍群
+
+![致仁书院](https://assets.sustech.online/img/facility/buildings/zhiren-college.jpg)
 
 湖畔宿舍目前主要居住**致仁书院**，**致新书院**，**树德书院**的同学，在可见的未来，湖畔除了1-3栋居住**致仁书院与致新书院**的同学之外，其他栋都会住研究生和国际生。其中，湖畔1-3栋是四人间，4-6栋则是双人间。湖畔1栋楼下是学生事务中心，3栋的楼下有一间小超市，5栋楼下则是收发室。
 
 湖畔沿湖一侧有若干建筑，包括**书院活动室**，**湖畔健身房**和**舞蹈房**。这些建筑的上面是一个大阳台，可以从六栋旁边的楼梯上去。
+
+![书院活动室上方的阳台](https://assets.sustech.online/img/facility/buildings/湖畔阳台.jpg)
 
 - [湖畔|sustc.wiki](https://sustc.wiki/湖畔)
 
@@ -95,6 +107,8 @@
 一共有九栋别墅，主要居住院士级别的教授，因此也被同学称之为“院士楼”。平时门口的保安不太欢迎同学上去，可能会赶人。
 
 #### 风雨操场
+
+![风雨操场](https://assets.sustech.online/img/facility/buildings/sports-center.jpg)
 
 风雨操场的南侧包括**排球场**，**搏击馆**和**室内篮球场**，风雨操场的二层有一个废弃的网球场（可能是因为怕网球打伤人）。**室内设施没有空调**，夏天会比较热。大一上的体育课大都会在此处进行。
 
@@ -105,6 +119,8 @@
 - [游泳馆|sustc.wiki](https://sustc.wiki/游泳馆)
 
 ### 二期宿舍
+
+![二期宿舍10栋与餐厅](https://assets.sustech.online/img/facility/buildings/p2-dormitory.jpg)
 
 于2019年8月落成的新宿舍区域，也是未来大部分同学（本科生，研究生，博士生）的居住区域。但与湖畔宿舍相比，二期宿舍缺少独立卫生间，宿舍面积也相对更小，但二期宿舍全部配备了电梯。
 
@@ -176,11 +192,15 @@
 
 #### 润扬体育馆
 
+![润杨体育馆](https://assets.sustech.online/img/facility/buildings/润杨体育馆.jpg)
+
 叫“润扬体育馆”的原因是因为体育馆是润杨集团[冠名](https://newshub.sustech.edu.cn/zh/html/201909/26624.html)的。
 
 体育馆南侧目前是野战场地，学校购置了基于红外线的模拟枪，可以打真人CS。这里还有一面攀岩墙。
 
 #### 松禾体育场（田径场）
+
+![松禾体育场](https://assets.sustech.online/img/facility/buildings/松禾体育场.jpg)
 
 由松禾资本[冠名](https://newshub.sustech.edu.cn/zh/html/201704/5996.html)。
 
@@ -193,6 +213,14 @@
 在后山（步行公园）上可以望见长岭陂水库，智园，长岭陂地铁站和正在建设中的医学院。
 
 后山的体育馆后方的位置有一块石头，在二期宿舍建成之前是学校的最高点，可以看到整个校园。
+
+### 大沙河
+
+![一号门所见的大沙河](https://assets.sustech.online/img/facility/buildings/大沙河-gate1.jpg)
+
+大沙河发源自长岭陂水库泄洪渠，并流经南科大的南侧。
+
+
 
 
 ## 全景看校园
@@ -209,3 +237,29 @@
 - [荔园，二期宿舍（校园北侧）](https://panolens-assets.service.sparktour.me/liyuan.html)
 - [慧园，欣园（校园东北侧）](https://panolens-assets.service.sparktour.me/huiyuan.html)
 - [工学院 （校园西北侧）](https://panolens-assets.service.sparktour.me/aoe.html)
+
+## 图片版权
+
+- CC0
+  - [校园地图](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/facility/campus-map.png)/深圳规划局
+- [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.zh)
+  - [图书馆与行政楼](https://assets.sustech.online/img/facility/buildings/library-and-administration-building.jpg)/sparktour
+  - [风雨操场](https://commons.wikimedia.org/wiki/File:Arial_image_of_the_sports_center_of_SUSTech.jpg)/sparktour
+  - [书院活动室上方的阳台](https://assets.sustech.online/img/facility/buildings/湖畔阳台.jpg)/sparktour
+  - [风雨操场](https://assets.sustech.online/img/facility/buildings/sports-center.jpg)/sparktour
+  - [建设中的工学院](https://assets.sustech.online/img/facility/buildings/Engineering_College_Building_of_Southern_University_of_Science_and_Technology_Under_Construction.jpg)/sparktour
+- 权利归作者所有
+  - [一期校园](https://assets.sustech.online/img/facility/buildings/underhill.jpg)/sparktour
+  - [第一教学楼](https://assets.sustech.online/img/facility/buildings/第一教学楼.jpg)/南方科技大学
+  - [国际会议中心](https://assets.sustech.online/img/facility/buildings/interview-center.jpg)/南方科技大学
+  - [湖畔宿舍航拍](https://assets.sustech.online/img/facility/buildings/lakeside-aerial.jpg)/sparktour
+  - [致仁书院](https://assets.sustech.online/img/facility/buildings/zhiren-college.jpg)/南方科技大学
+  - [二期宿舍10栋与餐厅](https://assets.sustech.online/img/facility/buildings/p2-dormitory.jpg)/南方科技大学
+  - [荔园，慧园与欣园](https://assets.sustech.online/img/facility/buildings/liyuan-huiyuann-xinyuan.jpg)/sparktour
+  - [校园东南区域](https://assets.sustech.online/img/facility/buildings/southwest.jpg)/sparktour
+  - [步行公园](https://assets.sustech.online/img/facility/buildings/hill.jpg)/sparktour
+  - [润杨体育馆](https://assets.sustech.online/img/facility/buildings/润杨体育馆.jpg)/南方科技大学
+  - [松禾体育场](https://assets.sustech.online/img/facility/buildings/松禾体育场.jpg)/南方科技大学
+  - [一号门所见的大沙河](https://assets.sustech.online/img/facility/buildings/大沙河-gate1.jpg)/南方科技大学
+  - [湖畔全景](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/facility/campus-pano.jpg)/sparktour
+

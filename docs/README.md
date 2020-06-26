@@ -21,5 +21,13 @@
 
 ![校园地图](https://assets.sustech.online/img/campus-map/南方科技大学校园地图-v2-2.png)
 
+## 版权信息
+
+![](./assets/CC-BY-SA_icon.svg)
+
+未做特别声明的内容，均按照[CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.zh)协议进行分发。
+
+做出特别声明的内容，版权按声明执行。
+
 ## 备案
 [粤ICP备18047383号](http://www.beian.miit.gov.cn/)
