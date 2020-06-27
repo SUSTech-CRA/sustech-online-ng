@@ -21,3 +21,5 @@
 <a href="https://github.com/sustc/sustech-online-ng/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=sustc/sustech-online-ng" />
 </a>
+
+同时感谢学生新闻社与南科新知为我们提供素材。

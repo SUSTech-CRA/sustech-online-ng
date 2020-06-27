@@ -47,7 +47,7 @@ module.exports = {
       {
         serviceWorker: true,
         updatePopup: {
-          message: "发现新内容可用",
+          message: "手册内容有更新！",
           buttonText: "刷新"
         },
       },
