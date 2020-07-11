@@ -125,3 +125,7 @@ done
 - [申请回校VPN](./apply-for-vpn)
 - [给打印机加纸](/service/unifound)
 - 调整往某个网段的路由
+
+
+
+**关于学校提供的更多信息服务，请见[服务](/service)一节**

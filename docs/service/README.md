@@ -13,6 +13,16 @@
 
 - [Blackboard｜将Blackboard中作业，DDL等日程添加到系统日历](./blackboard/retrive-ics-url/)
 
+## 通讯相关
+
+### 电子邮件服务
+
+- [电子邮件服务](./email)
+
+### 企业微信
+
+- [企业微信](./work-wechat)
+
 ## 软件授权
 
 ### 学校已购买的软件与服务
