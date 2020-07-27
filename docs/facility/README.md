@@ -148,7 +148,11 @@
 
 在上图中，左上角是荔园与创园，左下角是慧园，右侧是欣园。
 
+![荔园入口](https://assets.sustech.online/img/facility/buildings/liyuan-gate.jpg)
+
 荔园的1，2，5栋主要是教室和实验室，余下部分则为宿舍区域。
+
+![荔园一栋](https://assets.sustech.online/img/facility/buildings/liyuan-block1.jpg)
 
 荔园5栋的1，2楼是餐厅，由外包商运营。6栋楼下有一个超市。
 
