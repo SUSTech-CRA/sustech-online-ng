@@ -133,5 +133,5 @@ done
 ## 选择合适的电子产品
 
 - 电脑
-- 平板
+- [平板](./choose-a-pad)
 - [路由器](./choose-a-router)

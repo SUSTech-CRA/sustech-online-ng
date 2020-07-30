@@ -18,6 +18,10 @@
 
 **45：** 代表这位同学在班级内的序列号为45。（实际上一个行政班不会有这么多人）
 
+## 课程
+
+- [南方科技大学课程简介（2020年7月30日更新）](https://assets.sustech.online/documents/syllabus/sustech-course-catalogue-20200730.pdf)
+
 ## 社团活动
 
 ### 注册社团列表（2018-2019）
