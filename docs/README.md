@@ -47,7 +47,7 @@
 
 预览图：
 
-![校园地图](https://assets.sustech.online/img/campus-map/南方科技大学校园地图-v2-2-1.png)
+<a data-fancybox title="" href="https://assets.sustech.online/img/campus-map/南方科技大学校园地图-v2-2-1.png">![](https://assets.sustech.online/img/campus-map/南方科技大学校园地图-v2-2-1.png)</a>
 
 ## 版权信息
 

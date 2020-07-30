@@ -22,8 +22,7 @@
 
 [点击这里](https://assets.sustech.online/documents/campus-map/南方科技大学校园地图-v2-2-1.pdf)下载矢量PDF版本。
 
-<img src="https://assets.sustech.online/img/campus-map/南方科技大学校园地图-v2-2-1.png" width="400"/>
-
+<a data-fancybox title="" href="https://assets.sustech.online/img/campus-map/南方科技大学校园地图-v2-2-1.png">![](https://assets.sustech.online/img/campus-map/南方科技大学校园地图-v2-2-1.png)</a>
 
 
 ## 来往南方科技大学的交通
