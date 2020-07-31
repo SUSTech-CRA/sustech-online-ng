@@ -19,10 +19,12 @@
 **45：** 代表这位同学在班级内的序列号为45。（实际上一个行政班不会有这么多人）
 
 ## 课程
-
 - [南方科技大学课程简介（2020年7月30日更新）](https://assets.sustech.online/documents/syllabus/sustech-course-catalogue-20200730.pdf)
 
-## 培养方案
+## 学生手册
+- [2019级本科](https://assets.sustech.online/documents/manual/南方科技大学学生手册2019-本科.pdf)
+
+## 培养方案（本科）
 - [2019级](https://assets.sustech.online/documents/本科人才培养方案/2019级本科人才培养方案/)
 - [2018级(第二学年结束时进入专业)](https://assets.sustech.online/documents/本科人才培养方案/2018级本科生培养方案（适用于第二学年结束时，申请进入专业）/)
 - [2018级(第一学年结束时进入专业)](https://assets.sustech.online/documents/本科人才培养方案/2018级本科生培养方案%20%28适用于第二学年结束时，申请进入专业）/)
