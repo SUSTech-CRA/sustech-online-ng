@@ -21,6 +21,12 @@
 ## 课程
 - [南方科技大学课程简介（2020年7月30日更新）](https://assets.sustech.online/documents/syllabus/sustech-course-catalogue-20200730.pdf)
 
+### 课程详述
+
+包含课程简介，纲要与考核形式。
+
+- [南方科技大学课程详述](https://assets.sustech.online/curriculum/)
+
 ## 学生手册
 - [2019级本科](https://assets.sustech.online/documents/manual/南方科技大学学生手册2019-本科.pdf)
 
