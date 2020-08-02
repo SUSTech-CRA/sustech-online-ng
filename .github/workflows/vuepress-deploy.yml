@@ -15,3 +15,4 @@ jobs:
         TARGET_BRANCH: gh-pages
         BUILD_SCRIPT: yarn && yarn docs:build && yarn docs:cname
         BUILD_DIR: docs/.vuepress/dist/
+        TZ: Asia/Shanghai
