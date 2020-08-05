@@ -39,6 +39,10 @@
 </thead>
 </table>
 
+## 如果你是新生... <Badge text="For Freshman" type="tip"/>
+
+如果你是准大一的同学，你可以[点击这里](./if-you-are-a-freshman)了解并开启你的大学生活！
+
 ## 校园地图
 
 由sustech.online团队制作的校园地图。地图底图采用南科大2019版最新规划图，并添加校园巴士线路，打印机，商店，收发室等实用信息。
