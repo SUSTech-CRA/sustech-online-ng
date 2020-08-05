@@ -2,7 +2,7 @@
 
 ## 2020-2021 秋季学期
 
-<a data-fancybox title="" href="https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/calendar/pic/202101.jpg">![](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/calendar/pic/202101.jpg)</a>
+<a data-fancybox title="" href="https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/calendar/pic/202101.png">![](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/calendar/pic/202101.png)</a>
 
 ## 历史校历（存档）
 
