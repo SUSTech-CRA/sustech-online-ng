@@ -143,7 +143,7 @@
 
 二期宿舍中部有一个两层的二期宿舍学生餐厅，西侧则有一个小型图书馆，学校对他的定位更像是“自习室”。
 
-- [🏢入住新宿舍](./moving-to-new-dormitory)
+- [🏢入住新宿舍](/dormitory)
 
 | 楼栋 |    入住学生归属    |
 | :--: | :----------------: |
@@ -299,4 +299,3 @@
   - [松禾体育场](https://assets.sustech.online/img/facility/buildings/松禾体育场.jpg)/南方科技大学
   - [一号门所见的大沙河](https://assets.sustech.online/img/facility/buildings/大沙河-gate1.jpg)/南方科技大学
   - [湖畔全景](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/facility/campus-pano.jpg)/sparktour
-
