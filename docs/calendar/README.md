@@ -1,9 +1,5 @@
 # 📅校历
 
-## 2019-2020 春季学期、夏季学期
-
-<a data-fancybox title="" href="https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/calendar/pic/192023.jpg">![](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/calendar/pic/192023.jpg)</a>
-
 ## 2020-2021 秋季学期
 
 <a data-fancybox title="" href="https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/calendar/pic/202101.jpg">![](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/calendar/pic/202101.jpg)</a>

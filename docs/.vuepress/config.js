@@ -106,6 +106,7 @@ module.exports = {
         ],
       },
       '/service/',
+      '/dormitory/',
       '/study-and-organization/',
       '/it/',
       '/media/',

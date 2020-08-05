@@ -57,5 +57,10 @@
 
 做出特别声明的内容，版权按声明执行。
 
+## For International Students
+
+Please use the [Google translation tool in Chrome](https://support.google.com/chrome/answer/173424) to translate the manual.
+
 ## 备案
+
 [粤ICP备18047383号](http://www.beian.miit.gov.cn/)

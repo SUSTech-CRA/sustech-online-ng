@@ -22,6 +22,17 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 | 南科大团委 | SUSTC_Youth | <img src="https://open.weixin.qq.com/qr/code?username=SUSTC_Youth#.jpg" class="wx-qr medium-zoom-image"> |
 | 南科大研究生 | SUSTechGRAD | <img src="https://open.weixin.qq.com/qr/code?username=SUSTechGRAD#.jpg" class="wx-qr medium-zoom-image"> |
 
+### 书院
+
+|   名称   |   网址/微信号   |                            二维码                            |
+| :------: | :-------------: | :----------------------------------------------------------: |
+| 致仁书院 | gh_67d6ddcf1965 | <img src="https://open.weixin.qq.com/qr/code?username=gh_67d6ddcf1965#.jpg" class="wx-qr medium-zoom-image"> |
+| 树仁书院 |                 |                                                              |
+| 致诚书院 |                 |                                                              |
+| 树德书院 |                 |                                                              |
+| 树礼书院 |                 |                                                              |
+| 致新书院 |                 |                                                              |
+
 ## 自媒体
 
 ### 微信公众号
@@ -57,12 +68,14 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 | 过饱和醋酸钠溶液 | supersaturatedNaAc | 过饱和醋酸钠是一种没有醋酸的酸味，也没有别的钠盐好用的东西。说明至少有一个优点，就是对自己的号定位准确。 | <img src="https://open.weixin.qq.com/qr/code?username=supersaturatedNaAc#.jpg" class="wx-qr medium-zoom-image"> |
 | [南科危废](https://sustc.wiki/index.php?title=南科危废&action=edit&redlink=1) | wefailed | 它就像它的微信号说的那样。 | <img src="https://open.weixin.qq.com/qr/code?username=wefailed#.jpg" class="wx-qr medium-zoom-image"> |
 | 川哥沙雕搬运 | shadiaochuan | 这是一个不定期搬运沙雕图、推荐电影、甚至小编还会自掏腰包请大家免费听歌的公众号。 | <img src="https://open.weixin.qq.com/qr/code?username=shadiaochuan#.jpg" class="wx-qr medium-zoom-image"> |
+| 黑色肥肠 | HSFC1997 | 喜欢在寂寥无人、蠢蠢欲动的夜晚进行一些单身狗式的过度思考。 | <img src="https://open.weixin.qq.com/qr/code?username=HSFC1997#.jpg" class="wx-qr medium-zoom-image"> |
 
 ## 网站
 
 - 校友地图 [https://sustech-application.github.io/SUSTech-Alumni-Map/](https://sustech-application.github.io/SUSTech-Alumni-Map/)
 - SUSTech Flow | 公开评教网站 [https://sustechflow.top/](https://sustechflow.top/)
 - 南科导航｜南科大网址导航 [https://suste.ch](https://suste.ch)
-- 2020飞跃手册 [https://sustech-application.github.io/2020-Fall/#/](https://sustech-application.github.io/2020-Fall/#/)
+- 飞跃手册 [https://sustech-application.github.io/](https://sustech-application.github.io/2020-Fall/)
 - 南方科技大学开源软件镜像站|SUSTech Mirror [https://mirrors.cra.moe/](https://mirrors.cra.moe/)
 - 南方科技大学超算中心镜像站| CCSE Mirrors [https://mirrors.sustech.rocks/](https://mirrors.sustech.rocks/)
+
