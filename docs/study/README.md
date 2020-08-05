@@ -31,5 +31,9 @@
 
 - [学习制度与信息  by 树德书院](./by-shude-college/info-on-study)
 
+## 📗教材与图书借还
+
+- [📗教材与图书借还](./borrow-books)
+
 ## 袁长庚老师所推荐的新生书单
 - [2018年](./book-list-by-prof-yuan/2018)

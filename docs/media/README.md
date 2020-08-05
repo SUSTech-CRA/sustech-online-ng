@@ -24,14 +24,31 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 
 ### 书院
 
-|   名称   |   网址/微信号   |                            二维码                            |
-| :------: | :-------------: | :----------------------------------------------------------: |
-| 致仁书院 | gh_67d6ddcf1965 | <img src="https://open.weixin.qq.com/qr/code?username=gh_67d6ddcf1965#.jpg" class="wx-qr medium-zoom-image"> |
-| 树仁书院 |                 |                                                              |
-| 致诚书院 |                 |                                                              |
-| 树德书院 |                 |                                                              |
-| 树礼书院 |                 |                                                              |
-| 致新书院 |                 |                                                              |
+|   名称   |   网址/微信号    |                            二维码                            |
+| :------: | :--------------: | :----------------------------------------------------------: |
+| 致仁书院 | gh_67d6ddcf1965  | <img src="https://open.weixin.qq.com/qr/code?username=gh_67d6ddcf1965#.jpg" class="wx-qr medium-zoom-image"> |
+| 树仁书院 |   sustcshuren    | <img src="https://open.weixin.qq.com/qr/code?username=sustcshuren#.jpg" class="wx-qr medium-zoom-image"> |
+| 致诚书院 | SUSTech_ZhiCheng | <img src="https://open.weixin.qq.com/qr/code?username=SUSTech_ZhiCheng#.jpg" class="wx-qr medium-zoom-image"> |
+| 树德书院 |   sustc_shude    | <img src="https://open.weixin.qq.com/qr/code?username=sustc_shude#.jpg" class="wx-qr medium-zoom-image"> |
+| 树礼书院 |     SUSTCsl      | <img src="https://open.weixin.qq.com/qr/code?username=SUSTCsl#.jpg" class="wx-qr medium-zoom-image"> |
+| 致新书院 |  SUSTech_zhixin  | <img src="https://open.weixin.qq.com/qr/code?username=SUSTech_zhixin#.jpg" class="wx-qr medium-zoom-image"> |
+
+### 信息类公众号
+
+|           名称           |   网址/微信号   |                            二维码                            |
+| :----------------------: | :-------------: | :----------------------------------------------------------: |
+| 南科大语言中心SUSTechCLE |   SUSTechCLE    | <img src="https://open.weixin.qq.com/qr/code?username=SUSTechCLE#.jpg" class="wx-qr medium-zoom-image"> |
+| 南方科技大学教学信息平台 |    SUSTC_TAO    | <img src="https://open.weixin.qq.com/qr/code?username=SUSTC_TAO#.jpg" class="wx-qr medium-zoom-image"> |
+|    南科大就业指导中心    | gh_e9b225f6358f | <img src="https://open.weixin.qq.com/qr/code?username=gh_e9b225f6358f#.jpg" class="wx-qr medium-zoom-image"> |
+|    南科大行政服务中心    |    SUSTC-ASC    | <img src="https://open.weixin.qq.com/qr/code?username=SUSTC-ASC#.jpg" class="wx-qr medium-zoom-image"> |
+|    南方科技大学图书馆    |   SUSTechLib    | <img src="https://open.weixin.qq.com/qr/code?username=SUSTechLib#.jpg" class="wx-qr medium-zoom-image"> |
+
+### 学生组织与社团
+
+|           名称           |   网址/微信号   |                            二维码                            |
+| :----------------------: | :-------------: | :----------------------------------------------------------: |
+| 南科大信息平台（学生会） |   SUSTC_Info    | <img src="https://open.weixin.qq.com/qr/code?username=SUSTC_Info#.jpg" class="wx-qr medium-zoom-image"> |
+|    南科新知（新闻社）    | gh_db61459fa255 | <img src="https://open.weixin.qq.com/qr/code?username=gh_db61459fa255#.jpg" class="wx-qr medium-zoom-image"> |
 
 ## 自媒体
 
@@ -72,9 +89,9 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 
 ## 网站
 
+- 南科导航｜南科大网址导航 [https://suste.ch](https://suste.ch)
 - 校友地图 [https://sustech-application.github.io/SUSTech-Alumni-Map/](https://sustech-application.github.io/SUSTech-Alumni-Map/)
 - SUSTech Flow | 公开评教网站 [https://sustechflow.top/](https://sustechflow.top/)
-- 南科导航｜南科大网址导航 [https://suste.ch](https://suste.ch)
 - 飞跃手册 [https://sustech-application.github.io/](https://sustech-application.github.io/2020-Fall/)
 - 南方科技大学开源软件镜像站|SUSTech Mirror [https://mirrors.cra.moe/](https://mirrors.cra.moe/)
 - 南方科技大学超算中心镜像站| CCSE Mirrors [https://mirrors.sustech.rocks/](https://mirrors.sustech.rocks/)
