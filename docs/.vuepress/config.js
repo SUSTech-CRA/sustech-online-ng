@@ -107,10 +107,10 @@ module.exports = {
       },
       '/service/',
       '/dormitory/',
-      '/study-and-organization/',
-      '/it/',
-      '/media/',
       '/catering/',
+      '/study/',
+      '/organizations/',
+      '/media/',
       {
         title: '🚄交通',   // 必要的
         path: '/transport/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在

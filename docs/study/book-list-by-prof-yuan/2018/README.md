@@ -6,7 +6,7 @@
 
 以下罗列作品，都是我曾经读过甚至至今还常常重读的作品。我有意识地放进一些大家写的“小书”。所谓“小”者，只是规模的精致，绝不意味视野的短浅或品味的狭促。相反，在有限的空间内，在高度剪裁的材料中，往往能见真正高远的见识。与去年相似，书单中仍就有九本书，以每天30-50页的阅读量计算，大约一个学期便可读完。
 
-![封面](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/study-and-organization/book-list-by-prof-yuan/2018/1.jpeg)
+![封面](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/study/book-list-by-prof-yuan/2018/1.jpeg)
 
 ## 《镜子：照出你看不见的世界史》，爱德华多·加莱亚诺著，广西师范大学出版社2012年
 
@@ -71,4 +71,3 @@
 **以上推荐与所谓“权威”无关，它只是一个长期以读写为生的普通教师的一份邀请。我很庆幸自己出生并成长于前数字时代，在我漫长而孤独的青春期，阅读让我延展了有限的生命。我希望自己曾见识的风景，也能让后来者领略。每一本书都有其品格和灵魂，每一本书与我们的相遇因而也就有万般幻化可能。你爱上某一本书的时刻，也就是你爱上接下来无数本书的时刻。祝愿大家从阅读中得欢喜宁静。**
 
 *Copyright: [袁长庚](http://faculty.sustech.edu.cn/yuancg/), All rights reserved.*
-
