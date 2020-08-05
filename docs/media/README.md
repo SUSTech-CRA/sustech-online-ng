@@ -24,12 +24,6 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 
 ## 自媒体
 
-### 网站自媒体
-
-| 名称 | 网址 | 介绍 |
-| :-------------------: | :--------------------: | :----------------: |
-| [南科一路](https://sustc.wiki/南科一路（自媒体）) | [https://nanke.suste.ch/](https://nanke.suste.ch/) | 在这里，读懂南科。 |
-
 ### 微信公众号
 
 | 名称 | 微信号 | 介绍 | 二维码 |
@@ -64,13 +58,8 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 | [南科危废](https://sustc.wiki/index.php?title=南科危废&action=edit&redlink=1) | wefailed | 它就像它的微信号说的那样。 | <img src="https://open.weixin.qq.com/qr/code?username=wefailed#.jpg" class="wx-qr medium-zoom-image"> |
 | 川哥沙雕搬运 | shadiaochuan | 这是一个不定期搬运沙雕图、推荐电影、甚至小编还会自掏腰包请大家免费听歌的公众号。 | <img src="https://open.weixin.qq.com/qr/code?username=shadiaochuan#.jpg" class="wx-qr medium-zoom-image"> |
 
-
-
-[南科Wiki：校内自媒体](https://sustc.wiki/校内自媒体)
-
 ## 网站
 
-- 南科wiki [https://sustc.wiki](https://sustc.wiki)
 - 校友地图 [https://sustech-application.github.io/SUSTech-Alumni-Map/](https://sustech-application.github.io/SUSTech-Alumni-Map/)
 - SUSTech Flow | 公开评教网站 [https://sustechflow.top/](https://sustechflow.top/)
 - 南科导航｜南科大网址导航 [https://suste.ch](https://suste.ch)
