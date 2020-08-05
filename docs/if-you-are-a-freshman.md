@@ -34,7 +34,7 @@
 
 你也可以在南科大官网中的[南科视界](https://www.sustech.edu.cn/zh/gallery.html)栏目查看最新的校园照片。
 
-### 关注几个公众号<Badge text="beta" type="Recommend"/>
+### 关注几个公众号<Badge text="Recommend" type="tip"/>
 
 除了南科大的官方公众号和书院公众号，你也可以关注新闻社运营的[南科新知](media/#学生组织与社团)，或是由学生自主运营的[你科周末](media/#微信公众号)。从官方与学生的角度，全面地了解南科大。当然，在[📺媒体与网站](media/#📺媒体与网站)部分中的其他公众号或是[网站](https://suste.ch/)中，你或许能够了解南科大的更多[轶事](https://sustc.wiki/%E7%89%B9%E6%AE%8A:%E6%89%80%E6%9C%89%E9%A1%B5%E9%9D%A2?from=&to=&namespace=0&hideredirects=1)。
 
@@ -42,12 +42,14 @@
 
 培养方案和课程详述（syllabus）将会陪伴你大学四年，不妨在有空时翻阅一下，寻找你心水的专业与课程。
 
-- [🎓学在南科/课程](study/#课程)
+- [🎓学在南科/课程](study/by-shude-college/advice-on-study/#入学考试的建议)
+
+你也可以现行了解[入学后的分级考试]()都会涉及哪些内容，并决定自己收否需要参加某些考试。
 
 ### 读一读来自学长学姐的建议
 
-- [学习建议 by 树德书院](https://sustech.online/study/by-shude-college/advice-on-study)
-- [学习制度与信息 by 树德书院](https://sustech.online/study/by-shude-college/info-on-study)
+- [学习建议 by 树德书院](study/by-shude-college/advice-on-study)
+- [学习制度与信息 by 树德书院](study/by-shude-college/info-on-study)
 
 ### 或者是南科大网红老师推荐的书单？
 
@@ -95,5 +97,4 @@
 
 ## 最后...
 
-把南科手册添加到浏览器的收藏夹或是桌面～（[没错，南科手册也可以作为一个本地应用运行](site-help/)）你会发现你在未来会经常需要用到它。
-
+把南科手册添加到浏览器的收藏夹或是桌面！（[没错，南科手册也可以作为一个本地应用运行](site-help/)）你会发现你在未来会经常需要用到它～

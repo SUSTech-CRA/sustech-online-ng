@@ -31,15 +31,21 @@
 
 郭铠旋 ◇ 冯晨曦 ◇ 赵玉冷 ◇ 吴越悦
 
-于    陈 ◇ 张    彤 ◇ 陆衎行 ◇ 宋    阳
+于&nbsp;&nbsp;&nbsp;&nbsp;陈 ◇ 张&nbsp;&nbsp;&nbsp;&nbsp;彤 ◇ 陆衎行 ◇ 宋&nbsp;&nbsp;&nbsp;&nbsp;阳
 
 杨纹懿 ◇ 刘欣宇 ◇ 罗雨萌 ◇ 徐思婷
 
-孙    畅 ◇ 陈臻洋
+孙&nbsp;&nbsp;&nbsp;&nbsp;畅 ◇ 陈臻洋 ◇ 胡妍西 ◇ 许&nbsp;&nbsp;&nbsp;&nbsp;元
+
+郑金涛 ◇ 余梦霞 ◇ 晁曼丹 ◇ 庄&nbsp;&nbsp;&nbsp;&nbsp;湛
+
+宋&nbsp;&nbsp;&nbsp;&nbsp;璟 ◇ 崔奕辰 ◇ 毛杜若 ◇ 程&nbsp;&nbsp;&nbsp;&nbsp;潇
+
+齐&nbsp;&nbsp;&nbsp;&nbsp;昊 ◇ 郭凯旋 ◇ 左进超
 
 ### Programming & Operation
 
-李子强 ◇ 樊青远 ◇ 陈宇恒 
+李子强 ◇ 樊青远 ◇ 陈宇恒
 
 我们同时感谢南科新知，树德书院《南科行前记》团队为我们提供素材。
 
