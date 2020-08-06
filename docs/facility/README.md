@@ -143,7 +143,7 @@
 
 二期宿舍中部有一个两层的二期宿舍学生餐厅，西侧则有一个小型图书馆，学校对他的定位更像是“自习室”。
 
-- [🏢入住新宿舍](/dormitory)
+- [🏢入住新宿舍](life/dormitory)
 
 | 楼栋 |    入住学生归属    |
 | :--: | :----------------: |
@@ -268,12 +268,12 @@
 [一次观看全部全景图像](./panolens)
 
 #### 分区观看
-- [夜景全景](https://panolens-assets.service.sparktour.me/night.html)
-- [一期校园（校园南侧）](https://panolens-assets.service.sparktour.me/underhill.html)
-- [湖畔（校园中心）](https://panolens-assets.service.sparktour.me/lakeside.html)
-- [荔园，二期宿舍（校园北侧）](https://panolens-assets.service.sparktour.me/liyuan.html)
-- [慧园，欣园（校园东北侧）](https://panolens-assets.service.sparktour.me/huiyuan.html)
-- [工学院 （校园西北侧）](https://panolens-assets.service.sparktour.me/aoe.html)
+- [夜景全景](https://assets.sustech.online/panolens/night.html)
+- [一期校园（校园南侧）](https://assets.sustech.online/panolens/underhill.html)
+- [湖畔（校园中心）](https://assets.sustech.online/panolens/lakeside.html)
+- [荔园，二期宿舍（校园北侧）](https://assets.sustech.online/panolens/liyuan.html)
+- [慧园，欣园（校园东北侧）](https://assets.sustech.online/panolens/huiyuan.html)
+- [工学院 （校园西北侧）](https://assets.sustech.online/panolens/aoe.html)
 
 ## 图片版权
 
