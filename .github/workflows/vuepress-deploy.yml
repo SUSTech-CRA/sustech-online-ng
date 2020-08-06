@@ -6,7 +6,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
-
+      with:
+        fetch-depth: 0
+    
     - name: vuepress-deploy
       uses: jenkey2011/vuepress-deploy@master
       env:
