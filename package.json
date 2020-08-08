@@ -5,7 +5,7 @@
     "@vuepress/plugin-medium-zoom": "^1.5.2",
     "@vuepress/plugin-nprogress": "^1.5.2",
     "@vuepress/plugin-pwa": "^1.5.2",
-    "vuepress": "^1.5.2",
+    "vuepress": "^1.5.3",
     "vuepress-plugin-fulltext-search": "^2.0.3"
   },
   "scripts": {
