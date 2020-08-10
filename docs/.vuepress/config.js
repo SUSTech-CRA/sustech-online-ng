@@ -70,6 +70,7 @@ module.exports = {
       },
     ],
   ],
+  theme: 'default-prefers-color-scheme',
   themeConfig: {
     nav: [
       { text: '主页', link: '/' },
@@ -107,7 +108,7 @@ module.exports = {
       },
       '/service/',
       '/life/',
-      '/catering/',    
+      '/catering/',
       '/study/',
       '/organizations/',
       '/media/',

@@ -198,6 +198,10 @@ function build_all_table() {
                 $('td', row).css('background-color', '#003f43'); // SUSTech dark green
                 $('td', row).css('color', '#FFFFFF');
             }
+            else if (data[2] == "未发车") {
+                $('td', row).css('background-color', '#FFFFFF'); // SUSTech dark green
+                $('td', row).css('color', '#2c3e50');
+            }            
             else if (data[2] == "在途中") {
                 $('td', row).css('background-color', '#ed6c00'); // SUSTech orange
                 $('td', row).each(function () {
