@@ -20,6 +20,8 @@
 - [2019级本科](https://assets.sustech.online/documents/manual/南方科技大学学生手册2020-本科.pdf)
 
 ## 培养方案（本科）
+- [2020级本科人才培养方案](https://assets.sustech.online/documents/本科人才培养方案/2020级本科人才培养方案/)
+- [Curriculum for International Students (2020)](https://assets.sustech.online/documents/curriculum_for_international_students/2020/)
 - [2019级](https://assets.sustech.online/documents/本科人才培养方案/2019级本科人才培养方案/)
 - [2018级(第二学年结束时进入专业)](https://assets.sustech.online/documents/本科人才培养方案/2018级本科生培养方案（适用于第二学年结束时，申请进入专业）/)
 - [2018级(第一学年结束时进入专业)](https://assets.sustech.online/documents/本科人才培养方案/2018级本科生培养方案%20%28适用于第二学年结束时，申请进入专业）/)
