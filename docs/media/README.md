@@ -19,8 +19,13 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 ### 院、部门级
 | 名称 | 网址/微信号 | 二维码 |
 | :------------: | :----------------: | :-----------------------: |
-| 南科大团委 | SUSTC_Youth | <img src="https://open.weixin.qq.com/qr/code?username=SUSTC_Youth#.jpg" class="wx-qr medium-zoom-image"> |
+| 南科大团委 | SUSTech_Youth | <img src="https://open.weixin.qq.com/qr/code?username=SUSTech_Youth#.jpg" class="wx-qr medium-zoom-image"> |
 | 南科大研究生 | SUSTechGRAD | <img src="https://open.weixin.qq.com/qr/code?username=SUSTechGRAD#.jpg" class="wx-qr medium-zoom-image"> |
+| 南科大总务君 | campusoperation | <img src="https://open.weixin.qq.com/qr/code?username=campusoperation#.jpg" class="wx-qr medium-zoom-image"> |
+| 南科大校友会 | gh_292ed725cdfc | <img src="https://open.weixin.qq.com/qr/code?username=gh_292ed725cdfc#.jpg" class="wx-qr medium-zoom-image"> |
+| 南科大计算机系 | SUSTech-CSE | <img src="https://open.weixin.qq.com/qr/code?username=SUSTech-CSE#.jpg" class="wx-qr medium-zoom-image"> |
+| 南科大电子系 | sustc_ee | <img src="https://open.weixin.qq.com/qr/code?username=sustc_ee#.jpg" class="wx-qr medium-zoom-image"> |
+
 
 ### 书院
 
@@ -32,6 +37,7 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 | 树德书院 |   sustc_shude    | <img src="https://open.weixin.qq.com/qr/code?username=sustc_shude#.jpg" class="wx-qr medium-zoom-image"> |
 | 树礼书院 |     SUSTCsl      | <img src="https://open.weixin.qq.com/qr/code?username=SUSTCsl#.jpg" class="wx-qr medium-zoom-image"> |
 | 致新书院 |  SUSTech_zhixin  | <img src="https://open.weixin.qq.com/qr/code?username=SUSTech_zhixin#.jpg" class="wx-qr medium-zoom-image"> |
+
 
 ### 信息类公众号
 
@@ -49,6 +55,7 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 | :----------------------: | :-------------: | :----------------------------------------------------------: |
 | 南科大信息平台（学生会） |   SUSTC_Info    | <img src="https://open.weixin.qq.com/qr/code?username=SUSTC_Info#.jpg" class="wx-qr medium-zoom-image"> |
 |    南科新知（新闻社）    | gh_db61459fa255 | <img src="https://open.weixin.qq.com/qr/code?username=gh_db61459fa255#.jpg" class="wx-qr medium-zoom-image"> |
+|    南科大义工联    | SUSTC_Volunteers | <img src="https://open.weixin.qq.com/qr/code?username=SUSTC_Volunteers#.jpg" class="wx-qr medium-zoom-image"> |
 
 ## 自媒体
 
