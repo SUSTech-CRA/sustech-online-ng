@@ -4,13 +4,16 @@
 
 ![自动构建状态](https://github.com/SUSTC/sustech-online-ng/workflows/Build%20and%20Deploy/badge.svg)
 
-## 如何贡献
+## 如何贡献 / 建议
 
 1. Pull request
     1. Fork 后，进行修改。
     2. 发起 Merge 请求。
 
-2. 代理提交
+2. 邮件提交
+    1. 发送邮件到 support__at__mail.sustech.online (\_\_at\_\_ 替换为 @)
+
+3. 代理提交
     1. 进入[南科手册 QQ群](https://jq.qq.com/?_wv=1027&k=5D8EgDF): 905618908
     2. 提交规范编写的Word，Markdown 文件给管理员。
     3. 管理员整理上传。
