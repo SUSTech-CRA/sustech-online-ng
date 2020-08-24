@@ -16,16 +16,16 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 | 南方科技大学微信公众号 | SUSTech14325 |<img src="https://open.weixin.qq.com/qr/code?username=SUSTech14325#.jpg" class="wx-qr medium-zoom-image">|
 
 
-### 院、部门级
+### 院、系、部门级
 | 名称 | 网址/微信号 | 二维码 |
 | :------------: | :----------------: | :-----------------------: |
 | 南科大团委 | SUSTech_Youth | <img src="https://open.weixin.qq.com/qr/code?username=SUSTech_Youth#.jpg" class="wx-qr medium-zoom-image"> |
 | 南科大研究生 | SUSTechGRAD | <img src="https://open.weixin.qq.com/qr/code?username=SUSTechGRAD#.jpg" class="wx-qr medium-zoom-image"> |
-| 南科大后勤服务 | campusop | <img src="https://open.weixin.qq.com/qr/code?username=campusop#.jpg" class="wx-qr medium-zoom-image"> |
-| 南科大总务君 | campusoperation | <img src="https://open.weixin.qq.com/qr/code?username=campusoperation#.jpg" class="wx-qr medium-zoom-image"> |
-| 南科大校友会 | gh_292ed725cdfc | <img src="https://open.weixin.qq.com/qr/code?username=gh_292ed725cdfc#.jpg" class="wx-qr medium-zoom-image"> |
+| 南科大理学院 | gh_7cd0accb5726 | <img src="https://open.weixin.qq.com/qr/code?username=gh_7cd0accb5726#.jpg" class="wx-qr medium-zoom-image"> |
+| 南科大工学院 | SUSTech_CoE | <img src="https://open.weixin.qq.com/qr/code?username=SUSTech_CoE#.jpg" class="wx-qr medium-zoom-image"> |
 | 南科大计算机系 | SUSTech-CSE | <img src="https://open.weixin.qq.com/qr/code?username=SUSTech-CSE#.jpg" class="wx-qr medium-zoom-image"> |
 | 南科大电子系 | sustc_ee | <img src="https://open.weixin.qq.com/qr/code?username=sustc_ee#.jpg" class="wx-qr medium-zoom-image"> |
+| 南科大校友会 | gh_292ed725cdfc | <img src="https://open.weixin.qq.com/qr/code?username=gh_292ed725cdfc#.jpg" class="wx-qr medium-zoom-image"> |
 
 
 ### 书院
@@ -44,12 +44,16 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 
 |           名称           |   网址/微信号   |                            二维码                            |
 | :----------------------: | :-------------: | :----------------------------------------------------------: |
+|    南方科技大学图书馆    |   SUSTechLib    | <img src="https://open.weixin.qq.com/qr/code?username=SUSTechLib#.jpg" class="wx-qr medium-zoom-image"> |
 | 南科大语言中心SUSTechCLE |   SUSTechCLE    | <img src="https://open.weixin.qq.com/qr/code?username=SUSTechCLE#.jpg" class="wx-qr medium-zoom-image"> |
 | 南方科技大学教学信息平台 |    SUSTC_TAO    | <img src="https://open.weixin.qq.com/qr/code?username=SUSTC_TAO#.jpg" class="wx-qr medium-zoom-image"> |
+| 南科大学生事务中心 |    gh_5f30bf8a4656    | <img src="https://open.weixin.qq.com/qr/code?username=gh_5f30bf8a4656#.jpg" class="wx-qr medium-zoom-image"> |
 |    南科大就业指导中心    | gh_e9b225f6358f | <img src="https://open.weixin.qq.com/qr/code?username=gh_e9b225f6358f#.jpg" class="wx-qr medium-zoom-image"> |
 |    南科大国际合作部    | gh_d466c32bf2d7 | <img src="https://open.weixin.qq.com/qr/code?username=gh_d466c32bf2d7#.jpg" class="wx-qr medium-zoom-image"> |
 |    南科大行政服务中心    |    SUSTC-ASC    | <img src="https://open.weixin.qq.com/qr/code?username=SUSTC-ASC#.jpg" class="wx-qr medium-zoom-image"> |
-|    南方科技大学图书馆    |   SUSTechLib    | <img src="https://open.weixin.qq.com/qr/code?username=SUSTechLib#.jpg" class="wx-qr medium-zoom-image"> |
+| 南科大后勤服务 | campusop | <img src="https://open.weixin.qq.com/qr/code?username=campusop#.jpg" class="wx-qr medium-zoom-image"> |
+| 南科大总务君 | campusoperation | <img src="https://open.weixin.qq.com/qr/code?username=campusoperation#.jpg" class="wx-qr medium-zoom-image"> |
+
 
 ### 学生组织与社团
 
@@ -70,10 +74,8 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 | 少爷和陈老师 | gh_907391e11ad8 | （院长的）个人习作练习本 | <img src="https://open.weixin.qq.com/qr/code?username=gh_907391e11ad8#.jpg" class="wx-qr medium-zoom-image"> |
 | [你科周末](https://sustc.wiki/你科周末) | joydiet | 扎根妮可的野生周末菌。 | <img src="https://open.weixin.qq.com/qr/code?username=joydiet#.jpg" class="wx-qr medium-zoom-image"> |
 | [南科先知](https://sustc.wiki/南科先知) | gh_189f9ac8413e | 在这里读懂南科。 | <img src="https://open.weixin.qq.com/qr/code?username=gh_189f9ac8413e#.jpg" class="wx-qr medium-zoom-image"> |
-| ~~[啵闻](https://sustc.wiki/index.php?title=啵闻&action=edit&redlink=1)~~ | sustechbowen | 知道了自己保研消息的博姥爷干了两件事情：一个是感谢自己的导师，还有一个是开了这个公众号吹牛。看着啵宝就像看时尚杂志——月入5k的人，教月入2k的人怎么过月入2w的生活。 | <img src="https://open.weixin.qq.com/qr/code?username=sustechbowen#.jpg" class="wx-qr medium-zoom-image"> |
 | 南科每日见闻 | sustechdailynews | 南科每日见闻致力于打造南科大洋葱新闻的频道，读者却发现里面大实话比假新闻还多，感人至深。 | <img src="https://open.weixin.qq.com/qr/code?username=sustechdailynews#.jpg" class="wx-qr medium-zoom-image"> |
 | LGBT在南科 | SUSTC_LGBT | 把LGBT在南科分享到南科大家长群，家长马上就不愿意了：“南科大这么多同性恋？还得开个号？”他们实在是跟不上潮流了，家长就该知道，这个公众号的粉丝里，腐女比基佬还多！ | <img src="https://open.weixin.qq.com/qr/code?username=SUSTC_LGBT#.jpg" class="wx-qr medium-zoom-image"> |
-| ~~南科周末~~ | DeltaLeo | 南科周末正在努力学习UC浏览器的技术，特别是如何不要脸地抄袭别人的头条。 | <img src="https://open.weixin.qq.com/qr/code?username=DeltaLeo#.jpg" class="wx-qr medium-zoom-image"> |
 | 南科大表白墙 | gh_6fe1a8d532fa | 有些人没人爱，只能去南科大表白墙给心爱的人表白。一看这阅读量，你说一没人爱的表白墙，你还指望它保佑你？ | <img src="https://open.weixin.qq.com/qr/code?username=gh_6fe1a8d532fa#.jpg" class="wx-qr medium-zoom-image"> |
 | [南科数据](https://sustc.wiki/index.php?title=南科数据&action=edit&redlink=1) | SUSTech-data | 南科数据用7个人的工作量，完成了串串1个人的推文效果；调查了南科大三千人的生活数据，获得了一百来个阅读量。 | <img src="https://open.weixin.qq.com/qr/code?username=SUSTech-data#.jpg" class="wx-qr medium-zoom-image"> |
 | MH的情诗 | gh_56faa346030c | MH的情诗从来没有写过情诗，都是他自己写给自己的，蛮不容易的小伙子，里面有自拍，赏脸进去找找吧。 | <img src="https://open.weixin.qq.com/qr/code?username=gh_56faa346030c#.jpg" class="wx-qr medium-zoom-image"> |
@@ -97,6 +99,8 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 | [南科危废](https://sustc.wiki/index.php?title=南科危废&action=edit&redlink=1) | wefailed | 它就像它的微信号说的那样。 | <img src="https://open.weixin.qq.com/qr/code?username=wefailed#.jpg" class="wx-qr medium-zoom-image"> |
 | 川哥沙雕搬运 | shadiaochuan | 这是一个不定期搬运沙雕图、推荐电影、甚至小编还会自掏腰包请大家免费听歌的公众号。 | <img src="https://open.weixin.qq.com/qr/code?username=shadiaochuan#.jpg" class="wx-qr medium-zoom-image"> |
 | 黑色肥肠 | HSFC1997 | 喜欢在寂寥无人、蠢蠢欲动的夜晚进行一些单身狗式的过度思考。 | <img src="https://open.weixin.qq.com/qr/code?username=HSFC1997#.jpg" class="wx-qr medium-zoom-image"> |
+| ~~[啵闻](https://sustc.wiki/index.php?title=啵闻&action=edit&redlink=1)~~ | sustechbowen | 知道了自己保研消息的博姥爷干了两件事情：一个是感谢自己的导师，还有一个是开了这个公众号吹牛。看着啵宝就像看时尚杂志——月入5k的人，教月入2k的人怎么过月入2w的生活。 | <img src="https://open.weixin.qq.com/qr/code?username=sustechbowen#.jpg" class="wx-qr medium-zoom-image"> |
+| ~~南科周末~~ | DeltaLeo | 南科周末正在努力学习UC浏览器的技术，特别是如何不要脸地抄袭别人的头条。 | <img src="https://open.weixin.qq.com/qr/code?username=DeltaLeo#.jpg" class="wx-qr medium-zoom-image"> |
 
 ## 网站
 
