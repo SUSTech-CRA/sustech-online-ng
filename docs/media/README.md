@@ -21,6 +21,7 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 | :------------: | :----------------: | :-----------------------: |
 | 南科大团委 | SUSTech_Youth | <img src="https://open.weixin.qq.com/qr/code?username=SUSTech_Youth#.jpg" class="wx-qr medium-zoom-image"> |
 | 南科大研究生 | SUSTechGRAD | <img src="https://open.weixin.qq.com/qr/code?username=SUSTechGRAD#.jpg" class="wx-qr medium-zoom-image"> |
+| 南科大后勤服务 | campusop | <img src="https://open.weixin.qq.com/qr/code?username=campusop#.jpg" class="wx-qr medium-zoom-image"> |
 | 南科大总务君 | campusoperation | <img src="https://open.weixin.qq.com/qr/code?username=campusoperation#.jpg" class="wx-qr medium-zoom-image"> |
 | 南科大校友会 | gh_292ed725cdfc | <img src="https://open.weixin.qq.com/qr/code?username=gh_292ed725cdfc#.jpg" class="wx-qr medium-zoom-image"> |
 | 南科大计算机系 | SUSTech-CSE | <img src="https://open.weixin.qq.com/qr/code?username=SUSTech-CSE#.jpg" class="wx-qr medium-zoom-image"> |
@@ -46,6 +47,7 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 | 南科大语言中心SUSTechCLE |   SUSTechCLE    | <img src="https://open.weixin.qq.com/qr/code?username=SUSTechCLE#.jpg" class="wx-qr medium-zoom-image"> |
 | 南方科技大学教学信息平台 |    SUSTC_TAO    | <img src="https://open.weixin.qq.com/qr/code?username=SUSTC_TAO#.jpg" class="wx-qr medium-zoom-image"> |
 |    南科大就业指导中心    | gh_e9b225f6358f | <img src="https://open.weixin.qq.com/qr/code?username=gh_e9b225f6358f#.jpg" class="wx-qr medium-zoom-image"> |
+|    南科大国际合作部    | gh_d466c32bf2d7 | <img src="https://open.weixin.qq.com/qr/code?username=gh_d466c32bf2d7#.jpg" class="wx-qr medium-zoom-image"> |
 |    南科大行政服务中心    |    SUSTC-ASC    | <img src="https://open.weixin.qq.com/qr/code?username=SUSTC-ASC#.jpg" class="wx-qr medium-zoom-image"> |
 |    南方科技大学图书馆    |   SUSTechLib    | <img src="https://open.weixin.qq.com/qr/code?username=SUSTechLib#.jpg" class="wx-qr medium-zoom-image"> |
 
@@ -64,6 +66,8 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 | 名称 | 微信号 | 介绍 | 二维码 |
 | :-------: | :----------: | :-------: | :-------: |
 | [串串科技](https://sustc.wiki/串串科技) | mo_mo_da_mua | 串串是南科大史上第一位卖串转型成网红的号主，“站对了风口，母猪都能吹起来”诚不我欺。2017年成绩惊人，其代表性推送多次被某院士（的朋友圈）引用，不愧为南科大新媒体界之标杆。 | <img src="https://open.weixin.qq.com/qr/code?username=mo_mo_da_mua#.jpg" class="wx-qr medium-zoom-image"> |
+| 千字纹 | yuancg27 | 用可能错误的观点，可能真诚的态度，以及可能笨拙的书写，对抗可能无意义的生命。 | <img src="https://open.weixin.qq.com/qr/code?username=yuancg27#.jpg" class="wx-qr medium-zoom-image"> |
+| 少爷和陈老师 | gh_907391e11ad8 | （院长的）个人习作练习本 | <img src="https://open.weixin.qq.com/qr/code?username=gh_907391e11ad8#.jpg" class="wx-qr medium-zoom-image"> |
 | [你科周末](https://sustc.wiki/你科周末) | joydiet | 扎根妮可的野生周末菌。 | <img src="https://open.weixin.qq.com/qr/code?username=joydiet#.jpg" class="wx-qr medium-zoom-image"> |
 | [南科先知](https://sustc.wiki/南科先知) | gh_189f9ac8413e | 在这里读懂南科。 | <img src="https://open.weixin.qq.com/qr/code?username=gh_189f9ac8413e#.jpg" class="wx-qr medium-zoom-image"> |
 | ~~[啵闻](https://sustc.wiki/index.php?title=啵闻&action=edit&redlink=1)~~ | sustechbowen | 知道了自己保研消息的博姥爷干了两件事情：一个是感谢自己的导师，还有一个是开了这个公众号吹牛。看着啵宝就像看时尚杂志——月入5k的人，教月入2k的人怎么过月入2w的生活。 | <img src="https://open.weixin.qq.com/qr/code?username=sustechbowen#.jpg" class="wx-qr medium-zoom-image"> |
