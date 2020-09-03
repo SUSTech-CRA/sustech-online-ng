@@ -28,7 +28,7 @@ sidebar: auto
 
 接入无线网络时，需要通过Web认证，输入学号与密码后才可上网，否则只能访问校内局域网，无线网络的认证地址为：[http://172.16.16.20:803/sustc_cas.php](http://172.16.16.20:803/sustc_cas.php)
 
-如联网设备不支持通过Web进行验证（如路由器，开发板等），可以尝试使用同学制作的第[三方脚本](https://www.whexy.com/post/openwrt-zhi-jie-jue-nan-ke-da-xiao-yuan-wang-deng-lu-nan-ti/)进行联网，或是更改可进行Web认证设备的Mac地址为不支持Web认证设备的Mac地址代为认证。
+如联网设备不支持通过Web进行验证（如路由器，开发板等），可以尝试使用同学制作的[第三方脚本](https://www.whexy.com/post/openwrt-zhi-jie-jue-nan-ke-da-xiao-yuan-wang-deng-lu-nan-ti/)进行联网，或是更改可进行Web认证设备的Mac地址为不支持Web认证设备的Mac地址代为认证。
 
 
 ::: details 同学制作的无线网络登陆脚本
