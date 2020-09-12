@@ -12,6 +12,8 @@
 
 ![](../assets/badge/szmc/5.svg)**塘朗站**
 
+塘朗站B出口即达。
+
 ### 宝能城
 ![](../assets/badge/szmc/5.svg)**塘朗站**
 
@@ -20,9 +22,12 @@
 ### [益田假日里](https://ditu.amap.com/place/B0FFKYACVH)
 ![](../assets/badge/szmc/5.svg)**大学城站**
 
+大学城站D出口即达。
+
 ### [九方](https://ditu.amap.com/place/B0FFKAS8AB)
 ![](../assets/badge/szmc/4.svg)**红山站**
 
+红山站A1出口，步行650米即达，步行约8分钟。
 大型mall；价位适中，离学较近；商场种类齐全；商场内部有不错的电影院。
 
 ### [西丽天虹](https://ditu.amap.com/place/B02F37SNGW)
@@ -77,7 +82,11 @@
 
 ![](../assets/badge/szmc/3.svg)**购物公园站**，距学校约40分钟地铁，23分钟车程。
 
-> 然后隆重推荐一下酒吧集中地COCO PARK。COCO PARK的酒吧都比较国际化，很多外国人会来这里。有些酒吧的waiter也是老外，请用英文点单。COCO PARK里有一家网红士多便利店。白天看起来就是一家普普通通的便利店，还会嫌它货品少。入夜，八点之后，酒吧开放。拉开冰柜里面就是一条暗道，走进去是Speakeasy酒吧。二楼的入口还有机关，蛮有意思的一家店。
+隆重推荐一下酒吧集中地COCO PARK。COCO PARK的酒吧都比较国际化，很多外国人会来这里。有些酒吧的waiter也是老外，请用英文点单。
+COCO PARK里有一家网红士多便利店。白天看起来就是一家普普通通的便利店，还会嫌它货品少。入夜，八点之后，酒吧开放。拉开冰柜里面就是一条暗道，走进去是Speakeasy酒吧。二楼的入口还有机关，蛮有意思的一家店。
+部分推荐酒吧：
+EDEN：氛围较好，分为内场与外场，内场为夜店，外场为酒吧。外场鸡尾酒均价68元，适合与朋友小酌。
+Sicilia西西里
 
 ### [华强北](https://ditu.amap.com/place/B0FFHOSXAJ)
 
