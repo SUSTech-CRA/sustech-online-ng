@@ -50,6 +50,9 @@ module.exports = {
           message: "手册内容有更新！",
           buttonText: "刷新"
         },
+        generateSWConfig: {
+          importWorkboxFrom: 'local'
+        }
       },
     ],
     [
