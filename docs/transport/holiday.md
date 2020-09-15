@@ -1,8 +1,8 @@
 # 🚌校园巴士 - 节假日 (2020年9月15日更新)
 
-## 欣园 → 科研楼（共50班）
+<a data-fancybox title="" href="https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/transport/busline.png">![](./busline.png)</a>
 
-* 欣园⇋慧园⇋创园⇋荔园⇋教工餐厅→社康中心→专家公寓⇋三号门⇋一号门⇋行政楼⇋七号门⇋科研楼
+## 欣园 → 科研楼（共50班）
 
 <ClientOnly>
 
@@ -21,8 +21,6 @@
     </table>
 </div>
 </ClientOnly>
-
-![线路图](https://assets.sustech.online/img/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%B7%B4%E5%A3%AB%E7%BA%BF%E8%B7%AF%E5%9B%BE-20200916.jpg)
 
 ## 参考文献
 
