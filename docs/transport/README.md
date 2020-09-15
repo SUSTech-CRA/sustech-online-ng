@@ -18,11 +18,11 @@
 </style>
 </ClientOnly>
 
-### 校园巴士线路图（2020年内9月15日起）
+### 校园巴士线路图（2020年内9月16日起）
 
-[点击这里](./sustech-bus-system-map-202009.pdf)下载矢量PDF版本。
+[点击这里](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/transport/sustech-bus-system-map-20200916.pdf)下载矢量PDF版本。
 
-<a data-fancybox title="" href="https://assets.sustech.online/img/campus-map/南方科技大学校园地图-v2-2-1.png">![](./sustech-bus-system-map-202009.svg)</a>
+<a data-fancybox title="" href="https://assets.sustech.online/img/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%B7%B4%E5%A3%AB%E7%BA%BF%E8%B7%AF%E5%9B%BE-20200916.jpg">![](https://assets.sustech.online/img/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%B7%B4%E5%A3%AB%E7%BA%BF%E8%B7%AF%E5%9B%BE-20200916.jpg)</a>
 
 
 ## 来往南方科技大学的交通
