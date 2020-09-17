@@ -60,7 +60,7 @@ curl "https://cas.sustc.edu.cn/cas/login?service=http%3A%2F%2F172.16.16.20%3A803
 
 学校目前拥有4Gbps电信163出口带宽，2.5Gbps电信CN2出口带宽，以及1.5Gbps教育网出口带宽。[](https://biddingoffice.sustc.edu.cn/search/news/id/5085/pid)学校信息中心会将访问境外网站的流量发往CN2出口，因此学校内访问境外网站的质量会显著高于普通电信网络。
 
-学校目前对普通网段设备限速8Mbps，对科研教学网段限速50Mbps，对教育网IPv4限速20Mbps，暂不对教育网IPv6限速。*（2020年6月28日起，由于疫情和假期叠加，在校人数减少，普通设备限速提升至15Mbps。）*
+学校目前对普通网段设备限速8Mbps，对科研教学网段限速50Mbps，对教育网IPv4限速20Mbps，暂不对教育网IPv6限速。
 
 ## 电信自费宽带
 
