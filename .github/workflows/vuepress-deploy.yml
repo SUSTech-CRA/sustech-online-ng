@@ -15,6 +15,15 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         TARGET_REPO: SUSTC/sustech-online-ng
         TARGET_BRANCH: gh-pages
-        BUILD_SCRIPT: yarn && yarn docs:build && yarn docs:cname
+        BUILD_SCRIPT: yarn && yarn docs:build
         BUILD_DIR: docs/.vuepress/dist/
         TZ: Asia/Shanghai
+
+    - name: setup aliyun oss
+      uses: manyuanrong/setup-ossutil@master
+      with:
+        endpoint: oss-cn-shenzhen.aliyuncs.com
+        access-key-id: ${{ secrets.OSS_KEY_ID }}
+        access-key-secret: ${{ secrets.OSS_KEY_SECRET }}
+    - name: cp files to aliyun
+      run: ossutil cp -rf docs/.vuepress/dist/ oss://sustech-online/
