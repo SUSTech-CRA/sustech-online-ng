@@ -1,6 +1,6 @@
 # 🚌校园巴士 - 节假日 (2020年9月15日更新)
 
-<a data-fancybox title="" href="https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/transport/busline.png">![](./busline.svg)</a>
+<a data-fancybox title="" href="https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/transport/busline.png">![](./busline.png)</a>
 
 ## 欣园 → 科研楼（共50班）
 
