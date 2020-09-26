@@ -17,7 +17,7 @@
 ### 宝能城
 ![](../assets/badge/szmc/5.svg)**塘朗站**
 
-9月26日开业。
+
 
 ### [益田假日里](https://ditu.amap.com/place/B0FFKYACVH)
 ![](../assets/badge/szmc/5.svg)**大学城站**
