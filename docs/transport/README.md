@@ -40,7 +40,7 @@
 
 ### 深圳地铁线路图（2020年9月起）
 
-![szmc-system-map-2020](./szmc-system-map-2020.png)
+![szmc-system-map-2020](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/transport/szmc-system-map-2020.png)
 
 - [下载PDF版本 / MTR(SZ)](http://www.mtrsz.com.cn/files/20200817/轨道网络线路图0.pdf)
 
