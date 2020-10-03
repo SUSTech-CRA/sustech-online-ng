@@ -70,6 +70,8 @@ curl "https://cas.sustc.edu.cn/cas/login?service=http%3A%2F%2F172.16.16.20%3A803
 
 电信自费宽带也需要使用购买套餐同学的校园卡账户登录后才可使用，登陆方式为Web认证。也有同学制作了第三方脚本以方便快速验证。
 
+[此处(PDF)](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/service/network/CT_campus_broadband_plan.pdf)是一份电信为南科大同学提供的学生卡套餐的具体内容（含流量与宿舍宽带）。
+
 ::: details 同学制作的电信自费网络登陆脚本
 
 ``` bash
