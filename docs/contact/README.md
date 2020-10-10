@@ -98,6 +98,12 @@
 * [南科大兼职信息交流群](https://jq.qq.com/?_wv=1027&k=5n46UdU): 263608699
 * [ROTATOЯ 南科自行车维护](https://jq.qq.com/?_wv=1027&k=5sx9zJY): 191061786
 
+### 游戏
+
+* [任天堂Switch校内交流群](https://jq.qq.com/?_wv=1027&k=RqyOVIml): 635493940
+* [主机游戏校内交流群](https://jq.qq.com/?_wv=1027&k=pKU1VXyF): 251465954
+* Steam校内交流群: 198498987 
+
 ### 美食外卖
 
 ::: tip
