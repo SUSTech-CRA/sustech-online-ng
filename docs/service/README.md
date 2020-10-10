@@ -74,6 +74,22 @@
 4. [AutoDesk软件](https://www.autodesk.com.cn/education/free-software/featured)
    - 软件授权为教育版
 
+## 图书馆服务
+除了常规的自习室与纸质书刊借阅服务外，图书馆还提供其他服务：
+### 讨论间
+可供小组讨论的隔音空间，一般需要提前预约，预约网址：https://booking.lib.sustech.edu.cn/ClientWeb/xcus/ic2/Default.aspx
+
+如果有尚未被预约的讨论间，也可以直接使用。
+
+### 电子数据库
+截至2020年10月，图书馆共购买了152个数据库。下面列出常用的几个数据库，详细列表请查看图书馆网站上的[《数据库导航》](https://lib.sustech.edu.cn/dataBank/index.html)。
+
+1. [CNKI中国知网数据库（校内免费下载）](https://www.cnki.net)
+2. [CNKI中国知网数据库（校外访问入口）](https://fsso.cnki.net/Shibboleth.sso/Login?entityID=https://idp.sustech.edu.cn/idp/shibboleth&target=https://fsso.cnki.net/secure/default.aspx&locale=zh_CN)
+3. [百度文库（校内免费下载）](https://wenku.baidu.com)
+4. [Wind资讯金融数据库（图书馆三楼/慧园三栋313办公室）](https://lib.sustech.edu.cn/dataBank/view/614.html?locale=zh_CN)
+5. [新东方多媒体学习库数据库（校内外都可直接使用）](https://lib.sustech.edu.cn/dataBank/view/627.html?locale=zh_CN)
+
 ## 什么值得买
 
 ### 生活好物
