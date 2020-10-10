@@ -61,9 +61,6 @@
 ### 学校已购买的软件与服务
 
 1. [Matlab](./matlab/)
-2. [百度文库（校园网环境下使用）](https://lib.sustech.edu.cn/dataBank/view/674.html?locale=zh_CN)
-3. [Wind资讯金融数据库（图书馆三楼/慧园三栋313办公室）](https://lib.sustech.edu.cn/dataBank/view/614.html?locale=zh_CN)
-4. [新东方多媒体学习库数据库（校园网内外都可以直接使用）](https://lib.sustech.edu.cn/dataBank/view/627.html?locale=zh_CN)
 
 ### 教育邮箱福利
 
@@ -76,6 +73,16 @@
    - 包含一年免费.me域名，Digital Ocean一年50美金代金券等服务。
 4. [AutoDesk软件](https://www.autodesk.com.cn/education/free-software/featured)
    - 软件授权为教育版
+
+## 图书馆数据库
+
+截至2020年10月，图书馆共购买了152个数据库。下面列出常用的几个数据库，详细列表请查看图书馆网站上的[《数据库导航》](https://lib.sustech.edu.cn/dataBank/index.html)。
+
+1. [CNKI中国知网数据库（校内免费下载）](https://www.cnki.net)
+2. [CNKI中国知网数据库（校外访问入口）](https://fsso.cnki.net/Shibboleth.sso/Login?entityID=https://idp.sustech.edu.cn/idp/shibboleth&target=https://fsso.cnki.net/secure/default.aspx&locale=zh_CN)
+3. [百度文库（校内免费下载）](https://wenku.baidu.com)
+4. [Wind资讯金融数据库（图书馆三楼/慧园三栋313办公室）](https://lib.sustech.edu.cn/dataBank/view/614.html?locale=zh_CN)
+5. [新东方多媒体学习库数据库（校内外都可直接使用）](https://lib.sustech.edu.cn/dataBank/view/627.html?locale=zh_CN)
 
 ## 什么值得买
 
