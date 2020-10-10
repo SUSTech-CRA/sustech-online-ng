@@ -61,6 +61,9 @@
 ### 学校已购买的软件与服务
 
 1. [Matlab](./matlab/)
+2. [百度文库（校园网环境下使用）](https://lib.sustech.edu.cn/dataBank/view/674.html?locale=zh_CN)
+3. [Wind资讯金融数据库（图书馆三楼/慧园三栋313办公室）](https://lib.sustech.edu.cn/dataBank/view/614.html?locale=zh_CN)
+4. [新东方多媒体学习库数据库（校园网内外都可以直接使用）](https://lib.sustech.edu.cn/dataBank/view/627.html?locale=zh_CN)
 
 ### 教育邮箱福利
 
