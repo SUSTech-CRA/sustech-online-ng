@@ -23,6 +23,17 @@
 1. [SUSTC ehall | 成绩查询](http://ehall.sustech.edu.cn/publicapp/sys/cjcxapp/index.do)
 2. [SUSTC ehall | 失物招领](http://ehall.sustech.edu.cn/publicapp/sys/pubswzlapp/index.do)
 
+### 计算机研究协会（CRA）
+
+目前服务仅可通过校园网访问。部分项目与科学计算中心合作部署。
+
+1. [Lug镜像站](https://mirrors.cra.moe/)：包含常用镜像与软件源。
+2. [Git 服务](https://git.cra.moe/users/sign_in)：使用GitLab部署的代码托管服务
+3. [校园网测速](https://speedtest.cra.moe/)
+4. [ShareLaTex](https://sharelatex.cra.moe/project)：在线LaTex服务，Overleaf服务，想体验的同学发一封标题为 `sharelatex测试` 的邮件到 `service@cra.moe`，看到邮件之后会手动给大家发送邀请😂。（请尽量使用学校的邮箱）
+5. [Send 文件分享](https://send.cra.moe/)：上传最大20G的文件，并使用链接将文件分享给在校园网下的其他的同学。文件默认于服务上存储10天，最多可保存30天。文件被加密存储于科学计算中心的服务器上，仅链接拥有者可以访问。（后台无法看到文件的内容）您同时也可以在上传文件后主动删除文件或者设置成在一次下载后自动删除文件。
+
+
 ## 教学相关
 
 ### 👨‍🏫Sakai
