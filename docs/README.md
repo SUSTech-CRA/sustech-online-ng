@@ -1,7 +1,5 @@
 # 📚南科手册
 
-
-
 <table class="tg">
 <thead>
   <tr>
@@ -15,7 +13,7 @@
 </table>
 
 
-## 快捷入口
+<!-- ## 快捷入口 -->
 <!-- * [官网链接](http://www.sustech.edu.cn/)
 * [图书馆](https://lib.sustech.edu.cn/)
 * [邮箱服务](http://www.sustech.edu.cn/mail/)
@@ -34,7 +32,9 @@
 <table class="tg">
 <thead>
   <tr>
-    <th class="tg-0lax"><ul>
+    <th class="tg-0lax">
+    <h3>快捷入口</h3>
+    <ul>
     <li><a href="http://www.sustech.edu.cn/" target="_blank" rel="noopener noreferrer">官网链接
     <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li>
     <li><a href="https://lib.sustech.edu.cn/" target="_blank" rel="noopener noreferrer">图书馆
