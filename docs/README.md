@@ -1,8 +1,19 @@
 # 📚南科手册
 
-为 SUSTecher 提供快捷信息查询服务。
 
-移动端须点击左上角, 打开目录。
+
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lac">
+    为 SUSTecher 提供快捷信息查询服务。<br>
+    <br>
+    移动端须点击左上角, 打开目录。</th>
+    <th class="tg-baqh">微信小程序<br><img src="./qr-code.jpg"  max-width="200"/></th>
+  </tr>
+</thead>
+</table>
+
 
 ## 快捷入口
 <!-- * [官网链接](http://www.sustech.edu.cn/)
@@ -12,7 +23,11 @@
 * [联创打印服务](http://pms.sustech.edu.cn) -->
 
 <style type="text/css">
-.tg .tg-0lax{border: 1px solid transparent;text-align:left;vertical-align:top;font-weight:normal;}
+.tg{border: 1px solid transparent;font-weight:normal;}
+.tg .tg-baqh{border:inherit;font-weight:inherit;text-align:center;vertical-align:top}
+.tg .tg-0lac{border:inherit;font-weight:inherit;text-align:left;vertical-align:top}
+
+.tg .tg-0lax{border:inherit;font-weight:inherit;text-align:left;vertical-align:top;}
 /* .bt-sub { margin-top: 1%; display: inline-block; width: 49%; text-align: center;} */
 </style>
 

@@ -2,6 +2,10 @@
 
 Online manual for SUSTecher.
 
+**微信小程序二维码**
+
+![qrcode](./docs/qr-code.jpg)
+
 ## 帮助我们完善
 
 项目托管在 [SUSTC/sustech-online-ng](https://github.com/sustc/sustech-online-ng)
