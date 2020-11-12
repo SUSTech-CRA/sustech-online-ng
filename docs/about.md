@@ -1,6 +1,8 @@
 # 帮助我们完善
 
-项目托管在 [SUSTC/sustech-online-ng](https://github.com/sustc/sustech-online-ng)
+主项目托管在 [SUSTC/sustech-online-ng](https://github.com/sustc/sustech-online-ng)
+
+小程序托管在 [SUSTC/sustech-online-wxapp](https://github.com/SUSTC/sustech-online-wxapp)
 
 ![自动构建状态](https://github.com/SUSTC/sustech-online-ng/workflows/Build%20and%20Deploy/badge.svg)
 
