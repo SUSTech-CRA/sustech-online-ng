@@ -25,6 +25,8 @@ module.exports = {
     ['meta', { name: 'msapplication-TileImage', content: '/logo-assets/touch/homescreen144.png' }],
     ['meta', { name: 'msapplication-TileColor', content: color }],
     ['meta', { name: 'google-site-verification', content: 'Av-srANCmFA_yZ8Iasa1yQsIPJCF_zlP5AoD35m6_Ww' }],
+    ['script', { src: '/wx_helper.js' }],
+    ['script', { src: 'https://res.wx.qq.com/open/js/jweixin-1.6.0.js' }],
     ['script', { src: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js' }],
     ['script', { src: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js' }],
     ['link', { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.1/dist/jquery.fancybox.min.css' }],
