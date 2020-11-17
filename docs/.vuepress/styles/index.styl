@@ -2,7 +2,15 @@
     background: inherit;
 }
 
-.search-box ul.suggestions {
-    min-width: unset;
-    max-width: unset;
+@media (max-width: 419px) {
+    .search-box ul.suggestions {
+        min-width: unset;
+    }
+}
+
+@media (max-width: 719px) {
+    .search-box ul.suggestions {
+        min-width: unset;
+        width: calc(100vw - 4rem);
+    }
 }
