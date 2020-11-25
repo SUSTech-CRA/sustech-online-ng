@@ -27,7 +27,6 @@
 .tg .tg-0lac{border:inherit;font-weight:inherit;text-align:left;vertical-align:top}
 
 .tg .tg-0lax{border:inherit;font-weight:inherit;text-align:left;vertical-align:top;}
-/* .bt-sub { margin-top: 1%; display: inline-block; width: 49%; text-align: center;} */
 </style>
 
 <svg style="display: none">
@@ -50,12 +49,16 @@
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
     <li><a href="http://sakai.sustech.edu.cn" target="_blank" rel="noopener noreferrer">Sakai
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a>, <a href="https://bb.sustech.edu.cn/" target="_blank" rel="noopener noreferrer">Blackboard<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
-    <li><a href="http://pms.sustech.edu.cn" target="_blank" rel="noopener noreferrer">联创打印<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a>, <a href="http://172.18.1.141/" target="_blank" rel="noopener noreferrer">（备用）<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li></ul>
+    <li><a href="http://pms.sustech.edu.cn" target="_blank" rel="noopener noreferrer">联创打印<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a>, <a href="http://172.18.1.141/" target="_blank" rel="noopener noreferrer">（备用）<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
+    </ul>
     </th>
     <th class="tg-0lax">
-    <h3>校园巴士</h3>
-    <div class='bt-sub'><a href="./transport/workday.html">工作日<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></div>
-    <div class='bt-sub'><a href="./transport/holiday.html">节假日<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></div>
+    <h3><a href="./transport/">校园巴士<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></h3>
+    <ul>
+    <li><a href="https://bus.sustcra.com/realtime-location-osm.html">实时巴士定位「测试版，需要手动刷新获取最新定位」<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
+    <li><a href="./transport/workday.html">工作日<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
+    <li><a href="./transport/holiday.html">节假日<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
+    </ul>
     </th>
   </tr>
 </thead>
