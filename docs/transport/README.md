@@ -20,10 +20,10 @@
 
 ### 校园巴士实时位置<Badge text="Beta" type="tip"/>
 
-[点击此处](https://bus.sustcra.com/realtime-location-osm.html)查看校园巴士实时位置！您可能需要刷新网页才可更新巴士的最新位置。
+[点击此处](https://bus.sustcra.com/realtime-location-osm-utlized2.html)查看校园巴士实时位置和到站时间预测！
 
 ::: tip
-如无法在微信中打开上述链接，请复制 **[https://bus.sustcra.com/realtime-location-osm.html](https://bus.sustcra.com/realtime-location-osm.html)** 至浏览器打开。
+如无法在微信中打开上述链接，请复制 **[https://bus.sustcra.com/realtime-location-osm-utlized2.html](https://bus.sustcra.com/realtime-location-osm-utlized2.html)** 至浏览器打开。
 :::
 
 ### 校园巴士线路图（2020年内9月16日起）
