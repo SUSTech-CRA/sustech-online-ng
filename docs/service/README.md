@@ -30,7 +30,7 @@
 1. [💿CCSE/CRA/LUG镜像站](https://mirrors.sustech.edu.cn/)：包含常用镜像与软件源。（备用域名：[https://mirrors.cra.moe/](https://mirrors.cra.moe/)）
 2. [💾Git 服务](https://git.cra.moe/users/sign_in)：使用GitLab部署的代码托管服务
 3. [🌍校园网测速](https://speedtest.cra.moe/)：内网测速
-4. [📃ShareLaTex](https://sharelatex.cra.moe/project)：在线LaTex服务，Overleaf服务，想体验的同学请发一封标题为 `sharelatex申请` 的邮件（正文可不填）到 `service@cra.moe`，看到邮件之后会手动给大家发送邀请。（请尽量使用学校的邮箱）（如果在您在校外，可以通过[https://sharelatex-ext.cra.moe](https://sharelatex-ext.cra.moe)访问）。
+4. [📃ShareLaTex](https://sharelatex.cra.moe/project)：在线LaTex服务，Overleaf服务，想体验的同学请发一封标题为 `sharelatex申请` 的邮件（正文可不填）到 `service@cra.moe`，看到邮件之后会手动给大家发送邀请。（请尽量使用学校的邮箱）（如果在您在校外，可以通过[https://sharelatex-ext.sustcra.com:31088/](https://sharelatex-ext.sustcra.com:31088/project)访问，*（因安全原因添加了前置验证，前置验证的账户为sustecher，密码为cra-sharelatex）*）。
 5. [📁Send 文件分享](https://send.cra.moe/)：上传最大20G的文件，并使用链接将文件分享给在校园网下的其他的同学。文件默认于服务上存储10天，最多可保存30天。文件被加密存储于科学计算中心的服务器上，仅链接拥有者可以访问。（后台无法看到文件的内容）您同时也可以在上传文件后主动删除文件或者设置成在一次下载后自动删除文件。
 6. [🖥️服务状态监控](https://monitor.cra.moe)：校园网络，CRA服务监控
 7. 🌊[反馈社区](https://c.cra.moe)：反馈与交流相关服务
