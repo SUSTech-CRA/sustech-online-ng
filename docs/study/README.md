@@ -21,6 +21,13 @@
 
 - [南方科技大学课程列表](https://assets.sustech.online/documents/syllabus/course-list-202012/)
 
+### 选课参考列表
+
+附带搜索功能，方便于积分选课时快速查找课程。
+
+- [2020-2021 第二学期](https://assets.sustech.online/documents/syllabus/course-election-data/2020-2021-2/)
+
+
 ## 学生手册
 
 - [2019级本科](https://assets.sustech.online/documents/manual/南方科技大学学生手册2020-本科.pdf)
