@@ -81,6 +81,7 @@ module.exports = {
       { text: '主页', link: '/' },
       { text: '关于', link: '/about/' },
       { text: '站点帮助', link: '/site-help/' },
+      { text: '更新日志', link: '/news/' },
     ],
     repo: 'sustc/sustech-online-ng',
     docsRepo: 'sustc/sustech-online-ng',
