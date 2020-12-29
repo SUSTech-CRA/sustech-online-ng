@@ -46,7 +46,7 @@ sidebar: auto
 |    欣园二栋活动室一楼彩色    |   A4   | <span style="color:#3eaf7c">打印,复印,扫描,支持彩色</span>  |
 |       欣园四栋一楼彩色       |   A4   | <span style="color:#3eaf7c">打印,复印,扫描,支持彩色</span>  |
 
-数据来自联创打印系统。这些打印点的详细地图可以参考[校园地图](/#校园地图)。
+数据来自[联创打印系统](http://pms.sustech.edu.cn/client/new/cprintPc/printDev.html)。这些打印点的详细地图可以参考[校园地图](/#校园地图)。
 
 **虽然在打印系统上显示支持A3纸张，但实际上这些打印机一般不会装载A3纸张，也就无法打印出A3幅面的文档了。**
 
