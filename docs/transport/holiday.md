@@ -2,7 +2,7 @@
 
 <a data-fancybox title="" href="https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/transport/busline2.png">![](./busline2.png)</a>
 
-## 欣园 → 科研楼（共50班）
+## 欣园 → 工学院（共50班）
 
 <ClientOnly>
 
@@ -13,7 +13,7 @@
 
 </ClientOnly>
 
-## 科研楼 → 欣园（共50班）
+## 工学院 → 欣园（共50班）
 
 <ClientOnly>
 <div id="bus-table-rb2hl">
