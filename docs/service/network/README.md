@@ -144,3 +144,6 @@ done
 - 电脑
 - [平板](./choose-a-pad)
 - [路由器](./choose-a-router)
+
+## 校内网络使用技巧
+- [远程桌面](./remote-desktop)
