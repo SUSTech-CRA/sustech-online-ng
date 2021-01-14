@@ -95,7 +95,6 @@
 ### 交易
 
 * [网络跳蚤市场发布群](https://jq.qq.com/?_wv=1027&k=5Fc4zu8): 347989867
-* [南科荔园交易群](https://jq.qq.com/?_wv=1027&k=5mxDKmB): 368174731
 * [南科大校内交易平台1](https://jq.qq.com/?_wv=1027&k=5XiJaPQ): 313483540
 * [南科大的二手书市](https://jq.qq.com/?_wv=1027&k=5oICKR3): 438891088
 * [南科大全球代购](https://jq.qq.com/?_wv=1027&k=5BOe5GS): 541281699
