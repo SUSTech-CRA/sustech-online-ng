@@ -64,6 +64,22 @@
 </thead>
 </table>
 
+<div class="emergency"><p><a href="./emergency">遇到紧急情况？点击此处进入「应急处理」页面<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></p></div>
+<style type="text/css">
+div.emergency {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #fe0000;
+  text-align: center;
+  vertical-align: center
+}
+div.emergency p a {
+  color: #fe0000;
+  font-weight: bold;
+  word-break: normal;
+}
+</style>
+
 ## 如果你是新生... <Badge text="For Freshman" type="tip"/>
 
 如果你是准大一的同学，你可以[点击这里](./if-you-are-a-freshman)了解并开启你的大学生活！
