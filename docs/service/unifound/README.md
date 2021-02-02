@@ -124,7 +124,7 @@ sidebar: auto
 
 ## 扫描教程
 
-*Created by Xinge GUO*
+*由 郭欣格 贡献*
 
 ### 施乐/佳能机型
 
