@@ -113,7 +113,3 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 - 校友地图 [https://sustech-application.github.io/SUSTech-Alumni-Map/](https://sustech-application.github.io/SUSTech-Alumni-Map/)
 - SUSTech Flow | 公开评教网站 [https://sustechflow.top/](https://sustechflow.top/)
 - 飞跃手册 [https://sustech-application.github.io/](https://sustech-application.github.io/2020-Fall/)
-- 南方科技大学开源软件镜像站|SUSTech Mirror [https://mirrors.cra.moe/](https://mirrors.cra.moe/)
-- 南方科技大学超算中心镜像站| CCSE Mirrors [https://mirrors.sustech.rocks/](https://mirrors.sustech.rocks/)
-- 南科大品牌文化服务网（标识，VI，信纸，ppt模版下载）[http://files.sustech.edu.cn/](http://files.sustech.edu.cn/)（需CAS认证）
-

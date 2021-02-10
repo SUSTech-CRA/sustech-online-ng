@@ -111,3 +111,8 @@
 ### 电子设备
 
 - [路由器](./network/choose-a-router)
+
+## 校园标识 / 文档模版
+
+- 南科大品牌文化服务网（标识，VI，信纸，ppt模版下载）[http://files.sustech.edu.cn/](http://files.sustech.edu.cn/)（需CAS认证）
+- [SUSTech LaTex 模板目录](https://github.com/SUSTC/latex-template)

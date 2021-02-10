@@ -115,7 +115,6 @@ module.exports = {
       },
       '/service/',
       '/life/',
-      '/catering/',
       '/study/',
       '/organizations/',
       '/media/',
