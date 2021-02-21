@@ -1,5 +1,9 @@
 # 更新日志
 
+## 2021-02-21
+
+更新[校园巴士实时位置网址](https://bus.sustcra.com/new/?utm_source=sustech.online)。
+
 ## 2021-01-31
 
 添加“[火车票学生优惠使用指南](https://sustech.online/service/student-train-ticket/)”的页面。
@@ -29,4 +33,3 @@
 ## 2020-12-23
 
 加入CRA下载站链接
-
