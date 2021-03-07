@@ -47,6 +47,9 @@ by [@jerrylususu](https://github.com/jerrylususu)
 
 ### 用于在校内网通过邮箱获取服务端IP地址的``python``脚本:
 by [@KagaJiankui](https://github.com/KagaJiankui)
+
+::: details 获取IP的脚本
+
 ```python
 # coding: utf-8
 
@@ -133,7 +136,10 @@ while 1:
         num = 0
     time.sleep(seconds_sleep)
 ```
+:::
+
 本脚本要求``python>3.0``与对应的依赖.在您的台式机或游戏本上直接运行脚本:
+
 ```bash
 $ python ./mailer.py #将文件保存为mailer.py
 ```
