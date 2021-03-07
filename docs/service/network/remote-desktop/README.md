@@ -63,10 +63,10 @@ import socket
 _local_ip = None
 
 mail_info = {
-    'recv_address': 'qiukunyuan0236@qq.com',
-    'sender_name': 'desolvex@163.com',
-    'sender_pwd': 'HMMORXXCHAJLBTRP',
-    'smtp_server': 'smtp.163.com',
+    'recv_address': 'recv@example.sustech.com', #你的接收端邮箱地址
+    'sender_name': 'send@example.sustech.com', #你的发送端邮箱地址
+    'sender_pwd': 'authenticationcode', #授权码（用于qq或163邮箱）
+    'smtp_server': 'smtp.example.com', #smtp发送服务器（在邮箱帮助页面查看）
     'subject': '远程电脑IP信息已更新',
     'content': '您的校内网IP信息: {}'
 }
@@ -138,7 +138,7 @@ while 1:
 ```
 :::
 
-本脚本要求``python>3.0``与对应的依赖.在您的台式机或游戏本上直接运行脚本:
+本脚本要求``python>3.0``与对应的依赖.建议使用您的私人邮箱而非学校提供的邮箱作为收发端.在您的台式机或游戏本上直接运行脚本:
 
 ```bash
 $ python ./mailer.py #将文件保存为mailer.py
