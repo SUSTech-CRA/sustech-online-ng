@@ -1,11 +1,11 @@
 {
   "devDependencies": {
-    "@vuepress/plugin-back-to-top": "^1.8.0",
-    "@vuepress/plugin-google-analytics": "^1.8.0",
-    "@vuepress/plugin-medium-zoom": "^1.8.0",
-    "@vuepress/plugin-nprogress": "^1.8.0",
-    "@vuepress/plugin-pwa": "^1.8.0",
-    "vuepress": "^1.8.0",
+    "@vuepress/plugin-back-to-top": "^1.8.2",
+    "@vuepress/plugin-google-analytics": "^1.8.2",
+    "@vuepress/plugin-medium-zoom": "^1.8.2",
+    "@vuepress/plugin-nprogress": "^1.8.2",
+    "@vuepress/plugin-pwa": "^1.8.2",
+    "vuepress": "^1.8.2",
     "vuepress-plugin-fulltext-search": "^2.1.0"
   },
   "scripts": {
