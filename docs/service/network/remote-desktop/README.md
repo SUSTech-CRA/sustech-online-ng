@@ -32,10 +32,10 @@ by [@jerrylususu](https://github.com/jerrylususu)
 
 ## 服务端配置
 
-1. [开启「远程桌面」功能。](https://support.microsoft.com/zh-cn/windows/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2-5fe128d5-8fb1-7a23-3b8a-41e636865e8c)（此功能需要专业版本 Windows，家庭版本可以使用 GitHub 上的开源工具 [RDPWrap](https://github.com/stascorp/rdpwrap) 开启此功能，[教程](https://www.iplaysoft.com/rdp-wrapper-library.html))。注：若按照教程仍然无法开启功能，则可能是服务端‘rdpwrap.ini’文件与当前Windows版本不匹配，可以从 Github 的 Issues 或其他地方获取 rdpwrap 文件并替换。
+1. [开启「远程桌面」功能。](https://support.microsoft.com/zh-cn/windows/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2-5fe128d5-8fb1-7a23-3b8a-41e636865e8c)（此功能需要专业版本 Windows，家庭版本可以使用 GitHub 上的开源工具 [RDPWrap](https://github.com/stascorp/rdpwrap) 开启此功能，[教程](https://www.iplaysoft.com/rdp-wrapper-library.html))。注：若按照教程仍然无法开启功能，则可能是服务端‘rdpwrap.ini’文件与当前Windows版本不匹配，可以从 Github 的 Issues 或其他地方获取 rdpwrap 文件并替换。详情可参考此[B站视频演示](https://b23.tv/TTaRTD)。
 2. [设置远程桌面端口为非 3389 端口](https://docs.microsoft.com/zh-cn/windows-server/remote/remote-desktop-services/clients/change-listening-port) ，并记住这个端口号（此为信息中心的限制，为防止病毒通过远程桌面传播，默认阻断了 3389 端口上的 TCP 链接）
 3. 查看并记录自己的 IP 地址：打开「任务管理器」，切换到「性能」标签页，在左侧找到「Wi-Fi」，在右侧找到「IPv4 地址」并记录。（通常为以小数点分割的一组数字，如 `10.XX.XX.XX`）
-4. （非必需设置）如果想从非校园网络访问远程设备，可以尝试使用 ZeroTier One 等软件配置内网穿透功能。
+4. （非必需设置）如果想从非校园网络访问远程设备，可以尝试使用 [ZeroTier One](https://www.zerotier.com/) 等软件[配置内网穿透](https://b23.tv/MzHzMi)功能。
 
 ## 从客户端连接
 
