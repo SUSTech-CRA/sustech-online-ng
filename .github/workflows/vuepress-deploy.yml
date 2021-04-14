@@ -13,7 +13,7 @@ jobs:
         fetch-depth: 0
 
     - name: vuepress-deploy
-      uses: jenkey2011/vuepress-deploy@1.0.1
+      uses: jenkey2011/vuepress-deploy@1.6.1
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         TARGET_REPO: SUSTC/sustech-online-ng
