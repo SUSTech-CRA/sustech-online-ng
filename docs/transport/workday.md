@@ -429,7 +429,7 @@ function build_all_table() {
             }
         }
     }
-    
+
     // high land - research building
     var tmp = update_bus_status(busdata_hl2rb);
     busdata_hl2rb = tmp.now_table;
@@ -437,7 +437,7 @@ function build_all_table() {
     var ins_table_hl2rb = $('#work-bus-hl2rb').DataTable($.extend(true, { data: busdata_hl2rb }, dtb_config));
     var now_bus_offset = $(ins_table_hl2rb.row(Math.min(now_bus_row_hl2rb, busdata_hl2rb.length)).node()).offset().top - $(ins_table_hl2rb.row(0).node()).offset().top;
     $("#bus-table-hl2rb .dataTables_scrollBody").scrollTop(now_bus_offset);
-    
+
     // research building - high land
     var tmp = update_bus_status(busdata_rb2hl);
     busdata_rb2hl = tmp.now_table;
@@ -445,7 +445,7 @@ function build_all_table() {
     var ins_table_rb2hl = $('#work-bus-rb2hl').DataTable($.extend(true, { data: busdata_rb2hl }, dtb_config));
     var now_bus_offset = $(ins_table_rb2hl.row(Math.min(now_bus_row_rb2hl, busdata_rb2hl.length)).node()).offset().top - $(ins_table_rb2hl.row(0).node()).offset().top;
     $("#bus-table-rb2hl .dataTables_scrollBody").scrollTop(now_bus_offset);
-    
+
     // i park - lychee hill
     var tmp = update_bus_status(busdata_ip2lh);
     busdata_ip2lh = tmp.now_table;

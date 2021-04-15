@@ -6,7 +6,7 @@
 
 <a data-fancybox title="" href="https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/calendar/pic/202102.jpg">![](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/calendar/pic/202102.jpg)</a>
 
-<iframe src="https://assets.sustech.online/pdfjs/web/viewer.html?file=https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/calendar/2021-2022-excel.pdf" style="width: 100%; height: 800px;"></iframe>
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/pdfjs/web/viewer.html?file=https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/calendar/2021-2022-excel.pdf" style="width: 100%; height: 800px;"></iframe>
 
 ## 历史校历（存档）
 
