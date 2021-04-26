@@ -105,6 +105,13 @@
 4. [Wind资讯金融数据库（图书馆三楼/慧园三栋313办公室）](https://lib.sustech.edu.cn/dataBank/view/614.html?locale=zh_CN)
 5. [新东方多媒体学习库数据库（校内外都可直接使用）](https://lib.sustech.edu.cn/dataBank/view/627.html?locale=zh_CN)
 
+### 图书馆荐购
+可以通过以下任意方式荐购图书：
+* 至图书馆服务台领取荐购单填写信息后交给服务台。
+* 在图书馆[官网荐购页面](https://lib.sustech.edu.cn/page/id-171.html)填写荐购信息。
+* 发送荐购信息至邮箱[lib_acq@sustech.edu.cn](mailto:lib_acq@sustech.edu.cn)荐购。
+* 在[芸台购](https://yuntaigo.com/nfkj.html)网站搜索图书信息，一键荐购。
+
 ## 什么值得买
 
 ### 生活好物
