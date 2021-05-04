@@ -91,9 +91,9 @@
 4. [AutoDesk软件](https://www.autodesk.com.cn/education/free-software/featured)
    - 软件授权为教育版
 
-### 非官方激活服务<Badge text="仅限学习与评估用途" type="warning"/>
+### 非官方Windows套件激活服务<Badge text="仅限学习与评估用途" type="warning"/>
 
-::: Windows与办公套件
+::: details
 
 **Windows:**
 
