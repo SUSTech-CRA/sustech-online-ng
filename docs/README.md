@@ -21,13 +21,13 @@
 * [图书馆](https://lib.sustech.edu.cn/)
 * [邮箱服务](http://www.sustech.edu.cn/mail/)
 * [Sakai](http://sakai.sustech.edu.cn), [Blackboard](https://bb.sustech.edu.cn/)
-* [联创打印服务](http://pms.sustech.edu.cn) -->
+* [联创打印服务](http://pms.sustech.edu.cn)
+* [校园卡二维码](https://campuscard.sustech.edu.cn/epay/thirdconsume/qrcode) -->
 
 <style type="text/css">
 .tg{border: 1px solid transparent;font-weight:normal;}
 .tg .tg-baqh{border:inherit;font-weight:inherit;text-align:center;vertical-align:top}
 .tg .tg-0lac{border:inherit;font-weight:inherit;text-align:left;vertical-align:top}
-
 .tg .tg-0lax{border:inherit;font-weight:inherit;text-align:left;vertical-align:top;}
 </style>
 
@@ -36,7 +36,6 @@
   <path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon>
   </symbol>
 </svg>
-
 <table class="tg">
 <thead>
   <tr>
@@ -52,12 +51,14 @@
     <li><a href="http://sakai.sustech.edu.cn" target="_blank" rel="noopener noreferrer">Sakai
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a>, <a href="https://bb.sustech.edu.cn/" target="_blank" rel="noopener noreferrer">Blackboard<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
     <li><a href="http://pms.sustech.edu.cn" target="_blank" rel="noopener noreferrer">联创打印<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a>, <a href="http://172.18.1.141/" target="_blank" rel="noopener noreferrer">（备用）<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
+      <li><a href="https://campuscard.sustech.edu.cn/epay/thirdconsume/qrcode" target="_blank" rel="noopener noreferrer">校园卡二维码
+    <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
     </ul>
     </th>
     <th class="tg-0lax">
     <h3><a href="./transport/">校园巴士<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></h3>
     <ul>
-    <li><a href="https://bus.sustcra.com/new/?utm_source=sustech.online">实时巴士定位与到站时间预测<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
+    <li><a href="https://bus.sustcra.com/?utm_source=sustech.online">实时巴士定位与到站时间预测<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
     <li><a href="./transport/workday.html">工作日<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
     <li><a href="./transport/holiday.html">节假日<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
     </ul>
@@ -65,6 +66,7 @@
   </tr>
 </thead>
 </table>
+
 
 <div class="emergency"><p><a href="./emergency">遇到紧急情况？点击此处进入「应急处理」页面<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></p></div>
 <style type="text/css">

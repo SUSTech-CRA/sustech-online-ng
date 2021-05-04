@@ -7,7 +7,7 @@ sidebar: auto
 
 南科大的校内局域网主要分为主要包含教学/科研/业务计算机的科研教学网段(`172.18.0.0/16`)和包含大部分师生员工的个人有线与无线设备的普通网段(`10.16.0.0/13`)。
 
-在普通网段中，`10.20.0.0/16`为有线网段，`10.22.0.0/16`为电信自费宽带网段。
+在普通网段中，`10.20.0.0/16`，`10.16.0.0/16`为有线网段，`10.22.0.0/16`为电信自费宽带网段。
 
 学校为支持IPv6的设备分配前缀为`2001:DA8:201D::/48`的IPv6地址。([SUSTC6-CERNET2](http://www.nic.edu.cn/member-cgi/i6obj?query=SUSTC6-CERNET2))
 
@@ -51,7 +51,15 @@ curl "https://cas.sustc.edu.cn/cas/login?service=http%3A%2F%2F172.16.16.20%3A803
 
 :::
 
+### 其他有关网络的问题
 
+#### 在路由器后获取IPv6地址
+
+- [https://c.cra.moe/t/topic/38](https://c.cra.moe/t/topic/38)
+
+#### 使用`dhcpclient`时获取不到IPv6地址
+
+- 通常是因为学校的DHCPv6服务器不响应DHCPv6 Solicitation造成的。此问题常出现在安装Debian/Ubuntu（使用dhcpclient作为dhcp客户端的发行版中），如果希望快速解决，可以尝试讲dhcp客户端更改为`dhcpcd`。
 
 
 ## 互联网

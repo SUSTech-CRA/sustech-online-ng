@@ -72,6 +72,43 @@
 
 - [联系我们/南方科技大学](https://www.sustech.edu.cn/zh/contact_us.html)
 
+## 邮政与快递地址
+
+::: tip
+以下地址以书院（湖畔）一栋101室为例
+:::
+
+### 邮政地址<Badge text="适用于挂号信，成绩单等" type="tip"/>
+
+#### 中文
+
+>邮政编码： **518055**
+>
+>中华人民共和国
+>
+>广东省，深圳市，南山区，学苑大道1088号南方科技大学
+>
+>书院收发室/书院1栋101
+
+#### 英文
+
+>Zip Code: **518055**
+>
+>Residential College Mail Room / Room 101, Residential College 1
+>
+>Southern University of Science and Technology , 1088 Xueyuan Avenue, 
+>
+>Nanshan District, Shenzhen, Guangdong
+>
+>P.R. China
+
+### 快递地址<Badge text="适用于快递" type="tip"/>
+
+>广东省 深圳市 南山区 桃源街道
+>学苑大道1088号南方科技大学湖畔收发室
+
+更多快递相关信息，请参考[邮件与快递收发](/service/mail-and-express/)一节。
+
 ## 常用Q群
 
 * 部分可以直接点击群名，自动跳转到 QQ / TIM 页面。

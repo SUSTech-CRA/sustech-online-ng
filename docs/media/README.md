@@ -113,3 +113,6 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 - 校友地图 [https://sustech-application.github.io/SUSTech-Alumni-Map/](https://sustech-application.github.io/SUSTech-Alumni-Map/)
 - SUSTech Flow | 公开评教网站 [https://sustechflow.top/](https://sustechflow.top/)
 - 飞跃手册 [https://sustech-application.github.io/](https://sustech-application.github.io/2020-Fall/)
+
+*欲查看其他服务网站，请参见[服务](/service/)一节。*
+

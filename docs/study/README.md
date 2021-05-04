@@ -11,9 +11,10 @@
 
 ### 课程详述
 
-2020年7月更新，包含课程简介，纲要与考核形式。
+包含课程简介，纲要与考核形式。
 
-- [南方科技大学课程详述](https://assets.sustech.online/curriculum/)(若您在校内请[由此访问](https://dl.cra.moe/%E6%95%99%E5%AD%A6%E5%A4%A7%E7%BA%B2%E6%B1%87%E6%80%BB/)）
+- ~~[南方科技大学课程详述(未包括2020年7月后新开的课程)](https://assets.sustech.online/curriculum/)(若您在校内请[由此访问](https://dl.cra.moe/%E6%95%99%E5%AD%A6%E5%A4%A7%E7%BA%B2%E6%B1%87%E6%80%BB/)）~~
+- 教工部提供的查看渠道：[https://course-tao.sustech.edu.cn/kcxxweb/KcxxwebChinesePC](https://course-tao.sustech.edu.cn/kcxxweb/KcxxwebChinesePC) （需CAS登陆）
 
 ### 课程列表
 

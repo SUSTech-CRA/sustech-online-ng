@@ -20,10 +20,10 @@
 
 ### 校园巴士实时位置<Badge text="Beta" type="tip"/>
 
-[点击此处](https://bus.sustcra.com/new/?utm_source=sustech.online)查看校园巴士实时位置和到站时间预测！
+[点击此处](https://bus.sustcra.com/?utm_source=sustech.online)查看校园巴士实时位置和到站时间预测！
 
 ::: tip
-如无法在微信中打开上述链接，请复制 **[https://bus.sustcra.com/new/](https://bus.sustcra.com/new/?utm_source=sustech.online)** 至浏览器打开。
+如无法在微信中打开上述链接，请复制 **[https://bus.sustcra.com/](https://bus.sustcra.com/?utm_source=sustech.online)** 至浏览器打开。
 :::
 
 ### 校园巴士线路图（2020年内9月16日起）
