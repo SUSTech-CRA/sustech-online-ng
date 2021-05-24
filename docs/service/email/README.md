@@ -8,7 +8,7 @@
 
 ## 通过网页收发邮件
 
-访问 QQ 企业邮箱登录页[https://exmail.qq.com/login](https://exmail.qq.com/login)，输入邮箱和密码登入。
+访问 QQ 企业邮箱登录页[https://exmail.qq.com/login](https://exmail.qq.com/login)，输入邮箱和密码登入。也可通过[https://mail.sustech.edu.cn/](https://mail.sustech.edu.cn/)上方的[CAS登录邮箱](https://mail.sustech.edu.cn/sso?lang=zh)链接登入，首次登入需要输入密码绑定CAS账户和邮箱。
 
 ### 通过 QQ 电脑客户端进入企业邮网页
 

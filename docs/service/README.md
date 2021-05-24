@@ -69,6 +69,10 @@
 
 ## 🏥医疗服务/就诊
 
+::: warning 请注意！
+学校的社区健康服务中心门诊转诊定点医疗机构已在近期改为**南方科技大学医院（西丽人民医院）**。本文中的部分内容可能已经过时。
+:::
+
 - [我应该怎样优雅就诊/南科新知](./ssc)
 - [就医指南/树德书院《南科行前记》](./medical-treatment)
 
@@ -150,4 +154,3 @@
 
 - 南科大品牌文化服务网（标识，VI，信纸，ppt模版下载）[http://files.sustech.edu.cn/](http://files.sustech.edu.cn/)（需CAS认证）
 - [SUSTech LaTex 模板目录](https://github.com/SUSTC/latex-template)
-
