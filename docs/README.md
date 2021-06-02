@@ -123,4 +123,4 @@ Please use the [Google translation tool in Chrome](https://support.google.com/ch
 
 ## 备案
 
-[粤ICP备18047383号](http://www.beian.miit.gov.cn/)
+[粤ICP备18047383号](https://beian.miit.gov.cn/)
