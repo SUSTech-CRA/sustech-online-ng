@@ -1,6 +1,6 @@
 # 🚄交通
 
-## 🚌校园巴士
+## 🚌校园巴士 [跳转(实验性)](./redirect.html)
 
 <div id="button-div">
 <div class='bt-sub'><a href="./workday.html">工作日</a></div>
