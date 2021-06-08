@@ -1,10 +1,11 @@
 # 🚄交通
 
-## 🚌校园巴士 [跳转(实验性)](./redirect.html)
+## 🚌校园巴士
 
 <div id="button-div">
-<div class='bt-sub'><a href="./workday.html">工作日</a></div>
-<div class='bt-sub'><a href="./holiday.html">节假日</a></div>
+<div class='bt-sub'><a href="./workday.html">💼 工作日</a></div>
+<div class='bt-sub'><a href="./redirect.html">自动选择</a></div>
+<div class='bt-sub'><a href="./holiday.html">💤 节假日</a></div>
 </div>
 
 <ClientOnly>
@@ -12,7 +13,7 @@
 .bt-sub {
     margin-top: 1%;
     display: inline-block;
-    width: 49%;
+    width: 32%;
     text-align: center;
 }
 </style>
