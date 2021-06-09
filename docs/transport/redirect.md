@@ -28,7 +28,7 @@
         var day_map = {};
         // JSON is from https://github.com/NateScarlet/holiday-cn
         // need to update by year
-        $.getJSON("2021.json", function (data) {
+        $.getJSON("/2021.json", function (data) {
             for (let i = 0; i < data.days.length; i++) {
                 item = data.days[i];
                 day_map[item.date] = item.isOffDay;
