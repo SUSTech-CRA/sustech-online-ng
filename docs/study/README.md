@@ -26,7 +26,7 @@
 
 附带搜索功能，方便于积分选课时快速查找课程。
 
-- [2020-2021 第二学期](https://assets.sustech.online/documents/syllabus/course-election-data/2020-2021-2/)
+- [~~2020-2021 第二学期~~ （不可用，等待更新）](https://assets.sustech.online/documents/syllabus/course-election-data/2020-2021-2/)
 
 
 ## 学生手册
