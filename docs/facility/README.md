@@ -1,5 +1,13 @@
 # 🏫建筑与设施
+
+## 校园街景<Badge text="Beta" type="tip"/>
+
+[点击此处](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node38,210,0,120,10)或通过下方的嵌入页面查看校园街景地图！
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node38,210,0,120,10" name="iframe_window" width="800" height="600" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
 ## 校园地图与主要建筑
+
 ![校园地图](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/facility/campus-map.png)
 
 上图是南科大的校园平面图。在校园内，建筑大都处于校园西侧。
