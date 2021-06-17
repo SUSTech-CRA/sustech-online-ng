@@ -17,6 +17,7 @@
 - [校园网络介绍与连接指南](./network)
   - *（包括无线网络，有线网络与电信自费宽带）*
 - [eduroam（学术网路漫游）](./network/eduroam)
+- [校内 IPv6 设置教程](./network/ipv6)
 - [回校VPN申请](./network/apply-for-vpn)
 - [信息中心相关信息](./network/#信息中心)
 
