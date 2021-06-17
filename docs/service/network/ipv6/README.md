@@ -150,4 +150,4 @@ chmod +x /etc/hotplug.d/iface/restart-IPv6
 
 我的个人邮箱为：ntdgy2001@gmail.com / 12011211@mail.sustech.edu.cn
 
-原文章地址（NAT 部分）©️ 戴郭轶：https://ntdgy.top/ntdgy/30/
+原文章地址（NAT 部分）©️ 戴郭轶：[https://ntdgy.top/ntdgy/30/](https://ntdgy.top/ntdgy/30/)
