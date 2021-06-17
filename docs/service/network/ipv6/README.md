@@ -21,19 +21,19 @@
 
 由于南科大的分配的128位前缀的地址，子网空间不足，需要使用本该被淘汰掉的 NAT 网络地址转换使得下级设备能够联网，正确配置后的效果如下：
 
-![img](./OpenWrt.assets/image.png)
+![img](./openwrt-pics/image.png)
 
 同时北洋园和蒲公英pt均能正常识别（需要在OpenWrt开启 UPnP ）：
 
-![img](./OpenWrt.assets/image-1.png)
+![img](./openwrt-pics/image-1.png)
 
-![img](./OpenWrt.assets/image-2.png)
+![img](./openwrt-pics/image-2.png)
 
 **（PS：不要学我IPv6不打码直接发，因为 v6 默认就是公网地址，我在发完教程后会使用新的地址）**
 
 电脑能成功获取内网IPv6,同时手机也能获得64位的 v6 地址，正常访问 v6 网络：
 
-![img](./OpenWrt.assets/image-3.png)
+![img](./openwrt-pics/image-3.png)
 
 相应的流程并不复杂，只需要一台刷入OpenWrt的路由器，一台电脑，WinSCP（可选），以及足够的耐心。
 
@@ -41,43 +41,43 @@
 
 将全局网络选项前缀进行修改，我个人使用的是 `fd34:fe56:7891:2f3a::/64`；可以按照自己喜好选择一个内网前缀。
 
-![img](./OpenWrt.assets/image-4-1024x143.png)
+![img](./openwrt-pics/image-4-1024x143.png)
 
 随后单击lan一栏的修改，我们需要修改一下内网的设置，滑到下方，点击高级设置，按照下图进行勾选：
 
-![img](./OpenWrt.assets/image-5-1024x257.png)
+![img](./openwrt-pics/image-5-1024x257.png)
 
 然后点击IPv6设置，路由器通告服务和DHCPv6服务修改为服务器模式，NDP代理设置为禁用，DHCPv6选择无状态的+有状态的，并勾选总是通告默认路由：
 
-![img](./OpenWrt.assets/image-6-1024x333.png)
+![img](./openwrt-pics/image-6-1024x333.png)
 
 完成后点击保存&应用。
 
 随后进入wan口的设置，勾选上使用内置的IPv6管理
 
-![img](./OpenWrt.assets/image-7.png)
+![img](./openwrt-pics/image-7.png)
 
 随后进入wan6口的设置，将协议修改为DHCPv6客户端，请求IPv6地址为force，请求指定长度的IPv6前缀为已禁用：
 
-![img](./OpenWrt.assets/image-8-1024x484.png)
+![img](./openwrt-pics/image-8-1024x484.png)
 
 进入高级设置，勾选上使用内置的IPv6管理，强制链路和使用默认网关：
 
-![img](./OpenWrt.assets/image-9-1024x435.png)
+![img](./openwrt-pics/image-9-1024x435.png)
 
 之后选择网络-DHCP/DNS，进入高级设置，取消勾选禁止解析IPv6 DNS记录：
 
-![img](./OpenWrt.assets/image-10-1024x161.png)
+![img](./openwrt-pics/image-10-1024x161.png)
 
 进入网络-防火墙：
 
 将转发改为接受，下面的区域也需要改：
 
-![img](./OpenWrt.assets/image-11-1024x983.png)
+![img](./openwrt-pics/image-11-1024x983.png)
 
 进入自定义规则，粘贴如下内容：
 
-![img](./OpenWrt.assets/image-13-1024x530.png)
+![img](./openwrt-pics/image-13-1024x530.png)
 
 ```
 WAN6=eth0.2
@@ -88,13 +88,13 @@ ip6tables -A FORWARD -m conntrack –ctstate RELATED,ESTABLISHED -j ACCEPT
 
 其中 `eth0.2` 和 `br-lan` 需要修改为你网络-接口中显示的内容：
 
-![img](./OpenWrt.assets/image-12.png)
+![img](./openwrt-pics/image-12.png)
 
 如果有多拨需求的，提醒一下需要在负载均衡中将 defalut-rule 的备用成员改成默认（使用主路由表），由于我重新刷机做的教程且现在没有多拨的必要，就不演示了，没有需求的可以略过这一点。
 
 经过如上配置，重启路由器后，在网络，诊断中应该能够成功 ping 通 openwrt.org 的v6了，说明你的路由器已经成功接入 IPv6 网络了：
 
-![img](./OpenWrt.assets/image-14-1024x783.png)
+![img](./openwrt-pics/image-14-1024x783.png)
 
 但是如果我们打开 [https://www.test-IPv6.com/](https://www.test-IPv6.com/) ，我们电脑还是没有连上v6的，这里就需要我们修改流量转发的路由表了，使用ssh工具连上路由器，没有的可以点击系统-TTYD终端：依次输入一下代码：
 
@@ -106,11 +106,11 @@ route -A inet6 add default gw fe80::3e8c:93ff:fed0:83c2 dev eth0.2
 
 其中，第一行的fe80开头的一串v6地址需要修改为本机的默认网关，可以在状态-概览下获得，如图：
 
-![img](./OpenWrt.assets/image-15-1024x173.png)
+![img](./openwrt-pics/image-15-1024x173.png)
 
 而后面的eth0.2就是你网口的编号了，和防火墙哪那里一样，这个时候我们再打开 [https://www.test-IPv6.com/](https://www.test-IPv6.com/) ，可以发现，我们电脑已经接入IPv6了：
 
-![img](./OpenWrt.assets/image-16-1024x538.png)
+![img](./openwrt-pics/image-16-1024x538.png)
 
 但是，如果路由器关机重启后，我们刚才输入的三行代码会丢失，也就是会回到路由器有 IPv6 而电脑无法连接 IPv6 的状态，这个时候我们就需要编辑一个开机自启的脚本，让路由器再开机时自动添加：
 
@@ -138,7 +138,7 @@ vim /etc/hotplug.d/iface/restart-IPv6
 chmod +x /etc/hotplug.d/iface/restart-IPv6
 ```
 
-![img](./OpenWrt.assets/image-18.png)
+![img](./openwrt-pics/image-18.png)
 
 这个时候，恭喜你，成功配置IPv6了哦~
 
