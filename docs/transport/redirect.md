@@ -26,7 +26,8 @@
     mounted () {
     function bus_redirect(){
         // JSON is from https://github.com/NateScarlet/holiday-cn
-        // need to update by year
+        // need to update by year.
+        // Download the JSON to path "docs/.vuepress/public/YYYY.json"
         $.getJSON("/2021.json", function (data) {
             var day_map = {};
             for (let i = 0; i < data.days.length; i++) {
