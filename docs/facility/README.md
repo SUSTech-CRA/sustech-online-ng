@@ -4,7 +4,7 @@
 
 [点击此处](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node38,210,0,120,10)或通过下方的嵌入页面查看校园街景地图！
 
-<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node38,210,0,120,10" name="iframe_window" width="800" height="600" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node38,210,0,120,10" name="iframe_window" width="100%" height="600" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
 
 ## 校园地图与主要建筑
 
