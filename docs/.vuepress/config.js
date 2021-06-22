@@ -25,6 +25,16 @@ module.exports = {
     ['meta', { name: 'msapplication-TileImage', content: '/logo-assets/touch/homescreen144.png' }],
     ['meta', { name: 'msapplication-TileColor', content: color }],
     ['meta', { name: 'google-site-verification', content: 'Av-srANCmFA_yZ8Iasa1yQsIPJCF_zlP5AoD35m6_Ww' }],
+    ['script', {
+    async: true,
+    src: 'https://www.googletagmanager.com/gtag/js?id=G-1BQBXDGY3R'
+    }],
+    ['script', {}, `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1BQBXDGY3R');
+    `],
     ['script', { src: '/wx_helper.js' }],
     ['script', { src: 'https://res.wx.qq.com/open/js/jweixin-1.6.0.js' }],
     ['script', { src: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js' }],
@@ -34,12 +44,12 @@ module.exports = {
     ['link', { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/npm/datatables@1.10.18/media/css/jquery.dataTables.min.css' }]
   ],
   plugins: [
-    [
-      '@vuepress/google-analytics',
-      {
-        'ga': 'G-1BQBXDGY3R' // UA-00000000-0
-      },
-    ],
+    // [
+    //   '@vuepress/google-analytics',
+    //   {
+    //     'ga': 'G-1BQBXDGY3R' // UA-00000000-0
+    //   },
+    // ],
     'fulltext-search',
     '@vuepress/medium-zoom',
     '@vuepress/nprogress',
