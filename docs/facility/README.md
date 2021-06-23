@@ -2,6 +2,10 @@
 
 ## 校园街景<Badge text="Beta" type="tip"/>
 
+::: tip
+街景图像拍摄于`2021年6月`，若想了解街景拍摄的流程，请参考[此链接](https://sparktour.me/2021/06/16/campus-streetview/)。
+:::
+
 [点击此处](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node38,210,0,120,10)或通过下方的嵌入页面查看校园街景地图！
 
 <iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node38,210,0,120,10" name="iframe_window" width="100%" height="600" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
@@ -24,6 +28,10 @@
 
 #### 琳恩图书馆
 
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node149,-122,-17,120)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node149,-122,-17,120" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
 ![图书馆与行政楼](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/library-and-administration-building.jpg)
 
 琳恩图书馆是南科大的第一个，也是最大图书馆，在2020年前，他同时是南科大的唯一图书馆。图书馆名字中“LYNN”的来历，是因为一位匿名的香港友好人士向南方科技大学教育基金会捐赠港币2000万元，因此他将图书馆冠名为“琳恩图书馆”（LYNN LIBRARY）。
@@ -32,11 +40,19 @@
 
 #### 行政楼
 
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node49,-109,13,110)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node49,-109,13,110" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
 南科大是因为去行政化出名，但学校还是建了一栋独立的行政楼。在行政楼中长期办公的除了校领导和行政人员，主要还有校宣传部，信息中心和校园卡服务中心：如果需要**挂失，补办校园卡**，需要去行政楼一楼的校园卡服务中心办理。
 
 行政楼的一楼还有一个早上会卖面包，一些饮品的**面包房**和在南科大校内人尽皆知的[**行政楼厕所**](https://mp.weixin.qq.com/s/bw6Nl_gBkOiqtAXXMQW-Mw)。
 
 #### 第一教学楼
+
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node94,-49,14,97)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node94,-49,14,97" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
 
 ![第一教学楼](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/第一教学楼.jpg)
 
@@ -52,31 +68,59 @@
 
 #### 检测中心
 
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node65,-68,7,120)
 
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node65,-68,7,120" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
 
 内部主要是一些实验室，包括安装了光刻设备的超净间等。
 
 #### 第二教学楼
 
+[进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node62,-54,3,97)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node62,-54,3,97" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
 第二教学楼主要教室都是**机房**（2019年换的电脑是i7-8700K+1080Ti)，一般会用于上电子系，计算机系的实验课和一些电脑测评/考试。二教还有**一间多功能教室**，现在一般用于乐器排练和美术课程。
 
 #### 第一科研楼
+
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node100,89,16,120)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node100,89,16,120" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
 
 学校一期建筑之一，包含各种实验室。内部是一个大天井，二楼有一个给机器人或者是智能机械的测试平台。
 
 #### 第二科研楼
 
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node128,-71,28,120)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node128,-71,28,120" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
 主要是实验室和教授办公室。
 
 #### 第三科研楼
 
-主要是实验室和教授办公室。
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node84,-75,23,120)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node84,-75,23,120" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+主要是实验室和教授办公室。冷冻电镜也设置于此。
 
 #### 第四科研楼（台州楼）
+
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node84,-75,23,120)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node121,-131,23,109" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
 
 主要是实验室和教授办公室。为什么叫台州楼呢？这栋楼里面有一个[“南方科技大学台州研究院”](http://zj.ifeng.com/a/20190118/7173526_0.shtml)，然后校长的籍贯也是台州，也可能有点关系。
 
 #### 南科大中心（学生食堂）
+
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node97,93,-2,120)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node97,93,-2,120" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
 
 ##### 学生餐厅
 
@@ -90,9 +134,12 @@
 
 #### 国际会议中心
 
-![国际会议中心](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/interview-center.jpg)
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node18,108,0,120)
 
-将在2020年四季度落成。
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node38,210,0,120,10" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+
+![国际会议中心](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/interview-center.jpg)
 
 ### 湖畔
 
@@ -101,6 +148,11 @@
 在上图中，中间按顺时针顺序依次是是湖畔宿舍，九华苑，游泳馆和风雨操场。
 
 #### 湖畔宿舍群
+
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node174,-155,17,109)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node174,-155,17,109" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
 
 ![致仁书院](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/zhiren-college.jpg)
 
@@ -129,9 +181,19 @@
 
 #### 九华苑
 
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node709,96,0,120)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node709,96,0,120" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+
 一共有九栋别墅，主要居住院士级别的教授，因此也被同学称之为“院士楼”。平时门口的保安不太欢迎同学上去，可能会赶人。
 
 #### 风雨操场
+
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node719,-52,8,120)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node719,-52,8,120" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
 
 ![风雨操场](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/sports-center.jpg)
 
@@ -144,6 +206,11 @@
 - [游泳馆](https://sustc.wiki/游泳馆)
 
 ### 二期宿舍
+
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node704,-15,17,120)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node704,-15,17,120" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
 
 ![二期宿舍10栋与餐厅](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/p2-dormitory.jpg)
 
@@ -177,6 +244,11 @@
 
 ### 荔园
 
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node614,-99,2,94)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node614,-99,2,94" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
+
 值得一提的是，荔园，创园，慧园与欣园都是原二线关外工业区厂房改建而成的。
 
 ![荔园，慧园与欣园](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/liyuan-huiyuann-xinyuan.jpg)
@@ -195,13 +267,25 @@
 
 ### 创园
 
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node321,117,22,120)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node321,117,22,120" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
 许多院系的实验室和办公区域设置于创园。其中，创园一栋由于进驻了学校的一些机构和校办公司，因此装修水平明显较其他栋高级。
 
 ### 慧园
 
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node310,188,16,120)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node310,188,16,120" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
 许多院系的实验室和办公区域设置于创园。
 
 ### 欣园
+
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node296,-177,5,120)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node296,-177,5,120" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
 
 欣园主要是宿舍区。
 
@@ -215,6 +299,10 @@
 
 #### 教师公寓与专家公寓
 
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node208,25,90,120)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node208,25,90,120" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
 八栋建筑中，有六栋为教师公寓，两栋为专家公寓。
 
 教师公寓主要供教职人员居住，一楼设有一间教工餐厅和传言只有faculty才能进的 Faculty Club。森林印务也设置于此。
@@ -227,15 +315,25 @@
 
 #### 棒球场
 
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node503,-87,-6,120)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node503,-87,-6,120" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+
 位于专家公寓南侧，使用率不是很高。每年会举办一次[“海峡两岸学生棒球联赛”](https://newshub.sustech.edu.cn/zh/html/201912/30570.html)。
 
-#### 学术交流中心
+#### 办公楼（新行政楼）与人文社科学院
 
-#### 人文社科学院
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node224,-9,-1,120)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node224,-9,-1,120" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
 
 ### 运动场
 
 #### 润扬体育馆
+
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node448,132,11,70)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node448,132,11,70" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
 
 ![润杨体育馆](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/润杨体育馆.jpg)
 
@@ -244,6 +342,10 @@
 体育馆南侧目前是野战场地，学校购置了基于红外线的模拟枪，可以打真人CS。这里还有一面攀岩墙。
 
 #### 松禾体育场（田径场）
+
+- [进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node449,-104,-23,120)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node449,-104,-23,120" name="pano" width="100%" height="500" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
 
 ![松禾体育场](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/松禾体育场.jpg)
 
@@ -266,9 +368,11 @@
 大沙河发源自长岭陂水库泄洪渠，并流经南科大的南侧。
 
 
+## 航拍全景看校园
 
-
-## 全景看校园
+::: warning
+航拍图像拍摄于`2019年6月`，校园内部分建筑此时仍在修建。自此之后，学校原则上不再允许学生在校内飞行无人机。
+:::
 
 ![湖畔全景](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/facility/campus-pano.jpg)
 
