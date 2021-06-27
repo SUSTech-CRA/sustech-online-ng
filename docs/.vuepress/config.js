@@ -50,42 +50,42 @@ module.exports = {
     //     'ga': 'G-1BQBXDGY3R' // UA-00000000-0
     //   },
     // ],
-    'fulltext-search',
-    '@vuepress/medium-zoom',
-    '@vuepress/nprogress',
-    '@vuepress/back-to-top',
-    [
-      '@vuepress/pwa',
-      {
-        serviceWorker: true,
-        updatePopup: {
-          message: "手册内容有更新！",
-          buttonText: "刷新"
-        },
-        generateSWConfig: {
-          importWorkboxFrom: 'local'
-        }
-      },
-    ],
-    [
-      '@vuepress/last-updated',
-      {
-        transformer: (timestamp, lang) => {
-          // 不要忘了安装 moment
-          const moment = require('moment')
-          moment.locale(lang)
-          return moment(timestamp).format("YYYY-MM-DD HH:mm")
-        },
-      },
-    ],
-    [
-      'sitemap',
-      {
-        hostname: 'https://sustech.online'
-      },
-    ],
+  //   'fulltext-search',
+  //   '@vuepress/medium-zoom',
+  //   '@vuepress/nprogress',
+  //   '@vuepress/back-to-top',
+  //   [
+  //     '@vuepress/pwa',
+  //     {
+  //       serviceWorker: true,
+  //       updatePopup: {
+  //         message: "手册内容有更新！",
+  //         buttonText: "刷新"
+  //       },
+  //       generateSWConfig: {
+  //         importWorkboxFrom: 'local'
+  //       }
+  //     },
+  //   ],
+  //   [
+  //     '@vuepress/last-updated',
+  //     {
+  //       transformer: (timestamp, lang) => {
+  //         // 不要忘了安装 moment
+  //         const moment = require('moment')
+  //         moment.locale(lang)
+  //         return moment(timestamp).format("YYYY-MM-DD HH:mm")
+  //       },
+  //     },
+  //   ],
+  //   [
+  //     'sitemap',
+  //     {
+  //       hostname: 'https://sustech.online'
+  //     },
+  //   ],
   ],
-  theme: 'default-prefers-color-scheme',
+  // theme: 'default-prefers-color-scheme',
   themeConfig: {
     nav: [
       { text: '主页', link: '/' },
