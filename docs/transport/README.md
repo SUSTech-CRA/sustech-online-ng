@@ -8,7 +8,7 @@
 <div class='bt-sub'><a href="./holiday.html">💤 节假日</a></div>
 </div>
 
-<ClientOnly>
+<!-- <ClientOnly> -->
 <style>
 .bt-sub {
     margin-top: 1%;
@@ -17,7 +17,7 @@
     text-align: center;
 }
 </style>
-</ClientOnly>
+<!-- </ClientOnly> -->
 
 ### 校园巴士实时位置<Badge text="Beta" type="tip"/>
 
