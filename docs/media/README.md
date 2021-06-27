@@ -110,6 +110,7 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 ## 网站
 
 - 南科导航｜南科大网址导航 [https://suste.ch](https://suste.ch)
+- 南科一路｜在这里，读懂南科 [https://nanke.suste.ch](https://nanke.suste.ch)
 - 校友地图 [https://sustech-application.github.io/SUSTech-Alumni-Map/](https://sustech-application.github.io/SUSTech-Alumni-Map/)
 - SUSTech Flow | 公开评教网站 [https://sustechflow.top/](https://sustechflow.top/)
 - 飞跃手册 [https://sustech-application.github.io/](https://sustech-application.github.io/2020-Fall/)
