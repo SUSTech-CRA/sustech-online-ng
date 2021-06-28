@@ -73,6 +73,43 @@ module.exports = {
         },
       },
     ],
+    [
+      '@vuepress/plugin-google-analytics',
+      {
+        id: 'G-1BQBXDGY3R',
+      },
+    ],
+    '@vuepress/medium-zoom',
+    [
+      '@vuepress/pwa',
+      {
+        serviceWorker: true,
+      },
+      {
+      generateSWConfig: {
+        importWorkboxFrom: 'local'
+      }
+    }
+      
+    ],
+    [
+      '@vuepress/plugin-pwa-popup',
+      {
+        locales: {
+          '/': {
+            message: 'New content is available.',
+            buttonText: 'Refresh',
+          },
+          '/zh/': {
+            message: '发现新内容可用',
+            buttonText: '刷新',
+          },
+        },
+      },
+    ],
+    '@vuepress/plugin-nprogress',
+    '@vuepress/back-to-top',
+    '@vuepress/plugin-git',
     // [
     //   '@vuepress/google-analytics',
     //   {
