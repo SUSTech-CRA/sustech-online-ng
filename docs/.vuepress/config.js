@@ -60,15 +60,12 @@ module.exports = {
     [
       '@vuepress/plugin-docsearch',
       {
-        appId: '72QKXPCF9X',
-        apiKey: '552989af61cfaf1e2d114956c326aef1',
-        indexName: 'sustech-online-vp2',
+        appId: 'XP3AE1DQY0',
+        apiKey: 'c4b10970d67f7bdc483bb69f1744fbd0',
+        indexName: 'sustech-online',
         locales: {
           '/': {
-            placeholder: 'Search Documentation',
-          },
-          '/zh/': {
-            placeholder: '搜索文档',
+            placeholder: '搜索手册',
           },
         },
       },
@@ -97,10 +94,6 @@ module.exports = {
       {
         locales: {
           '/': {
-            message: 'New content is available.',
-            buttonText: 'Refresh',
-          },
-          '/zh/': {
             message: '发现新内容可用',
             buttonText: '刷新',
           },
