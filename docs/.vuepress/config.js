@@ -100,9 +100,9 @@ module.exports = {
   ],
   // theme: 'default-prefers-color-scheme',
   themeConfig: {
-    nav: [
+    navbar: [
       { text: '主页', link: '/' },
-      { text: '关于', link: '/about/' },
+      { text: '关于', link: '/about.md' },
       { text: '站点帮助', link: '/site-help/' },
       { text: '更新日志', link: '/news/' },
     ],
