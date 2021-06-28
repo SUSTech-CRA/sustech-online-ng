@@ -44,6 +44,19 @@ module.exports = {
     ['link', { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/npm/datatables@1.10.18/media/css/jquery.dataTables.min.css' }]
   ],
   plugins: [
+    [
+      '@vuepress/plugin-search',
+      {
+        locales: {
+          '/': {
+            placeholder: 'Search',
+          },
+          '/zh/': {
+            placeholder: '搜索',
+          },
+        },
+      },
+    ],
     // [
     //   '@vuepress/google-analytics',
     //   {
@@ -106,39 +119,83 @@ module.exports = {
       '/facility/',
       '/contact/',
       {
-        title: '📅校历',   // 必要的
-        path: '/calendar/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-        // collapsable: false, // 可选的, 默认值是 true,
-        sidebarDepth: 1,    // 可选的, 默认值是 1
+        text: '📅校历',
+        link: '/calendar/',
         children: [
-          ['/calendar/', '2020-2021 学年'],
+          // SidebarItem
           {
-            title: '历史校历（存档）',
+            text: '历史校历（存档）',
             children: [
-              ['/calendar/2021-2022.md', '2021-2022 学年'],
-              ['/calendar/2020-2021.md', '2020-2021 学年'],
-              ['/calendar/2019-2020.md', '2019-2020 学年'],
-              ['/calendar/2018-2019.md', '2018-2019 学年'],
+              {
+                text: '2021-2022 学年',
+                link: '/calendar/2021-2022.md',
+                children: [],
+              },
+              {
+                text: '2020-2021 学年',
+                link: '/calendar/2020-2021.md',
+                children: [],
+              },
             ]
-          }
+          },
         ],
       },
+      // {
+      //   title: '📅校历',   // 必要的
+      //   path: '/calendar/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+      //   // collapsable: false, // 可选的, 默认值是 true,
+      //   sidebarDepth: 1,    // 可选的, 默认值是 1
+      //   children: [
+      //     ['/calendar/', '2020-2021 学年'],
+      //     {
+      //       title: '历史校历（存档）',
+      //       children: [
+      //         ['/calendar/2021-2022.md', '2021-2022 学年'],
+      //         ['/calendar/2020-2021.md', '2020-2021 学年'],
+      //         ['/calendar/2019-2020.md', '2019-2020 学年'],
+      //         ['/calendar/2018-2019.md', '2018-2019 学年'],
+      //       ]
+      //     }
+      //   ],
+      // },
       '/service/',
       '/life/',
       '/study/',
       '/organizations/',
       '/media/',
+      // {
+      //   title: '🚄交通',   // 必要的
+      //   path: '/transport/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+      //   // collapsable: false, // 可选的, 默认值是 true,
+      //   sidebarDepth: 1,    // 可选的, 默认值是 1
+      //   children: [
+      //     ['/transport/workday.md', '🚌校园巴士-工作日'],
+      //     ['/transport/holiday.md', '🚌校园巴士-节假日'],
+      //     ['/transport/', '周围交通'],
+      //   ],
+      // },
       {
-        title: '🚄交通',   // 必要的
-        path: '/transport/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-        // collapsable: false, // 可选的, 默认值是 true,
-        sidebarDepth: 1,    // 可选的, 默认值是 1
+        text: '🚄交通',
+        link: '/transport/',
         children: [
-          ['/transport/workday.md', '🚌校园巴士-工作日'],
-          ['/transport/holiday.md', '🚌校园巴士-节假日'],
-          ['/transport/', '周围交通'],
+          // SidebarItem
+          {
+            text: '🚌校园巴士-工作日',
+            link: '/transport/workday.md',
+            children: [],
+          },
+          {
+            text: '🚌校园巴士-节假日',
+            link: '/transport/holiday.md',
+            children: [],
+          },
+          {
+            text: '周围交通',
+            link: '/transport/',
+            children: [],
+          },
         ],
-      },
+      },      
       '/surroundings/',
     ]
   }
