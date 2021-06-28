@@ -44,15 +44,31 @@ module.exports = {
     ['link', { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/npm/datatables@1.10.18/media/css/jquery.dataTables.min.css' }]
   ],
   plugins: [
+    // [
+    //   '@vuepress/plugin-search',
+    //   {
+    //     locales: {
+    //       '/': {
+    //         placeholder: 'Search',
+    //       },
+    //       '/zh/': {
+    //         placeholder: '搜索',
+    //       },
+    //     },
+    //   },
+    // ],
     [
-      '@vuepress/plugin-search',
+      '@vuepress/plugin-docsearch',
       {
+        appId: '72QKXPCF9X',
+        apiKey: '552989af61cfaf1e2d114956c326aef1',
+        indexName: 'sustech-online-vp2',
         locales: {
           '/': {
-            placeholder: 'Search',
+            placeholder: 'Search Documentation',
           },
           '/zh/': {
-            placeholder: '搜索',
+            placeholder: '搜索文档',
           },
         },
       },
