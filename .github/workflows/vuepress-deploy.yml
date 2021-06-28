@@ -3,25 +3,33 @@ on:
   push:
     branches:
       - master
+
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
+    name: A job to deploy SUSTech Online.
     steps:
     - name: Checkout
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
-
-    - name: vuepress-deploy
-      uses: jenkey2011/vuepress-deploy@master
-      env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        TARGET_REPO: SUSTC/sustech-online-ng
-        TARGET_BRANCH: gh-pages
-        BUILD_SCRIPT: yarn && yarn docs:build
-        BUILD_DIR: docs/.vuepress/dist/
-        TZ: Asia/Shanghai
-
+        
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    
+    - name: Install Dependencies
+      run: yarn install
+    
+    - name: Build Site
+      run: yarn docs:build
+    
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.ACCESS_TOKEN }}
+        publish_dir: ./public
+    
     - name: setup aliyun oss
       uses: manyuanrong/setup-ossutil@master
       with:
