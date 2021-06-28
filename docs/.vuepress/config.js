@@ -81,9 +81,9 @@ module.exports = {
     ],
     '@vuepress/medium-zoom',
     [
-      '@vuepress/pwa',
+      '@vuepress/plugin-pwa',
       {
-        serviceWorker: true,
+        skipWaiting: true,
       },
       {
       generateSWConfig: {
