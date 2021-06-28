@@ -110,6 +110,7 @@ module.exports = {
     '@vuepress/plugin-nprogress',
     '@vuepress/back-to-top',
     '@vuepress/plugin-git',
+    '@vuepress/plugin-toc',
     // [
     //   '@vuepress/google-analytics',
     //   {
