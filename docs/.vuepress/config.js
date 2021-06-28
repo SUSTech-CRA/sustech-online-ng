@@ -45,51 +45,117 @@ module.exports = {
   ],
   plugins: [
     // [
+    //   '@vuepress/plugin-search',
+    //   {
+    //     locales: {
+    //       '/': {
+    //         placeholder: 'Search',
+    //       },
+    //       '/zh/': {
+    //         placeholder: '搜索',
+    //       },
+    //     },
+    //   },
+    // ],
+    [
+      '@vuepress/plugin-docsearch',
+      {
+        appId: '72QKXPCF9X',
+        apiKey: '552989af61cfaf1e2d114956c326aef1',
+        indexName: 'sustech-online-vp2',
+        locales: {
+          '/': {
+            placeholder: 'Search Documentation',
+          },
+          '/zh/': {
+            placeholder: '搜索文档',
+          },
+        },
+      },
+    ],
+    [
+      '@vuepress/plugin-google-analytics',
+      {
+        id: 'G-1BQBXDGY3R',
+      },
+    ],
+    '@vuepress/medium-zoom',
+    [
+      '@vuepress/plugin-pwa',
+      {
+        skipWaiting: true,
+      },
+      {
+      generateSWConfig: {
+        importWorkboxFrom: 'local'
+      }
+    }
+      
+    ],
+    [
+      '@vuepress/plugin-pwa-popup',
+      {
+        locales: {
+          '/': {
+            message: 'New content is available.',
+            buttonText: 'Refresh',
+          },
+          '/zh/': {
+            message: '发现新内容可用',
+            buttonText: '刷新',
+          },
+        },
+      },
+    ],
+    '@vuepress/plugin-nprogress',
+    '@vuepress/back-to-top',
+    '@vuepress/plugin-git',
+    // [
     //   '@vuepress/google-analytics',
     //   {
     //     'ga': 'G-1BQBXDGY3R' // UA-00000000-0
     //   },
     // ],
-    'fulltext-search',
-    '@vuepress/medium-zoom',
-    '@vuepress/nprogress',
-    '@vuepress/back-to-top',
-    [
-      '@vuepress/pwa',
-      {
-        serviceWorker: true,
-        updatePopup: {
-          message: "手册内容有更新！",
-          buttonText: "刷新"
-        },
-        generateSWConfig: {
-          importWorkboxFrom: 'local'
-        }
-      },
-    ],
-    [
-      '@vuepress/last-updated',
-      {
-        transformer: (timestamp, lang) => {
-          // 不要忘了安装 moment
-          const moment = require('moment')
-          moment.locale(lang)
-          return moment(timestamp).format("YYYY-MM-DD HH:mm")
-        },
-      },
-    ],
-    [
-      'sitemap',
-      {
-        hostname: 'https://sustech.online'
-      },
-    ],
+  //   'fulltext-search',
+  //   '@vuepress/medium-zoom',
+  //   '@vuepress/nprogress',
+  //   '@vuepress/back-to-top',
+  //   [
+  //     '@vuepress/pwa',
+  //     {
+  //       serviceWorker: true,
+  //       updatePopup: {
+  //         message: "手册内容有更新！",
+  //         buttonText: "刷新"
+  //       },
+  //       generateSWConfig: {
+  //         importWorkboxFrom: 'local'
+  //       }
+  //     },
+  //   ],
+  //   [
+  //     '@vuepress/last-updated',
+  //     {
+  //       transformer: (timestamp, lang) => {
+  //         // 不要忘了安装 moment
+  //         const moment = require('moment')
+  //         moment.locale(lang)
+  //         return moment(timestamp).format("YYYY-MM-DD HH:mm")
+  //       },
+  //     },
+  //   ],
+  //   [
+  //     'sitemap',
+  //     {
+  //       hostname: 'https://sustech.online'
+  //     },
+  //   ],
   ],
-  theme: 'default-prefers-color-scheme',
+  // theme: 'default-prefers-color-scheme',
   themeConfig: {
-    nav: [
+    navbar: [
       { text: '主页', link: '/' },
-      { text: '关于', link: '/about/' },
+      { text: '关于', link: '/about.md' },
       { text: '站点帮助', link: '/site-help/' },
       { text: '更新日志', link: '/news/' },
     ],
@@ -106,39 +172,83 @@ module.exports = {
       '/facility/',
       '/contact/',
       {
-        title: '📅校历',   // 必要的
-        path: '/calendar/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-        // collapsable: false, // 可选的, 默认值是 true,
-        sidebarDepth: 1,    // 可选的, 默认值是 1
+        text: '📅校历',
+        link: '/calendar/',
         children: [
-          ['/calendar/', '2020-2021 学年'],
+          // SidebarItem
           {
-            title: '历史校历（存档）',
+            text: '历史校历（存档）',
             children: [
-              ['/calendar/2021-2022.md', '2021-2022 学年'],
-              ['/calendar/2020-2021.md', '2020-2021 学年'],
-              ['/calendar/2019-2020.md', '2019-2020 学年'],
-              ['/calendar/2018-2019.md', '2018-2019 学年'],
+              {
+                text: '2021-2022 学年',
+                link: '/calendar/2021-2022.md',
+                children: [],
+              },
+              {
+                text: '2020-2021 学年',
+                link: '/calendar/2020-2021.md',
+                children: [],
+              },
             ]
-          }
+          },
         ],
       },
+      // {
+      //   title: '📅校历',   // 必要的
+      //   path: '/calendar/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+      //   // collapsable: false, // 可选的, 默认值是 true,
+      //   sidebarDepth: 1,    // 可选的, 默认值是 1
+      //   children: [
+      //     ['/calendar/', '2020-2021 学年'],
+      //     {
+      //       title: '历史校历（存档）',
+      //       children: [
+      //         ['/calendar/2021-2022.md', '2021-2022 学年'],
+      //         ['/calendar/2020-2021.md', '2020-2021 学年'],
+      //         ['/calendar/2019-2020.md', '2019-2020 学年'],
+      //         ['/calendar/2018-2019.md', '2018-2019 学年'],
+      //       ]
+      //     }
+      //   ],
+      // },
       '/service/',
       '/life/',
       '/study/',
       '/organizations/',
       '/media/',
+      // {
+      //   title: '🚄交通',   // 必要的
+      //   path: '/transport/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+      //   // collapsable: false, // 可选的, 默认值是 true,
+      //   sidebarDepth: 1,    // 可选的, 默认值是 1
+      //   children: [
+      //     ['/transport/workday.md', '🚌校园巴士-工作日'],
+      //     ['/transport/holiday.md', '🚌校园巴士-节假日'],
+      //     ['/transport/', '周围交通'],
+      //   ],
+      // },
       {
-        title: '🚄交通',   // 必要的
-        path: '/transport/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-        // collapsable: false, // 可选的, 默认值是 true,
-        sidebarDepth: 1,    // 可选的, 默认值是 1
+        text: '🚄交通',
+        link: '/transport/',
         children: [
-          ['/transport/workday.md', '🚌校园巴士-工作日'],
-          ['/transport/holiday.md', '🚌校园巴士-节假日'],
-          ['/transport/', '周围交通'],
+          // SidebarItem
+          {
+            text: '🚌校园巴士-工作日',
+            link: '/transport/workday.md',
+            children: [],
+          },
+          {
+            text: '🚌校园巴士-节假日',
+            link: '/transport/holiday.md',
+            children: [],
+          },
+          {
+            text: '周围交通',
+            link: '/transport/',
+            children: [],
+          },
         ],
-      },
+      },      
       '/surroundings/',
     ]
   }
