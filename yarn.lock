@@ -2,6 +2,129 @@
 # yarn lockfile v1
 
 
+"@algolia/autocomplete-core@1.0.0-alpha.44":
+  version "1.0.0-alpha.44"
+  resolved "https://registry.nlark.com/@algolia/autocomplete-core/download/@algolia/autocomplete-core-1.0.0-alpha.44.tgz#e626dba45f5f3950d6beb0ab055395ef0f7e8bb2"
+  integrity sha1-5ibbpF9fOVDWvrCrBVOV7w9+i7I=
+  dependencies:
+    "@algolia/autocomplete-shared" "1.0.0-alpha.44"
+
+"@algolia/autocomplete-preset-algolia@1.0.0-alpha.44":
+  version "1.0.0-alpha.44"
+  resolved "https://registry.nlark.com/@algolia/autocomplete-preset-algolia/download/@algolia/autocomplete-preset-algolia-1.0.0-alpha.44.tgz?cache=0&sync_timestamp=1622108851925&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40algolia%2Fautocomplete-preset-algolia%2Fdownload%2F%40algolia%2Fautocomplete-preset-algolia-1.0.0-alpha.44.tgz#0ea0b255d0be10fbe262e281472dd6e4619b62ba"
+  integrity sha1-DqCyVdC+EPviYuKBRy3W5GGbYro=
+  dependencies:
+    "@algolia/autocomplete-shared" "1.0.0-alpha.44"
+
+"@algolia/autocomplete-shared@1.0.0-alpha.44":
+  version "1.0.0-alpha.44"
+  resolved "https://registry.nlark.com/@algolia/autocomplete-shared/download/@algolia/autocomplete-shared-1.0.0-alpha.44.tgz?cache=0&sync_timestamp=1622108852169&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40algolia%2Fautocomplete-shared%2Fdownload%2F%40algolia%2Fautocomplete-shared-1.0.0-alpha.44.tgz#db13902ad1667e455711b77d08cae1a0feafaa48"
+  integrity sha1-2xOQKtFmfkVXEbd9CMrhoP6vqkg=
+
+"@algolia/cache-browser-local-storage@4.10.2":
+  version "4.10.2"
+  resolved "https://registry.nlark.com/@algolia/cache-browser-local-storage/download/@algolia/cache-browser-local-storage-4.10.2.tgz#9925c7c0ce94257564b8948b60fc427c4a98124c"
+  integrity sha1-mSXHwM6UJXVkuJSLYPxCfEqYEkw=
+  dependencies:
+    "@algolia/cache-common" "4.10.2"
+
+"@algolia/cache-common@4.10.2":
+  version "4.10.2"
+  resolved "https://registry.nlark.com/@algolia/cache-common/download/@algolia/cache-common-4.10.2.tgz#0113419518419895118d132bed4115345a865ce3"
+  integrity sha1-ARNBlRhBmJURjRMr7UEVNFqGXOM=
+
+"@algolia/cache-in-memory@4.10.2":
+  version "4.10.2"
+  resolved "https://registry.nlark.com/@algolia/cache-in-memory/download/@algolia/cache-in-memory-4.10.2.tgz#2d34d4155425b385d19ff197a8943a4b5084c790"
+  integrity sha1-LTTUFVQls4XRn/GXqJQ6S1CEx5A=
+  dependencies:
+    "@algolia/cache-common" "4.10.2"
+
+"@algolia/client-account@4.10.2":
+  version "4.10.2"
+  resolved "https://registry.nlark.com/@algolia/client-account/download/@algolia/client-account-4.10.2.tgz#c53d18d4f57ab5343c21e0ed795421964ba0cbb9"
+  integrity sha1-xT0Y1PV6tTQ8IeDteVQhlkugy7k=
+  dependencies:
+    "@algolia/client-common" "4.10.2"
+    "@algolia/client-search" "4.10.2"
+    "@algolia/transporter" "4.10.2"
+
+"@algolia/client-analytics@4.10.2":
+  version "4.10.2"
+  resolved "https://registry.nlark.com/@algolia/client-analytics/download/@algolia/client-analytics-4.10.2.tgz#93c881cfb9e5df389725d821327fa801f1baa2c6"
+  integrity sha1-k8iBz7nl3ziXJdghMn+oAfG6osY=
+  dependencies:
+    "@algolia/client-common" "4.10.2"
+    "@algolia/client-search" "4.10.2"
+    "@algolia/requester-common" "4.10.2"
+    "@algolia/transporter" "4.10.2"
+
+"@algolia/client-common@4.10.2":
+  version "4.10.2"
+  resolved "https://registry.nlark.com/@algolia/client-common/download/@algolia/client-common-4.10.2.tgz#a715e8feb2a2b6ea38765f53e8ae6ffc4ed80aba"
+  integrity sha1-pxXo/rKituo4dl9T6K5v/E7YCro=
+  dependencies:
+    "@algolia/requester-common" "4.10.2"
+    "@algolia/transporter" "4.10.2"
+
+"@algolia/client-personalization@4.10.2":
+  version "4.10.2"
+  resolved "https://registry.nlark.com/@algolia/client-personalization/download/@algolia/client-personalization-4.10.2.tgz#89d761bcf60ce13b8565c2ae8ab644c3a3d114c8"
+  integrity sha1-iddhvPYM4TuFZcKuirZEw6PRFMg=
+  dependencies:
+    "@algolia/client-common" "4.10.2"
+    "@algolia/requester-common" "4.10.2"
+    "@algolia/transporter" "4.10.2"
+
+"@algolia/client-search@4.10.2":
+  version "4.10.2"
+  resolved "https://registry.nlark.com/@algolia/client-search/download/@algolia/client-search-4.10.2.tgz#ad281b04ec4e6eaff68fb5be330f0bdf965ce011"
+  integrity sha1-rSgbBOxObq/2j7W+Mw8L35Zc4BE=
+  dependencies:
+    "@algolia/client-common" "4.10.2"
+    "@algolia/requester-common" "4.10.2"
+    "@algolia/transporter" "4.10.2"
+
+"@algolia/logger-common@4.10.2":
+  version "4.10.2"
+  resolved "https://registry.nlark.com/@algolia/logger-common/download/@algolia/logger-common-4.10.2.tgz#f28e966a6b878af2917ed2e1518f46650a6fb8ad"
+  integrity sha1-8o6WamuHivKRftLhUY9GZQpvuK0=
+
+"@algolia/logger-console@4.10.2":
+  version "4.10.2"
+  resolved "https://registry.nlark.com/@algolia/logger-console/download/@algolia/logger-console-4.10.2.tgz#9d3dcbb077242db92f0f0a1795ec95c3bc839599"
+  integrity sha1-nT3LsHckLbkvDwoXleyVw7yDlZk=
+  dependencies:
+    "@algolia/logger-common" "4.10.2"
+
+"@algolia/requester-browser-xhr@4.10.2":
+  version "4.10.2"
+  resolved "https://registry.nlark.com/@algolia/requester-browser-xhr/download/@algolia/requester-browser-xhr-4.10.2.tgz#2286e2f10fff3651f719b8d7d3defc8c032fcce0"
+  integrity sha1-Iobi8Q//NlH3GbjX0978jAMvzOA=
+  dependencies:
+    "@algolia/requester-common" "4.10.2"
+
+"@algolia/requester-common@4.10.2":
+  version "4.10.2"
+  resolved "https://registry.nlark.com/@algolia/requester-common/download/@algolia/requester-common-4.10.2.tgz#8b62f0848454ec5b07bd3599f5fb2b87ec7c4de8"
+  integrity sha1-i2LwhIRU7FsHvTWZ9fsrh+x8Teg=
+
+"@algolia/requester-node-http@4.10.2":
+  version "4.10.2"
+  resolved "https://registry.nlark.com/@algolia/requester-node-http/download/@algolia/requester-node-http-4.10.2.tgz#edb691e34e18aacc15107193319e1a712e024649"
+  integrity sha1-7baR404YqswVEHGTMZ4acS4CRkk=
+  dependencies:
+    "@algolia/requester-common" "4.10.2"
+
+"@algolia/transporter@4.10.2":
+  version "4.10.2"
+  resolved "https://registry.nlark.com/@algolia/transporter/download/@algolia/transporter-4.10.2.tgz#ae0fa7c99b9bf8efa5ac83843558be1074e7c045"
+  integrity sha1-rg+nyZub+O+lrIOENVi+EHTnwEU=
+  dependencies:
+    "@algolia/cache-common" "4.10.2"
+    "@algolia/logger-common" "4.10.2"
+    "@algolia/requester-common" "4.10.2"
+
 "@babel/code-frame@^7.0.0":
   version "7.14.5"
   resolved "https://registry.nlark.com/@babel/code-frame/download/@babel/code-frame-7.14.5.tgz?cache=0&sync_timestamp=1623280394200&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40babel%2Fcode-frame%2Fdownload%2F%40babel%2Fcode-frame-7.14.5.tgz#23b08d740e83f49c5e59945fbf1b43e80bbf4edb"
@@ -35,6 +158,29 @@
   dependencies:
     "@babel/helper-validator-identifier" "^7.14.5"
     to-fast-properties "^2.0.0"
+
+"@docsearch/css@3.0.0-alpha.34":
+  version "3.0.0-alpha.34"
+  resolved "https://registry.npm.taobao.org/@docsearch/css/download/@docsearch/css-3.0.0-alpha.34.tgz#5d5c39955956e237884a9997eb29e28c8adc99fa"
+  integrity sha1-XVw5lVlW4jeISpmX6ynijIrcmfo=
+
+"@docsearch/js@3.0.0-alpha.34":
+  version "3.0.0-alpha.34"
+  resolved "https://registry.npm.taobao.org/@docsearch/js/download/@docsearch/js-3.0.0-alpha.34.tgz#5c83a21b6f04bfb11fbf1d2a5175e6aa1365230f"
+  integrity sha1-XIOiG28Ev7Efvx0qUXXmqhNlIw8=
+  dependencies:
+    "@docsearch/react" "3.0.0-alpha.34"
+    preact "^10.0.0"
+
+"@docsearch/react@3.0.0-alpha.34":
+  version "3.0.0-alpha.34"
+  resolved "https://registry.npm.taobao.org/@docsearch/react/download/@docsearch/react-3.0.0-alpha.34.tgz#fb7e31e31593c26dadb607b9451d274b84b0b05a"
+  integrity sha1-+34x4xWTwm2ttge5RR0nS4SwsFo=
+  dependencies:
+    "@algolia/autocomplete-core" "1.0.0-alpha.44"
+    "@algolia/autocomplete-preset-algolia" "1.0.0-alpha.44"
+    "@docsearch/css" "3.0.0-alpha.34"
+    algoliasearch "^4.0.0"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -190,6 +336,11 @@
   resolved "https://registry.nlark.com/@types/parse-json/download/@types/parse-json-4.0.0.tgz?cache=0&sync_timestamp=1621242198435&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fparse-json%2Fdownload%2F%40types%2Fparse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
   integrity sha1-L4u0QUNNFjs1+4/9zNcTiSf/uMA=
 
+"@types/prop-types@*":
+  version "15.7.3"
+  resolved "https://registry.nlark.com/@types/prop-types/download/@types/prop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
+  integrity sha1-KrDV2i5YFflLC51LldHl8kOrLKc=
+
 "@types/qs@*":
   version "6.9.6"
   resolved "https://registry.nlark.com/@types/qs/download/@types/qs-6.9.6.tgz?cache=0&sync_timestamp=1621242292262&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fqs%2Fdownload%2F%40types%2Fqs-6.9.6.tgz#df9c3c8b31a247ec315e6996566be3171df4b3b1"
@@ -200,10 +351,24 @@
   resolved "https://registry.nlark.com/@types/range-parser/download/@types/range-parser-1.2.3.tgz?cache=0&sync_timestamp=1621242291785&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Frange-parser%2Fdownload%2F%40types%2Frange-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
   integrity sha1-fuMwunyq+5gJC+zoal7kQRWQTCw=
 
+"@types/react@^17.0.11":
+  version "17.0.11"
+  resolved "https://registry.nlark.com/@types/react/download/@types/react-17.0.11.tgz?cache=0&sync_timestamp=1623247414072&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Freact%2Fdownload%2F%40types%2Freact-17.0.11.tgz#67fcd0ddbf5a0b083a0f94e926c7d63f3b836451"
+  integrity sha1-Z/zQ3b9aCwg6D5TpJsfWPzuDZFE=
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
 "@types/retry@^0.12.0":
   version "0.12.0"
   resolved "https://registry.nlark.com/@types/retry/download/@types/retry-0.12.0.tgz?cache=0&sync_timestamp=1621242552767&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fretry%2Fdownload%2F%40types%2Fretry-0.12.0.tgz#2b35eccfcee7d38cd72ad99232fbd58bffb3c84d"
   integrity sha1-KzXsz87n04zXKtmSMvvVi/+zyE0=
+
+"@types/scheduler@*":
+  version "0.16.1"
+  resolved "https://registry.nlark.com/@types/scheduler/download/@types/scheduler-0.16.1.tgz#18845205e86ff0038517aab7a18a62a6b9f71275"
+  integrity sha1-GIRSBehv8AOFF6q3oYpiprn3EnU=
 
 "@types/serve-static@*":
   version "1.13.9"
@@ -427,6 +592,23 @@
     markdown-it "^12.0.6"
     markdown-it-container "^3.0.0"
 
+"@vuepress/plugin-docsearch@2.0.0-beta.20":
+  version "2.0.0-beta.20"
+  resolved "https://registry.nlark.com/@vuepress/plugin-docsearch/download/@vuepress/plugin-docsearch-2.0.0-beta.20.tgz#06550248423ba226772127664661a0a27578fca2"
+  integrity sha1-BlUCSEI7oiZ3ISdmRmGgonV4/KI=
+  dependencies:
+    "@docsearch/css" "3.0.0-alpha.34"
+    "@docsearch/js" "3.0.0-alpha.34"
+    "@docsearch/react" "3.0.0-alpha.34"
+    "@types/react" "^17.0.11"
+    "@vuepress/client" "2.0.0-beta.20"
+    "@vuepress/core" "2.0.0-beta.20"
+    "@vuepress/shared" "2.0.0-beta.20"
+    "@vuepress/utils" "2.0.0-beta.20"
+    preact "^10.5.13"
+    vue "^3.1.2"
+    vue-router "^4.0.10"
+
 "@vuepress/plugin-git@2.0.0-beta.20":
   version "2.0.0-beta.20"
   resolved "https://registry.nlark.com/@vuepress/plugin-git/download/@vuepress/plugin-git-2.0.0-beta.20.tgz#22bd6b63ffa071276dd0d69228730ef8515d0627"
@@ -474,19 +656,6 @@
   dependencies:
     "@vuepress/core" "2.0.0-beta.20"
     prismjs "^1.23.0"
-
-"@vuepress/plugin-search@2.0.0-beta.20":
-  version "2.0.0-beta.20"
-  resolved "https://registry.nlark.com/@vuepress/plugin-search/download/@vuepress/plugin-search-2.0.0-beta.20.tgz#7ac1b3818b4b7d5a36bbc11b0c3439b2d3a116b2"
-  integrity sha1-esGzgYtLfVo2u8EbDDQ5stOhFrI=
-  dependencies:
-    "@vuepress/client" "2.0.0-beta.20"
-    "@vuepress/core" "2.0.0-beta.20"
-    "@vuepress/shared" "2.0.0-beta.20"
-    "@vuepress/utils" "2.0.0-beta.20"
-    chokidar "^3.5.2"
-    vue "^3.1.2"
-    vue-router "^4.0.10"
 
 "@vuepress/plugin-theme-data@2.0.0-beta.20":
   version "2.0.0-beta.20"
@@ -712,6 +881,26 @@ ajv@^6.12.5:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
+
+algoliasearch@^4.0.0:
+  version "4.10.2"
+  resolved "https://registry.nlark.com/algoliasearch/download/algoliasearch-4.10.2.tgz?cache=0&sync_timestamp=1624530051860&other_urls=https%3A%2F%2Fregistry.nlark.com%2Falgoliasearch%2Fdownload%2Falgoliasearch-4.10.2.tgz#23e88c71cb381d5b59430baa5d417186cc8ff683"
+  integrity sha1-I+iMccs4HVtZQwuqXUFxhsyP9oM=
+  dependencies:
+    "@algolia/cache-browser-local-storage" "4.10.2"
+    "@algolia/cache-common" "4.10.2"
+    "@algolia/cache-in-memory" "4.10.2"
+    "@algolia/client-account" "4.10.2"
+    "@algolia/client-analytics" "4.10.2"
+    "@algolia/client-common" "4.10.2"
+    "@algolia/client-personalization" "4.10.2"
+    "@algolia/client-search" "4.10.2"
+    "@algolia/logger-common" "4.10.2"
+    "@algolia/logger-console" "4.10.2"
+    "@algolia/requester-browser-xhr" "4.10.2"
+    "@algolia/requester-common" "4.10.2"
+    "@algolia/requester-node-http" "4.10.2"
+    "@algolia/transporter" "4.10.2"
 
 ansi-html@^0.0.7:
   version "0.0.7"
@@ -1226,6 +1415,11 @@ csstype@^2.6.8:
   resolved "https://registry.nlark.com/csstype/download/csstype-2.6.17.tgz#4cf30eb87e1d1a005d8b6510f95292413f6a1c0e"
   integrity sha1-TPMOuH4dGgBdi2UQ+VKSQT9qHA4=
 
+csstype@^3.0.2:
+  version "3.0.8"
+  resolved "https://registry.nlark.com/csstype/download/csstype-3.0.8.tgz#d2266a792729fb227cd216fb572f43728e1ad340"
+  integrity sha1-0iZqeScp+yJ80hb7Vy9Dco4a00A=
+
 debug@2.6.9:
   version "2.6.9"
   resolved "https://registry.nlark.com/debug/download/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -1460,9 +1654,9 @@ esbuild@^0.11.19:
   integrity sha1-xCU09jLhZRIGcdZNtniDY0MztLg=
 
 esbuild@^0.12.9:
-  version "0.12.10"
-  resolved "https://registry.nlark.com/esbuild/download/esbuild-0.12.10.tgz#bd65c229862a3330128ea06836894dfa6f7471bf"
-  integrity sha1-vWXCKYYqMzASjqBoNolN+m90cb8=
+  version "0.12.11"
+  resolved "https://registry.nlark.com/esbuild/download/esbuild-0.12.11.tgz#ab24f78cabf481e7dc747e7db15f9c5091beaa14"
+  integrity sha1-qyT3jKv0gefcdH59sV+cUJG+qhQ=
 
 escalade@^3.1.1:
   version "3.1.1"
@@ -2899,6 +3093,11 @@ postcss@^8.1.10, postcss@^8.2.15, postcss@^8.3.5:
     colorette "^1.2.2"
     nanoid "^3.1.23"
     source-map-js "^0.6.2"
+
+preact@^10.0.0, preact@^10.5.13:
+  version "10.5.13"
+  resolved "https://registry.npm.taobao.org/preact/download/preact-10.5.13.tgz?cache=0&sync_timestamp=1615757263952&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpreact%2Fdownload%2Fpreact-10.5.13.tgz#85f6c9197ecd736ce8e3bec044d08fd1330fa019"
+  integrity sha1-hfbJGX7Nc2zo477ARNCP0TMPoBk=
 
 pretty-error@^3.0.4:
   version "3.0.4"
