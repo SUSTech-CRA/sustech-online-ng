@@ -3,6 +3,8 @@ sidebar: auto
 ---
 
 # 🌐网络与信息中心 (its@sustech.edu.cn)
+[[toc]]
+
 ## 校内局域网
 
 南科大的校内局域网主要分为主要包含教学/科研/业务计算机的科研教学网段(`172.18.0.0/16`)和包含大部分师生员工的个人有线与无线设备的普通网段(`10.16.0.0/13`)。
@@ -51,6 +53,18 @@ curl "https://cas.sustc.edu.cn/cas/login?service=http%3A%2F%2F172.16.16.20%3A803
 
 :::
 
+#### 湖畔宿舍区域的有线网络<Badge text="需特别配置" type="warning"/>
+
+湖畔区域墙上的网口仅能以百兆接入校园网。若需以千兆速度接入校园网，可使用AP上的网口接入校园网。**AP上的网口仅能访问校园网内网，但不能访问校外网络**，需通过校内中继访问外网。连接网络前，需要手动设置网关：
+
+```
+ip route add CIDR via 172.16.127.254
+```
+
+::: tip
+如有任何疑问，可以通过[mai.sakurajima.qwq@gmail.com](mailto:mai.sakurajima.qwq@gmail.com?subject=湖畔AP访问外部网络咨询)咨询CRA的陈同学。
+:::
+
 ### 其他有关网络的问题
 
 #### 在路由器后获取IPv6地址
@@ -70,7 +84,11 @@ curl "https://cas.sustc.edu.cn/cas/login?service=http%3A%2F%2F172.16.16.20%3A803
 
 学校目前对普通网段设备不限速（Fair Use@Up to 1000Mbps），对科研教学网段限速50Mbps，对教育网IPv4限速20Mbps，暂不对教育网IPv6限速。
 
-## 电信自费宽带
+## 电信自费宽带<Badge text="不再推荐" type="warning"/>
+
+::: warning
+由于学校已经放宽网络限速，电信宽带的性价比较低。建议参考[湖畔宿舍区域的有线网络](#湖畔宿舍区域的有线网络)一节进行配置。
+:::
 
 中国电信为居住于湖畔宿舍区的同学提供自费电信宽带。
 
@@ -155,3 +173,9 @@ done
 
 ## 校内网络使用技巧
 - [远程桌面](./remote-desktop)
+
+## 同学自行运营的千兆网络加速服务<Badge text="广告" type="tip"/>
+
+::: tip
+价格与体验均显著优于湖畔电信宽带，请通过[mai.sakurajima.qwq@gmail.com](mailto:mai.sakurajima.qwq@gmail.com?subject=千兆网络加速服务咨询)联系CRA的陈同学以获取详情。
+:::
