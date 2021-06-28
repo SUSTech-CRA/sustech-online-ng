@@ -77,19 +77,19 @@ sidebar: auto
 
 3. 前往打印点打印文件：点击自助打印，转换页面后在感应区放置校园卡（若打印多张需多次放置）即可到打印机旁等待任务完成，取走文件。
 
-<img src="./print-2.jpeg" width="400"/>
+<img src="print-2.jpeg" width="400"/>
 
 初始界面
 
-<img src="./print-3.jpeg" width="400"/>
+<img src="print-3.jpeg" width="400"/>
 
 打印初始界面
 
-<img src="./print-4.jpeg" width="400"/>
+<img src="print-4.jpeg" width="400"/>
 
 打印确认（多个任务需重复刷卡）
 
-<img src="./print-5.jpeg" width="400"/>
+<img src="print-5.jpeg" width="400"/>
 
 打印成功界面
 
@@ -98,25 +98,25 @@ sidebar: auto
 1. 携带校园卡及所需打印文件至打印点；
 2. 点击自助复印，转换页面后在感应区放置校园卡，然后到打印机电子版面进行操作。
 
-<img src="./copy-1.jpeg" width="400"/>
+<img src="copy-1.jpeg" width="400"/>
 
 3. 点击快速复印图标进入如下页面可对复印进行编辑，其中其他栏中包括缩小放大，双面复印，多合一等功能，在这里不做过多介绍，大家可以自行尝试。
 
-<img src="./copy-2.jpeg" width="400"/>
+<img src="copy-2.jpeg" width="400"/>
 
 复印初始界面
 
 4. 点击开始按键即可开始复印（注意：如若需要正反扫描，或是多合一时要在第一张扫描完成且屏幕上方弹出提示窗口后对文件进行手动翻面并再次点击开始图标）。
 
-<img src="./copy-3.jpeg" width="400"/>
+<img src="copy-3.jpeg" width="400"/>
 
 其他栏
 
-<img src="./copy-4.jpeg" width="400"/>
+<img src="copy-4.jpeg" width="400"/>
 
 双面（正反面复印）
 
-<img src="./copy-5.jpeg" width="400"/>
+<img src="copy-5.jpeg" width="400"/>
 
 多合一（将所需复印的多面文件复印至单面）
 
@@ -134,27 +134,27 @@ sidebar: auto
 
 3. 如果出来的是这个让人看起来就很绝望想把机器砸了的界面
 
-    <img src="./unifound-1.jpeg" width="400"/>
+    <img src="unifound-1.jpeg" width="400"/>
 
     先冷静一下，点击右边的 `简单画面` 。
 
-    <img src="./unifound-2.jpeg" width="200"/>
+    <img src="unifound-2.jpeg" width="200"/>
 
     然后就会变得很友好了：
 
-    <img src="./unifound-3.jpeg" width="400"/>
+    <img src="unifound-3.jpeg" width="400"/>
 
 4. 清晰度设置
 
     点击左上角的 `扫描设置`，设置扫描清晰度，一般直接设成最高（600dpi）：
 
-    <img src="./unifound-4.png" width="400"/>
+    <img src="unifound-4.png" width="400"/>
 
 5. 设置文件类型
 
     点击左下角的 `文件类型`
 
-    <img src="./unifound-5.jpeg" width="400"/>
+    <img src="unifound-5.jpeg" width="400"/>
 
     * 单页：扫描结果会变成每份只有一面内容的 pdf 上传
     * 多页：扫描结果会合并成一个多面的 pdf 上传
@@ -163,29 +163,29 @@ sidebar: auto
 
 6. 设置文件上传位置
 
-    <img src="./unifound-6.jpeg" width="400"/>
+    <img src="unifound-6.jpeg" width="400"/>
 
     文件夹 → SCAN
 
     文件会保存在你刷的校园卡的联创里，如图：
 
-    <img src="./unifound-7.jpeg" width="400"/>
+    <img src="unifound-7.jpeg" width="400"/>
 
     亦可选择直接发到自己的邮箱中，不过需要先再点击一开始的 `简单模式`，进入设置界面：
 
-    <img src="./unifound-8.jpeg" width="400"/>
+    <img src="unifound-8.jpeg" width="400"/>
 
     选择 `手动输入`，输入自己的邮箱
 
 7. 点击机器上的开始
 
-    <img src="./unifound-9.jpeg" width="100"/>
+    <img src="unifound-9.jpeg" width="100"/>
 
 8. 结束扫描
 
     需先点击 `#` 键，再刷卡退出
 
-    <img src="./unifound-10.png" width="400"/>
+    <img src="unifound-10.png" width="400"/>
 
 ### 富士机型
 
@@ -193,13 +193,13 @@ sidebar: auto
 
 2.点击自助扫描，转换页面后在感应区放置校园卡，然后到打印机电子版面进行操作。
 
-<img src="./scan-2-0.jpeg" width="400"/>
+<img src="scan-2-0.jpeg" width="400"/>
 
 扫描准备页面
 
 3.点击快速扫描图标进入如下页面，点击目的地进行接收地址填写
 
-<img src="./scan-2-1.jpeg" width="400"/>
+<img src="scan-2-1.jpeg" width="400"/>
 
 初始页面
 
@@ -209,7 +209,7 @@ sidebar: auto
 
 6.页面转跳后进入初始页面，并可看到将要接收扫描邮件的电子邮箱。在此页面可设置扫描参数，并可继续添加电子邮件地址。确认无误后点击开始按键即开始扫描。
 
-<img src="./scan-2-4.jpeg" width="400"/>
+<img src="scan-2-4.jpeg" width="400"/>
 
 ## 参考资料
 

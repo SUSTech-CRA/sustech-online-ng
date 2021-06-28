@@ -9,7 +9,7 @@
     移动端须点击左上角, 打开目录。<br>
     <br>
     <a href="/about" target="_blank" rel="noopener noreferrer">内容有问题？<br>功能提建议？<br>手册招维护！</a></th>
-    <th class="tg-baqh">微信小程序 - 南科手册Times<br><img src="./qr-code.jpg"  max-width="200"/><br>
+    <th class="tg-baqh">微信小程序 - 南科手册Times<br><img src="qr-code.jpg"  max-width="200"/><br>
     微信小程序无法跳转到第三方链接，体验完整版请访问 https://sustech.online。</th>
   </tr>
 </thead>
@@ -70,6 +70,7 @@
 
 
 <div class="emergency"><p><a href="./emergency">遇到紧急情况？点击此处进入「应急处理」页面<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></p></div>
+
 <style type="text/css">
 div.emergency {
   border-style: solid;
