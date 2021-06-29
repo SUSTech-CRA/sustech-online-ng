@@ -13,31 +13,32 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
-        
+
     - uses: szenius/set-timezone@v1.0
       with:
         timezoneLinux: "Asia/Shanghai"
-        
+
     - name: Check Time
       run: date
-        
+
     - uses: actions/setup-node@v2
       with:
         node-version: '14'
-    
+
     - name: Install Dependencies
       run: yarn install
-    
+
     - name: Build Site
       run: yarn docs:build
-    
+
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.ACCESS_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        # github_token: ${{ secrets.ACCESS_TOKEN }}
         publish_dir: ./docs/.vuepress/dist/
         force_orphan: true
-    
+
     - name: setup aliyun oss
       uses: manyuanrong/setup-ossutil@master
       with:
@@ -45,4 +46,6 @@ jobs:
         access-key-id: ${{ secrets.OSS_KEY_ID }}
         access-key-secret: ${{ secrets.OSS_KEY_SECRET }}
     - name: cp files to aliyun
-      run: ossutil cp -rf docs/.vuepress/dist/ oss://sustech-online/
+      run: ｜
+        ossutil rm -rf oss://sustech-online/*
+        ossutil cp -rf docs/.vuepress/dist/ oss://sustech-online/
