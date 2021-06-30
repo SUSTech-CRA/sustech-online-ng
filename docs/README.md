@@ -8,7 +8,7 @@
     <br>
     移动端须点击左上角, 打开目录。<br>
     <br>
-    <a href="/about" target="_blank" rel="noopener noreferrer">内容有问题？<br>功能提建议？<br>手册招维护！</a></th>
+    <a href="/about">内容有问题？<br>功能提建议？<br>手册招维护！</a></th>
     <th class="tg-baqh">微信小程序 - 南科手册Times<br><img  :src="$withBase('./qr-code.jpg')" alt="foo"  max-width="200"/><br>
     微信小程序无法跳转到第三方链接，体验完整版请访问 https://sustech.online。</th>
   </tr>
