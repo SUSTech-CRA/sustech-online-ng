@@ -100,6 +100,10 @@ div.emergency p a {
 
 <a data-fancybox title="" href="https://mirrors.sustech.edu.cn/site/sustech-online/img/campus-map/南方科技大学校园地图-v2-2-1.png">![](https://mirrors.sustech.edu.cn/site/sustech-online/img/campus-map/南方科技大学校园地图-v2-2-1.png)</a>
 
+## 校园街景<Badge text="新！" type="tip"/>
+
+- [由此查看](https://sustech.online/facility/)
+
 ## 版权信息
 
 ![](./assets/CC-BY-SA_icon.svg)
@@ -123,6 +127,11 @@ CC-BY-SA协议允许您自由地共享（在任何媒介以任何形式复制、
 
 Please use the [Google translation tool in Chrome](https://support.google.com/chrome/answer/173424) to translate the manual.
 
-## 备案
+## 支持与备案信息
 
-[粤ICP备18047383号](https://beian.miit.gov.cn/)
+🚧 本站由 [SUSTech OSS Mirrors](https://mirrors.sustech.edu.cn/) 提供静态资源加速服务，[SUSTech CRA](https://www.cra.moe/) 提供技术支持
+
+---
+
+🏛️ [粤ICP备18047383号](https://beian.miit.gov.cn/)
+
