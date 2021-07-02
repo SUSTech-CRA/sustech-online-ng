@@ -60,9 +60,8 @@ module.exports = {
     [
       '@vuepress/plugin-docsearch',
       {
-        appId: 'XP3AE1DQY0',
-        apiKey: 'c4b10970d67f7bdc483bb69f1744fbd0',
-        indexName: 'sustech-online',
+        apiKey: '03fed04db0cb1570c99f89739e745ed6',
+        indexName: 'sustech',
         locales: {
           '/': {
             placeholder: '搜索手册',
