@@ -39,6 +39,18 @@ jobs:
         publish_dir: ./docs/.vuepress/dist/
         force_orphan: true
 
+    - name: Deploy to coding
+      uses: liziwl/git-push-action@v1.0.4
+      with:
+        git_token_holder: 'pt5ez622q7ct'
+        git_token: '${{ secrets.CODING_TOKEN }}'
+        commit_user: 'liziwl'
+        commit_email: 'leezisy@gmail.com'
+        push_dir: './docs/.vuepress/dist/'
+        repository_url: 'e.coding.net/liziwl/sustech-online/sustech-online-pages.git'
+        keep_history: false
+        branch: master
+
     - name: setup aliyun oss
       uses: manyuanrong/setup-ossutil@master
       with:
