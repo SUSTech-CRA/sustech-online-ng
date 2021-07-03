@@ -23,8 +23,8 @@
 
 ### Ehall
 
-1. [SUSTC ehall | 成绩查询](http://ehall.sustech.edu.cn/publicapp/sys/cjcxapp/index.do)
-2. [SUSTC ehall | 失物招领](http://ehall.sustech.edu.cn/publicapp/sys/pubswzlapp/index.do)
+1. [SUSTech ehall | 成绩查询](http://ehall.sustech.edu.cn/publicapp/sys/cjcxapp/index.do)
+2. [SUSTech ehall | 失物招领](http://ehall.sustech.edu.cn/publicapp/sys/pubswzlapp/index.do)
 
 ### 计算机研究协会（CRA）
 
