@@ -54,10 +54,10 @@ jobs:
     - name: setup aliyun oss
       uses: manyuanrong/setup-ossutil@master
       with:
-        endpoint: oss-accelerate.aliyuncs.com
+        endpoint: oss-cn-shenzhen.aliyuncs.com
         access-key-id: ${{ secrets.OSS_KEY_ID }}
         access-key-secret: ${{ secrets.OSS_KEY_SECRET }}
     - name: cp files to aliyun
       run: |
-        ossutil rm -rf oss://sustech-online/*
-        ossutil cp -rf docs/.vuepress/dist/ oss://sustech-online/
+        ossutil rm -rf oss://perf-sustech-online/*
+        ossutil cp -rf docs/.vuepress/dist/ oss://perf-sustech-online/
