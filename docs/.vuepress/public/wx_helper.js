@@ -16,25 +16,26 @@ function post_to_wx() {
 setInterval(post_to_wx, 1000);
 
 function handleOutURL(url) {
+    console.log("处理链接 " + url);
     wx.miniProgram.navigateTo({
         url: '/pages/index/redirect?outURL=' + encodeURIComponent(url),
     });
 }
 
 function override_onclick(event) {
-    let url = event.currentTarget.getAttribute('href');
-
-    let domain = new URL(url);
-    domain = domain.hostname;
-    let whitelist = new Set();
-    whitelist.add("mirrors.sustech.edu.cn");
-    whitelist.add("bus.sustcra.com");
-    whitelist.add("sustech.online");
-    if (whitelist.has(domain)) {
-        return;
-    }
-
     if (window.is_miniprogram) {
+        let url = event.currentTarget.getAttribute('href');
+
+        let domain = new URL(url);
+        domain = domain.hostname;
+        let whitelist = new Set();
+        whitelist.add("mirrors.sustech.edu.cn");
+        whitelist.add("bus.sustcra.com");
+        whitelist.add("sustech.online");
+        if (whitelist.has(domain)) {
+            return;
+        }
+
         event.preventDefault();
         console.log("小程序环境，拦截外部链接。");
         handleOutURL(url);
