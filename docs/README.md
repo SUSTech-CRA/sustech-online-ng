@@ -92,13 +92,11 @@ div.emergency p a {
 
 ## 校园地图
 
-由sustech.online团队制作的校园地图。地图底图采用南科大2019版最新规划图，并添加校园巴士线路，打印机，商店，收发室等实用信息。
+由sustech.online团队制作的校园地图。地图底图采用南科大2021版最新规划图，并添加校园巴士线路，打印机，商店，收发室等实用信息。
 
-[点击这里](https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/南方科技大学校园地图-v2-2-1.pdf)下载矢量PDF版本，目前版本：**2.2**。
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/pdfjs/web/viewer.html?file=https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v3-1.pdf" style="width: 100%; height: 800px;"></iframe>
 
-预览图：
-
-<a data-fancybox title="" href="https://mirrors.sustech.edu.cn/site/sustech-online/img/campus-map/南方科技大学校园地图-v2-2-1.png">![](https://mirrors.sustech.edu.cn/site/sustech-online/img/campus-map/南方科技大学校园地图-v2-2-1.png)</a>
+[点击这里](https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v3-1.pdf)下载矢量PDF版本，目前版本：**3.1**。
 
 ## 校园街景<Badge text="新！" type="tip"/>
 
@@ -134,4 +132,3 @@ Please use the [Google translation tool in Chrome](https://support.google.com/ch
 ---
 
 🏛️ [粤ICP备18047383号](https://beian.miit.gov.cn/)
-
