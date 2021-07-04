@@ -1,11 +1,57 @@
 function post_to_wx() {
     var obj = {
+        'msgType': "heartbeat",
         'shareTitle': document.title,
         'shareURL': document.URL,
+        'scrollTop': document.documentElement.scrollTop,
         'time': (new Date()).valueOf()
-    }
+    };
     wx.miniProgram.postMessage({
         data: obj
-    })
+    });
+    wx.miniProgram.getEnv(function (res) {
+        window.is_miniprogram = res.miniprogram;
+    });
 }
 setInterval(post_to_wx, 1000);
+
+function handleOutURL(url) {
+    wx.miniProgram.navigateTo({
+        url: '/pages/index/redirect?outURL=' + encodeURIComponent(url),
+    });
+}
+
+function override_onclick(event) {
+    let url = event.currentTarget.getAttribute('href');
+
+    let domain = new URL(url);
+    domain = domain.hostname;
+    let whitelist = new Set();
+    whitelist.add("mirrors.sustech.edu.cn");
+    whitelist.add("bus.sustcra.com");
+    whitelist.add("sustech.online");
+    if (whitelist.has(domain)) {
+        return;
+    }
+
+    if (window.is_miniprogram) {
+        event.preventDefault();
+        console.log("小程序环境，拦截外部链接。");
+        handleOutURL(url);
+        // return false;
+    }
+    // ------------
+    // else {
+    //     return true;
+    // }
+}
+
+window.onload = function () {
+    var anchors = document.getElementsByTagName('a');
+    for (var i = 0; i < anchors.length; i++) {
+        var anchor = anchors[i];
+        anchor.onclick = function () {
+            override_onclick(event);
+        }
+    }
+}
