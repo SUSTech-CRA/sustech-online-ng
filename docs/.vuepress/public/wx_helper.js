@@ -16,7 +16,7 @@ function post_to_wx() {
 setInterval(post_to_wx, 1000);
 
 function handleOutURL(url) {
-    console.log("处理链接 " + url);
+    console.log("劫持链接 " + url);
     wx.miniProgram.navigateTo({
         url: '/pages/index/redirect?outURL=' + encodeURIComponent(url),
     });
@@ -33,6 +33,8 @@ function override_onclick(event) {
         whitelist.add("bus.sustcra.com");
         whitelist.add("sustech.online");
         if (whitelist.has(domain)) {
+            console.log("放行白名单页面 " + url);
+            window.location.href = url;
             return;
         }
 
@@ -47,7 +49,7 @@ function override_onclick(event) {
     // }
 }
 
-window.onload = function () {
+function reset_all_anchor() {
     var anchors = document.getElementsByTagName('a');
     for (var i = 0; i < anchors.length; i++) {
         var anchor = anchors[i];
@@ -56,3 +58,5 @@ window.onload = function () {
         }
     }
 }
+
+setInterval(reset_all_anchor, 1000);
