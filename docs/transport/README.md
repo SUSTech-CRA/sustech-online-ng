@@ -27,12 +27,11 @@
 如无法在微信中打开上述链接，请复制 **[https://bus.sustcra.com/](https://bus.sustcra.com/?utm_source=sustech.online)** 至浏览器打开。
 :::
 
-### 校园巴士线路图（2020年内9月16日起）
+### 校园巴士线路图（2021年6月起）
 
-[点击这里](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/transport/sustech-bus-system-map-20200916.pdf)下载矢量PDF版本。
+[点击这里](https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v3-1.pdf)下载矢量PDF版本。
 
-<a data-fancybox title="" href="https://mirrors.sustech.edu.cn/site/sustech-online/img/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%B7%B4%E5%A3%AB%E7%BA%BF%E8%B7%AF%E5%9B%BE-20200916.jpg">![](https://assets.sustech.online/img/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%B7%B4%E5%A3%AB%E7%BA%BF%E8%B7%AF%E5%9B%BE-20200916.jpg)</a>
-
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/pdfjs/web/viewer.html?file=https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v3-1.pdf" style="width: 100%; height: 800px;"></iframe>
 
 ## 来往南方科技大学的交通
 ### 公交
