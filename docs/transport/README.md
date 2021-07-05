@@ -31,7 +31,7 @@
 
 [点击这里](https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v3-1.pdf)下载矢量PDF版本。
 
-<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/pdfjs/web/viewer.html?file=https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v3-1.pdf" style="width: 100%; height: 800px;"></iframe>
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/pdfjs/web/viewer.html?file=https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v3-1.pdf" width="100%" height="600"></iframe>
 
 ## 来往南方科技大学的交通
 ### 公交
