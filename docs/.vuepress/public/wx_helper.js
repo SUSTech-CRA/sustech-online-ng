@@ -15,10 +15,10 @@ function post_to_wx() {
 }
 setInterval(post_to_wx, 1000);
 
-function handleOutURL(url) {
+function handleOutURL(url, file_flag, file_ext) {
     console.log("劫持链接 " + url);
     wx.miniProgram.navigateTo({
-        url: '/pages/index/redirect?outURL=' + encodeURIComponent(url),
+        url: '/pages/index/redirect?outURL=' + encodeURIComponent(url) + '&handleFile=' + file_flag + '&ext=' + file_ext,
     });
 }
 
@@ -26,21 +26,33 @@ function override_onclick(event) {
     if (window.is_miniprogram) {
         let url = event.currentTarget.getAttribute('href');
 
-        let domain = new URL(url);
-        domain = domain.hostname;
+        let url_obj = new URL(url);
         let whitelist = new Set();
         whitelist.add("mirrors.sustech.edu.cn");
         whitelist.add("bus.sustcra.com");
         whitelist.add("sustech.online");
-        if (whitelist.has(domain)) {
+
+        let supportFiles = new Set();
+        supportFiles.add("doc");
+        supportFiles.add("docx");
+        supportFiles.add("xls");
+        supportFiles.add("xlsx");
+        supportFiles.add("ppt");
+        supportFiles.add("pptx");
+        supportFiles.add("pdf");
+        let the_hostname = url_obj.hostname;
+        let path_ext = url_obj.pathname.split('.').pop().toLowerCase();
+        let file_flag = supportFiles.has(path_ext);
+        if (whitelist.has(the_hostname) && !file_flag) {
+            // 当 url 在白名单里面，且不为可微信显示的文件。
             console.log("放行白名单页面 " + url);
             window.location.href = url;
             return;
         }
 
         event.preventDefault();
-        console.log("小程序环境，拦截外部链接。");
-        handleOutURL(url);
+        console.log("小程序环境，拦截外部链接或者可显示文件。");
+        handleOutURL(url, file_flag, path_ext);
         // return false;
     }
     // ------------
