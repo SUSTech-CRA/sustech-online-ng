@@ -51,6 +51,18 @@ jobs:
         keep_history: false
         branch: master
 
+    - name: copy file to server
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        port: ${{ secrets.PORT }}
+        key: ${{ secrets.SSH_KEY }}
+        source: "./docs/.vuepress/dist/"
+        target: ${{ secrets.HTML_PATH }}
+        rm: true
+        strip_components: 4
+
     - name: setup aliyun oss
       uses: manyuanrong/setup-ossutil@master
       with:
