@@ -11,7 +11,7 @@ sidebar: auto
 
 在普通网段中，`10.20.0.0/16`，`10.16.0.0/16`为有线网段，`10.22.0.0/16`为电信自费宽带网段。
 
-学校为支持IPv6的设备分配前缀为`2001:DA8:201D::/48`的IPv6地址。([SUSTC6-CERNET2](http://www.nic.edu.cn/member-cgi/i6obj?query=SUSTC6-CERNET2))
+学校为支持IPv6的设备分配前缀为`2001:DA8:201D::/48`的IPv6地址。(仅教育网可访问：[SUSTC6-CERNET2](http://www.nic.edu.cn/member-cgi/i6obj?query=SUSTC6-CERNET2))
 
 ### 接入网络
 
