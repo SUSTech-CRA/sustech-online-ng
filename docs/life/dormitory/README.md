@@ -99,12 +99,12 @@ sidebar: auto
 ::: warning
 男女洗衣房不能混用；
 
-**袜子、内衣只能自己洗，不能放洗衣机哦！**  
+**袜子、内衣只能自己洗，不能放洗衣机哦！**
 :::
 
 ### 空间利用的小建议
 
-![使用床头挂篮储物](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/dormitory/挂篮.jpg)
+![使用床头挂篮储物](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/life/dormitory/挂篮.jpg)
 
 使用床头挂篮储物
 

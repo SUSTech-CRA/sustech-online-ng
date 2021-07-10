@@ -48,7 +48,7 @@
 
 建议使用Exchange方式收件。
 
-- [在 Outlook for Android 应用中设置电子邮件]([https://support.microsoft.com/zh-cn/office/%e5%9c%a8-outlook-for-android-%e5%ba%94%e7%94%a8%e4%b8%ad%e8%ae%be%e7%bd%ae%e7%94%b5%e5%ad%90%e9%82%ae%e4%bb%b6-886db551-8dfa-4fd5-b835-f8e532091872?ui=zh-cn&rs=zh-cn&ad=cn](https://support.microsoft.com/zh-cn/office/在-outlook-for-android-应用中设置电子邮件-886db551-8dfa-4fd5-b835-f8e532091872?ui=zh-cn&rs=zh-cn&ad=cn))
+- [在 Outlook for Android 应用中设置电子邮件](https://support.microsoft.com/zh-cn/office/%E5%9C%A8-outlook-for-android-%E5%BA%94%E7%94%A8%E4%B8%AD%E8%AE%BE%E7%BD%AE%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6-886db551-8dfa-4fd5-b835-f8e532091872?ui=zh-cn&rs=zh-cn&ad=cn)
 
 ### 安卓手机通用教程
 
@@ -62,7 +62,7 @@
 
 建议使用Exchange方式收件。
 
-- [在 Windows 10 邮件应用中设置电子邮件]([https://support.microsoft.com/zh-cn/office/%e5%9c%a8-windows-10-%e9%82%ae%e4%bb%b6%e5%ba%94%e7%94%a8%e4%b8%ad%e8%ae%be%e7%bd%ae%e7%94%b5%e5%ad%90%e9%82%ae%e4%bb%b6-7ff79e8b-439b-4b47-8ff9-3f9a33166c60?ui=zh-cn&rs=zh-cn&ad=cn](https://support.microsoft.com/zh-cn/office/在-windows-10-邮件应用中设置电子邮件-7ff79e8b-439b-4b47-8ff9-3f9a33166c60?ui=zh-cn&rs=zh-cn&ad=cn))
+- [在 Windows 10 邮件应用中设置电子邮件](https://support.microsoft.com/zh-cn/office/%e5%9c%a8-windows-10-%e9%82%ae%e4%bb%b6%e5%ba%94%e7%94%a8%e4%b8%ad%e8%ae%be%e7%bd%ae%e7%94%b5%e5%ad%90%e9%82%ae%e4%bb%b6-7ff79e8b-439b-4b47-8ff9-3f9a33166c60?ui=zh-cn&rs=zh-cn&ad=cn)
 
 ### MacOS自带的邮件应用
 
@@ -76,7 +76,7 @@
 
 由于QQ邮箱不支持完整版的Exchange（只支持Exchange Activesync）因此Outlook桌面版不能以Exchange模式添加账户，只能使用IMAP或POP模式添加账户。
 
-- [向 Outlook 添加电子邮件帐户]([https://support.microsoft.com/zh-cn/office/%E5%90%91-outlook-%E6%B7%BB%E5%8A%A0%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E5%B8%90%E6%88%B7-6e27792a-9267-4aa4-8bb6-c84ef146101b](https://support.microsoft.com/zh-cn/office/向-outlook-添加电子邮件帐户-6e27792a-9267-4aa4-8bb6-c84ef146101b))
+- [向 Outlook 添加电子邮件帐户](https://support.microsoft.com/zh-cn/office/%E5%90%91-outlook-%E6%B7%BB%E5%8A%A0%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E5%B8%90%E6%88%B7-6e27792a-9267-4aa4-8bb6-c84ef146101b)
 
 
 
