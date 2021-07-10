@@ -158,6 +158,7 @@ module.exports = {
     docsDir: 'docs',
     repoLabel: '在Github上查看',
     editLinks: true,
+    docsBranch: 'master',
     smoothScroll: true,
     sidebarDepth: 2,
     sidebar: [

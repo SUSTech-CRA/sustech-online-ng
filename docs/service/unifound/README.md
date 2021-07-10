@@ -12,7 +12,7 @@ sidebar: auto
 
 ## 打印/复印一体机地点
 
-> **提示**： 前去打印前可提前在[「打印点」页面](http://pms.sustech.edu.cn/client/new/cprintPc/printDev.html)确认打印点可用状态。
+> **提示**： 前去打印前可提前在[「打印点」页面（内网）](http://pms.sustech.edu.cn/client/new/cprintPc/printDev.html)确认打印点可用状态。
 
 |             名称             |  纸质  |                            功能                             |
 | :--------------------------: | :----: | :---------------------------------------------------------: |

@@ -20,8 +20,8 @@
   - 公共邮箱（教学事务）: tao@sustech.edu.cn
   - 学生学习服务邮箱: tao-sls@sustech.edu.cn
   - 选课咨询电话: 88010300
-- [招生办公室 (本科入学)](http://zs.sustech.edu.cn/lianxi/): 88010500
-- [琳恩图书馆](http://lib.sustech.edu.cn/page/contact.html?locale=zh_CN): 88010800
+- [招生办公室 (本科入学)](https://zs.sustech.edu.cn/): 88010500，88010507
+- [琳恩图书馆](https://lib.sustech.edu.cn/page/contact.html?locale=zh_CN): 88010800
 
 ### 物流、餐饮、康体、后勤
 
@@ -96,7 +96,7 @@
 >
 >Residential College Mail Room / Room 101, Residential College 1
 >
->Southern University of Science and Technology , 1088 Xueyuan Avenue, 
+>Southern University of Science and Technology , 1088 Xueyuan Avenue,
 >
 >Nanshan District, Shenzhen, Guangdong
 >
@@ -156,7 +156,7 @@
 
 * [任天堂Switch校内交流群](https://jq.qq.com/?_wv=1027&k=RqyOVIml): 635493940
 * [主机游戏校内交流群](https://jq.qq.com/?_wv=1027&k=pKU1VXyF): 251465954
-* Steam校内交流群: 198498987 
+* Steam校内交流群: 198498987
 
 ### 美食外卖
 
