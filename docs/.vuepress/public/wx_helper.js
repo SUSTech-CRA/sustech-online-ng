@@ -31,6 +31,7 @@ function override_onclick(event) {
         whitelist.add("mirrors.sustech.edu.cn");
         whitelist.add("bus.sustcra.com");
         whitelist.add("sustech.online");
+        whitelist.add("");
 
         let supportFiles = new Set();
         supportFiles.add("doc");
