@@ -43,9 +43,9 @@
 
 ## 📖学习相关
 
-- [学习建议 by 树德书院](./by-shude-college/advice-on-study)
+- [学习建议 by 树德书院](./by-shude-college/advice-on-study.md)
   - *包括暑假学习建议、大学学习准备、入学考试准备、个人提升。*
-- [学习制度与信息  by 树德书院](./by-shude-college/info-on-study)
+- [学习制度与信息  by 树德书院](./by-shude-college/info-on-study.md)
   - *包含GPA表、专业概览、选课指导、学习资源、图书馆学习攻略、学籍管理。*
 
 ### GPA换算表（本科）
