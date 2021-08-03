@@ -14,5 +14,7 @@
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
-  "dependencies": {}
+  "dependencies": {
+    "leaflet": "^1.7.1"
+  }
 }
