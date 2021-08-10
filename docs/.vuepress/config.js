@@ -78,9 +78,9 @@ module.exports = {
     '@vuepress/medium-zoom',
     [
       '@vuepress/plugin-pwa',
-      {
-        skipWaiting: true,
-      },
+      // {
+      //   skipWaiting: true,
+      // },
       // {
       //   generateSWConfig: {
       //     importWorkboxFrom: 'local'
