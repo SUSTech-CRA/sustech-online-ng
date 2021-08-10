@@ -47,6 +47,7 @@ jobs:
     steps:
     - uses: actions/download-artifact@v2
       with:
+        name: sustech-online-build
         path: "./docs/.vuepress/dist/"
 
     - name: Display structure of downloaded files
