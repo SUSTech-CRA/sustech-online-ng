@@ -1,13 +1,10 @@
 name: Build and Deploy
-on:
-  push:
-    branches:
-      - master
+on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Deploy SUSTech Online
+    name: Build site
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -36,7 +33,26 @@ jobs:
     - name: Build Site
       run: yarn docs:build
 
-    - name: Deploy
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: 'sustech-online-build'
+        path: './docs/.vuepress/dist/'
+
+  deploy:
+    name: Deploy site
+    needs: build
+    if: always() && github.repository_owner == 'SUSTC' && github.ref == 'refs/heads/master'
+    steps:
+    - uses: actions/download-artifact@v2
+      with:
+        path: "./docs/.vuepress/dist/"
+
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: "./docs/.vuepress/dist/"
+
+    - name: Deploy to GitHub page
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
