@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: A job to deploy SUSTech Online.
+    name: Deploy SUSTech Online
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -23,7 +23,7 @@ jobs:
 
     - uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '16'
 
     - name: Install Dependencies
       run: yarn install
@@ -62,7 +62,7 @@ jobs:
         target: ${{ secrets.HTML_PATH }}
         rm: true
         strip_components: 4
-        
+
     - name: copy file to server SZX
       uses: burnett01/rsync-deployments@5.0
       with:
