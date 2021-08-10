@@ -25,6 +25,11 @@ jobs:
       with:
         node-version: '16'
 
+    - name: Check yarn / node version
+      run: |
+        echo "yarn version `yarn --version`"
+        echo "node version `node -v`"
+
     - name: Install Dependencies
       run: yarn install
 
