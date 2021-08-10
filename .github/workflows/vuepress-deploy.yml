@@ -41,6 +41,7 @@ jobs:
 
   deploy:
     name: Deploy site
+    runs-on: "ubuntu-latest"
     needs: build
     if: always() && github.repository_owner == 'SUSTC' && github.ref == 'refs/heads/master'
     steps:
