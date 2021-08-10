@@ -1,13 +1,10 @@
 name: Build and Deploy
-on:
-  push:
-    branches:
-      - master
+on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Deploy SUSTech Online
+    name: Build site
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -36,7 +33,28 @@ jobs:
     - name: Build Site
       run: yarn docs:build
 
-    - name: Deploy
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: 'sustech-online-build'
+        path: './docs/.vuepress/dist/'
+
+  deploy:
+    name: Deploy site
+    runs-on: "ubuntu-latest"
+    needs: build
+    if: always() && github.repository_owner == 'SUSTC' && github.ref == 'refs/heads/master'
+    steps:
+    - uses: actions/download-artifact@v2
+      with:
+        name: sustech-online-build
+        path: "./docs/.vuepress/dist/"
+
+    - name: Display structure of downloaded files
+      run: ls -R
+      working-directory: "./docs/.vuepress/dist/"
+
+    - name: Deploy to GitHub page
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -44,17 +62,17 @@ jobs:
         publish_dir: ./docs/.vuepress/dist/
         force_orphan: true
 
-    - name: Deploy to coding
-      uses: liziwl/git-push-action@v1.0.4
-      with:
-        git_token_holder: 'pt5ez622q7ct'
-        git_token: '${{ secrets.CODING_TOKEN }}'
-        commit_user: 'liziwl'
-        commit_email: 'leezisy@gmail.com'
-        push_dir: './docs/.vuepress/dist/'
-        repository_url: 'e.coding.net/liziwl/sustech-online/sustech-online-pages.git'
-        keep_history: false
-        branch: master
+    # - name: Deploy to coding
+    #   uses: liziwl/git-push-action@v1.0.4
+    #   with:
+    #     git_token_holder: 'pt5ez622q7ct'
+    #     git_token: '${{ secrets.CODING_TOKEN }}'
+    #     commit_user: 'liziwl'
+    #     commit_email: 'leezisy@gmail.com'
+    #     push_dir: './docs/.vuepress/dist/'
+    #     repository_url: 'e.coding.net/liziwl/sustech-online/sustech-online-pages.git'
+    #     keep_history: false
+    #     branch: master
 
     - name: copy file to server PVG
       uses: appleboy/scp-action@master
