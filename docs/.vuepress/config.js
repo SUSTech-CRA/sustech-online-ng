@@ -227,6 +227,11 @@ module.exports = {
         children: [
           // SidebarItem
           {
+            text: '🚌新版巴士时刻表',
+            link: '/transport/bustimer.md',
+            children: [],
+          },
+          {
             text: '🚌校园巴士-工作日',
             link: '/transport/workday.md',
             children: [],
