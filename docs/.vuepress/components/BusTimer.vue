@@ -16,7 +16,7 @@
         ></bus-item>
         <tr>
           <td v-if="Object.keys(busToShow).length==0" colspan="4">
-            短时间没有班次了
+            短时间内没有班次了
           </td>
         </tr>
       </thead>
@@ -55,7 +55,7 @@ export default {
       second: 0,
       minute: 0,
       hour: 0,
-      timeRangeAfterDispatch: 3
+      timeRangeAfterReach: 3
     };
   },
   props: {
@@ -143,7 +143,7 @@ export default {
         if (diff < 0 && diff > -this.timeRangeBeforeDispatch * 60) {
           busWaiting.push([diff, dispatchTime]);
         }
-        if (diff > 0 && diff < this.timeRangeAfterDispatch * 60) {
+        if (diff > 0 && diff < (this.minuteOnRoad+this.timeRangeAfterReach) * 60) {
           busDispatched.push([diff, dispatchTime]);
         }
       }
