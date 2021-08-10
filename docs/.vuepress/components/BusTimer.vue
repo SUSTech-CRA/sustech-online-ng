@@ -3,8 +3,13 @@
     <table v-if="busToShow" class="bus-timer-tb">
       <thead>
         <tr>
-          <th colspan="4">
+          <th colspan="2">
             {{ stations[0][0] }} > {{ stations[stations.length - 1][0] }}
+          </th>
+          <th colspan="2" style="text-align:right;">
+            {{ formatNumber(hour) }}:{{ formatNumber(minute) }}:{{
+        formatNumber(second)
+      }}
           </th>
         </tr>
         <bus-item
@@ -22,11 +27,6 @@
       </thead>
     </table>
     <p class="plus-note">* 站点估计仅供参考</p>
-    <div v-if="false">
-      {{ formatNumber(hour) }}:{{ formatNumber(minute) }}:{{
-        formatNumber(second)
-      }}
-    </div>
   </div>
 </template>
 <script>
@@ -86,6 +86,7 @@ export default {
       this.minute,
       this.second
     );
+    // this.secondFromZero = 50000 // This is for test
     // Set Timer
     setInterval(() => {
       this.tick();
@@ -168,7 +169,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 table {
-  /*border-collapse: collapse;*/
+  border-collapse: collapse;
+  border: none;
   border-spacing: 0;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
@@ -184,6 +186,7 @@ table {
   padding: 0px;
 }
 }
+
 .bus-running {
   background-color: rgba(175, 255, 94, 0.233);
   color: green;
@@ -197,26 +200,17 @@ table {
 }
 .bus-timer-tb th,
 .bus-timer-tb td {
-  border-left: none;
-  border-top: none;
+  border: none;
   padding: 10px;
   text-align: left;
 }
 .bus-timer-tb th {
   background-color: #dce9f9;
-  border-top: none;
-}
-.bus-timer-tb td:first-child,
-.bus-timer-tb th:first-child {
-  border-left: none;
 }
 .bus-timer-tb th:first-child {
-  border-radius: 6px 6px 0 0;
+  border-radius: 6px 0 0 0;
 }
-.bus-timer-tb tr:last-child td:first-child {
-  border-radius: 0 0 0 6px;
-}
-.bus-timer-tb tr:last-child td:last-child {
-  border-radius: 0 0 6px 0;
+.bus-timer-tb th:last-child {
+  border-radius: 0 6px 0 0;
 }
 </style>
