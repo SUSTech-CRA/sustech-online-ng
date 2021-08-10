@@ -26,8 +26,8 @@ module.exports = {
     ['meta', { name: 'msapplication-TileColor', content: color }],
     ['meta', { name: 'google-site-verification', content: 'Av-srANCmFA_yZ8Iasa1yQsIPJCF_zlP5AoD35m6_Ww' }],
     ['script', {
-    async: true,
-    src: 'https://www.googletagmanager.com/gtag/js?id=G-1BQBXDGY3R'
+      async: true,
+      src: 'https://www.googletagmanager.com/gtag/js?id=G-1BQBXDGY3R'
     }],
     ['script', {}, `
     window.dataLayer = window.dataLayer || [];
@@ -77,6 +77,17 @@ module.exports = {
     ],
     '@vuepress/medium-zoom',
     [
+      '@vuepress/plugin-pwa',
+      {
+        skipWaiting: true,
+      },
+      {
+        generateSWConfig: {
+          importWorkboxFrom: 'local'
+        }
+      }
+    ],
+    [
       '@vuepress/plugin-pwa-popup',
       {
         locales: {
@@ -97,40 +108,40 @@ module.exports = {
     //     'ga': 'G-1BQBXDGY3R' // UA-00000000-0
     //   },
     // ],
-  //   'fulltext-search',
-  //   '@vuepress/medium-zoom',
-  //   '@vuepress/nprogress',
-  //   '@vuepress/back-to-top',
-  //   [
-  //     '@vuepress/pwa',
-  //     {
-  //       serviceWorker: true,
-  //       updatePopup: {
-  //         message: "手册内容有更新！",
-  //         buttonText: "刷新"
-  //       },
-  //       generateSWConfig: {
-  //         importWorkboxFrom: 'local'
-  //       }
-  //     },
-  //   ],
-  //   [
-  //     '@vuepress/last-updated',
-  //     {
-  //       transformer: (timestamp, lang) => {
-  //         // 不要忘了安装 moment
-  //         const moment = require('moment')
-  //         moment.locale(lang)
-  //         return moment(timestamp).format("YYYY-MM-DD HH:mm")
-  //       },
-  //     },
-  //   ],
-  //   [
-  //     'sitemap',
-  //     {
-  //       hostname: 'https://sustech.online'
-  //     },
-  //   ],
+    //   'fulltext-search',
+    //   '@vuepress/medium-zoom',
+    //   '@vuepress/nprogress',
+    //   '@vuepress/back-to-top',
+    //   [
+    //     '@vuepress/pwa',
+    //     {
+    //       serviceWorker: true,
+    //       updatePopup: {
+    //         message: "手册内容有更新！",
+    //         buttonText: "刷新"
+    //       },
+    //       generateSWConfig: {
+    //         importWorkboxFrom: 'local'
+    //       }
+    //     },
+    //   ],
+    //   [
+    //     '@vuepress/last-updated',
+    //     {
+    //       transformer: (timestamp, lang) => {
+    //         // 不要忘了安装 moment
+    //         const moment = require('moment')
+    //         moment.locale(lang)
+    //         return moment(timestamp).format("YYYY-MM-DD HH:mm")
+    //       },
+    //     },
+    //   ],
+    //   [
+    //     'sitemap',
+    //     {
+    //       hostname: 'https://sustech.online'
+    //     },
+    //   ],
   ],
   // theme: 'default-prefers-color-scheme',
   themeConfig: {
