@@ -59,6 +59,7 @@
     <h3><a href="./transport/">校园巴士<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></h3>
     <ul>
     <li><a href="https://bus.sustcra.com/?utm_source=sustech.online">实时巴士定位与到站时间预测<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
+    <li><a href="./transport/bustimer.html">新版巴士时刻表</a></li>
     <li><a href="./transport/redirect.html">自动选择<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
     <li><a href="./transport/workday.html">💼 工作日<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
     <li><a href="./transport/holiday.html">💤 节假日<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
