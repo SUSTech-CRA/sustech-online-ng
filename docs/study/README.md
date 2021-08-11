@@ -43,9 +43,11 @@
 
 ## 📖学习相关
 
-- [学习建议 by 树德书院](./by-shude-college/advice-on-study.md)
+- [致诚书院新生攻略学习篇（2021）](./study-advice-by-zhicheng-college-2021)
+  - *包括入学考试，专业选课，英语学习等信息*
+- [学习建议 by 树德书院（2020）](./by-shude-college/advice-on-study.md)
   - *包括暑假学习建议、大学学习准备、入学考试准备、个人提升。*
-- [学习制度与信息  by 树德书院](./by-shude-college/info-on-study.md)
+- [学习制度与信息  by 树德书院（2020）](./by-shude-college/info-on-study.md)
   - *包含GPA表、专业概览、选课指导、学习资源、图书馆学习攻略、学籍管理。*
 
 ### GPA换算表（本科）

@@ -32,29 +32,16 @@
 
 ### Content
 
-**感谢以下同学对南科手册所做的贡献**（排名不分先后，也遗漏了许多不留名的红领巾）
+**感谢以下组织对南科手册所做的贡献**（排名不分先后）
 
-李子强 ◇ 樊青远 ◇ 陈宇恒 ◇ 江南飞
+- 树德书院先锋团
 
-郭铠旋 ◇ 冯晨曦 ◇ 赵玉冷 ◇ 吴越悦
-
-于&nbsp;&nbsp;&nbsp;&nbsp;陈 ◇ 张&nbsp;&nbsp;&nbsp;&nbsp;彤 ◇ 陆衎行 ◇ 宋&nbsp;&nbsp;&nbsp;&nbsp;阳
-
-杨纹懿 ◇ 刘欣宇 ◇ 罗雨萌 ◇ 徐思婷
-
-孙&nbsp;&nbsp;&nbsp;&nbsp;畅 ◇ 陈臻洋 ◇ 胡妍西 ◇ 许&nbsp;&nbsp;&nbsp;&nbsp;元
-
-郑金涛 ◇ 余梦霞 ◇ 晁曼丹 ◇ 庄&nbsp;&nbsp;&nbsp;&nbsp;湛
-
-宋&nbsp;&nbsp;&nbsp;&nbsp;璟 ◇ 崔奕辰 ◇ 毛杜若 ◇ 程&nbsp;&nbsp;&nbsp;&nbsp;潇
-
-齐&nbsp;&nbsp;&nbsp;&nbsp;昊 ◇ 郭凯旋 ◇ 左进超
+- 致诚书院大学长团
+- 学生新闻社《南科新知》
 
 ### Programming & Operation
 
 李子强 ◇ 樊青远 ◇ 陈宇恒
-
-我们同时感谢南科新知，树德书院学长团为我们提供素材。
 
 #### 南科手册同时参考了：
 
