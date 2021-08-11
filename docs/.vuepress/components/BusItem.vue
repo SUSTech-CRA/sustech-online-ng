@@ -5,9 +5,9 @@
   >
     <td>{{ startTime }}</td>
     <td>
-      {{ isWaiting ? "等待中" : "在途中" }}
+      {{ isWaiting ? "距出发" : "已出发" }}
     </td>
-    <td>{{ (isWaiting ? "" : "") + " " + timeToShow }}</td>
+    <td>{{  (isWaiting ? "" : "") + timeToShow  }}</td>
     <td v-if="stationEstimate">{{ stationEstimate }}</td>
   </tr>
 </template>
@@ -54,5 +54,8 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+td,tr{
+  border:none;
+}
 </style>
