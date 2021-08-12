@@ -78,6 +78,12 @@
 
 - [向 Outlook 添加电子邮件帐户](https://support.microsoft.com/zh-cn/office/%E5%90%91-outlook-%E6%B7%BB%E5%8A%A0%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E5%B8%90%E6%88%B7-6e27792a-9267-4aa4-8bb6-c84ef146101b)
 
+## 我想给老师发邮件，但不知道老师的邮箱该怎么办？
+
+1. 在[https://faculty.sustech.edu.cn/](https://faculty.sustech.edu.cn/)寻找教师的个人主页**（页面可能会加载大量图片并消耗流量，请考虑直接从搜索引擎直接进入教师的个人主页）**
+2. 复制教师主页的网址 `https://faculty.sustech.edu.cn/{faculty_name}/`，如姚新老师的主页 `https://faculty.sustech.edu.cn/xiny/` 。
+3. 网址的url的path部分`{faculty_name}`（如`xiny`）即为相应老师的邮箱前缀，加上`@sustech.edu.cn`即为老师的邮箱地址（如`xiny@sustech.edu.cn`）。
+
 
 
 ## 更多阅读/参考
