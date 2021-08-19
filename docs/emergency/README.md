@@ -10,7 +10,7 @@
 
 ## 校内AED地图©救援队
 
-<a data-fancybox title="## 校内AED地图©救援队" href="https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/emergency/AED地图_救援队地图组.jpg">![](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/emergency/AED地图_救援队地图组.jpg)</a>
+<a data-fancybox title="## 校内AED地图©救援队" href="https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/emergency/AED地图_救援队地图组.jpg">![](./AED地图_救援队地图组.jpg)</a>
 
 ## 校内AED实景地图
 * 南科大校内AED地图©HZH：[http://hzh2015.cn:81/AED_map](http://hzh2015.cn:81/AED_map)
