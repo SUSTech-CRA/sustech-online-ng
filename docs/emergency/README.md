@@ -8,9 +8,9 @@
 3. 还可以打学校医疗中心医生的电话 18218715551 （24h，只要医生没有睡觉就可以接通），
 或是学校急救电话 0755-88010120。
 
-## 校内AED简图©Nekonull
+## 校内AED地图©救援队
 
-<a data-fancybox title="校内AED简图©Nekonull" href="https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/emergency/AED_简图.png">![](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/emergency/AED_简图.png)</a>
+<a data-fancybox title="## 校内AED地图©救援队" href="https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/emergency/AED地图_救援队地图组.jpg">![](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/emergency/AED地图_救援队地图组.jpg)</a>
 
 ## 校内AED实景地图
 * 南科大校内AED地图©HZH：[http://hzh2015.cn:81/AED_map](http://hzh2015.cn:81/AED_map)
