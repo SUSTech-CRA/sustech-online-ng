@@ -55,4 +55,7 @@ button {
   background-color: rgb(64, 169, 255);
   color:white;
 }
+.unselected{
+  color: #000;
+}
 </style>
