@@ -14,6 +14,7 @@ export default {
   data: () => ({
     bus_location_data_api: [],
     bus_location_data_display: [],
+    bus_plate_hash: {"866005041185986":{"plate":866005041185986},"866005041186018":{"plate":"粤BDF267"},"866005041186034":{"plate":"粤BDF458"},"866005041187107":{"plate":866005041187107},"866005041187859":{"plate":"粤BDF147"},"866005041187867":{"plate":"粤BDF345"},"866005041189913":{"plate":"粤BDF411"},"866005041189921":{"plate":"粤BDF365"},"866005041189939":{"plate":"粤BDF471"},"866005041189947":{"plate":"粤BDF371"},"866005041189954":{"plate":"粤BDF421"},"866005041189962":{"plate":"粤BDF330"},"866005041189970":{"plate":"粤BDF470"},"866005041189988":{"plate":"粤BDF335"},"866005041190093":{"plate":"粤BDF040"},"866005041200116":{"plate":866005041200116},"866005041200173":{"plate":"粤BDE447"},"866005041200199":{"plate":"粤BDF430"}},
     geojson_line_1: [
       [
         113.9902000608227,
@@ -443,11 +444,11 @@ export default {
               .setPopup(
                   new maplibre.Popup({offset: 25}) // add popups
                       .setHTML(
-                          '<p>' +
-                          'IMEI: ' + this.bus_location_data_api[i].imei +
-                          '</p><p>' +
-                          'Speed: ' + this.bus_location_data_api[i].speed +
-                          '</p>'
+                          '<p class="car-plate">' +
+                          'Plate: <b>' + this.bus_plate_hash[this.bus_location_data_api[i].imei].plate +
+                          '</b></p><p>' +
+                          'Speed: <b>' + this.bus_location_data_api[i].speed + "km/h" +
+                          '</b></p>'
                       )
               )
               .addTo(this.map);
@@ -567,7 +568,7 @@ export default {
 
     const timer = setInterval(() => {
       this.refresh();
-    }, 5000);
+    }, 8000);
 
 
   }
@@ -582,6 +583,5 @@ export default {
   height: 400px;
   width: 100%;
 }
-
 
 </style>
