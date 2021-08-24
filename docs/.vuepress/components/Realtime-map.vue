@@ -568,7 +568,7 @@ export default {
 
     const timer = setInterval(() => {
       this.refresh();
-    }, 8000);
+    }, 5000);
 
 
   }
