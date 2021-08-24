@@ -3,6 +3,13 @@
 ## 🚌校园巴士
 
 <div id="button-div">
+<div class='bt-sub-new'><a href="./bustimer.html">🚌新版时刻表与车辆位置查看🚌</a></div>
+</div>
+
+---
+
+*旧版时间表：*
+<div id="button-div">
 <div class='bt-sub'><a href="./workday.html">💼 工作日</a></div>
 <div class='bt-sub'><a href="./redirect.html">自动选择</a></div>
 <div class='bt-sub'><a href="./holiday.html">💤 节假日</a></div>
@@ -16,16 +23,15 @@
     width: 32%;
     text-align: center;
 }
+.bt-sub-new {
+    margin-top: 1%;
+    display: inline-block;
+    width: 90%;
+    text-align: center;
+}
+
 </style>
 <!-- </ClientOnly> -->
-
-### 校园巴士实时位置<Badge text="Beta" type="tip"/>
-
-[点击此处](https://bus.sustcra.com/?utm_source=sustech.online)查看校园巴士实时位置和到站时间预测！
-
-::: tip
-如无法在微信中打开上述链接，请复制 **[https://bus.sustcra.com/](https://bus.sustcra.com/?utm_source=sustech.online)** 至浏览器打开。
-:::
 
 ### 校园巴士线路图（2021年6月起）
 
