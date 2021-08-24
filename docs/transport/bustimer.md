@@ -10,13 +10,13 @@
     <br/>
     <object-selector
       :objs="weekdayProps.selected ? { 
-        '欣园 > 工学院': '/bus_times/one_down.json',
-        '工学院 > 欣园': '/bus_times/one_up.json',
-        '欣园 > 科研楼': '/bus_times/two_down.json',
-        '科研楼 > 欣园': '/bus_times/two_up.json',
-      }:{ 
-        '欣园 > 工学院': '/bus_times/one_down_holiday.json',
-        '工学院 > 欣园': '/bus_times/one_up_holiday.json'
+        '1 号线 │ 工学院方向': '/bus_times/one_down.json',
+        '1 号线 │ 欣园方向': '/bus_times/one_up.json',
+        '2 号线 │ 科研楼方向': '/bus_times/two_down.json',
+        '2 号线 │ 欣园方向': '/bus_times/two_up.json',
+      } : {
+        '1 号线 │ 工学院方向': '/bus_times/one_down_holiday.json',
+        '1 号线 │ 欣园方向': '/bus_times/one_up_holiday.json'
       }"
       v-slot="routeProps"
     >
