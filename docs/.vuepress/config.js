@@ -3,6 +3,7 @@ let title = '南科手册'
 let description = 'Online manual for sustecher'
 let color = '#49BF7C'
 let author = 'sustech.online'
+const { path } = require('@vuepress/utils')
 
 module.exports = {
   locales: {
@@ -102,48 +103,17 @@ module.exports = {
     '@vuepress/back-to-top',
     '@vuepress/plugin-git',
     '@vuepress/plugin-toc',
-    // [
-    //   '@vuepress/google-analytics',
-    //   {
-    //     'ga': 'G-1BQBXDGY3R' // UA-00000000-0
-    //   },
-    // ],
-    //   'fulltext-search',
-    //   '@vuepress/medium-zoom',
-    //   '@vuepress/nprogress',
-    //   '@vuepress/back-to-top',
-    //   [
-    //     '@vuepress/pwa',
-    //     {
-    //       serviceWorker: true,
-    //       updatePopup: {
-    //         message: "手册内容有更新！",
-    //         buttonText: "刷新"
-    //       },
-    //       generateSWConfig: {
-    //         importWorkboxFrom: 'local'
-    //       }
-    //     },
-    //   ],
-    //   [
-    //     '@vuepress/last-updated',
-    //     {
-    //       transformer: (timestamp, lang) => {
-    //         // 不要忘了安装 moment
-    //         const moment = require('moment')
-    //         moment.locale(lang)
-    //         return moment(timestamp).format("YYYY-MM-DD HH:mm")
-    //       },
-    //     },
-    //   ],
-    //   [
-    //     'sitemap',
-    //     {
-    //       hostname: 'https://sustech.online'
-    //     },
-    //   ],
+    [
+      '@vuepress/register-components',
+      {
+        components: {
+          Realtimemap: path.resolve(__dirname, './components/Realtime-map.vue'),
+          // componentsDir: path.resolve(__dirname, './components')
+
+        },
+      },
+    ]
   ],
-  // theme: 'default-prefers-color-scheme',
   themeConfig: {
     navbar: [
       { text: '主页', link: '/' },
@@ -186,40 +156,11 @@ module.exports = {
           },
         ],
       },
-      // {
-      //   title: '📅校历',   // 必要的
-      //   path: '/calendar/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-      //   // collapsable: false, // 可选的, 默认值是 true,
-      //   sidebarDepth: 1,    // 可选的, 默认值是 1
-      //   children: [
-      //     ['/calendar/', '2020-2021 学年'],
-      //     {
-      //       title: '历史校历（存档）',
-      //       children: [
-      //         ['/calendar/2021-2022.md', '2021-2022 学年'],
-      //         ['/calendar/2020-2021.md', '2020-2021 学年'],
-      //         ['/calendar/2019-2020.md', '2019-2020 学年'],
-      //         ['/calendar/2018-2019.md', '2018-2019 学年'],
-      //       ]
-      //     }
-      //   ],
-      // },
       '/service/',
       '/life/',
       '/study/',
       '/organizations/',
       '/media/',
-      // {
-      //   title: '🚄交通',   // 必要的
-      //   path: '/transport/',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-      //   // collapsable: false, // 可选的, 默认值是 true,
-      //   sidebarDepth: 1,    // 可选的, 默认值是 1
-      //   children: [
-      //     ['/transport/workday.md', '🚌校园巴士-工作日'],
-      //     ['/transport/holiday.md', '🚌校园巴士-节假日'],
-      //     ['/transport/', '周围交通'],
-      //   ],
-      // },
       {
         text: '🚄交通',
         link: '/transport/',
