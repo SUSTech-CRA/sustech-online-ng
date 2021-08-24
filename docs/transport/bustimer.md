@@ -2,6 +2,10 @@
 
 <a data-fancybox title="" href="https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/transport/busline2.png">![](./busline2.png)</a>
 
+## 车辆位置（每五秒自动刷新）
+<Realtimemap></Realtimemap>
+
+
 <object-selector :objs="{
     '工作日': true,
     '节假日': false
