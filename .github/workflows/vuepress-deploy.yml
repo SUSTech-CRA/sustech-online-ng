@@ -82,16 +82,14 @@ jobs:
     #     branch: master
 
     - name: copy file to server PVG
-      uses: appleboy/scp-action@master
+      uses: burnett01/rsync-deployments@5.0
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        port: ${{ secrets.PORT }}
-        key: ${{ secrets.SSH_KEY }}
-        source: "./docs/.vuepress/dist/"
-        target: ${{ secrets.HTML_PATH }}
-        rm: true
-        strip_components: 4
+        switches: -avzr --delete
+        path: "./docs/.vuepress/dist/"
+        remote_path: ${{ secrets.HTML_PATH }}
+        remote_host: ${{ secrets.HOST }}
+        remote_user: ${{ secrets.USERNAME }}
+        remote_key: ${{ secrets.SSH_KEY }}
 
     - name: copy file to server SZX
       uses: burnett01/rsync-deployments@5.0
