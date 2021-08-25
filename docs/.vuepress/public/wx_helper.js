@@ -66,8 +66,12 @@ function reset_all_anchor() {
     var anchors = document.getElementsByTagName('a');
     for (var i = 0; i < anchors.length; i++) {
         var anchor = anchors[i];
-        anchor.onclick = function () {
-            override_onclick(event);
+        if (anchor.hasAttribute("data-fancybox")) {
+            console.log("skip fancybox a tag: ", anchor.getAttribute('href'));
+        } else {
+            anchor.onclick = function () {
+                override_onclick(event);
+            }
         }
     }
 }
