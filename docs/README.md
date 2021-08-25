@@ -17,11 +17,11 @@
 
 
 <!-- ## 快捷入口 -->
-<!-- * [官网链接](http://www.sustech.edu.cn/)
+<!-- * [官网链接](https://www.sustech.edu.cn/)
 * [图书馆](https://lib.sustech.edu.cn/)
-* [邮箱服务](http://www.sustech.edu.cn/mail/)
-* [Sakai](http://sakai.sustech.edu.cn), [Blackboard](https://bb.sustech.edu.cn/)
-* [联创打印服务](http://pms.sustech.edu.cn)
+* [邮箱服务](https://mail.sustech.edu.cn)
+* [Sakai](https://sakai.sustech.edu.cn), [Blackboard](https://bb.sustech.edu.cn/)
+* [联创打印服务](https://pms.sustech.edu.cn)
 * [校园卡二维码](https://campuscard.sustech.edu.cn/epay/thirdconsume/qrcode) -->
 
 <style type="text/css">
@@ -42,15 +42,15 @@
     <th class="tg-0lax">
     <h3>快捷入口</h3>
     <ul>
-    <li><a href="http://www.sustech.edu.cn/" target="_blank" rel="noopener noreferrer">官网链接
+    <li><a href="https://www.sustech.edu.cn/" target="_blank" rel="noopener noreferrer">官网链接
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
     <li><a href="https://lib.sustech.edu.cn/" target="_blank" rel="noopener noreferrer">图书馆
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
-    <li><a href="http://www.sustech.edu.cn/mail/" target="_blank" rel="noopener noreferrer">邮箱服务
+    <li><a href="https://mail.sustech.edu.cn" target="_blank" rel="noopener noreferrer">邮箱服务
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
-    <li><a href="http://sakai.sustech.edu.cn" target="_blank" rel="noopener noreferrer">Sakai
+    <li><a href="https://sakai.sustech.edu.cn" target="_blank" rel="noopener noreferrer">Sakai
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a>, <a href="https://bb.sustech.edu.cn/" target="_blank" rel="noopener noreferrer">Blackboard<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
-    <li><a href="http://pms.sustech.edu.cn" target="_blank" rel="noopener noreferrer">联创打印<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a>, <a href="http://172.18.1.141/" target="_blank" rel="noopener noreferrer">（备用）<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
+    <li><a href="https://pms.sustech.edu.cn" target="_blank" rel="noopener noreferrer">联创打印<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a>, <a href="http://172.18.1.141/" target="_blank" rel="noopener noreferrer">（备用）<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
       <li><a href="https://campuscard.sustech.edu.cn/epay/thirdconsume/qrcode" target="_blank" rel="noopener noreferrer">校园卡二维码
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
     </ul>
