@@ -1,6 +1,12 @@
 <template>
 
   <div class="map-container" ref="myMap"></div>
+<!--  <div id="map-style-menu">-->
+<!--    <input id="osm-street" type="radio" name="rtoggle" value="light">-->
+<!--    <label for="osm-street">light</label>-->
+<!--    <input id="osm-blue" type="radio" name="rtoggle" value="dark">-->
+<!--    <label for="osm-blue">dark</label>-->
+<!--  </div>-->
 </template>
 
 <script>
@@ -12,6 +18,7 @@ export default {
   name: "MyMap",
 
   data: () => ({
+    map_style_url: "https://mirrors.sustech.edu.cn/osm-tile/styles/osm-street/style.json",
     bus_location_data_api: [],
     bus_location_data_display: [],
     bus_plate_hash: {"866005041185986":{"plate":866005041185986},"866005041186018":{"plate":"粤BDF267"},"866005041186034":{"plate":"粤BDF458"},"866005041187107":{"plate":866005041187107},"866005041187859":{"plate":"粤BDF147"},"866005041187867":{"plate":"粤BDF345"},"866005041189913":{"plate":"粤BDF411"},"866005041189921":{"plate":"粤BDF365"},"866005041189939":{"plate":"粤BDF471"},"866005041189947":{"plate":"粤BDF371"},"866005041189954":{"plate":"粤BDF421"},"866005041189962":{"plate":"粤BDF330"},"866005041189970":{"plate":"粤BDF470"},"866005041189988":{"plate":"粤BDF335"},"866005041190093":{"plate":"粤BDF040"},"866005041200116":{"plate":866005041200116},"866005041200173":{"plate":"粤BDE447"},"866005041200199":{"plate":"粤BDF430"}},
@@ -404,10 +411,11 @@ export default {
   }),
 
   async created() {
-    //fetch bus location
-    const realtime_location_api_data = await axios.get(`https://bus.sustcra.com/api/v1/bus/monitor_osm/`)
-    this.bus_location_data_api = realtime_location_api_data.data;
-    console.log("fetch complete")
+    //fetch bus location (current no need)
+    // const realtime_location_api_data = await axios.get(`https://bus.sustcra.com/api/v1/bus/monitor_osm/`)
+    // this.bus_location_data_api = realtime_location_api_data.data;
+    // console.log("fetch complete")
+
   },
 
 
@@ -467,7 +475,7 @@ export default {
 
   },
 
-  mounted: function () {
+  async mounted() {
     const initialState = {
       lng: 113.99373,
       lat: 22.60308,
@@ -480,9 +488,17 @@ export default {
       geojson_line_2: this.geojson_line_2
     }
 
+    //determine day or night
+    const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const userPrefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    if(await userPrefersDark){
+      console.log("dark mode enabled.")
+      this.map_style_url = "https://mirrors.sustech.edu.cn/osm-tile/styles/osm-blue/style.json";
+    }
+
     this.map = new maplibre.Map({
       container: this.$refs.myMap,
-      style: `https://mirrors.sustech.edu.cn/osm-tile/styles/osm-street/style.json`,
+      style: this.map_style_url,
       center: [initialState.lng, initialState.lat],
       zoom: initialState.zoom
     });
