@@ -6,10 +6,10 @@
           <th colspan="2">
             {{ stations[0][0] }} > {{ stations[stations.length - 1][0] }}
           </th>
-          <th colspan="2" style="text-align:right;">
+          <th colspan="2" style="text-align: right">
             {{ formatNumber(hour) }}:{{ formatNumber(minute) }}:{{
-        formatNumber(second)
-      }}
+              formatNumber(second)
+            }}
           </th>
         </tr>
         <bus-item
@@ -20,7 +20,7 @@
           :key="key"
         ></bus-item>
         <tr>
-          <td v-if="Object.keys(busToShow).length==0" colspan="4">
+          <td v-if="Object.keys(busToShow).length == 0" colspan="4">
             短时间内没有班次了
           </td>
         </tr>
@@ -55,7 +55,7 @@ export default {
       second: 0,
       minute: 0,
       hour: 0,
-      timeRangeAfterReach: 3
+      timeRangeAfterReach: 3,
     };
   },
   props: {
@@ -69,23 +69,12 @@ export default {
       type: Number,
       default: 20,
     },
-    timeRangeBeforeDispatch: { type: Number, default: 60 }
+    timeRangeBeforeDispatch: { type: Number, default: 60 },
   },
   components: {
     BusItem: BusItem,
   },
   mounted() {
-    // Init time
-    var data = new Date();
-    this.hour = data.getHours();
-    this.minute = data.getMinutes();
-    this.second = data.getSeconds();
-    // Init second to day start
-    this.secondFromZero = getSecondToDayStart(
-      this.hour,
-      this.minute,
-      this.second
-    );
     // this.secondFromZero = 50000 // This is for test
     // Set Timer
     setInterval(() => {
@@ -95,21 +84,17 @@ export default {
   methods: {
     // Increase timers
     tick: function () {
-      this.secondFromZero += 1;
-      this.second += 1;
-
-      if (this.second >= 60) {
-        this.minute += 1;
-        this.second -= 60;
-      }
-      if (this.minute >= 60) {
-        this.hour += 1;
-        this.minute -= 60;
-      }
-      if (this.hour >= 24) {
-        this.hour = 0;
-        this.minute -= 60;
-      }
+      // ticker 需要每次自己调用最新的本地时间，不能自己计数。
+      // 当页面切换到后台时，setInterval 为了节电会暂停。
+      var tmp_date = new Date();
+      this.hour = tmp_date.getHours();
+      this.minute = tmp_date.getMinutes();
+      this.second = tmp_date.getSeconds();
+      this.secondFromZero = getSecondToDayStart(
+        this.hour,
+        this.minute,
+        this.second
+      );
     },
     // Add zero in front of a number
     formatNumber: function (number) {
@@ -119,7 +104,8 @@ export default {
       if (!this.stationNames) return "null";
       if (secondFromDispatch <= 0) return this.stationNames[0];
       let nStations = this.stationNames.length;
-      if (secondFromDispatch >= this.minuteOnRoad * 60) return this.stationNames[nStations-1];
+      if (secondFromDispatch >= this.minuteOnRoad * 60)
+        return this.stationNames[nStations - 1];
       let currentPostion = secondFromDispatch / 60 / this.minuteOnRoad;
       let currentStation = "";
       for (let p in this.stationPositions) {
@@ -132,8 +118,8 @@ export default {
     },
   },
   computed: {
-    secondList: function(){
-      return parseTimes(this.times)
+    secondList: function () {
+      return parseTimes(this.times);
     },
     busToShow: function () {
       if (!this.secondList) return null;
@@ -144,7 +130,10 @@ export default {
         if (diff < 0 && diff > -this.timeRangeBeforeDispatch * 60) {
           busWaiting.push([diff, dispatchTime]);
         }
-        if (diff > 0 && diff < (this.minuteOnRoad+this.timeRangeAfterReach) * 60) {
+        if (
+          diff > 0 &&
+          diff < (this.minuteOnRoad + this.timeRangeAfterReach) * 60
+        ) {
           busDispatched.push([diff, dispatchTime]);
         }
       }
@@ -181,10 +170,12 @@ table {
   max-width: 500px;
 }
 @media (max-width: 320px) {
-  table { font-size: 12px; }
+  table {
+    font-size: 12px;
+  }
   .bus-timer-tb td {
-  padding: 0px;
-}
+    padding: 0px;
+  }
 }
 
 .bus-running {
