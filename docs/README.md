@@ -1,4 +1,4 @@
-# 📚南科手册
+# 📚南科手册 CI 测试～～～～
 
 <table class="tg">
 <thead>
