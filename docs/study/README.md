@@ -40,6 +40,11 @@
 - [学习制度与信息  by 树德书院（2020）](./by-shude-college/info-on-study.md)
   - *包含GPA表、专业概览、选课指导、学习资源、图书馆学习攻略、学籍管理。*
 
+## 毕业生质量报告
+
+* [南方科技大学 2019 年度本科毕业生就业质量报告](https://www.sustech.edu.cn/uploads/files/2021/01/06113735_69394.pdf)
+* [南方科技大学 2020 年度本科毕业生就业质量报告](http://career.sustech.edu.cn/detail/news?id=588518)
+
 ### GPA换算表（本科）
 
 | 等级       | A+       | A       | A-      | B+      | B       | B-      | C+      | C       | C-      | D+      | D       | D-      |   F   |
