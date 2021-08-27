@@ -1,6 +1,6 @@
 # 🚌校园巴士 - 节假日 (2021年6月18日更新)
 
-<a data-fancybox title="" href="https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/transport/busline2.png">![](./busline2.png)</a>
+<a data-fancybox title="" href="https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/transport/busline2.png">![](./busline2.png)</a>
 
 ## 快速跳转
 * [1路 下行 欣园 → 工学院](#_1路-欣园-→-工学院-共58班)
@@ -31,8 +31,8 @@
 ## 参考文献
 
 * 2021年6月18日 `校园服务办公室 <ocs@sustech.edu.cn>` 邮件《【关于调整校园巴士运行班次及线路的通知 Notice on Adjustment of Campus Bus Schedule and Routes【2021】26号》
-    * [下载链接-中文](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/transport/Campus_Bus_Schedule_2021_06_CN.pdf)（右键 / 长按保存）
-    * [Download-English](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/transport/Campus_Bus_Schedule_2021_06_EN.pdf)（Right click / long press to save）
+    * [下载链接-中文](https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/transport/Campus_Bus_Schedule_2021_06_CN.pdf)（右键 / 长按保存）
+    * [Download-English](https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/transport/Campus_Bus_Schedule_2021_06_EN.pdf)（Right click / long press to save）
 
 <script>
   export default {

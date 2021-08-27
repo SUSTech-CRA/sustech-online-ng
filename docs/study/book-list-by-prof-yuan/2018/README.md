@@ -6,7 +6,7 @@
 
 以下罗列作品，都是我曾经读过甚至至今还常常重读的作品。我有意识地放进一些大家写的“小书”。所谓“小”者，只是规模的精致，绝不意味视野的短浅或品味的狭促。相反，在有限的空间内，在高度剪裁的材料中，往往能见真正高远的见识。与去年相似，书单中仍就有九本书，以每天30-50页的阅读量计算，大约一个学期便可读完。
 
-![封面](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/study/book-list-by-prof-yuan/2018/1.jpeg)
+![封面](https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/study/book-list-by-prof-yuan/2018/1.jpeg)
 
 ## 《镜子：照出你看不见的世界史》，爱德华多·加莱亚诺著，广西师范大学出版社2012年
 

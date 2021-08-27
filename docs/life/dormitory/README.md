@@ -104,14 +104,14 @@ sidebar: auto
 
 ### 空间利用的小建议
 
-![使用床头挂篮储物](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/life/dormitory/挂篮.jpg)
+![使用床头挂篮储物](https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/life/dormitory/挂篮.jpg)
 
 使用床头挂篮储物
 
-![充分利用书柜](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/life/dormitory/充分利用书柜.jpg)
+![充分利用书柜](https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/life/dormitory/充分利用书柜.jpg)
 
 充分利用书柜
 
-![健忘症必备神器](https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/life/dormitory/健忘症必备神器.jpg)
+![健忘症必备神器](https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/life/dormitory/健忘症必备神器.jpg)
 
 健忘症必备神器

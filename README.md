@@ -8,9 +8,9 @@ Online manual for SUSTecher.
 
 ## 帮助我们完善
 
-主项目托管在 [SUSTC/sustech-online-ng](https://github.com/sustc/sustech-online-ng)
+主项目托管在 [sustech-cra/sustech-online-ng](https://github.com/sustech-cra/sustech-online-ng)
 
-小程序托管在 [SUSTC/sustech-online-wxapp](https://github.com/SUSTC/sustech-online-wxapp)
+小程序托管在 [sustech-cra/sustech-online-wxapp](https://github.com/sustech-cra/sustech-online-wxapp)
 
 ### 如何贡献
 
