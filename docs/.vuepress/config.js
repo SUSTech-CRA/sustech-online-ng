@@ -18,7 +18,7 @@ module.exports = {
     ['meta', { name: 'theme-color', content: color }],
     ['link', { rel: 'manifest', href: '/manifest.json' }],
     ['meta', { prefix: ogprefix, property: 'og:type', content: 'article' }],
-    ['meta', { prefix: ogprefix, property: 'og:image', content: 'https://cdn.jsdelivr.net/gh/sustc/sustech-online-ng@master/docs/assets/og-image.png' }],
+    ['meta', { prefix: ogprefix, property: 'og:image', content: 'https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/assets/og-image.png' }],
     ['meta', { prefix: ogprefix, property: 'og:article:author', content: author }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
