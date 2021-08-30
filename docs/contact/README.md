@@ -16,7 +16,7 @@
 - [国际合作部 | 关于我们](https://geo.sustech.edu.cn/gygjhzb/)
 - [研究生院 | 联系方式](https://gs.sustech.edu.cn/callus)
 - [教学工作部 | 联系方式](http://tao.sustech.edu.cn/department/index.html)
-  - 办公地点: 慧园3栋203、206
+  - 办公地点: 南科大中心三楼 303，306
   - 公共邮箱（教学事务）: tao@sustech.edu.cn
   - 学生学习服务邮箱: tao-sls@sustech.edu.cn
   - 选课咨询电话: 88010300
