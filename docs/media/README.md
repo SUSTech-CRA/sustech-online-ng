@@ -113,7 +113,7 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 - 南科一路｜在这里，读懂南科 [https://nanke.suste.ch](https://nanke.suste.ch)
 - 校友地图 [https://sustech-application.github.io/SUSTech-Alumni-Map/](https://sustech-application.github.io/SUSTech-Alumni-Map/)
 - SUSTech Flow | 公开评教网站 [https://sustechflow.top/](https://sustechflow.top/)
-- 飞跃手册 [https://sustech-application.com](https://sustech-application.com)
+- 飞跃手册 [https://sustech-application.com](https://sustech-application.com?utm_source=online)
 
 *欲查看其他服务网站，请参见[服务](/service/)一节。*
 
