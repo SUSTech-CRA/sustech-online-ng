@@ -91,7 +91,7 @@ function load_adsense() {
         oScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
         oScript.setAttribute("async", "");
         oScript.setAttribute("data-ad-client", "ca-pub-9039393129169217");
-        document.body.appendChild(oScript);
+        document.head.appendChild(oScript);
         // <script data-ad-client="ca-pub-9039393129169217" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     } else {
         console.log("小程序环境，跳过");
