@@ -27,3 +27,6 @@ Online manual for SUSTecher.
 
 * 使用 Markdown 和 raw HTML / JavaScript 语言
 
+### 版本说明
+* 正式线上版本（master 分支构建）：https://sustech.online/
+* 预发测试版本（perf 分支构建）：https://perf.sustech.online/
