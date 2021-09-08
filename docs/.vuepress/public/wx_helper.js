@@ -79,14 +79,19 @@ function reset_all_anchor() {
 setInterval(reset_all_anchor, 1000);
 
 function load_adsense() {
-    if (!window.is_miniprogram) {
-        console.log("非小程序环境，加载 adsense。")
-        var oScript = document.createElement("script");
-        oScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
-        oScript.setAttribute("async", "");
-        oScript.setAttribute("data-ad-client", "ca-pub-9039393129169217");
-        document.body.appendChild(oScript);
-        // <script data-ad-client="ca-pub-9039393129169217" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    }
+    wx.miniProgram.getEnv(function (res) {
+        if (res.miniprogram === undefined) {
+            return;
+        }
+        if (res.miniprogram === false) {
+            console.log("非小程序环境，加载 adsense");
+            var oScript = document.createElement("script");
+            oScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+            oScript.setAttribute("async", "");
+            oScript.setAttribute("data-ad-client", "ca-pub-9039393129169217");
+            document.body.appendChild(oScript);
+            // <script data-ad-client="ca-pub-9039393129169217" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        }
+    });
 }
-setTimeout("load_adsense()", 500);
+setTimeout("load_adsense()", 1000);
