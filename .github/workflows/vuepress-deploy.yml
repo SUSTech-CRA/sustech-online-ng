@@ -47,7 +47,7 @@ jobs:
         path: './docs/.vuepress/dist/'
 
   deploy-on-master:
-    name: Deploy site
+    name: Deploy site (master)
     runs-on: "ubuntu-latest"
     needs: build
     if: always() && github.repository_owner == 'SUSTech-CRA' && github.ref == 'refs/heads/master'
@@ -100,7 +100,7 @@ jobs:
         ossutil cp -rf docs/.vuepress/dist/ oss://perf-sustech-online/
 
   deploy-on-perf:
-    name: Deploy site
+    name: Deploy site (perf)
     runs-on: "ubuntu-latest"
     needs: build
     if: always() && github.repository_owner == 'SUSTech-CRA' && github.ref == 'refs/heads/perf'
