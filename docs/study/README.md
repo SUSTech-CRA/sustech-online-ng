@@ -13,6 +13,8 @@
 
 包含课程简介，纲要与考核形式。
 
+- [下载课程大纲PDF](https://mirrors.sustech.edu.cn/courses/%E6%95%99%E5%AD%A6%E5%A4%A7%E7%BA%B2%E6%B1%87%E6%80%BB/)
+
 - 教工部提供的查看渠道：[https://course-tao.sustech.edu.cn/kcxxweb/KcxxwebChinesePC](https://course-tao.sustech.edu.cn/kcxxweb/KcxxwebChinesePC) （需CAS登陆）
 
 
