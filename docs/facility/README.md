@@ -18,7 +18,7 @@
 
 ![致新书院绘制的卡通版地图](https://mirrors.sustech.edu.cn/site/sustech-online/img/campus-map/campus-map-cartoon-version.png)
 
-*(如果您想直接看带有地点标记的互动式全景图以了解学校，请直接翻到[本页底部](#全景看校园)。)*
+*(如果您想直接看带有地点标记的互动式全景图以了解学校，请直接翻到[本页底部](#航拍全景看校园)。)*
 
 ### 新校区（一般称为山下）
 
