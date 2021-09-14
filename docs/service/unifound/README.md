@@ -58,6 +58,7 @@ sidebar: auto
 **（适用于大多数操作系统）**
 
 用浏览器打开联创网页：[http://pms.sustech.edu.cn](http://pms.sustech.edu.cn)，如果打不开可尝试[http://172.18.1.141](http://172.18.1.141)
+> **提示**： `pms.sustech.edu.cn`这个域名只在学校内网的DNS服务器（`172.18.1.92`和`172.18.1.93`）上提供（因为它不是一个*fully qualified domain name*，不会被公共的DNS服务器所收录）。如果哪天突然发现[http://pms.sustech.edu.cn](http://pms.sustech.edu.cn)打不开了但是[http://172.18.1.141](http://172.18.1.141)可以打开，可以考虑检查一下自己电脑是否采用了学校内网的DNS服务器。
 
 点击云打印，登陆账户，按照提示操作。
 
