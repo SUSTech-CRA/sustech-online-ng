@@ -139,7 +139,7 @@ sidebar: auto
 
     先冷静一下，点击右边的 `简单画面` 。
 
-    ![](./unifound-2.jpeg" width="200"/>
+    ![](./unifound-2.jpeg)
 
     然后就会变得很友好了：
 
@@ -180,7 +180,7 @@ sidebar: auto
 
 7. 点击机器上的开始
 
-    ![](./unifound-9.jpeg" width="100"/>
+    ![](./unifound-9.jpeg)
 
 8. 结束扫描
 
