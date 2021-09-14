@@ -16,6 +16,14 @@
 * 南科大校内AED地图©HZH：[http://hzh2015.cn:81/AED_map](http://hzh2015.cn:81/AED_map)
 * 南科大校内AED地图©sustc.wiki：[https://sustc.wiki/AED](https://sustc.wiki/AED)
 
+## 校内急救箱地图©南科大应急救援队
+
+::: tip 提示
+不保证急救箱药品齐全，如缺少药品请向相关组织反馈进行补充。
+:::
+
+<a data-fancybox title="## 校内急救箱地图©南科大应急救援队" href="https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/emergency/急救箱地图_救援队地图组.jpg">![](./急救箱地图_救援队地图组.jpg)</a>
+
 ## 应急手册©南科大应急救援队
 
 * [手册链接（点此）](https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/emergency/应急手册Emergency_manual2020.pdf)
