@@ -26,8 +26,8 @@
 
 ## 贡献者
 
-<a href="https://github.com/sustc/sustech-online-ng/graphs/contributors">
-  <br><img src="https://contributors-img.web.app/image?repo=sustc/sustech-online-ng" />
+<a href="https://github.com/SUSTech-CRA/sustech-online-ng/graphs/contributors">
+  <br><embed src="https://contributors-img.web.app/image?repo=SUSTech-CRA/sustech-online-ng" />
 </a>
 
 ### Content
