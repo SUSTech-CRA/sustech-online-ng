@@ -139,6 +139,9 @@
 * 在图书馆[官网荐购页面](https://lib.sustech.edu.cn/dzjg/list.htm)填写荐购信息。
 * 发送荐购信息至邮箱[lib_acq@sustech.edu.cn](mailto:lib_acq@sustech.edu.cn)荐购。
 
+<Adsense_unit>
+</Adsense_unit>
+
 ## 什么值得买
 
 ### 生活好物
