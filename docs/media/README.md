@@ -68,6 +68,9 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 |    南科新知（新闻社）    | gh_db61459fa255 | <img src="https://open.weixin.qq.com/qr/code?username=gh_db61459fa255#.jpg" class="wx-qr medium-zoom-image"> |
 |    南科大义工联    | SUSTC_Volunteers | <img src="https://open.weixin.qq.com/qr/code?username=SUSTC_Volunteers#.jpg" class="wx-qr medium-zoom-image"> |
 
+<Adsense_unit>
+</Adsense_unit>
+
 ## 自媒体
 
 ### 微信公众号

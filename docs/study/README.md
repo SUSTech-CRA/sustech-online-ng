@@ -47,6 +47,9 @@
 * [南方科技大学 2019 年度本科毕业生就业质量报告](https://www.sustech.edu.cn/uploads/files/2021/01/06113735_69394.pdf)
 * [南方科技大学 2020 年度本科毕业生就业质量报告](http://career.sustech.edu.cn/detail/news?id=588518)
 
+<Adsense_unit>
+</Adsense_unit>
+
 ### GPA换算表（本科）
 
 | 等级       | A+       | A       | A-      | B+      | B       | B-      | C+      | C       | C-      | D+      | D       | D-      |   F   |
