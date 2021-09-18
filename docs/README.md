@@ -131,6 +131,9 @@ CC-BY-SA协议允许您自由地共享（在任何媒介以任何形式复制、
 
 Please use the [Google translation tool in Chrome](https://support.google.com/chrome/answer/173424) to translate the manual.
 
+<Adsense_unit>
+</Adsense_unit>
+
 ## 支持与备案信息
 
 🚧 本站由 [SUSTech OSS Mirrors](https://mirrors.sustech.edu.cn/) 提供静态资源加速服务，[SUSTech CRA](https://www.cra.moe/) 提供技术支持

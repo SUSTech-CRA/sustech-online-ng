@@ -190,6 +190,9 @@
 
 * 本手册！[🌟南科手册](https://jq.qq.com/?_wv=1027&k=5D8EgDF): 905618908
 
+<Adsense_unit>
+</Adsense_unit>
+
 ### 美食外卖
 
 ::: tip
@@ -232,5 +235,3 @@
 
 - 至尊东北特色烤冷面
 
-<Adsense_unit>
-</Adsense_unit>

@@ -349,6 +349,9 @@
 - [慧园，欣园（校园东北侧）](https://mirrors.sustech.edu.cn/site/sustech-online/panolens/huiyuan.html)
 - [工学院 （校园西北侧）](https://mirrors.sustech.edu.cn/site/sustech-online/panolens/aoe.html)
 
+<Adsense_unit>
+</Adsense_unit>
+
 ## 图片版权
 
 - CC0
