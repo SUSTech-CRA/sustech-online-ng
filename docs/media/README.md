@@ -59,6 +59,8 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 | 南科大后勤服务 | campusop | <img src="https://open.weixin.qq.com/qr/code?username=campusop#.jpg" class="wx-qr medium-zoom-image"> |
 | 南科大总务君 | campusoperation | <img src="https://open.weixin.qq.com/qr/code?username=campusoperation#.jpg" class="wx-qr medium-zoom-image"> |
 
+<Adsense_unit>
+</Adsense_unit>
 
 ### 学生组织与社团
 
@@ -67,9 +69,6 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 | 南科大信息平台（学生会） |   SUSTC_Info    | <img src="https://open.weixin.qq.com/qr/code?username=SUSTC_Info#.jpg" class="wx-qr medium-zoom-image"> |
 |    南科新知（新闻社）    | gh_db61459fa255 | <img src="https://open.weixin.qq.com/qr/code?username=gh_db61459fa255#.jpg" class="wx-qr medium-zoom-image"> |
 |    南科大义工联    | SUSTC_Volunteers | <img src="https://open.weixin.qq.com/qr/code?username=SUSTC_Volunteers#.jpg" class="wx-qr medium-zoom-image"> |
-
-<Adsense_unit>
-</Adsense_unit>
 
 ## 自媒体
 
