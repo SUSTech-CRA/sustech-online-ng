@@ -17,7 +17,8 @@
 ### 宝能城
 ![](../assets/badge/szmc/5.svg)**塘朗站**
 
-
+<Adsense_unit>
+</Adsense_unit>
 
 ### [益田假日里](https://ditu.amap.com/place/B0FFKYACVH)
 ![](../assets/badge/szmc/5.svg)**大学城站**
@@ -43,8 +44,6 @@
 
 价位较低，离学校特别近；商场超市种类齐全；附近有很多小吃；大润发上层是电影院，性价比较高；有木屋烧烤、肯德基、必胜客、鸡排等。
 
-<Adsense_unit>
-</Adsense_unit>
 
 ::: tip
 
