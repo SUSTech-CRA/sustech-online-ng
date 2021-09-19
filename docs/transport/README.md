@@ -50,6 +50,9 @@
 - ![](../assets/badge/szmc/5.svg) 5号线塘朗站，B出口
 - ![](../assets/badge/szmc/5.svg) 5号线长岭陂，A出口
 
+<Adsense_unit>
+</Adsense_unit>
+
 ## 市内交通
 
 ### 深圳地铁线路图（2020年9月起）
@@ -170,9 +173,6 @@
 地铁![](../assets/badge/szmc/11.svg)有商务座（类似于高铁一等座的座椅布置），价格为普通地铁车票的三倍，可在进站验证后乘坐。
 
 :::
-
-<Adsense_unit>
-</Adsense_unit>
 
 ## 来往附近城市的交通
 

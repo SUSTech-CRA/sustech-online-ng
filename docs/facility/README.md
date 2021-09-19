@@ -10,6 +10,8 @@
 
 <iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node38,210,0,120,10" name="iframe_window" width="100%" height="600" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
 
+<Adsense_unit>
+</Adsense_unit>
 ## 校园地图与主要建筑
 
 ![校园地图](https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/facility/campus-map.png)
@@ -349,8 +351,6 @@
 - [慧园，欣园（校园东北侧）](https://mirrors.sustech.edu.cn/site/sustech-online/panolens/huiyuan.html)
 - [工学院 （校园西北侧）](https://mirrors.sustech.edu.cn/site/sustech-online/panolens/aoe.html)
 
-<Adsense_unit>
-</Adsense_unit>
 
 ## 图片版权
 

@@ -87,6 +87,9 @@
 
 - [联系我们/南方科技大学](https://www.sustech.edu.cn/zh/contact_us.html)
 
+<Adsense_unit>
+</Adsense_unit>
+
 ## 邮政与快递地址
 
 ::: tip
@@ -189,9 +192,6 @@
 ### 其他
 
 * 本手册！[🌟南科手册](https://jq.qq.com/?_wv=1027&k=5D8EgDF): 905618908
-
-<Adsense_unit>
-</Adsense_unit>
 
 ### 美食外卖
 
