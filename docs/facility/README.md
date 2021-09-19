@@ -12,6 +12,7 @@
 
 <Adsense_unit>
 </Adsense_unit>
+
 ## 校园地图与主要建筑
 
 ![校园地图](https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/facility/campus-map.png)

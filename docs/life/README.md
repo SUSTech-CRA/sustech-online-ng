@@ -16,6 +16,9 @@
 
   包括如何选择社团和致诚书院特色社团介绍，由致诚书院大学长团提供。
 
+<Adsense_unit>
+</Adsense_unit>
+
 ## 校内介绍
 
 - [新生攻略之校内介绍篇（2021）](./by-zhiren-college/新生攻略之校内介绍篇.md)
@@ -39,9 +42,6 @@
 - [🏊‍♀️运动设施](./sports-facility)
 
 介绍校内的所有运动设施，包含地点，开馆时间和简介。
-
-<Adsense_unit>
-</Adsense_unit>
 
 ## Tips
 
