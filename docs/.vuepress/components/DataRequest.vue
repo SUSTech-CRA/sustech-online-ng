@@ -35,10 +35,16 @@ export default {
   props: {
     path: { type: String },
   },
+  mounted(){
+    if (this.path)
+        return fetchJSONData(this.path).then((data) => {
+          this.data = data;
+        });
+  },
   watch: {
     path(val) {
-      if (val)
-        return fetchJSONData(val).then((data) => {
+      if (this.path)
+        return fetchJSONData(this.path).then((data) => {
           this.data = data;
         });
     },
