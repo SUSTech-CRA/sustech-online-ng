@@ -14,26 +14,25 @@
 
 <script>
   export default {
-    methods:{
-      isHoliday:function(holidata){
-        
+    methods: {
+      isHoliday: function (holidata) {
         // JSON is from https://github.com/NateScarlet/holiday-cn
         // need to update by year.
         // Download the JSON to path "docs/.vuepress/public/YYYY.json"
-        if(!holidata) return false
+        if (!holidata) return false
 
         var day_map = {};
         for (let i = 0; i < holidata.days.length; i++) {
           day_map[holidata.days[i].date] = holidata.days[i].isOffDay;
         }
-        
+
         var now_date = new Date();
         var ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(now_date);
         var mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(now_date);
         var da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(now_date);
         var day_key = `${ye}-${mo}-${da}`;
         var is_holiday;
-        
+
         if (day_map[day_key] == null) {
           // 不在国家假日调整表里
           console.log("Not in GOV declaration");
@@ -46,9 +45,9 @@
           is_holiday = day_map[day_key];
         }
         return is_holiday
+      }
     }
   }
-}
 </script>
 
 <div id="bustable">
@@ -77,8 +76,8 @@
         </data-request>
       </object-selector>
     </object-selector>
-    </data-request>
-   
+  </data-request>
+
 </div>
 
 <Adsense_unit>
