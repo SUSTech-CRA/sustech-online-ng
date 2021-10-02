@@ -47,4 +47,4 @@
 
 - [上海科技大学新生手册](https://fresh.geekpie.club/)
 
-- [~~浙江大学求是潮~~](http://www.qsc.zju.edu.cn/freshman/)，网页已失效。
+- [浙江大学求是潮](https://new.zjuqsc.com/)
