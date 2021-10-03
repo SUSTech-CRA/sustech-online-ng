@@ -49,10 +49,8 @@
     <th class="tg-0lax">
     <h3><a href="./transport/">校园巴士<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></h3>
     <ul>
-    <li><a href="./transport/bustimer.html">新版巴士时刻表与车辆位置查看</a></li>
-    <li><a href="./transport/redirect.html">自动选择<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
-    <li><a href="./transport/workday.html">💼 工作日<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
-    <li><a href="./transport/holiday.html">💤 节假日<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
+    <li><a href="./transport/bustimer.html">巴士时刻表与车辆位置查看</a>
+    </li>
     </ul>
     </th>
   </tr>
