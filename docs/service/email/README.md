@@ -74,7 +74,13 @@
 
 ### Outlook桌面版
 
-由于QQ邮箱不支持完整版的Exchange（只支持Exchange Activesync）因此Outlook桌面版不能以Exchange模式添加账户，只能使用IMAP或POP模式添加账户。
+#### MacOS
+
+由于QQ邮箱不支持完整版的Exchange（只支持Exchange Activesync）因此Outlook Mac桌面版不能以Exchange模式添加账户，只能使用IMAP或POP模式添加账户。
+
+#### Windows
+
+推荐使用Exchange Activesync模式添加。
 
 - [向 Outlook 添加电子邮件帐户](https://support.microsoft.com/zh-cn/office/%E5%90%91-outlook-%E6%B7%BB%E5%8A%A0%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E5%B8%90%E6%88%B7-6e27792a-9267-4aa4-8bb6-c84ef146101b)
 
