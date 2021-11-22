@@ -43,6 +43,10 @@
 
 李子强 ◇ 樊青远 ◇ 陈宇恒
 
+### 软件支持
+
+本手册的部分交互组件开发使用了 [Jetbrains Open Source License](https://www.jetbrains.com/community/opensource/#support) 。
+
 #### 南科手册同时参考了：
 
 - [上海科技大学新生手册](https://fresh.geekpie.club/)
