@@ -123,7 +123,7 @@
 
 除了常规的自习室与纸质书刊借阅服务外，图书馆还提供其他服务：
 ### 讨论间
-可供小组讨论的隔音空间，一般需要提前预约，[预约系统地址（点此）](https://booking.lib.sustech.edu.cn/ClientWeb/xcus/ic2/Default.aspx)。
+可供小组讨论的隔音空间，一般需要提前预约，[预约系统地址（点此）](https://booking.lib.sustech.edu.cn/)。
 
 如果有尚未被预约的讨论间，也可以直接使用。
 
