@@ -59,7 +59,7 @@
 
 ![szmc-system-map-2020](https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/transport/szmc-system-map-2020.png)
 
-- [下载PDF版本 / MTR(SZ)](http://www.mtrsz.com.cn/files/20200817/轨道网络线路图0.pdf)
+- [下载PDF版本 / MTR(SZ)](https://www.mtrsz.com.cn/files/20200817/轨道网络线路图0.pdf)
 
 ### 乘坐市内公共交通
 
