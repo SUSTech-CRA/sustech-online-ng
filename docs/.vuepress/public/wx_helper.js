@@ -15,10 +15,13 @@ function post_to_wx() {
 }
 setInterval(post_to_wx, 1000);
 
-function handleOutURL(url, file_flag, file_ext) {
+function handleOutURL(url, whitelist_flag, file_flag, file_ext) {
     console.log("劫持链接 " + url);
     wx.miniProgram.navigateTo({
-        url: '/pages/index/redirect?outURL=' + encodeURIComponent(url) + '&handleFile=' + file_flag + '&ext=' + file_ext,
+        url: '/pages/index/redirect?outURL=' + encodeURIComponent(url) +
+            '&inwhitelist=' + whitelist_flag +
+            '&handleFile=' + file_flag +
+            '&ext=' + file_ext,
     });
 }
 
@@ -43,8 +46,9 @@ function override_onclick(event) {
         supportFiles.add("pdf");
         let the_hostname = url_obj.hostname;
         let path_ext = url_obj.pathname.split('.').pop().toLowerCase();
+        let whitelist_flag = whitelist.has(the_hostname);
         let file_flag = supportFiles.has(path_ext);
-        if (whitelist.has(the_hostname) && !file_flag) {
+        if (whitelist_flag && !file_flag) {
             // 当 url 在白名单里面，且不为可微信显示的文件。
             console.log("放行白名单页面 " + url);
             window.location.href = url;
@@ -53,7 +57,7 @@ function override_onclick(event) {
 
         event.preventDefault();
         console.log("小程序环境，拦截外部链接或者可显示文件。");
-        handleOutURL(url, file_flag, path_ext);
+        handleOutURL(url, whitelist_flag, file_flag, path_ext);
         // return false;
     }
     // ------------
