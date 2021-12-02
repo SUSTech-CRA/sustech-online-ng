@@ -8,9 +8,9 @@ eduroam(education roaming) 是专为科研和教育机构开发的安全的环�
 
 ## 配置
 
-* 用户名（身份）：xxxx@sustech.edu.cn
+* 用户名（身份）：`xxxx@sustech.edu.cn` (教职工) / `your_studentID@mail.sustech.edu.cn` (学生)
 * 密码：eduroam系统登录密码（非CAS登录密码）
 * 加密类型：802.1x / EAP协议
-* EAP方法：PEAP
-* 阶段2身份验证：MSCHAPv2
+* EAP方法：`PEAP`
+* 阶段2身份验证：`MSCHAPv2`
 * CA证书：不验证
