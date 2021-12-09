@@ -74,5 +74,8 @@
 
 - [📗教材与图书借还](./borrow-books)
 
-## 袁长庚老师所推荐的新生书单
-- [2018年](./book-list-by-prof-yuan/2018)
+## 其他资料
+- [袁长庚老师所推荐的新生书单 2018年](./book-list-by-prof-yuan/2018)
+
+- [【南科大语言中心】如何适应大学生活 Adjusting to University Life (B站)](https://www.bilibili.com/video/BV1334y1d7L9)
+  - 涉及学术英语、学术写作、阅读方法、邮件礼仪等。
