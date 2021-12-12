@@ -30,7 +30,7 @@
   <br><img src="https://contributors-img.web.app/image?repo=sustech-cra/sustech-online-ng" />
 </a>
 
-### Content
+### 内容
 
 **感谢以下组织对南科手册所做的贡献**（排名不分先后）
 
@@ -39,9 +39,15 @@
 - 致诚书院大学长团
 - 学生新闻社《南科新知》
 
-### Programming & Operation
+### 开发 & 维护
 
 李子强 ◇ 樊青远 ◇ 陈宇恒
+
+### 计算支持
+
+**感谢以下个人 / 组织对南科手册所提供的计算支持**（排名不分先后）
+
+孙常超 ◇ 计算机研究协会 CRA
 
 ### 软件支持
 
