@@ -97,6 +97,16 @@ jobs:
         remote_host: ${{ secrets.HOST_SZXCC }}
         remote_user: ${{ secrets.USERNAME_SZXCC }}
         remote_key: ${{ secrets.SSH_KEY_SZXCC }}
+        
+    - name: copy file to server CAN
+      uses: burnett01/rsync-deployments@5.0
+      with:
+        switches: -avzr --delete
+        path: "./docs/.vuepress/dist/"
+        remote_path: ${{ secrets.HTML_PATH_SZX }}
+        remote_host: ${{ secrets.HOST_CAN }}
+        remote_user: ${{ secrets.USERNAME_SZX }}
+        remote_key: ${{ secrets.SSH_KEY_SZX }}
 
     - name: setup aliyun oss
       uses: manyuanrong/setup-ossutil@master
