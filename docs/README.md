@@ -135,7 +135,7 @@ Please use the [Google translation tool in Chrome](https://support.google.com/ch
 
 ---
 
-🚧 本站由 [SUSTech OSS Mirrors](https://mirrors.sustech.edu.cn/) 提供部分静态资源的加速服务，[SUSTech CRA](https://www.cra.moe/) 提供技术支持
+🚧 本站由 [SUSTech OSS Mirrors](https://mirrors.sustech.edu.cn/) 提供部分静态资源及图片的加速服务，[SUSTech CRA](https://www.cra.moe/) 提供技术支持
 
 ---
 
