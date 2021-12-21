@@ -9,15 +9,17 @@ jobs:
     steps:
     - name: Push to sustech-git
       run: |
-        mkdir -p /tmp/tmp_push2
-        cd /tmp/tmp_push2
-        git clone --bare https://github.com/SUSTech-CRA/sustech-online-ng.git this_repo
+        tmp_dir=$(mktemp -d -t ci-XXXXXXXXXX)
+        echo $tmp_dir
+        cd $tmp_dir
+        git clone --bare "${GITHUB_REPO_URL}" this_repo
         cd this_repo
-        git push --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REPO_URL}"
+        git push --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REMOTE_REPO_URL}"
       env:
         USER: project_252_bot
         PERSONAL_TOKEN: ${{ secrets.SUSTECH_GITLAB_SYNC_TOKEN }}
-        REPO_URL: "mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng.git"
+        GITHUB_REPO_URL: https://github.com/SUSTech-CRA/sustech-online-ng.git
+        REMOTE_REPO_URL: "mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng.git"
 
   build:
     runs-on: ubuntu-latest
