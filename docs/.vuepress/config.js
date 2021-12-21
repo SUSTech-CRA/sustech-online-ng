@@ -42,7 +42,7 @@ module.exports = {
     ['script', { src: 'https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js' }],
     ['link', { rel: 'stylesheet', type: 'text/css', href: 'https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css' }],
     ['script', { src: 'https://lib.baomitu.com/datatables/1.10.21/js/jquery.dataTables.min.js' }],
-    ['link', { rel: 'stylesheet', type: 'text/css', href: 'https://lib.baomitu.com/datatables/1.10.18/js/jquery.dataTables.min.js' }]
+    ['link', { rel: 'stylesheet', type: 'text/css', href: 'https://lib.baomitu.com/datatables/1.10.21/css/jquery.dataTables.min.css' }]
   ],
   plugins: [
     // [
