@@ -38,11 +38,11 @@ module.exports = {
     `],
     ['script', { src: '/wx_helper.js' }],
     ['script', { src: 'https://res.wx.qq.com/open/js/jweixin-1.6.0.js' }],
-    ['script', { src: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js' }],
-    ['script', { src: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js' }],
-    ['link', { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.1/dist/jquery.fancybox.min.css' }],
-    ['script', { src: 'https://cdn.jsdelivr.net/npm/datatables.net@1.10.21/js/jquery.dataTables.min.js' }],
-    ['link', { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/npm/datatables@1.10.18/media/css/jquery.dataTables.min.css' }]
+    ['script', { src: 'https://lib.baomitu.com/jquery/3.6.0/jquery.min.js' }],
+    ['script', { src: 'https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js' }],
+    ['link', { rel: 'stylesheet', type: 'text/css', href: 'https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css' }],
+    ['script', { src: 'https://lib.baomitu.com/datatables/1.10.21/js/jquery.dataTables.min.js' }],
+    ['link', { rel: 'stylesheet', type: 'text/css', href: 'https://lib.baomitu.com/datatables/1.10.18/js/jquery.dataTables.min.js' }]
   ],
   plugins: [
     // [
