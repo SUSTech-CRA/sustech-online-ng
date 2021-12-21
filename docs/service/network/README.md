@@ -99,7 +99,7 @@ ip route add CIDR via 172.16.127.254
 
 电信自费宽带也需要使用购买套餐同学的校园卡账户登录后才可使用，登陆方式为Web认证。也有同学制作了第三方脚本以方便快速验证。
 
-[此处(PDF)](https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/service/network/CT_campus_broadband_plan.pdf)是一份电信为南科大同学提供的学生卡套餐的具体内容（含流量与宿舍宽带）。
+[此处(PDF)](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/service/network/CT_campus_broadband_plan.pdf)是一份电信为南科大同学提供的学生卡套餐的具体内容（含流量与宿舍宽带）。
 
 ::: details 同学制作的电信自费网络登陆脚本
 

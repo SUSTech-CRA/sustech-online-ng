@@ -2,7 +2,7 @@
 
 ## 路线图 System Map
 
-<a data-fancybox title="" href="https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/transport/busline2.png">![](./busline2.png)</a>
+<a data-fancybox title="" href="https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/transport/busline2.png">![](./busline2.png)</a>
 
 ## 车辆位置 Bus Realtime Loaction
 

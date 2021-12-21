@@ -4,9 +4,9 @@
 
 ## 【当前学期】2021-2022 秋季学期
 
-<a data-fancybox title="" href="https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/calendar/pic/21-22-fall.jpg">![](./pic/21-22-fall.jpg)</a>
+<a data-fancybox title="" href="https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/calendar/pic/21-22-fall.jpg">![](./pic/21-22-fall.jpg)</a>
 
-<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/pdfjs/web/viewer.html?file=https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/calendar/2021-2022-excel.pdf" width="100%" height="600" ></iframe>
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/pdfjs/web/viewer.html?file=https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/calendar/2021-2022-excel.pdf" width="100%" height="600" ></iframe>
 
 ## 历史校历（存档）
 

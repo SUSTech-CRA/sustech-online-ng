@@ -11,7 +11,7 @@
 
 本文内容来自：
 * 树德书院学长团
-* 南科大应急救援队应急手册·附录D [手册链接（点此）](https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/emergency/应急手册Emergency_manual2020.pdf)
+* 南科大应急救援队应急手册·附录D [手册链接（点此）](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/emergency/应急手册Emergency_manual2020.pdf)
 * 深圳医保公众号文章[《我为群众办实事 | 一二三档看门诊能报销多少？果断收藏！》](https://mp.weixin.qq.com/s/AwAVmydO_JyGTN5BTh1ZMg)
 * 南科手册编辑部
 
