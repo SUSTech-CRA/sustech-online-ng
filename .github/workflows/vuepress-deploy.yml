@@ -2,6 +2,23 @@ name: Build and Deploy
 on: [push, pull_request]
 
 jobs:
+
+  sync-to-sustech-gitlab:
+    runs-on: ubuntu-latest
+    name: sync site to sustech git
+    steps:
+    - name: Push to sustech-git
+      run: |
+        mkdir -p /tmp/tmp_push2
+        cd /tmp/tmp_push2
+        git clone --bare https://github.com/SUSTech-CRA/sustech-master-thesis.git this_repo
+        cd this_repo
+        git push --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REPO_URL}"
+      env:
+        USER: project_252_bot
+        PERSONAL_TOKEN: ${{ secrets.SUSTECH_GITLAB_SYNC_TOKEN }}
+        REPO_URL: "mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng.git"
+
   build:
     runs-on: ubuntu-latest
     name: Build site
