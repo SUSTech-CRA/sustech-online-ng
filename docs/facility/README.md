@@ -15,7 +15,7 @@
 
 ## 校园地图与主要建筑
 
-![校园地图](https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/facility/campus-map.png)
+![校园地图](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/facility/campus-map.png)
 
 上图是南科大的校园平面图。在校园内，建筑大都处于校园西侧。
 
@@ -339,7 +339,7 @@
 航拍图像拍摄于`2019年6月`，校园内部分建筑此时仍在修建。自此之后，学校原则上不再允许学生在校内飞行无人机。
 :::
 
-![湖畔全景](https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/facility/campus-pano.jpg)
+![湖畔全景](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/facility/campus-pano.jpg)
 
 ### 同学自行拍摄的互动式校园全景
 [一次观看全部全景图像](./panolens)
@@ -356,7 +356,7 @@
 ## 图片版权
 
 - CC0
-  - [校园地图](https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/facility/campus-map.png)/深圳规划局
+  - [校园地图](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/facility/campus-map.png)/深圳规划局
 - [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.zh)
   - [图书馆与行政楼](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/library-and-administration-building.jpg)/sparktour
   - [风雨操场](https://commons.wikimedia.org/wiki/File:Arial_image_of_the_sports_center_of_SUSTech.jpg)/sparktour
@@ -376,4 +376,4 @@
   - [润杨体育馆](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/润杨体育馆.jpg)/南方科技大学
   - [松禾体育场](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/松禾体育场.jpg)/南方科技大学
   - [一号门所见的大沙河](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/大沙河-gate1.jpg)/南方科技大学
-  - [湖畔全景](https://cdn.jsdelivr.net/gh/sustech-cra/sustech-online-ng@master/docs/facility/campus-pano.jpg)/sparktour
+  - [湖畔全景](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/facility/campus-pano.jpg)/sparktour
