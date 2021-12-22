@@ -80,7 +80,8 @@ module.exports = {
     [
       '@vuepress/plugin-pwa',
       {
-        skipWaiting: true,
+        maximumFileSizeToCacheInBytes: 524288, // 限制到0.5MB
+        skipWaiting: true
       },
       {
         generateSWConfig: {
