@@ -13,7 +13,8 @@
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "docs:clean": "rm -rf docs/.vuepress/.temp docs/.vuepress/dist"
   },
   "dependencies": {
     "axios": "^0.24.0",
