@@ -1450,7 +1450,7 @@
     markdown-it "^12.2.0"
     markdown-it-container "^3.0.0"
 
-"@vuepress/plugin-docsearch@2.0.0-beta.31":
+"@vuepress/plugin-docsearch@2.0.0-beta.29":
   version "2.0.0-beta.29"
   resolved "https://registry.npmmirror.com/@vuepress/plugin-docsearch/download/@vuepress/plugin-docsearch-2.0.0-beta.29.tgz#73fb3e72aed8cec73a00a1a48b993bff86a6e9cb"
   integrity sha512-R+Kx3HIIqxiTCAnoNYbVlKAHfhxHJvz8BTcgtEdstsfHp0V+2JdvYBtlkUGlkNJDwID9AYNnJCBYPQ/AsKEs7A==
@@ -1478,7 +1478,7 @@
     "@vuepress/utils" "2.0.0-beta.28"
     vue "^3.2.24"
 
-"@vuepress/plugin-git@2.0.0-beta.29", "@vuepress/plugin-git@2.0.0-beta.31":
+"@vuepress/plugin-git@2.0.0-beta.29":
   version "2.0.0-beta.29"
   resolved "https://registry.npmmirror.com/@vuepress/plugin-git/download/@vuepress/plugin-git-2.0.0-beta.29.tgz#f2f12ed124e84bcbaf09ca17c2c44763628e8620"
   integrity sha512-MiKoydGBn/rCtig7H4mQSnu9Zm41tWmHl4O9R81WJmSDdG3hGl6dfwxYQrTGIcL29/RT7fExjtd3gA7h18Ucig==
@@ -1486,7 +1486,7 @@
     "@vuepress/core" "2.0.0-beta.29"
     execa "^5.1.1"
 
-"@vuepress/plugin-google-analytics@2.0.0-beta.31":
+"@vuepress/plugin-google-analytics@2.0.0-beta.29":
   version "2.0.0-beta.29"
   resolved "https://registry.npmmirror.com/@vuepress/plugin-google-analytics/download/@vuepress/plugin-google-analytics-2.0.0-beta.29.tgz#1c3c9ca9c837a37e56e590f0c1a7e14c897b0b9a"
   integrity sha512-gToVu+HDuZiMzd4X8Ck4WOmvuqxYWcddzU1lz+BfOHSVESOGToKQHEIQiMrqX5tphMuyGuVgMas7cMdeWTkNAg==
@@ -1495,7 +1495,7 @@
     "@vuepress/core" "2.0.0-beta.29"
     "@vuepress/utils" "2.0.0-beta.28"
 
-"@vuepress/plugin-medium-zoom@2.0.0-beta.29", "@vuepress/plugin-medium-zoom@2.0.0-beta.31":
+"@vuepress/plugin-medium-zoom@2.0.0-beta.29":
   version "2.0.0-beta.29"
   resolved "https://registry.npmmirror.com/@vuepress/plugin-medium-zoom/download/@vuepress/plugin-medium-zoom-2.0.0-beta.29.tgz#453097a00db5211fd993b4258f367861781159a5"
   integrity sha512-Uwx7pHyUnys52zRPNfv6Be8RtnoX6/w9qoBaw0aTg86DG47CFsV31Yt7+MKrqHqtYxwVBGMcDsW8+uhrANUUEQ==
@@ -1506,7 +1506,7 @@
     medium-zoom "^1.0.6"
     vue "^3.2.24"
 
-"@vuepress/plugin-nprogress@2.0.0-beta.29", "@vuepress/plugin-nprogress@2.0.0-beta.31":
+"@vuepress/plugin-nprogress@2.0.0-beta.29":
   version "2.0.0-beta.29"
   resolved "https://registry.npmmirror.com/@vuepress/plugin-nprogress/download/@vuepress/plugin-nprogress-2.0.0-beta.29.tgz#549db87198257a69635cd0439d044e51fc2a7c97"
   integrity sha512-5eXrFSI+P8Io3lqp4KA4bhjNqIJAY1g7AulNdIyBr8ecVlv1bMAizyfSLCG8J7n9EJj3gVd2jJkI+/pQ5ttrTA==
@@ -1535,7 +1535,7 @@
     "@vuepress/core" "2.0.0-beta.29"
     prismjs "^1.25.0"
 
-"@vuepress/plugin-pwa-popup@2.0.0-beta.31":
+"@vuepress/plugin-pwa-popup@2.0.0-beta.29":
   version "2.0.0-beta.29"
   resolved "https://registry.npmmirror.com/@vuepress/plugin-pwa-popup/download/@vuepress/plugin-pwa-popup-2.0.0-beta.29.tgz#70361358ce9569d245f065417dcb7adccc8f589f"
   integrity sha512-orrK9byHxjWKIa6dpIJGkdCNj6YznfpCbxG5iKgTvpiptIDKwZIdZj4DD6H5PEFJwyKAKC1QADJblJeZZnNT6A==
@@ -1547,7 +1547,7 @@
     "@vuepress/utils" "2.0.0-beta.28"
     vue "^3.2.24"
 
-"@vuepress/plugin-pwa@2.0.0-beta.29", "@vuepress/plugin-pwa@2.0.0-beta.31":
+"@vuepress/plugin-pwa@2.0.0-beta.29":
   version "2.0.0-beta.29"
   resolved "https://registry.npmmirror.com/@vuepress/plugin-pwa/download/@vuepress/plugin-pwa-2.0.0-beta.29.tgz#e3538d00782890cec53f19b063aea17cdc3116e2"
   integrity sha512-7ZgBZoSvTyzlULYiicFB3OjruXRr5Y/aYL+uf+9Jl3eFTsCU+wikcs/gD9HigipZg5Ei6XnGXoQOP4B2TtJHqw==
@@ -1560,7 +1560,7 @@
     vue "^3.2.24"
     workbox-build "^6.4.2"
 
-"@vuepress/plugin-register-components@2.0.0-beta.31":
+"@vuepress/plugin-register-components@2.0.0-beta.29":
   version "2.0.0-beta.29"
   resolved "https://registry.npmmirror.com/@vuepress/plugin-register-components/download/@vuepress/plugin-register-components-2.0.0-beta.29.tgz#1ec6ecb3a7d5e90ba3e2dbacc057d804445497cb"
   integrity sha512-84YNI34ncryhH4JPmrR9HIF9FRB9hKAPNzjZNNhAt2m2/KJwN72rTH5lzu+3Ddji3KRi2djvyF3lFi1bLzrP0A==
@@ -1580,7 +1580,7 @@
     "@vuepress/utils" "2.0.0-beta.28"
     vue "^3.2.24"
 
-"@vuepress/plugin-toc@2.0.0-beta.31":
+"@vuepress/plugin-toc@2.0.0-beta.29":
   version "2.0.0-beta.29"
   resolved "https://registry.npmmirror.com/@vuepress/plugin-toc/download/@vuepress/plugin-toc-2.0.0-beta.29.tgz#28dbaee06d1f9e2d8de24bec3731be819c9c5f3e"
   integrity sha512-aM7XlcCXcUEoNcTTWCTk3j6URxk6V3rUmEFzWhAYTsHhhLt1/uk3GwV5gFHaCnx+xDCayxqyNzBU0TybEfErrA==
