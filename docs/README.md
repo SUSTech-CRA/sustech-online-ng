@@ -17,8 +17,6 @@
 
 <style type="text/css">
 .tg{border: 1px solid transparent;font-weight:normal;}
-.tg .tg-baqh{border:inherit;font-weight:inherit;text-align:center;vertical-align:top}
-.tg .tg-0lac{border:inherit;font-weight:inherit;text-align:left;vertical-align:top}
 .tg .tg-0lax{border:inherit;font-weight:inherit;text-align:left;vertical-align:top;}
 </style>
 
@@ -47,10 +45,10 @@
     </ul>
     </th>
     <th class="tg-0lax">
-    <h3><a href="./transport/">校园巴士<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></h3>
+    <h3><a href="./transport/">交通 / 地图<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></h3>
     <ul>
-    <li><a href="./transport/bustimer.html">巴士时刻表与车辆位置查看</a>
-    </li>
+    <li><a href="./transport/bustimer.html">巴士时刻表与车辆位置查看</a></li>
+    <li><a href="https://sustech.online/facility/">校园街景</a></li>
     </ul>
     </th>
   </tr>
@@ -92,10 +90,6 @@ div.emergency p a {
 <iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/pdfjs/web/viewer.html?file=https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v3-1.pdf" width="100%" height="600"></iframe>
 
 [点击这里](https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v3-1.pdf)下载矢量PDF版本，目前版本：**3.1**。
-
-## 校园街景<Badge text="新！" type="tip"/>
-
-- [由此查看](https://sustech.online/facility/)
 
 ## 版权信息
 
