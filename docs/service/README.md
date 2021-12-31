@@ -41,8 +41,8 @@
 9.  🌊[反馈社区](https://c.cra.moe)：反馈与交流相关服务。可使用CAS登陆。
 10. DNS123服务：`10.20.110.123`，可通过此服务访问[Google Scholar](https://scholar.google.com.hk/)等学术服务。
 
-<Adsense_unit>
-</Adsense_unit>
+
+
 
 ## 教学相关
 

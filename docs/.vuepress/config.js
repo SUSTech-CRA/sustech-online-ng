@@ -109,7 +109,7 @@ module.exports = {
       {
         components: {
           Realtimemap: path.resolve(__dirname, './components/Realtime-map.vue'),
-          Adsense_unit: path.resolve(__dirname, './components/adsense-inline-article.vue'),
+          // Adsense_unit: path.resolve(__dirname, './components/adsense-inline-article.vue'),
           // componentsDir: path.resolve(__dirname, './components')
 
         },

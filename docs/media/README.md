@@ -59,8 +59,8 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 | 南科大后勤服务 | campusop | <img src="https://open.weixin.qq.com/qr/code?username=campusop#.jpg" class="wx-qr medium-zoom-image"> |
 | 南科大总务君 | campusoperation | <img src="https://open.weixin.qq.com/qr/code?username=campusoperation#.jpg" class="wx-qr medium-zoom-image"> |
 
-<Adsense_unit>
-</Adsense_unit>
+
+
 
 ### 学生组织与社团
 
