@@ -102,8 +102,8 @@
 
 - [联系我们/南方科技大学](https://www.sustech.edu.cn/zh/contact_us.html)
 
-<Adsense_unit>
-</Adsense_unit>
+
+
 
 ## 邮政与快递地址
 

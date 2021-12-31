@@ -50,8 +50,8 @@
 - ![](../assets/badge/szmc/5.svg) 5号线塘朗站，B出口
 - ![](../assets/badge/szmc/5.svg) 5号线长岭陂，A出口
 
-<Adsense_unit>
-</Adsense_unit>
+
+
 
 ## 市内交通
 

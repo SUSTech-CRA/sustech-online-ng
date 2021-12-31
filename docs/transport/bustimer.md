@@ -84,5 +84,4 @@
   </object-selector>
 </div>
 
-<Adsense_unit>
-</Adsense_unit>
+

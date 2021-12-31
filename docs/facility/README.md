@@ -10,8 +10,8 @@
 
 <iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node38,210,0,120,10" name="iframe_window" width="100%" height="600" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
 
-<Adsense_unit>
-</Adsense_unit>
+
+
 
 ## 校园地图与主要建筑
 

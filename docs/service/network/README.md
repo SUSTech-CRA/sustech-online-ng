@@ -22,8 +22,8 @@ sidebar: auto
 * 查看上网设备
 * 查看上网记录
 
-<Adsense_unit>
-</Adsense_unit>
+
+
 
 #### 有线网络
 
@@ -135,8 +135,8 @@ done
 
 :::
 
-<Adsense_unit>
-</Adsense_unit>
+
+
 
 ## 信息中心
 
