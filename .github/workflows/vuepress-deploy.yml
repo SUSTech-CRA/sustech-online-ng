@@ -6,6 +6,7 @@ jobs:
   sync-to-sustech-gitlab:
     runs-on: ubuntu-latest
     name: sync site to sustech git
+    if: github.event_name != 'pull_request' && github.repository_owner == 'SUSTech-CRA'
     steps:
     - name: Push to sustech-git
       run: |
