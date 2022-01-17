@@ -109,6 +109,7 @@ module.exports = {
       {
         components: {
           Realtimemap: path.resolve(__dirname, './components/Realtime-map.vue'),
+          WeatherSpan: path.resolve(__dirname, './components/weather-span.vue'),
           // Adsense_unit: path.resolve(__dirname, './components/adsense-inline-article.vue'),
           // componentsDir: path.resolve(__dirname, './components')
 
