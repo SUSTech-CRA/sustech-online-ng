@@ -29,7 +29,7 @@ Online manual for SUSTecher.
 
 ### 版本说明
 * 正式线上版本（master 分支构建）：https://sustech.online/
-* 预发测试版本（perf 分支构建）：https://perf.sustech.online/
+* 预发测试版本：使用 netlify 的 PR preview 功能
 
 ## LICENSE
 
