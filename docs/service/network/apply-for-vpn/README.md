@@ -16,5 +16,6 @@
 4. 将表格发送至 [its@sustech.edu.cn](mailto:its@sustech.edu.cn) 申请。
 
 
-
 *提示：此VPN的用途仅限回校访问数据库，无法作为其他用途。*
+
+查看如何请到[使用 SSL VPN 客户端说明](/service/network/use-vpn/)。
