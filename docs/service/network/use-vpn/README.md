@@ -1,6 +1,6 @@
 # 使用 SSL VPN 说明
 
-查看如何请到[申请回校VPN](/service/network/apply-for-vpn/)。
+查看如何[申请回校 VPN](/service/network/apply-for-vpn/)。
 
 1. 下载客户端 <https://vpn.sustech.edu.cn/com/installClient.html>
    * Windows 电脑需用 IE 浏览器打开，并信任证书。
