@@ -88,13 +88,13 @@ jobs:
         publish_dir: ./docs/.vuepress/dist/
         force_orphan: true
 
-    - name: copy file to server PVG
+    - name: copy file to server CAN-ZQ
       uses: burnett01/rsync-deployments@5.0
       with:
         switches: -avzr --delete
         path: "./docs/.vuepress/dist/"
         remote_path: ${{ secrets.HTML_PATH }}
-        remote_host: ${{ secrets.HOST }}
+        remote_host: ${{ secrets.HOST_CAN_ZQ }}
         remote_user: ${{ secrets.USERNAME }}
         remote_key: ${{ secrets.SSH_KEY }}
 
@@ -104,7 +104,7 @@ jobs:
         switches: -avzr --delete
         path: "./docs/.vuepress/dist/"
         remote_path: ${{ secrets.HTML_PATH }}
-        remote_host: ${{ secrets.HOST_SZXCC }}
+        remote_host: ${{ secrets.HOST_SZX_CC }}
         remote_user: ${{ secrets.USERNAME }}
         remote_key: ${{ secrets.SSH_KEY }}
 
