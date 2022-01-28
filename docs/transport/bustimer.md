@@ -17,7 +17,7 @@
   export default {
     mounted() {
       axios
-        .get("/2021.json")
+        .get("/2022.json")
         .then(response => (bus_redirect(response.data)));
       function bus_redirect(holidata) {
         // JSON is from https://github.com/NateScarlet/holiday-cn
