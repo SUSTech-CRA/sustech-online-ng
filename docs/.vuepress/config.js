@@ -120,10 +120,10 @@ module.exports = {
   themeConfig: {
     navbar: [
       { text: '主页', link: '/' },
+      { text: '快讯网', link: 'https://daily.sustech.online/' },
       { text: '小程序', link: '/miniapp/' },
       { text: '关于', link: '/about/' },
       { text: '站点帮助', link: '/site-help/' },
-      { text: '更新日志', link: '/news/' },
     ],
     repo: 'sustech-cra/sustech-online-ng',
     docsRepo: 'sustech-cra/sustech-online-ng',
