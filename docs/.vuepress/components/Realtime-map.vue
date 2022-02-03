@@ -592,7 +592,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-// <style lang="css" src="maplibre-gl/dist/maplibre-gl.css" scoped></style>
+<style lang="css" src="maplibre-gl/dist/maplibre-gl.css" scoped></style>
 <style lang="css" scoped>
 /* @import 'https://code.bdstatic.com/npm/maplibre-gl@1.15.2/dist/maplibre-gl.css'; */
 /* @import 'maplibre-gl/dist/maplibre-gl.css'; */
