@@ -34,6 +34,7 @@ function override_onclick(event) {
         whitelist.add("mirrors.sustech.edu.cn");
         whitelist.add("bus.sustcra.com");
         whitelist.add("sustech.online");
+        whitelist.add("daily.sustech.online");
         whitelist.add("");
 
         let supportFiles = new Set();
@@ -86,19 +87,19 @@ function isInWechatMP() {
     return navigator.userAgent.match(/miniprogram/i) || window.__wxjs_environment === 'miniprogram';
 };
 
-function load_adsense() {
-    console.log("判断环境，加载 adsense")
+// function load_adsense() {
+//     console.log("判断环境，加载 adsense")
 
-    if (isInWechatMP() === false) {
-        console.log("非小程序环境，加载");
-        var oScript = document.createElement("script");
-        oScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
-        oScript.setAttribute("async", "");
-        oScript.setAttribute("data-ad-client", "ca-pub-9039393129169217");
-        document.head.appendChild(oScript);
-        // <script data-ad-client="ca-pub-9039393129169217" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    } else {
-        console.log("小程序环境，跳过");
-    }
-}
-setTimeout("load_adsense()", 500);
+//     if (isInWechatMP() === false) {
+//         console.log("非小程序环境，加载");
+//         var oScript = document.createElement("script");
+//         oScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+//         oScript.setAttribute("async", "");
+//         oScript.setAttribute("data-ad-client", "ca-pub-9039393129169217");
+//         document.head.appendChild(oScript);
+//         // <script data-ad-client="ca-pub-9039393129169217" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+//     } else {
+//         console.log("小程序环境，跳过");
+//     }
+// }
+// setTimeout("load_adsense()", 500);
