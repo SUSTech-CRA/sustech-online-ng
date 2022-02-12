@@ -51,8 +51,6 @@
     <ul>
     <li><a href="./transport/bustimer.html">巴士时刻表与车辆位置查看</a></li>
     <li><a href="https://sustech.online/facility/">校园街景</a></li>
-    <li><a href="https://sustech.online/service/student-train-ticket/">火车学生票使用指南<Badge text="春节假期" type="danger"/></a></li>
-    <li><a href="https://mp.weixin.qq.com/s/mv_iz01Za4RWPq8qvjnclA">2022年火车票补贴活动（广东学联提供）<Badge text="春节假期" type="danger"/></a></li>
     </ul>
     </th>
   </tr>
