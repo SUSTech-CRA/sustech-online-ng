@@ -10,7 +10,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .card {
-  background-color: rgba(238, 238, 238, 0.411);
+  background-color: #e3e3e3;
   color: black;
   padding:  0.5rem;
   font-size: 13px;
