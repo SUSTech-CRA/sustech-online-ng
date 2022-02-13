@@ -1,5 +1,7 @@
 # 南科手册
 
+![GitHub repo size](https://img.shields.io/github/repo-size/SUSTech-CRA/sustech-online-ng)
+
 Online manual for SUSTecher.
 
 **微信小程序二维码**
@@ -9,6 +11,7 @@ Online manual for SUSTecher.
 ## 帮助我们完善
 
 主项目托管在 [sustech-cra/sustech-online-ng](https://github.com/sustech-cra/sustech-online-ng)
+* 镜像：[Git@SUSTech](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng)
 
 小程序托管在 [sustech-cra/sustech-online-wxapp](https://github.com/sustech-cra/sustech-online-wxapp)
 
