@@ -138,28 +138,7 @@ module.exports = {
       '/',
       '/facility/',
       '/contact/',
-      {
-        text: '📅校历',
-        link: '/calendar/',
-        children: [
-          // SidebarItem
-          {
-            text: '历史校历（存档）',
-            children: [
-              {
-                text: '2021-2022 学年',
-                link: '/calendar/2021-2022.md',
-                children: [],
-              },
-              {
-                text: '2020-2021 学年',
-                link: '/calendar/2020-2021.md',
-                children: [],
-              },
-            ]
-          },
-        ],
-      },
+      '/calendar/',
       '/service/',
       '/life/',
       '/study/',
