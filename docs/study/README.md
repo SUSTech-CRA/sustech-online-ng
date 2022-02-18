@@ -17,6 +17,9 @@
 
 - 教工部提供的查看渠道：[https://course-tao.sustech.edu.cn/kcxxweb/KcxxwebChinesePC](https://course-tao.sustech.edu.cn/kcxxweb/KcxxwebChinesePC) （需CAS登陆）
 
+### 学习工具
+
+- [一些好用工具🔧](/study/paper-tools.md)：查重，文献管理，参考格式化，翻译，语言检查，同义转写。
 
 ## 学生手册
 
