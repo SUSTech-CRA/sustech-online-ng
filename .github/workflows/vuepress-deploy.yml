@@ -4,6 +4,10 @@ on: [push, pull_request]
 jobs:
 
   sync-to-sustech-gitlab:
+    # Ensures that only one mirror task will run at a time.
+    concurrency:
+      group: git-mirror
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     name: sync site to sustech git
     if: github.event_name != 'pull_request' && github.repository_owner == 'SUSTech-CRA'
