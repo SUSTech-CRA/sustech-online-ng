@@ -51,6 +51,7 @@
     <ul>
     <li><a href="./transport/bustimer.html">巴士时刻表与车辆位置查看</a></li>
     <li><a href="https://sustech.online/facility/">校园街景</a></li>
+    <li><a href="http://live.cra.moe/">校内核酸实况直播</a></li>
     <li><a href="https://szwj.borycloud.com/wh5/index.html">核酸点服务状态</a></li>
     <li><a href="https://nces.cra.moe/">牛娃课程评价社区<Badge text="春季选课" type="danger"/></a></li>
     </ul>
