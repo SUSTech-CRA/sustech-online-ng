@@ -42,9 +42,9 @@
 ## 来往南方科技大学的交通
 ### 公交
 
-* 南方科技大学（公交站）：43路、74路、81路、M369路、M459路
-* 南山智园北（公交站）：43路、74路、81路、M369路、M459路
-* 塘朗地铁站（公交站）：B818路、M217路、M343路、M393路、M460路、M554路、高峰专线119路、高峰专线120路、高峰专线150路
+* 南方科技大学（公交站）：43路、74路、81路、122路、M459路、M554路
+* 南山智园北（公交站）：43路、74路、81路、122路、M459路、M554路
+* 塘朗地铁站（公交站）：37路、B818路、M217路、M343路、M393路、M460路、M554路、高峰专线119路、高峰专线120路、高峰专线150路
 
 ### 地铁
 - ![](../assets/badge/szmc/5.svg) 5号线塘朗站，B出口
@@ -55,11 +55,12 @@
 
 ## 市内交通
 
-### 深圳地铁线路图（2020年9月起）
+### 深圳地铁线路图（2021年12月起）
 
-![szmc-system-map-2020](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/transport/szmc-system-map-2020.png)
+![szmc-system-map-2021](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/transport/szmc-system-map-dec-2021.jpg)
 
-- [下载PDF版本 / MTR(SZ)](https://www.mtrsz.com.cn/files/20200817/轨道网络线路图0.pdf)
+- [下载PDF版本 / MTR(SZ)](http://www.mtrsz.com.cn/files/20211228/20211228%E7%BA%BF%E8%B7%AF%E5%9B%BE1.pdf
+)
 
 ### 乘坐市内公共交通
 
