@@ -26,10 +26,10 @@
 
 <script>
 import axios from "axios";
-import BusTimer from "./BusTimer.vue";
-import ObjectSelector from "./ObjectSelector.vue";
-import DataRequest from "./DataRequest.vue";
-import GridList from "./GridList.vue";
+import BusTimer from "./bus/BusTimer.vue";
+import ObjectSelector from "./bus/ObjectSelector.vue";
+import DataRequest from "./bus/DataRequest.vue";
+import GridList from "./bus/GridList.vue";
 
 export default {
   name: "BusTable",
