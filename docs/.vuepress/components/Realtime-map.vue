@@ -578,7 +578,7 @@ export default {
     });
 
 
-    this.fetch_bus()
+    await this.fetch_bus();
 
     //refresh timer
 

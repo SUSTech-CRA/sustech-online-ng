@@ -1,9 +1,9 @@
 <template>
   <button
-    v-for="(value, key, index) in objs"
-    :key="index"
-    @click="select(key)"
-    :class="key==keySelected? 'selected' : 'unselected'"
+      v-for="(value, key, index) in objs"
+      :key="index"
+      @click="select(key)"
+      :class="key==keySelected? 'selected' : 'unselected'"
   >
     {{ key }}
   </button>
@@ -18,9 +18,14 @@ export default {
   },
   props: {
     objs: {},
+    initPos: {
+      type: Number,
+      default: 0
+    }
   },
   mounted() {
-      this.keySelected = Object.keys(this.objs)[0]
+    // console.log("pos", this.initPos);
+    this.select(Object.keys(this.objs)[this.initPos])
   },
   watch: {
     objs(val) {
@@ -50,12 +55,14 @@ button {
   border-radius: 2px;
   border: 1px solid rgb(194, 194, 194);
 }
-.selected{
+
+.selected {
   border-color: rgb(64, 169, 255);
   background-color: rgb(64, 169, 255);
-  color:white;
+  color: white;
 }
-.unselected{
+
+.unselected {
   color: #000;
 }
 </style>
