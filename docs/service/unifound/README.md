@@ -64,7 +64,7 @@ sidebar: auto
 
 ![Home](./unifound-home.png)
 
-![print](./print.png)
+![print](./print/print.png)
 
 ### 通过本地程序
 
@@ -74,23 +74,23 @@ sidebar: auto
 
 2. 在电脑中找到所需打印的文档，然后点击右键选择打印；按照系统要求操作即可，操作完毕后可以在打印文档列表中找到该文档。
 
-![](./print-1.jpeg)
+![](./print/print-1.jpeg)
 
 3. 前往打印点打印文件：点击自助打印，转换页面后在感应区放置校园卡（若打印多张需多次放置）即可到打印机旁等待任务完成，取走文件。
 
-![](./print-2.jpeg)
+![](./print/print-2.jpeg)
 
 初始界面
 
-![](./print-3.jpeg)
+![](./print/print-3.jpeg)
 
 打印初始界面
 
-![](./print-4.jpeg)
+![](./print/print-4.jpeg)
 
 打印确认（多个任务需重复刷卡）
 
-![](./print-5.jpeg)
+![](./print/print-5.jpeg)
 
 打印成功界面
 
@@ -99,25 +99,25 @@ sidebar: auto
 1. 携带校园卡及所需打印文件至打印点；
 2. 点击自助复印，转换页面后在感应区放置校园卡，然后到打印机电子版面进行操作。
 
-![](./copy-1.jpeg)
+![](./copy/copy-1.jpeg)
 
 3. 点击快速复印图标进入如下页面可对复印进行编辑，其中其他栏中包括缩小放大，双面复印，多合一等功能，在这里不做过多介绍，大家可以自行尝试。
 
-![](./copy-2.jpeg)
+![](./copy/copy-2.jpeg)
 
 复印初始界面
 
 4. 点击开始按键即可开始复印（注意：如若需要正反扫描，或是多合一时要在第一张扫描完成且屏幕上方弹出提示窗口后对文件进行手动翻面并再次点击开始图标）。
 
-![](./copy-3.jpeg)
+![](./copy/copy-3.jpeg)
 
 其他栏
 
-![](./copy-4.jpeg)
+![](./copy/copy-4.jpeg)
 
 双面（正反面复印）
 
-![](./copy-5.jpeg)
+![](./copy/copy-5.jpeg)
 
 多合一（将所需复印的多面文件复印至单面）
 
@@ -125,9 +125,20 @@ sidebar: auto
 
 ## 扫描教程
 
-*由 郭欣格 贡献*
+### 理光 Ricoh 机型
+*由 冯晨曦 贡献 2022年4月2日*
 
-### 施乐/佳能机型
+![](./scan-ricoh/pms-p1.png)
+![](./scan-ricoh/pms-p2.png)
+![](./scan-ricoh/pms-p3.png)
+![](./scan-ricoh/pms-p4.png)
+![](./scan-ricoh/pms-p5.png)
+![](./scan-ricoh/pms-p6.png)
+![](./scan-ricoh/pms-p7.png)
+![](./scan-ricoh/pms-p8.png)
+
+### 施乐 Xerox/佳能 Canon机型
+*由 郭欣格 贡献*
 
 1. 刷卡
 
@@ -135,27 +146,27 @@ sidebar: auto
 
 3. 如果出来的是这个让人看起来就很绝望想把机器砸了的界面
 
-    ![](./unifound-1.jpeg)
+    ![](./scan-xerox/unifound-1.jpeg)
 
     先冷静一下，点击右边的 `简单画面` 。
 
-    ![](./unifound-2.jpeg)
+    ![](./scan-xerox/unifound-2.jpeg)
 
     然后就会变得很友好了：
 
-    ![](./unifound-3.jpeg)
+    ![](./scan-xerox/unifound-3.jpeg)
 
 4. 清晰度设置
 
     点击左上角的 `扫描设置`，设置扫描清晰度，一般直接设成最高（600dpi）：
 
-    ![](./unifound-4.png)
+    ![](./scan-xerox/unifound-4.png)
 
 5. 设置文件类型
 
     点击左下角的 `文件类型`
 
-    ![](./unifound-5.jpeg)
+    ![](./scan-xerox/unifound-5.jpeg)
 
     * 单页：扫描结果会变成每份只有一面内容的 pdf 上传
     * 多页：扫描结果会合并成一个多面的 pdf 上传
@@ -164,43 +175,43 @@ sidebar: auto
 
 6. 设置文件上传位置
 
-    ![](./unifound-6.jpeg)
+    ![](./scan-xerox/unifound-6.jpeg)
 
     文件夹 → SCAN
 
     文件会保存在你刷的校园卡的联创里，如图：
 
-    ![](./unifound-7.jpeg)
+    ![](./scan-xerox/unifound-7.jpeg)
 
     亦可选择直接发到自己的邮箱中，不过需要先再点击一开始的 `简单模式`，进入设置界面：
 
-    ![](./unifound-8.jpeg)
+    ![](./scan-xerox/unifound-8.jpeg)
 
     选择 `手动输入`，输入自己的邮箱
 
 7. 点击机器上的开始
 
-    ![](./unifound-9.jpeg)
+    ![](./scan-xerox/unifound-9.jpeg)
 
 8. 结束扫描
 
     需先点击 `#` 键，再刷卡退出
 
-    ![](./unifound-10.png)
+    ![](./scan-xerox/unifound-10.png)
 
-### 富士机型
+### 富士 Fujifilm机型
 
 1.携带校园卡及所需扫描文件至打印点；
 
 2.点击自助扫描，转换页面后在感应区放置校园卡，然后到打印机电子版面进行操作。
 
-![](./scan-2-0.jpeg)
+![](./scan-fuji/scan-2-0.jpeg)
 
 扫描准备页面
 
 3.点击快速扫描图标进入如下页面，点击目的地进行接收地址填写
 
-![](./scan-2-1.jpeg)
+![](./scan-fuji/scan-2-1.jpeg)
 
 初始页面
 
@@ -210,7 +221,7 @@ sidebar: auto
 
 6.页面转跳后进入初始页面，并可看到将要接收扫描邮件的电子邮箱。在此页面可设置扫描参数，并可继续添加电子邮件地址。确认无误后点击开始按键即开始扫描。
 
-![](./scan-2-4.jpeg)
+![](./scan-fuji/scan-2-4.jpeg)
 
 ## 参考资料
 
