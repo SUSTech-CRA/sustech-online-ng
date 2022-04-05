@@ -7,7 +7,7 @@
 - [学号的含义](/service/sid)
 
 ## 课程
-- [南方科技大学课程简介（2020年7月30日更新）](https://assets.sustech.online/documents/syllabus/sustech-course-catalogue-20200730.pdf)
+- [南方科技大学课程简介（2020年7月30日更新）](https://mirrors.sustech.edu.cn/site/sustech-online/documents/syllabus/sustech-course-catalogue-20200730.pdf)
 
 ### 课程详述
 
@@ -23,7 +23,7 @@
 
 ## 学生手册
 
-- [2019级本科](https://assets.sustech.online/documents/manual/南方科技大学学生手册2020-本科.pdf)
+- [2019级本科](https://mirrors.sustech.edu.cn/site/sustech-online/documents/manual/南方科技大学学生手册2020-本科.pdf)
 
 ## 培养方案（本科）
 
