@@ -2,7 +2,7 @@
 
 查看如何[申请回校 VPN](/service/network/apply-for-vpn/)。
 
-1. 下载客户端 <https://vpn.sustech.edu.cn/com/installClient.html>
+1. 下载客户端 <https://vpn.sustech.edu.cn/com/welcome.html> 或者 <https://vpn.sustech.edu.cn/com/installClient.html>
    * Windows 电脑需用 IE 浏览器打开，并信任证书。
    * Mac 电脑需用 Safari 浏览器打开，并信任证书。
    * 如需使用 Chrome 浏览器访问，会提示“您的连接不是私密连接”，点击旁边空白区域，输入“thisisunsafe”。
