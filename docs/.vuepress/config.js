@@ -70,11 +70,24 @@ module.exports = {
         //     },
         //   },
         // ],
+//         [
+//             '@vuepress/plugin-docsearch',
+//             {
+//                 apiKey: '03fed04db0cb1570c99f89739e745ed6',
+//                 indexName: 'sustech',
+//                 locales: {
+//                     '/': {
+//                         placeholder: '搜索手册',
+//                     },
+//                 },
+//             },
+//         ],
         [
             '@vuepress/plugin-docsearch',
             {
-                apiKey: '03fed04db0cb1570c99f89739e745ed6',
-                indexName: 'sustech',
+                appId: '6KECEJUGJH',
+                apiKey: '9a5c8aa7cb2d5d32ebd66790e1a84789',
+                indexName: 'sustech-online-keys',
                 locales: {
                     '/': {
                         placeholder: '搜索手册',
