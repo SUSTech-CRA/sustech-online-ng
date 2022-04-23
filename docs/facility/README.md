@@ -1,14 +1,14 @@
 # 🏫建筑与设施
 
-## 校园街景<Badge text="Beta" type="tip"/>
+## 校园街景<Badge text="2022年4月更新" type="tip"/>
 
 ::: tip
 街景图像拍摄于`2021年6月`，若想了解街景拍摄的流程，请参考[此链接](https://sparktour.me/2021/06/16/campus-streetview/)。
 :::
 
-[点击此处](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node38,210,0,120,10)或通过下方的嵌入页面查看校园街景地图！
+[点击此处](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#gate1,265,10,90,10)或通过下方的嵌入页面查看校园街景地图！
 
-<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node38,210,0,120,10" name="iframe_window" width="100%" height="600" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#gate1,265,10,90,10" name="iframe_window" width="100%" height="600" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
 
 
 
