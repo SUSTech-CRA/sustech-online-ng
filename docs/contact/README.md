@@ -200,9 +200,10 @@
 
 ### 游戏
 
-* [任天堂Switch校内交流群](https://jq.qq.com/?_wv=1027&k=RqyOVIml): 635493940
-* [主机游戏校内交流群](https://jq.qq.com/?_wv=1027&k=pKU1VXyF): 251465954
-* Steam校内交流群: 198498987
+* [任天堂](https://jq.qq.com/?_wv=1027&k=RqyOVIml): 635493940
+* [游戏主机/全平台](https://jq.qq.com/?_wv=1027&k=pKU1VXyF): 251465954
+* Steam: 198498987
+* 宝可梦: 221623648
 
 ### 其他
 
