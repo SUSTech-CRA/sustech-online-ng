@@ -4,6 +4,7 @@ let description = 'Online manual for sustecher'
 let color = '#49BF7C'
 let author = 'sustech.online'
 // const {path} = require('@vuepress/utils')
+const { defaultTheme } = require('vuepress')
 
 module.exports = {
     locales: {
@@ -130,7 +131,7 @@ module.exports = {
         '@vuepress/plugin-git',
         '@vuepress/plugin-toc',
     ],
-    themeConfig: {
+    theme: defaultTheme({
         navbar: [
             {text: '主页', link: '/'},
             {text: '快讯网', link: 'https://daily.sustech.online/'},
@@ -139,15 +140,14 @@ module.exports = {
             {text: '站点帮助', link: '/site-help/'},
         ],
         repo: 'sustech-cra/sustech-online-ng',
+        repoLabel: '在Github上查看',
         docsRepo: 'sustech-cra/sustech-online-ng',
         docsDir: 'docs',
-        repoLabel: '在Github上查看',
         editLinkText: '一起完善这本手册！',
         lastUpdatedText: '上次更新',
         contributorsText: '贡献者',
         editLinks: true,
         docsBranch: 'master',
-        smoothScroll: true,
         sidebarDepth: 2,
         sidebar: [
             '/',
@@ -188,5 +188,5 @@ module.exports = {
             },
             '/surroundings/',
         ]
-    }
+      }),
 }
