@@ -13,6 +13,7 @@ const { nprogressPlugin } = require('@vuepress/plugin-nprogress')
 const { backToTopPlugin } = require('@vuepress/plugin-back-to-top')
 const { gitPlugin } = require('@vuepress/plugin-git')
 const { tocPlugin } = require('@vuepress/plugin-toc')
+const { sitemapPlugin } = require("vuepress-plugin-sitemap2");
 
 
 module.exports = {
@@ -155,6 +156,9 @@ module.exports = {
                     buttonText: '刷新',
                 },
             },
+        }),
+        sitemapPlugin({
+            hostname: "https://sustech.online/",
         }),
         mediumZoomPlugin(),
         nprogressPlugin(),
