@@ -155,6 +155,11 @@
 * 在图书馆[官网荐购页面](https://lib.sustech.edu.cn/dzjg/list.htm)填写荐购信息。
 * 发送荐购信息至邮箱[lib_acq@sustech.edu.cn](mailto:lib_acq@sustech.edu.cn)荐购。
 
+### 教工/学生邮箱的报刊减免
+图书馆数据库包含部分外文报刊，但仅限通过数据库访问；Web端，移动端无法访问。部分报刊官网提供教职工订阅减免：
+1. Financial Times, 邮箱注册并通过FT人工审核后免费使用(含APP)
+2. Economist, 提供仅面向学生的费用减免(含APP)
+3. Le Monde, 提供教工/学生减免(含APP)
 
 ## 什么值得买
 
