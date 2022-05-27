@@ -61,7 +61,7 @@
 </table>
 
 
-<div class="emergency"><p><a href="./emergency">遇到紧急情况？点击此处进入「应急处理」页面<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></p></div>
+<div class="emergency"><p><a href="./emergency">紧急情况？AED，药箱，就医，失窃，前往「应急处理」<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></p></div>
 
 <style type="text/css">
 div.emergency {
