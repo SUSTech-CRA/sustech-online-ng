@@ -1,12 +1,12 @@
 <template>
 
   <div class="map-container" ref="myMap"></div>
-<!--  <div id="map-style-menu">-->
-<!--    <input id="osm-street" type="radio" name="rtoggle" value="light">-->
-<!--    <label for="osm-street">light</label>-->
-<!--    <input id="osm-blue" type="radio" name="rtoggle" value="dark">-->
-<!--    <label for="osm-blue">dark</label>-->
-<!--  </div>-->
+  <!--  <div id="map-style-menu">-->
+  <!--    <input id="osm-street" type="radio" name="rtoggle" value="light">-->
+  <!--    <label for="osm-street">light</label>-->
+  <!--    <input id="osm-blue" type="radio" name="rtoggle" value="dark">-->
+  <!--    <label for="osm-blue">dark</label>-->
+  <!--  </div>-->
 </template>
 
 <script>
@@ -21,7 +21,27 @@ export default {
     map_style_url: "https://mirrors.sustech.edu.cn/osm-tile/styles/osm-street/style.json",
     bus_location_data_api: [],
     bus_location_data_display: [],
-    bus_plate_hash: {"866005041185986":{"plate":866005041185986},"866005041186018":{"plate":"粤BDF267"},"866005041186034":{"plate":"粤BDF458"},"866005041187107":{"plate":866005041187107},"866005041187859":{"plate":"粤BDF147"},"866005041187867":{"plate":"粤BDF345"},"866005041189913":{"plate":"粤BDF411"},"866005041189921":{"plate":"粤BDF365"},"866005041189939":{"plate":"粤BDF471"},"866005041189947":{"plate":"粤BDF371"},"866005041189954":{"plate":"粤BDF421"},"866005041189962":{"plate":"粤BDF330"},"866005041189970":{"plate":"粤BDF470"},"866005041189988":{"plate":"粤BDF335"},"866005041190093":{"plate":"粤BDF040"},"866005041200116":{"plate":866005041200116},"866005041200173":{"plate":"粤BDE447"},"866005041200199":{"plate":"粤BDF430"}},
+    bus_plate_hash: {
+      "298": {"plate": "粤BDF298"},
+      "363": {"plate": "粤BDF363"},
+      "8040": {"plate": "粤BDF040"},
+      "8147": {"plate": "粤BDF147"},
+      "8267": {"plate": "粤BDF267"},
+      "8330": {"plate": "粤BDF330"},
+      "8335": {"plate": "粤BDF335"},
+      "8338": {"plate": "粤BDF338"},
+      "8345": {"plate": "粤BDF345"},
+      "8365": {"plate": "粤BDF365"},
+      "8371": {"plate": "粤BDF371"},
+      "8411": {"plate": "粤BDF411"},
+      "8421": {"plate": "粤BDF421"},
+      "8430": {"plate": "粤BDF430"},
+      "8447": {"plate": "粤BDF447"},
+      "8458": {"plate": "粤BDF458"},
+      "8470": {"plate": "粤BDF470"},
+      "8471": {"plate": "粤BDF471"},
+      "18447": {"plate": "粤BDF447"}
+    },
     geojson_line_1: [
       [
         113.9902000608227,
@@ -422,7 +442,7 @@ export default {
   //update data
   methods: {
     async fetch_bus() {
-      const realtime_location_api_data = await axios.get(`https://bus.sustcra.com/api/v1/bus/monitor_osm/`)
+      const realtime_location_api_data = await axios.get(`https://bus.sustcra.com/api/v2/monitor_osm/`)
       this.bus_location_data_api = realtime_location_api_data.data;
       const d = new Date();
       console.log("bus location data fetched at " + d.getTime())
@@ -434,7 +454,7 @@ export default {
       this.bus_marker_arr.forEach((marker) => marker.remove())
       let i;
       for (i = 0; i < this.bus_location_data_api.length; i++) {
-        if (parseInt(this.bus_location_data_api[i].acc) === 1) {
+        if (true) {
 
           // create a DOM element for the marker
           var el = document.createElement('div');
@@ -453,7 +473,7 @@ export default {
                   new maplibre.Popup({offset: 25}) // add popups
                       .setHTML(
                           '<p class="car-plate">' +
-                          'Plate: <b>' + this.bus_plate_hash[this.bus_location_data_api[i].imei].plate +
+                          'Plate: <b>' + this.bus_plate_hash[this.bus_location_data_api[i].id].plate +
                           '</b></p><p>' +
                           'Speed: <b>' + this.bus_location_data_api[i].speed + "km/h" +
                           '</b></p>'
@@ -491,7 +511,7 @@ export default {
     //determine day or night
     const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const userPrefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-    if(await userPrefersDark){
+    if (await userPrefersDark) {
       console.log("dark mode enabled.")
       this.map_style_url = "https://mirrors.sustech.edu.cn/osm-tile/styles/osm-blue/style.json";
     }
@@ -511,9 +531,9 @@ export default {
           positionOptions: {
             enableHighAccuracy: true
           },
-        // When active the map will receive updates to the device's location as it changes.
+          // When active the map will receive updates to the device's location as it changes.
           trackUserLocation: true,
-        // Draw an arrow next to the location dot to indicate which direction the device is heading.
+          // Draw an arrow next to the location dot to indicate which direction the device is heading.
           showUserHeading: true
         })
     );
