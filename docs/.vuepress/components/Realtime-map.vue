@@ -462,8 +462,11 @@ export default {
       const realtime_location_api_data = await axios.get(`https://bus.sustcra.com/api/v2/monitor_osm/`)
       this.bus_location_data_api = realtime_location_api_data.data;
       const d = new Date();
-      console.log("bus location data fetched at " + d.getTime())
-      // console.log(this.bus_location_data_api)
+      console.log("bus location data fetched at " + parseInt(d.getTime()/1000,));
+      //console log the diff of report time and display time
+      if (typeof this.bus_location_data_api[0].time_rt != "undefined") {
+        console.log("The clock drift is " + parseInt(d.getTime() / 1000 - this.bus_location_data_api[0].time_rt) + " seconds");
+      }
       this.update_location()
     },
     update_location: function () {
@@ -491,10 +494,48 @@ export default {
           bus_marker_l2.style.height = 35 + 'px';
           bus_marker_l2.style.backgroundSize = 'cover';
 
+          var bus_marker = document.createElement('div');
+          bus_marker.className = 'marker';
+          bus_marker.style.backgroundImage = 'url(https://bus.sustcra.com/bus-top-view.png)';
+          bus_marker.style.width = 35 + 'px';
+          bus_marker.style.height = 35 + 'px';
+          bus_marker.style.backgroundSize = 'cover';
+
 
           // add marker to map
-          if (this.bus_location_data_api[i].route_flag === 0) {
-          var marker = new maplibre.Marker(bus_marker_l1)
+          // if (this.bus_location_data_api[i].route_flag === 0) {
+          // var marker = new maplibre.Marker(bus_marker_l1)
+          //     .setLngLat([this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat])
+          //     .setRotation(parseInt(this.bus_location_data_api[i].course))
+          //     .setPopup(
+          //         new maplibre.Popup({offset: 25}) // add popups
+          //             .setHTML(
+          //                 '<p class="car-plate">' +
+          //                 'Plate: <b>' + this.bus_plate_hash[this.bus_location_data_api[i].id].plate +
+          //                 '</b></p><p>' +
+          //                 'Speed: <b>' + this.bus_location_data_api[i].speed + "km/h" +
+          //                 '</b></p>'
+          //             )
+          //     )
+          //     .addTo(this.map);
+          // } else {
+          //   var marker = new maplibre.Marker(bus_marker_l2)
+          //       .setLngLat([this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat])
+          //       .setRotation(parseInt(this.bus_location_data_api[i].course))
+          //       .setPopup(
+          //           new maplibre.Popup({offset: 25}) // add popups
+          //               .setHTML(
+          //                   '<p class="car-plate">' +
+          //                   'Plate: <b>' + this.bus_plate_hash[this.bus_location_data_api[i].id].plate +
+          //                   '</b></p><p>' +
+          //                   'Speed: <b>' + this.bus_location_data_api[i].speed + "km/h" +
+          //                   '</b></p>'
+          //               )
+          //       )
+          //       .addTo(this.map);
+          // }
+
+          var marker = new maplibre.Marker(bus_marker)
               .setLngLat([this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat])
               .setRotation(parseInt(this.bus_location_data_api[i].course))
               .setPopup(
@@ -508,22 +549,6 @@ export default {
                       )
               )
               .addTo(this.map);
-          } else {
-            var marker = new maplibre.Marker(bus_marker_l2)
-                .setLngLat([this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat])
-                .setRotation(parseInt(this.bus_location_data_api[i].course))
-                .setPopup(
-                    new maplibre.Popup({offset: 25}) // add popups
-                        .setHTML(
-                            '<p class="car-plate">' +
-                            'Plate: <b>' + this.bus_plate_hash[this.bus_location_data_api[i].id].plate +
-                            '</b></p><p>' +
-                            'Speed: <b>' + this.bus_location_data_api[i].speed + "km/h" +
-                            '</b></p>'
-                        )
-                )
-                .addTo(this.map);
-          }
 
           this.bus_marker_arr.push(marker)
 
