@@ -19,6 +19,7 @@ export default {
 
   data: () => ({
     map_style_url: "https://mirrors.sustech.edu.cn/osm-tile/styles/osm-street/style.json",
+    map_text_colour: "#000000",
     bus_location_data_api: [],
     bus_location_data_display: [],
     bus_plate_hash: {
@@ -426,23 +427,85 @@ export default {
         0
       ]
     ],
-    stations_geojson: {"type":"FeatureCollection", "features":[
-        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.99020,22.60336]},"properties":{"name":"工学院 COE"}},
-        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.99153,22.599643]},"properties":{"name":"科研楼 Research Building"}},
-        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.990399,22.597132]},"properties":{"name":"七号门 Gate7"}},
-        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.992403,22.597011]},"properties":{"name":"行政楼 Administration Building"}},
-        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.994898,22.59569]},"properties":{"name":"1号门 Gate1"}},
-        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.99939,22.599893]},"properties":{"name":"3号门 Gate3"}},
-        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.998329,22.601975]},"properties":{"name":"专家公寓 Guest Houses"}},
-        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.997811,22.603325]},"properties":{"name":"教工餐厅 Faculty Cafteria"}},
-        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.995981,22.60293]},"properties":{"name":"社康中心 C.Health.Center"}},
-        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.99289,22.60532]},"properties":{"name":"学生宿舍北 Student Dormitory N."}},
-        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.994041,22.604431]},"properties":{"name":"学生宿舍南 Student Dormitory S."}},
-        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.995238,22.606518]},"properties":{"name":"荔园 Lychee Hill"}},
-        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.996732,22.606278]},"properties":{"name":"创园 Chuang Yuan"}},
-        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.998372,22.606102]},"properties":{"name":"慧园 Hui Yuan"}},
-        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.997473,22.610667]},"properties":{"name":"欣园 Joy Highland"}}
-      ]},
+    stations_geojson: {
+      "type": "FeatureCollection", "features": [
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [113.99020, 22.60336]},
+          "properties": {"name": "工学院 COE"}
+        },
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [113.99153, 22.599643]},
+          "properties": {"name": "科研楼 Research Building"}
+        },
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [113.990399, 22.597132]},
+          "properties": {"name": "七号门 Gate7"}
+        },
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [113.992403, 22.597011]},
+          "properties": {"name": "行政楼 Administration Building"}
+        },
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [113.994898, 22.59569]},
+          "properties": {"name": "1号门 Gate1"}
+        },
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [113.99939, 22.599893]},
+          "properties": {"name": "3号门 Gate3"}
+        },
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [113.998329, 22.601975]},
+          "properties": {"name": "专家公寓 Guest Houses"}
+        },
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [113.997811, 22.603325]},
+          "properties": {"name": "教工餐厅 Faculty Cafteria"}
+        },
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [113.995981, 22.60293]},
+          "properties": {"name": "社康中心 C.Health.Center"}
+        },
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [113.99289, 22.60532]},
+          "properties": {"name": "学生宿舍北 Student Dormitory N."}
+        },
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [113.994041, 22.604431]},
+          "properties": {"name": "学生宿舍南 Student Dormitory S."}
+        },
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [113.995238, 22.606518]},
+          "properties": {"name": "荔园 Lychee Hill"}
+        },
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [113.996732, 22.606278]},
+          "properties": {"name": "创园 Chuang Yuan"}
+        },
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [113.998372, 22.606102]},
+          "properties": {"name": "慧园 Hui Yuan"}
+        },
+        {
+          "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [113.997473, 22.610667]},
+          "properties": {"name": "欣园 Joy Highland"}
+        }
+      ]
+    },
     bus_marker_arr: [],
     map: []
   }),
@@ -462,7 +525,7 @@ export default {
       const realtime_location_api_data = await axios.get(`https://bus.sustcra.com/api/v2/monitor_osm/`)
       this.bus_location_data_api = realtime_location_api_data.data;
       const d = new Date();
-      console.log("bus location data fetched at " + parseInt(d.getTime()/1000,));
+      console.log("bus location data fetched at " + parseInt(d.getTime() / 1000,));
       //console log the diff of report time and display time
       if (typeof this.bus_location_data_api[0].time_rt != "undefined") {
         console.log("The clock drift is " + parseInt(d.getTime() / 1000 - this.bus_location_data_api[0].time_rt) + " seconds");
@@ -582,6 +645,7 @@ export default {
     const userPrefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
     if (await userPrefersDark) {
       console.log("dark mode enabled.")
+      this.map_text_colour = "#FFFFFF"
       this.map_style_url = "https://mirrors.sustech.edu.cn/osm-tile/styles/osm-blue/style.json";
     }
 
@@ -691,6 +755,9 @@ export default {
                 'text-size': 10,
                 'text-offset': [0, 1.25],
                 'text-anchor': 'top'
+              },
+              "paint": {
+                "text-color": this.map_text_colour
               },
               // 'paint': {
               //   'circle-radius': 6,
