@@ -426,6 +426,23 @@ export default {
         0
       ]
     ],
+    stations_geojson: {"type":"FeatureCollection", "features":[
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.99020,22.60336]},"properties":{"name":"工学院 COE"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.99153,22.599643]},"properties":{"name":"科研楼 Research Building"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.990399,22.597132]},"properties":{"name":"七号门 Gate7"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.992403,22.597011]},"properties":{"name":"行政楼 Administration Building"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.994898,22.59569]},"properties":{"name":"1号门 Gate1"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.99939,22.599893]},"properties":{"name":"3号门 Gate3"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.998329,22.601975]},"properties":{"name":"专家公寓 Guest Houses"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.997811,22.603325]},"properties":{"name":"教工餐厅 Faculty Cafteria"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.995981,22.60293]},"properties":{"name":"社康中心 C.Health.Center"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.99289,22.60532]},"properties":{"name":"学生宿舍北 Student Dormitory N."}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.994041,22.604431]},"properties":{"name":"学生宿舍南 Student Dormitory S."}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.995238,22.606518]},"properties":{"name":"荔园 Lychee Hill"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.996732,22.606278]},"properties":{"name":"创园 Chuang Yuan"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.998372,22.606102]},"properties":{"name":"慧园 Hui Yuan"}},
+        {"type":"Feature","geometry":{"type":"Point","coordinates":[113.997473,22.610667]},"properties":{"name":"欣园 Joy Highland"}}
+      ]},
     bus_marker_arr: [],
     map: []
   }),
@@ -457,16 +474,27 @@ export default {
         if (true) {
 
           // create a DOM element for the marker
-          var el = document.createElement('div');
-          el.className = 'marker';
-          el.style.backgroundImage = 'url(https://bus.sustcra.com/bus-top-view.png)';
-          el.style.width = 35 + 'px';
-          el.style.height = 35 + 'px';
-          el.style.backgroundSize = 'cover';
+
+          //line1
+          var bus_marker_l1 = document.createElement('div');
+          bus_marker_l1.className = 'marker';
+          bus_marker_l1.style.backgroundImage = 'url(https://bus.sustcra.com/bus-top-line1.png)';
+          bus_marker_l1.style.width = 35 + 'px';
+          bus_marker_l1.style.height = 35 + 'px';
+          bus_marker_l1.style.backgroundSize = 'cover';
+
+          //line2
+          var bus_marker_l2 = document.createElement('div');
+          bus_marker_l2.className = 'marker';
+          bus_marker_l2.style.backgroundImage = 'url(https://bus.sustcra.com/bus-top-line2.png)';
+          bus_marker_l2.style.width = 35 + 'px';
+          bus_marker_l2.style.height = 35 + 'px';
+          bus_marker_l2.style.backgroundSize = 'cover';
 
 
           // add marker to map
-          var marker = new maplibre.Marker(el)
+          if (this.bus_location_data_api[i].route_flag === 0) {
+          var marker = new maplibre.Marker(bus_marker_l1)
               .setLngLat([this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat])
               .setRotation(parseInt(this.bus_location_data_api[i].course))
               .setPopup(
@@ -480,6 +508,22 @@ export default {
                       )
               )
               .addTo(this.map);
+          } else {
+            var marker = new maplibre.Marker(bus_marker_l2)
+                .setLngLat([this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat])
+                .setRotation(parseInt(this.bus_location_data_api[i].course))
+                .setPopup(
+                    new maplibre.Popup({offset: 25}) // add popups
+                        .setHTML(
+                            '<p class="car-plate">' +
+                            'Plate: <b>' + this.bus_plate_hash[this.bus_location_data_api[i].id].plate +
+                            '</b></p><p>' +
+                            'Speed: <b>' + this.bus_location_data_api[i].speed + "km/h" +
+                            '</b></p>'
+                        )
+                )
+                .addTo(this.map);
+          }
 
           this.bus_marker_arr.push(marker)
 
@@ -593,6 +637,43 @@ export default {
           // 'line-dasharray': [1, 2]
         }
       });
+
+      //add station
+
+      this.map.loadImage(
+          'https://bus.sustcra.com/station_icon.png',
+          (error, image) => {
+            if (error) throw error;
+            this.map.addImage('custom-marker', image);
+
+            this.map.addSource('stations', {
+              'type': 'geojson',
+              'data': this.stations_geojson
+            });
+
+            this.map.addLayer({
+              'id': 'bus-station',
+              'type': 'symbol',
+              'source': 'stations',
+              'layout': {
+                'icon-size': 0.075,
+                'icon-image': 'custom-marker',
+                'text-field': ['get', 'name'],
+                // 'text-font': [
+                //   'Open Sans Semibold',
+                //   'Arial Unicode MS Bold'
+                // ],
+                'text-size': 10,
+                'text-offset': [0, 1.25],
+                'text-anchor': 'top'
+              },
+              // 'paint': {
+              //   'circle-radius': 6,
+              //   'circle-color': '#B42222'
+              // },
+              'filter': ['==', '$type', 'Point']
+            });
+          });
 
 
     });
