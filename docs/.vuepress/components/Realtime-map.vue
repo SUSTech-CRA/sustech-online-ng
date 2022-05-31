@@ -537,7 +537,7 @@ export default {
       this.bus_marker_arr.forEach((marker) => marker.remove())
       let i;
       for (i = 0; i < this.bus_location_data_api.length; i++) {
-        if (true) {
+        if ((this.bus_location_data_api[i].time_rt-this.bus_location_data_api[i].time_mt)<300) {
 
           // create a DOM element for the marker
 
