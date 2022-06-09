@@ -706,7 +706,7 @@ export default {
           'line-cap': 'round'
         },
         'paint': {
-          'line-color': '#29abe2',
+          'line-color': '#f7911d',
           'line-width': 3
           // 'line-dasharray': [1, 2]
         }
@@ -721,7 +721,7 @@ export default {
           'line-cap': 'round'
         },
         'paint': {
-          'line-color': '#f7911d',
+          'line-color': '#29abe2',
           'line-width': 3
           // 'line-dasharray': [1, 2]
         }
