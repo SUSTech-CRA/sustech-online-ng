@@ -19,7 +19,7 @@ jobs:
         cd $tmp_dir
         git clone --bare "${GITHUB_REPO_URL}" this_repo
         cd this_repo
-        git push --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REMOTE_REPO_URL}"
+        git push --verbose --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REMOTE_REPO_URL}"
       env:
         USER: project_252_bot
         PERSONAL_TOKEN: ${{ secrets.SUSTECH_GITLAB_SYNC_TOKEN }}
