@@ -14,11 +14,13 @@
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
+    "docs:build": "node ./scripts/index.js && vuepress build docs",
+    "docs:fastbuild": "vuepress build docs",
     "docs:clean": "rm -rf docs/.vuepress/.temp docs/.vuepress/dist"
   },
   "dependencies": {
     "axios": "^0.26.0",
+    "download": "^8.0.0",
     "maplibre-gl": ">=2.0.0",
     "postcss-loader": "^6.2.1"
   }

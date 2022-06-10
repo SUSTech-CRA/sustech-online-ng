@@ -77,8 +77,15 @@
 
 - [📗教材与图书借还](./borrow-books)
 
-## 其他资料
+## 院系开放信息
+
+### 计算机科学与工程系
+
+- [创新实践项目汇总](./cse/innovative-project.md)
+
+### 人文中心
 - [袁长庚老师所推荐的新生书单 2018年](./book-list-by-prof-yuan/2018)
 
+### 语言中心
 - [【南科大语言中心】如何适应大学生活 Adjusting to University Life (B站)](https://www.bilibili.com/video/BV1334y1d7L9)
   - 涉及学术英语、学术写作、阅读方法、邮件礼仪等。
