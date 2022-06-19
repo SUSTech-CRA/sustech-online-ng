@@ -87,9 +87,14 @@ div.emergency p a {
 }
 </style>
 
-## 牛娃课程评价社区 <Badge text="春季选课合作" type="tip"/>
+## 牛娃课程评价社区 <Badge text="选课合作" type="tip"/>
 
 [牛娃课程评价社区](https://nces.cra.moe/)（NCES，Niuwa Curriculum Evaluation System）是南科大学生的课程评价社区，因此，只有拥有南科大邮箱的同学或老师才可以注册账户。[中科大同款评教系统](https://icourse.club/)，赓续教改初心。
+
+::: warning CRA同学的友情广告
+
+你是否在为湖畔无法使用有线网络，或是校园网游戏丢包而苦恼？现在订阅CRA GW，即可以低至30元每月的价格畅享高达1Gbps的电信宽带，性价比远超湖畔电信并保证家庭宽带级别的低丢包率，任何宿舍区域均可订购，可一对一提供安装及技术支持。详情请咨询陈同学：qq **2353508907** 或邮件 [mai.sakurajima.qwq@gmail.com](mailto:mai.sakurajima.qwq@gmail.com?subject=CRAGW咨询)
+:::
 
 ## 如果你是新生... <Badge text="For Freshman" type="tip"/>
 
@@ -131,8 +136,6 @@ CC-BY-SA协议允许您自由地共享（在任何媒介以任何形式复制、
 ## For International Students
 
 Please use the [Google translation tool in Chrome](https://support.google.com/chrome/answer/173424) to translate the manual.
-
-
 
 
 ## 支持与备案信息
