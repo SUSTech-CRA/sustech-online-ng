@@ -11,7 +11,7 @@
 
 ### 课程详述
 
-包含课程简介，纲要与考核形式。
+包含课程简介，纲要与考核形式。推荐使用NCES评课社区[https;//nces.cra.moe](https://nces.cra.moe/)进行检索，可使用课程名称，课程代码，授课教授等关键词进行查询。
 
 - [下载课程大纲PDF](https://mirrors.sustech.edu.cn/courses/%E6%95%99%E5%AD%A6%E5%A4%A7%E7%BA%B2%E6%B1%87%E6%80%BB/)
 

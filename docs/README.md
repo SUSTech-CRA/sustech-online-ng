@@ -89,7 +89,7 @@ div.emergency p a {
 
 ## 牛娃课程评价社区 <Badge text="选课合作" type="tip"/>
 
-[牛娃课程评价社区](https://nces.cra.moe/)（NCES，Niuwa Curriculum Evaluation System）是南科大学生的课程评价社区，因此，只有拥有南科大邮箱的同学或老师才可以注册账户。[中科大同款评教系统](https://icourse.club/)，赓续教改初心。
+[牛娃课程评价社区](https://nces.cra.moe/)（NCES，Niuwa Curriculum Evaluation System）是南科大学生的课程评价社区，因此，只有拥有南科大邮箱的同学或老师才可以注册账户。[中科大同款评教系统](https://icourse.club/)，赓续教改初心。NCES现已支持通过课程名称，代码及教师快速检索课程并直达课程大纲，更加方便你的选课！
 
 ::: warning CRA同学的友情广告
 
