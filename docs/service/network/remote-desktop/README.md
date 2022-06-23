@@ -59,10 +59,10 @@ Windows Registry Editor Version 5.00
 "fDenyTSConnections"=dword:00000000
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\Wds\rdpwd\Tds\tcp]
-"PortNumber"=dword:0000fff2
+"PortNumber"=dword:0000344d
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp]
-"PortNumber"=dword:0000fff2
+"PortNumber"=dword:0000344d
 
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules]
 "{4043AE3F-5762-46B6-A755-23E34F020290}"="v2.30|Action=Allow|Active=TRUE|Dir=In|Protocol=17|LPort=13389|Name=RDP-13389-UDP|"
