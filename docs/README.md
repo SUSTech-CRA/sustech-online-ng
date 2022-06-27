@@ -39,6 +39,8 @@
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
     <li><a href="https://mail.sustech.edu.cn" target="_blank" rel="noopener noreferrer">邮箱服务
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
+    <li><a href="https://ehall.sustech.edu.cn/new/index.html" target="_blank" rel="noopener noreferrer">服务大厅
+    <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
     <li><a href="https://sakai.sustech.edu.cn" target="_blank" rel="noopener noreferrer">Sakai
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a>, <a href="https://bb.sustech.edu.cn/" target="_blank" rel="noopener noreferrer">Blackboard<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
     <li><a href="https://pms.sustech.edu.cn" target="_blank" rel="noopener noreferrer">联创打印<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a>, <a href="http://172.18.1.141/" target="_blank" rel="noopener noreferrer">（备用）<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
