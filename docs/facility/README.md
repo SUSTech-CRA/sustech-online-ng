@@ -3,7 +3,7 @@
 ## 校园街景<Badge text="2022年4月更新" type="tip"/>
 
 ::: tip
-街景图像拍摄于`2021年6月`，若想了解街景拍摄的流程，请参考[此链接](https://sparktour.me/2021/06/16/campus-streetview/)。
+街景图像拍摄于`2022年4月`，若想了解街景拍摄的流程，请参考[此链接](https://sparktour.me/2021/06/16/campus-streetview/)。
 :::
 
 [点击此处](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#gate1,265,10,90,10)或通过下方的嵌入页面查看校园街景地图！
@@ -29,9 +29,17 @@
 
 上图中，左上角为国际会议中心，左下角为正在建设中的理学院；中下位置为行政楼和琳恩图书馆，中上方从左到右为第四科研楼到第一科研楼；正中间从左到右是第二教学楼，检测中心和第一教学楼；右侧为南科大中心。
 
+### 理学院
+
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node421,280,5,120,0)
+
+![理学院](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/College_of_Science_Building_of_Southern_University_of_Science_and_Technology_202205.jpg)
+
+理学院已于2022年中完工并完成内部装修，现在从一号门进入南科大，看到的第一个建筑就是理学院。
+
 #### 琳恩图书馆
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node149,-122,-17,120)
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node100,220,5,90,0)
 
 ![图书馆与行政楼](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/library-and-administration-building.jpg)
 
@@ -41,7 +49,7 @@
 
 #### 行政楼
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node49,-109,13,110)
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node358,220,5,90,0)
 
 南科大是因为去行政化出名，但学校还是建了一栋独立的行政楼。在行政楼中长期办公的除了校领导和行政人员，主要还有校宣传部，信息中心和校园卡服务中心：如果需要**挂失，补办校园卡**，需要去行政楼一楼的校园卡服务中心办理。
 
@@ -49,7 +57,7 @@
 
 #### 第一教学楼
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node94,-49,14,97)
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node134,295,20,100,0)
 
 ![第一教学楼](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/第一教学楼.jpg)
 
@@ -65,49 +73,43 @@
 
 #### 检测中心
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node65,-68,7,120)
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node126,330,20,90,0)
 
 内部主要是一些实验室，包括安装了光刻设备的超净间等。
 
 #### 第二教学楼
 
-[进入街景](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node62,-54,3,97)
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node117,180,20,90,0)
 
 
 第二教学楼主要教室都是**机房**（2019年换的电脑是i7-8700K+1080Ti)，一般会用于上电子系，计算机系的实验课和一些电脑测评/考试。二教还有**一间多功能教室**，现在一般用于乐器排练和美术课程。
 
 #### 第一科研楼
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node100,89,16,120)
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node168,80,30,120,0)
 
 学校一期建筑之一，包含各种实验室。内部是一个大天井，二楼有一个给机器人或者是智能机械的测试平台。
 
 #### 第二科研楼
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node128,-71,28,120)
-
 主要是实验室和教授办公室。
 
 #### 第三科研楼
-
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node84,-75,23,120)
 
 主要是实验室和教授办公室。冷冻电镜也设置于此。
 
 #### 第四科研楼（台州楼）
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node84,-75,23,120)
-
 主要是实验室和教授办公室。为什么叫台州楼呢？这栋楼里面有一个[“南方科技大学台州研究院”](http://zj.ifeng.com/a/20190118/7173526_0.shtml)，然后校长的籍贯也是台州，也可能有点关系。
 
 #### 南科大中心（学生食堂）
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node97,93,-2,120)
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node1013,80,10,120,0)
 
 
 ##### 学生餐厅
 
-学校的第一个食堂，由南科大运营，一楼是打菜，二楼有小炒和西餐。
+学校的第一个食堂，由南科大运营，旧食堂一楼是打菜，南科大中心食堂一楼有一些特色菜（如潮汕粉面，小炒，石锅饭，日料等。
 
 详细内容请见[餐饮/学生餐厅（一期）](/life/catering/#学生餐厅（一期）)。
 
@@ -117,7 +119,7 @@
 
 #### 国际会议中心
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node18,108,0,120)
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node230,280,10,120,0)
 
 
 
@@ -131,7 +133,7 @@
 
 #### 湖畔宿舍群
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node174,-155,17,109)
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node568,190,20,110,0)
 
 
 
@@ -162,7 +164,7 @@
 
 #### 九华苑
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node709,96,0,120)
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node1005,95,0,120,0)
 
 
 
@@ -170,7 +172,7 @@
 
 #### 风雨操场
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node719,-52,8,120)
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node611,270,5,120,0)
 
 
 
@@ -186,9 +188,7 @@
 
 ### 二期宿舍
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node704,-15,17,120)
-
-
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node1000,250,5,130,0)
 
 ![二期宿舍10栋与餐厅](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/p2-dormitory.jpg)
 
@@ -214,6 +214,8 @@
 
 ### 工学院
 
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node965,265,20,120,10)
+
 ![建设中的工学院](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/Engineering_College_Building_of_Southern_University_of_Science_and_Technology_Under_Construction.jpg)
 
 上图是正在建设中的工学院。
@@ -222,7 +224,7 @@
 
 ### 荔园
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node614,-99,2,94)
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node899,300,20,120,10)
 
 值得一提的是，荔园，创园，慧园与欣园都是原二线关外工业区厂房改建而成的。
 
@@ -242,19 +244,15 @@
 
 ### 创园
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node321,117,22,120)
-
 许多院系的实验室和办公区域设置于创园。其中，创园一栋由于进驻了学校的一些机构和校办公司，因此装修水平明显较其他栋高级。
 
 ### 慧园
-
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node310,188,16,120)
 
 许多院系的实验室和办公区域设置于创园。
 
 ### 欣园
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node296,-177,5,120)
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node856,180,10,90,0)
 
 
 欣园主要是宿舍区。
@@ -269,7 +267,7 @@
 
 #### 教师公寓与专家公寓
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node208,25,90,120)
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node520,220,10,70,0)
 
 
 八栋建筑中，有六栋为教师公寓，两栋为专家公寓。
@@ -284,14 +282,14 @@
 
 #### 棒球场
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node503,-87,-6,120)
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node520,300,10,90,0)
 
 
 位于专家公寓南侧，使用率不是很高。每年会举办一次[“海峡两岸学生棒球联赛”](https://newshub.sustech.edu.cn/zh/html/201912/30570.html)。
 
 #### 办公楼（新行政楼）与人文社科学院
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node224,-9,-1,120)
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node458,0,10,120,0)
 
 
 ### 运动场
@@ -309,7 +307,7 @@
 
 #### 松禾体育场（田径场）
 
-[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node449,-104,-23,120)
+[![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node915,290,10,120,0)
 
 
 ![松禾体育场](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/松禾体育场.jpg)
