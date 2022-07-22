@@ -11,6 +11,7 @@
 
 ## 注册社团列表
 
+- [南方科技大学社团联合会注册社团名单（2020-2021）](./registered-organization-2021.md)
 - [南方科技大学社团联合会注册社团名单（2019-2020）](./registered-organization-2020.md)
 - [南方科技大学社团联合会注册社团名单（2018-2019）](./registered-organization-2019.md)
 

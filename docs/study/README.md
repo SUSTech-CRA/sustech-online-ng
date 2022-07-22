@@ -11,7 +11,7 @@
 
 ### 课程详述
 
-包含课程简介，纲要与考核形式。推荐使用NCES评课社区[https;//nces.cra.moe](https://nces.cra.moe/)进行检索，可使用课程名称，课程代码，授课教授等关键词进行查询。
+包含课程简介，纲要与考核形式。推荐使用NCES评课社区[https://nces.cra.moe](https://nces.cra.moe/)进行检索，可使用课程名称，课程代码，授课老师等关键词进行查询。
 
 - [下载课程大纲PDF](https://mirrors.sustech.edu.cn/courses/%E6%95%99%E5%AD%A6%E5%A4%A7%E7%BA%B2%E6%B1%87%E6%80%BB/)
 
@@ -28,9 +28,11 @@
 ## 培养方案（本科）
 
 - [2021级本科人才培养方案](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/2021级本科人才培养方案/)
+  - [Curriculum for International Students (2021)](https://mirrors.sustech.edu.cn/courses/curriculum_for_international_students/2021/)
 
 - [2020级本科人才培养方案](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/2020级本科人才培养方案/)
-- [Curriculum for International Students (2020)](https://mirrors.sustech.edu.cn/courses/curriculum_for_international_students/2020/)
+  - [Curriculum for International Students (2020)](https://mirrors.sustech.edu.cn/courses/curriculum_for_international_students/2020/)
+
 - [2019级](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/2019级本科人才培养方案/)
 - [2018级(第二学年结束时进入专业)](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/2018级本科生培养方案（适用于第二学年结束时，申请进入专业）/)
 - [2018级(第一学年结束时进入专业)](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/2018级本科生培养方案（适用于第一学年结束时，申请进入专业）/)
