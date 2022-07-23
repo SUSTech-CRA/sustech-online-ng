@@ -23,7 +23,10 @@
 
 ## 学生手册
 
-- [2019级本科](https://mirrors.sustech.edu.cn/site/sustech-online/documents/manual/南方科技大学学生手册2020-本科.pdf)
+- [2022本科](https://mirrors.sustech.edu.cn/site/sustech-online/documents/manual/南方科技大学学生手册2022-本科.pdf)
+- [2021本科](https://mirrors.sustech.edu.cn/site/sustech-online/documents/manual/南方科技大学学生手册2021-本科.pdf)
+- [2020本科](https://mirrors.sustech.edu.cn/site/sustech-online/documents/manual/南方科技大学学生手册2020-本科.pdf)
+- [2019本科](https://mirrors.sustech.edu.cn/site/sustech-online/documents/manual/南方科技大学学生手册2020-本科.pdf)
 
 ## 培养方案（本科）
 
