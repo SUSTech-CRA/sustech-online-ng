@@ -104,7 +104,8 @@ div.emergency p a {
 如果你是准大一的同学，可以先看看冯小漠为大家整理南科大的非正统历史故事[蓢村拾遗：南科大冷知识2021](./if-you-are-a-freshman/preview)。[点击这里](./if-you-are-a-freshman/2021.md)看看我们为 2021年的学生准备的 Quickstart of SUSTech，了解并开启你的大学生活！
 
 - *致诚书院发布的 [2022致诚宣传手册.pdf](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/if-you-are-a-freshman/2022致诚宣传手册.pdf)*：包括书院简介，院系师资，书院品牌，特色空间，社团组织
-- *学生会出品的新生手册可在此处下载：[2021新生手册.pdf](https://mirrors.sustech.edu.cn/site/sustech-online/documents/freshman-handbook/2021.pdf)*
+- *致仁书院发布的 [新生攻略手册.pdf.pdf](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/if-you-are-a-freshman/致仁书院新生攻略手册.pdf)*：包括书院简介，院系师资，书院品牌，特色空间，社团组织
+- *学工部出品的2022本科新生入学指南可在此处下载：[2021新生手册.pdf](https://mirrors.sustech.edu.cn/site/sustech-online/documents/freshman-handbook/2022级本科新生入学指南.pdf)*
 
 ## 飞跃手册：申请与校招经验 <Badge text="秋季特别合作" type="tip"/>
 
