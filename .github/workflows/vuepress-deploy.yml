@@ -19,6 +19,8 @@ jobs:
         cd $tmp_dir
         git clone --bare "${GITHUB_REPO_URL}" this_repo
         cd this_repo
+        git config --global http.version HTTP/1.1
+        git config --global http.postBuffer 157286400
         git push --verbose --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REMOTE_REPO_URL}"
       env:
         USER: project_252_bot
