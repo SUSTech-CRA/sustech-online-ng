@@ -103,6 +103,16 @@ div.emergency p a {
 
 如果你是准大一的同学，可以先看看冯小漠为大家整理南科大的非正统历史故事[蓢村拾遗：南科大冷知识2021](./if-you-are-a-freshman/preview)。[点击这里](./if-you-are-a-freshman/2021.md)看看我们为 2021年的学生准备的 Quickstart of SUSTech，了解并开启你的大学生活！
 
+::: tip 数说大一
+
+- 你也可以阅读基于[南科大同学](https://luckychen.site/about-us/)大创项目的调查研究成果：
+
+  - [https://luckychen.site/](https://luckychen.site/) 帮助入学前、大一上、大一下阶段的你更好地适应大学的学习与生活，进而找到自己的发展方向。
+
+  - [https://luckychen.site/数说大一/](https://luckychen.site/数说大一/) 《数说大一》——基于392份问卷的统计结果告诉你大一专业选择会遇到的困难。
+
+:::
+
 - *致诚书院发布的 [2022致诚宣传手册.pdf](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/if-you-are-a-freshman/2022致诚宣传手册.pdf)*：包括书院简介，院系师资，书院品牌，特色空间，社团组织
 - *致仁书院发布的 [致仁书院新生攻略手册.pdf](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/if-you-are-a-freshman/致仁书院新生攻略手册.pdf)*：包括入学指南，生活服务，快乐学习，班级事务
 - *学工部出品的2022本科新生入学指南可在此处下载：[2022级本科新生入学指南.pdf](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/if-you-are-a-freshman/2022级本科新生入学指南.pdf)*
