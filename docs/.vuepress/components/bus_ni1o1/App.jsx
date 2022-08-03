@@ -139,11 +139,11 @@ export default function App() {
 
     //加载线路与站点信息
     useEffect(() => {
-        axios.get('data/line1.json').then(responseline1 => {
-            axios.get('data/line1_dir2.json').then(responseline1_dir2 => {
-                axios.get('data/line2.json').then(responseline2 => {
-                    axios.get('data/stop1.json').then(responsestop1 => {
-                        axios.get('data/stop2.json').then(responsestop2 => {
+        axios.get('bus_echart/line1.json').then(responseline1 => {
+            axios.get('bus_echart/line1_dir2.json').then(responseline1_dir2 => {
+                axios.get('bus_echart/line2.json').then(responseline2 => {
+                    axios.get('bus_echart/stop1.json').then(responsestop1 => {
+                        axios.get('bus_echart/stop2.json').then(responsestop2 => {
                             const line1data = responseline1.data
                             const line1data2 = responseline1_dir2.data
                             const line2data = responseline2.data
