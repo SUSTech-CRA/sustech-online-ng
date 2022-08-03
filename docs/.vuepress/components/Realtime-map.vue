@@ -37,7 +37,7 @@ export default {
       "8411": { "plate": "粤BDF411" },
       "8421": { "plate": "粤BDF421" },
       "8430": { "plate": "粤BDF430" },
-      "8447": { "plate": "粤BDF447" },
+      "8447": { "plate": "粤BDE447" },
       "8458": { "plate": "粤BDF458" },
       "8470": { "plate": "粤BDF470" },
       "8471": { "plate": "粤BDF471" },
@@ -314,13 +314,8 @@ export default {
         },
         {
           "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [113.99289, 22.60532] },
-          "properties": { "name": "学生宿舍北 Student Dormitory N." }
-        },
-        {
-          "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [113.994041, 22.604431] },
-          "properties": { "name": "学生宿舍南 Student Dormitory S." }
+          "geometry": { "type": "Point", "coordinates": [113.993824, 22.604854] },
+          "properties": { "name": "学生宿舍 Stu. Dormitories" }
         },
         {
           "type": "Feature",
