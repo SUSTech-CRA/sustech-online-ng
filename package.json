@@ -9,6 +9,8 @@
     "@vuepress/plugin-pwa-popup": "2.0.0-beta.49",
     "@vuepress/plugin-register-components": "2.0.0-beta.49",
     "@vuepress/plugin-toc": "2.0.0-beta.49",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "vuepress": "2.0.0-beta.49",
     "vuepress-plugin-sitemap2": "^2.0.0-beta.86"
   },
@@ -19,9 +21,14 @@
     "docs:clean": "rm -rf docs/.vuepress/.temp docs/.vuepress/dist"
   },
   "dependencies": {
+    "@turf/turf": "^6.5.0",
+    "ahooks": "^3.6.2",
     "axios": ">=0.26.0",
     "download": "^8.0.0",
+    "echarts": "^5.3.3",
+    "echarts-for-react": "^3.0.2",
     "maplibre-gl": ">=2.0.0",
-    "postcss-loader": ">=6.2.1"
+    "postcss-loader": ">=6.2.1",
+    "veaury": "^2.2.4"
   }
 }
