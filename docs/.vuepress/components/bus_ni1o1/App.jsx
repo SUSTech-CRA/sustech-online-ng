@@ -1,11 +1,8 @@
-
-import React, { useState, useRef, useEffect } from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import ReactECharts from 'echarts-for-react';
 import axios from 'axios';
-import * as turf from '@turf/turf'
-import { useInterval } from 'ahooks';
-// import GitHubForkRibbon from 'react-github-fork-ribbon';
-import './App.css';
+import {nearestPoint, nearestPointOnLine, length, point, along, rhumbBearing} from '@turf/turf'
+import {useInterval} from 'ahooks';
 import {registerTheme} from "echarts";
 
 export default function App() {
@@ -154,7 +151,7 @@ export default function App() {
                             setStops2(stop2data)
                             const line1dir1 = stop1data.features.map(f => {
                                 return {
-                                    value: [1, turf.nearestPointOnLine(line1data['features'][0], f).properties.location * 1000],
+                                    value: [1, nearestPointOnLine(line1data['features'][0], f).properties.location * 1000],
                                     name: f.properties.name,
                                     symbolSize: 8,
                                     itemStyle: {color: '#ff881b', opacity: 1}
@@ -162,7 +159,7 @@ export default function App() {
                             })
                             const line1dir2 = stop1data.features.map(f => {
                                 return {
-                                    value: [0, turf.length(line1data2['features'][0]) * 1000 - turf.nearestPointOnLine(line1data2['features'][0], f).properties.location * 1000],
+                                    value: [0, length(line1data2['features'][0]) * 1000 - nearestPointOnLine(line1data2['features'][0], f).properties.location * 1000],
                                     name: f.properties.name,
                                     symbolSize: 8,
                                     itemStyle: {color: '#ff881b', opacity: 1}
@@ -170,7 +167,7 @@ export default function App() {
                             })
                             const line2dir1 = stop2data.features.map(f => {
                                 return {
-                                    value: [3, turf.nearestPointOnLine(line2data['features'][0], f).properties.location * 1000],
+                                    value: [3, nearestPointOnLine(line2data['features'][0], f).properties.location * 1000],
                                     name: f.properties.name,
                                     symbolSize: 8,
                                     itemStyle: {color: '#379ff4', opacity: 1}
@@ -178,7 +175,7 @@ export default function App() {
                             })
                             const line2dir2 = stop2data.features.map(f => {
                                 return {
-                                    value: [2, turf.length(line2data['features'][0]) * 1000 - turf.nearestPointOnLine(line2data['features'][0], f).properties.location * 1000],
+                                    value: [2, length(line2data['features'][0]) * 1000 - nearestPointOnLine(line2data['features'][0], f).properties.location * 1000],
                                     name: f.properties.name,
                                     symbolSize: 8,
                                     itemStyle: {color: '#379ff4', opacity: 1}
@@ -190,19 +187,19 @@ export default function App() {
                                 }, {
                                     data: [
                                         {
-                                            coords: [[0, 0], [0, turf.length(line1data2['features'][0]) * 1000]],
+                                            coords: [[0, 0], [0, length(line1data2['features'][0]) * 1000]],
                                             lineStyle: {color: '#ff881b', width: 2, opacity: 1}
                                         },
                                         {
-                                            coords: [[1, 0], [1, turf.length(line1data['features'][0]) * 1000]],
+                                            coords: [[1, 0], [1, length(line1data['features'][0]) * 1000]],
                                             lineStyle: {color: '#ff881b', width: 2, opacity: 1}
                                         },
                                         {
-                                            coords: [[2, 0], [2, turf.length(line2data['features'][0]) * 1000]],
+                                            coords: [[2, 0], [2, length(line2data['features'][0]) * 1000]],
                                             lineStyle: {color: '#379ff4', width: 2, opacity: 1}
                                         },
                                         {
-                                            coords: [[3, 0], [3, turf.length(line2data['features'][0]) * 1000]],
+                                            coords: [[3, 0], [3, length(line2data['features'][0]) * 1000]],
                                             lineStyle: {color: '#379ff4', width: 2, opacity: 1}
                                         }
                                     ]
@@ -228,15 +225,15 @@ export default function App() {
                             thisroute = 1
                         }
                         //判断是在哪个方向上
-                        const mcp = turf.point([f.lng, f.lat])
+                        const mcp = point([f.lng, f.lat])
                         let thisline = lines[thisroute]['features'][0]
                         //线上最近点
-                        let p_nearest = turf.nearestPointOnLine(thisline, mcp)
+                        let p_nearest = nearestPointOnLine(thisline, mcp)
                         let p_nearest_loc = p_nearest.properties.location
                         //线上最近点+1米处的点
-                        const p_next = turf.along(thisline, p_nearest_loc + 0.0001);
+                        const p_next = along(thisline, p_nearest_loc + 0.0001);
                         //计算切线角度
-                        let bearing = turf.rhumbBearing(p_nearest, p_next);
+                        let bearing = rhumbBearing(p_nearest, p_next);
                         if (bearing < 0) {
                             bearing += 360
                         }
@@ -255,13 +252,13 @@ export default function App() {
                             }
                         } else if ((angle < -160) || (angle > 160)) {
                             route_dir = 0
-                            let dist = turf.length(thisline) * 1000 - p_nearest_loc * 1000
+                            let dist = length(thisline) * 1000 - p_nearest_loc * 1000
                             //如果是线路1的另一个方向，则重新计算距离
                             if (thisroute == 0) {
                                 thisline = lines[2]['features'][0]
-                                p_nearest = turf.nearestPointOnLine(thisline, mcp)
+                                p_nearest = nearestPointOnLine(thisline, mcp)
                                 p_nearest_loc = p_nearest.properties.location
-                                dist = turf.length(thisline) * 1000 - p_nearest_loc * 1000
+                                dist = length(thisline) * 1000 - p_nearest_loc * 1000
                             }
                             return {
                                 value: [route_dir + thisroute * 2, dist],
@@ -328,9 +325,9 @@ export default function App() {
                         routedir = 2
                     }
                     let next_dist = f.value[1] + f.speed * 0.5 * 1000 / 7200
-                    if (next_dist > turf.length(lines[routedir]['features'][0]) * 1000
+                    if (next_dist > length(lines[routedir]['features'][0]) * 1000
                     ) {
-                        next_dist = turf.length(lines[routedir]['features'][0]) * 1000
+                        next_dist = length(lines[routedir]['features'][0]) * 1000
                     }
                     return {...f, value: [f.value[0], next_dist]}
                 }
@@ -347,14 +344,14 @@ export default function App() {
                         lng = pos.coords.longitude;
                     //标记出最近的站点
 
-                    const point = turf.point([lng, lat])
-                    const nearest_line1 = turf.nearestPoint(point, stops1);
-                    const line1_pos_dir1 = turf.nearestPointOnLine(lines[0]['features'][0], nearest_line1).properties.location * 1000
-                    const line1_pos_dir2 = turf.length(lines[2]['features'][0]) * 1000 - turf.nearestPointOnLine(lines[2]['features'][0], nearest_line1).properties.location * 1000
-                    const nearest_line2 = turf.nearestPoint(point, stops2);
+                    const p = point([lng, lat])
+                    const nearest_line1 = nearestPoint(p, stops1);
+                    const line1_pos_dir1 = nearestPointOnLine(lines[0]['features'][0], nearest_line1).properties.location * 1000
+                    const line1_pos_dir2 = length(lines[2]['features'][0]) * 1000 - nearestPointOnLine(lines[2]['features'][0], nearest_line1).properties.location * 1000
+                    const nearest_line2 = nearestPoint(p, stops2);
 
-                    const line2_pos_dir1 = turf.nearestPointOnLine(lines[1]['features'][0], nearest_line2).properties.location * 1000
-                    const line2_pos_dir2 = turf.length(lines[1]['features'][0]) * 1000 - turf.nearestPointOnLine(lines[1]['features'][0], nearest_line2).properties.location * 1000
+                    const line2_pos_dir1 = nearestPointOnLine(lines[1]['features'][0], nearest_line2).properties.location * 1000
+                    const line2_pos_dir2 = length(lines[1]['features'][0]) * 1000 - nearestPointOnLine(lines[1]['features'][0], nearest_line2).properties.location * 1000
                     //计算下一趟车大概多久到
                     //0
                     const buspos_0 = historybusdata.filter(f => (f.value[0] == 0) && (f.value[1] <= line1_pos_dir2)).map(f => parseInt((line1_pos_dir2 - f.value[1]) / 250))
@@ -422,19 +419,6 @@ export default function App() {
     }, 500, {immediate: true});
 
     return (
-        // <div className='container'>
-        //
-        //
-        //   {/*        <GitHubForkRibbon href="https://github.com/ni1o1/nikebus"
-        //   target="_blank"
-        //   color='orange'
-        //   position="right-bottom">
-        //   Fork me on GitHub
-        // </GitHubForkRibbon>
-        // <div >
-        // <img src="https://visitor-badge.laobi.icu/badge?page_id=nikebus" alt="visitor badge"/>
-        // </div>  */}
-        // </div>
         <>
             <ReactECharts
                 option={option}
@@ -442,9 +426,8 @@ export default function App() {
                 style={{height: '800px', width: '100%'}}
                 theme={bg_theme}
             />
-            <img src="https://visitor-badge.laobi.icu/badge?page_id=nikebus" alt="visitor badge" style={ {'visibility': 'hidden'}}/>
+            <img src="https://visitor-badge.laobi.icu/badge?page_id=nikebus" alt="visitor badge"
+                 style={{'visibility': 'hidden'}}/>
         </>
     )
 }
-
-
