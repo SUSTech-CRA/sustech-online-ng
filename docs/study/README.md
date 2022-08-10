@@ -30,6 +30,7 @@
 
 ## 培养方案（本科）
 
+- [2022级本科人才培养方案](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/2022级本科人才培养方案/)
 - [2021级本科人才培养方案](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/2021级本科人才培养方案/)
   - [Curriculum for International Students (2021)](https://mirrors.sustech.edu.cn/courses/curriculum_for_international_students/2021/)
 
