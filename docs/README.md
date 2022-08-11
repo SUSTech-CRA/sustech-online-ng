@@ -113,9 +113,9 @@ div.emergency p a {
 
 :::
 
-- *致诚书院发布的 [2022致诚宣传手册.pdf](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/if-you-are-a-freshman/2022致诚宣传手册.pdf)*：包括书院简介，院系师资，书院品牌，特色空间，社团组织
-- *致仁书院发布的 [致仁书院新生攻略手册.pdf](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/if-you-are-a-freshman/致仁书院新生攻略手册.pdf)*：包括入学指南，生活服务，快乐学习，班级事务
-- *学工部出品的2022本科新生入学指南可在此处下载：[2022级本科新生入学指南.pdf](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/if-you-are-a-freshman/2022级本科新生入学指南.pdf)*
+- *致诚书院发布的 [2022致诚新生手册.pdf](https://mirrors.sustech.edu.cn/site/sustech-online/documents/college/zhicheng/2022新生攻略by致诚书院.pdf)及[致诚书院宣传手册](https://mirrors.sustech.edu.cn/site/sustech-online/documents/college/zhicheng/2022致诚宣传手册.pdf)*：包括书院简介，院系师资，书院品牌，特色空间，社团组织
+- *致仁书院发布的 [致仁书院新生攻略手册.pdf](https://mirrors.sustech.edu.cn/site/sustech-online/documents/college/zhiren/致仁书院新生攻略手册2022.pdf)*：包括入学指南，生活服务，快乐学习，班级事务
+- *学工部出品的2022本科新生入学指南可在此处下载：[2022级本科新生入学指南.pdf](https://mirrors.sustech.edu.cn/site/sustech-online/documents/freshman-handbook/2022.pdf)*
 
 ## 飞跃手册：申请与校招经验 <Badge text="秋季特别合作" type="tip"/>
 
