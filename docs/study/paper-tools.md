@@ -21,6 +21,10 @@
 
 一键检查，10000字的论文也不用担心自己语法问题啦。
 
+## 多语言支持语法检查器
+
+* <https://www.websiteplanet.com/zh-hans/webtools/spell-checker>
+
 ## 秘塔写作猫 （中文）语法检查器
 
 <https://xiezuocat.com/>
