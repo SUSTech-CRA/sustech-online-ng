@@ -25,6 +25,7 @@
 
 [**南方科技大学校名题词续考**](http://mp.weixin.qq.com/s?__biz=MzAxOTE5NDAzOQ==&mid=2653489406&idx=1&sn=0c25a5ab2e28e4dcaf32792827caba32&chksm=80176126b760e830d0338c2894bdfddf2fa7cb0eacf965946119e97891973b081d177ba7284a&scene=21#wechat_redirect)
 
+[**南科大校名题词补记：关于韩美林先生题校名**](https://mp.weixin.qq.com/s/ZXfr33Y5W-yBHsNwp-ELbw)
 
 
 ## 【3】消失的村委楼
