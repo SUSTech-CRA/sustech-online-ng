@@ -29,6 +29,9 @@ jobs:
         REMOTE_REPO_URL: "mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng.git"
 
   build:
+    concurrency:
+      group: page-build
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     name: Build site
     steps:
