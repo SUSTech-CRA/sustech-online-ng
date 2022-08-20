@@ -4,6 +4,10 @@
 
 <iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/pdfjs/web/viewer.html?file=https://mirrors.sustech.edu.cn/site/sustech-online/documents/dormitory-floor-plan/lakeside-dorm-floor-plan.pdf" width="100%" height="600"></iframe>
 
+- 二期宿舍：[https://mirrors.sustech.edu.cn/site/sustech-online/documents/dormitory-floor-plan/phase2-dorm-floor-plan.pdf](https://mirrors.sustech.edu.cn/site/sustech-online/documents/dormitory-floor-plan/phase2-dorm-floor-plan.pdf)
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/pdfjs/web/viewer.html?file=https://mirrors.sustech.edu.cn/site/sustech-online/documents/dormitory-floor-plan/phase2-dorm-floor-plan.pdf" width="100%" height="600"></iframe>
+
 - 荔园宿舍：[https://mirrors.sustech.edu.cn/site/sustech-online/documents/dormitory-floor-plan/lychee-hill-dorm-floor-plan.pdf](https://mirrors.sustech.edu.cn/site/sustech-online/documents/dormitory-floor-plan/lychee-hill-dorm-floor-plan.pdf)
 
 <iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/pdfjs/web/viewer.html?file=https://mirrors.sustech.edu.cn/site/sustech-online/documents/dormitory-floor-plan/lychee-hill-dorm-floor-plan.pdf" width="100%" height="600"></iframe>
