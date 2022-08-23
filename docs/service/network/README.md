@@ -58,15 +58,8 @@ curl "https://cas.sustc.edu.cn/cas/login?service=http%3A%2F%2F172.16.16.20%3A803
 
 #### 湖畔宿舍区域的有线网络<Badge text="需特别配置" type="warning"/>
 
-湖畔区域墙上的网口仅能以百兆接入校园网。若需以千兆速度接入校园网，可使用AP上的网口接入校园网。**AP上的网口仅能访问校园网内网，但不能访问校外网络**，需通过校内中继访问外网。连接网络前，需要手动设置网关：
+湖畔区域墙上的网口仅能以百兆接入校园网。若需以千兆速度接入校园网，可使用AP上的网口接入校园网。**AP上的网口仅能访问校园网内网，但不能访问校外网络**。
 
-```
-ip route add CIDR via 172.16.127.254
-```
-
-::: tip
-如有任何疑问，可以通过[mai.sakurajima.qwq@gmail.com](mailto:mai.sakurajima.qwq@gmail.com?subject=湖畔AP访问外部网络咨询)咨询CRA的陈同学。
-:::
 
 ### 其他有关网络的问题
 
@@ -184,5 +177,5 @@ done
 
 ::: tip
 
-你是否在为湖畔无法使用有线网络，或是校园网游戏丢包而苦恼？现在订阅CRA GW，即可以低至30元每月的价格畅享高达1Gbps的电信宽带，性价比远超湖畔电信并保证家庭宽带级别的低丢包率，任何宿舍区域均可订购，可一对一提供安装及技术支持。详情请咨询陈同学：qq **2353508907** 或邮件 [mai.sakurajima.qwq@gmail.com](mailto:mai.sakurajima.qwq@gmail.com?subject=CRAGW咨询)
+你是否在为湖畔无法使用有线网络，或是校园网游戏丢包而苦恼？现在订阅SUSTC IX，即可以低至30元每月的价格畅享高达1Gbps的电信宽带，性价比远超湖畔电信并保证家庭宽带级别的低丢包率，任何宿舍区域均可订购，可一对一提供安装及技术支持。详情请咨询：qq **2353508907** 或邮件 [mai.sakurajima.qwq@gmail.com](mailto:mai.sakurajima.qwq@gmail.com?subject=SUSTC IX咨询)
 :::

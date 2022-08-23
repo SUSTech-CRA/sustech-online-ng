@@ -94,9 +94,9 @@ div.emergency p a {
 
 [牛娃课程评价社区](https://nces.cra.moe/)（NCES，Niuwa Curriculum Evaluation System）是南科大学生的课程评价社区，因此，只有拥有南科大邮箱的同学或老师才可以注册账户。[中科大同款评教系统](https://icourse.club/)，赓续教改初心。NCES现已支持通过课程名称，代码及教师快速检索课程并直达课程大纲，更加方便你的选课！
 
-::: warning CRA同学的友情广告
+::: warning 友情广告
 
-你是否在为湖畔无法使用有线网络，或是校园网游戏丢包而苦恼？现在订阅CRA GW，即可以低至30元每月的价格畅享高达1Gbps的电信宽带，性价比远超湖畔电信并保证家庭宽带级别的低丢包率，任何宿舍区域均可订购，可一对一提供安装及技术支持。详情请咨询陈同学：qq **2353508907** 或邮件 [mai.sakurajima.qwq@gmail.com](mailto:mai.sakurajima.qwq@gmail.com?subject=CRAGW咨询)
+你是否在为湖畔无法使用有线网络，或是校园网游戏丢包而苦恼？现在订阅SUSTC IX，即可以低至30元每月的价格畅享高达1Gbps的电信宽带，性价比远超湖畔电信并保证家庭宽带级别的低丢包率，任何宿舍区域均可订购，可一对一提供安装及技术支持。详情请咨询：qq **2353508907** 或邮件 [mai.sakurajima.qwq@gmail.com](mailto:mai.sakurajima.qwq@gmail.com?subject=SUSTC IXW咨询)
 :::
 
 ## 如果你是新生... <Badge text="For Freshman" type="tip"/>
