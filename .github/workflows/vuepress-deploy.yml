@@ -20,7 +20,11 @@ jobs:
         git clone --bare "${GITHUB_REPO_URL}" this_repo
         cd this_repo
         git config --global http.version HTTP/1.1
-        git config --global http.postBuffer 157286400
+        git config --global http.postBuffer 1048576000
+        git config --global https.postBuffer 1048576000
+        export GIT_TRACE_PACKET=1
+        export GIT_TRACE=1
+        export GIT_CURL_VERBOSE=1
         git push --verbose --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REMOTE_REPO_URL}"
       env:
         USER: project_252_bot
