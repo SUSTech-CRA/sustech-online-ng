@@ -177,5 +177,5 @@ done
 
 ::: tip
 
-你是否在为湖畔无法使用有线网络，或是校园网游戏丢包而苦恼？现在订阅SUSTC IX，即可以低至30元每月的价格畅享高达1Gbps的电信宽带，性价比远超湖畔电信并保证家庭宽带级别的低丢包率，任何宿舍区域均可订购，可一对一提供安装及技术支持。详情请咨询：qq **2353508907** 或邮件 [mai.sakurajima.qwq@gmail.com](mailto:mai.sakurajima.qwq@gmail.com?subject=SUSTC IX咨询)
+你是否在为湖畔无法使用有线网络，或是校园网游戏丢包而苦恼？现在订阅SUSTC IX，即可以低至30元每月的价格畅享高达1Gbps的电信宽带，性价比远超湖畔电信并保证家庭宽带级别的低丢包率，任何宿舍区域均可订购，可一对一提供安装及技术支持。详情请咨询：qq **2353508907** 或邮件 [mai.sakurajima.qwq@gmail.com](mailto:mai.sakurajima.qwq@gmail.com?subject=SUSTC%20IX咨询)
 :::
