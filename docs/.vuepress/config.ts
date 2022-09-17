@@ -1,27 +1,24 @@
-let ogprefix = 'og: http://ogp.me/ns#'
-let title = '南科手册'
-let description = 'Online manual for sustecher'
-let color = '#49BF7C'
-let author = 'sustech.online'
-const { defaultTheme } = require('@vuepress/theme-default')
-const { docsearchPlugin } = require('@vuepress/plugin-docsearch')
-const { googleAnalyticsPlugin } = require('@vuepress/plugin-google-analytics')
-const { pwaPlugin } = require('@vuepress/plugin-pwa')
-const { pwaPopupPlugin } = require('@vuepress/plugin-pwa-popup')
-const { mediumZoomPlugin } = require('@vuepress/plugin-medium-zoom')
-const { nprogressPlugin } = require('@vuepress/plugin-nprogress')
-const { backToTopPlugin } = require('@vuepress/plugin-back-to-top')
-const { gitPlugin } = require('@vuepress/plugin-git')
-const { tocPlugin } = require('@vuepress/plugin-toc')
-const { sitemapPlugin } = require("vuepress-plugin-sitemap2");
+import { defaultTheme } from '@vuepress/theme-default'
+import { docsearchPlugin } from '@vuepress/plugin-docsearch'
+import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
+import { pwaPlugin } from '@vuepress/plugin-pwa'
+import { pwaPopupPlugin } from '@vuepress/plugin-pwa-popup'
+import { tocPlugin } from '@vuepress/plugin-toc'
+import { sitemapPlugin } from "vuepress-plugin-sitemap2"
+import { defineUserConfig } from '@vuepress/cli'
 
+const ogprefix = 'og: http://ogp.me/ns#'
+const title = '南科手册'
+const description = 'Online manual for sustecher'
+const color = '#49BF7C'
+const author = 'sustech.online'
 
-module.exports = {
+export default defineUserConfig({
     locales: {
         '/': {
-            title: '南科手册',
+            title: title,
             lang: 'zh-CN',
-            description: 'Online manual for sustecher',
+            description: description,
         }
     },
     head: [
@@ -147,7 +144,7 @@ module.exports = {
         }),
         pwaPlugin({
             maximumFileSizeToCacheInBytes: 524288, // 限制到0.5MB
-            skipWaiting: true
+            skipWaiting: false
         }),
         pwaPopupPlugin({
             locales: {
@@ -160,10 +157,6 @@ module.exports = {
         sitemapPlugin({
             hostname: "https://sustech.online/",
         }),
-        mediumZoomPlugin(),
-        nprogressPlugin(),
-        backToTopPlugin(),
-        gitPlugin(),
         tocPlugin(),
     ],
     theme: defaultTheme({
@@ -224,4 +217,4 @@ module.exports = {
             '/surroundings/',
         ]
     }),
-}
+})
