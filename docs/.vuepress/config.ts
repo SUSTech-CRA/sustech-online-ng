@@ -144,7 +144,7 @@ export default defineUserConfig({
         }),
         pwaPlugin({
             maximumFileSizeToCacheInBytes: 524288, // 限制到0.5MB
-            skipWaiting: false
+            skipWaiting: false // 如果使用 pwaPopupPlugin 不能设置为 true
         }),
         pwaPopupPlugin({
             locales: {
@@ -174,7 +174,7 @@ export default defineUserConfig({
         editLinkText: '一起完善这本手册！',
         lastUpdatedText: '上次更新',
         contributorsText: '贡献者',
-        editLinks: true,
+        editLink: true,
         docsBranch: 'master',
         sidebarDepth: 2,
         sidebar: [
