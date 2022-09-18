@@ -7,6 +7,7 @@
 <script>
 import axios from 'axios';
 import {along, length, nearestPoint, nearestPointOnLine, point, rhumbBearing} from '@turf/turf'
+import ECharts from 'vue-echarts'
 import {use} from "echarts/core";
 import {CanvasRenderer} from "echarts/renderers";
 import {
@@ -19,7 +20,6 @@ import {
   // LegendComponent,
   GridComponent,
 } from "echarts/components";
-import VChart from "vue-echarts";
 
 use([
   CanvasRenderer,
@@ -34,7 +34,7 @@ use([
 export default {
   name: 'BusChartVue',
   components: {
-    VChart,
+    'v-chart': ECharts,
   },
   data: () => ({
     bus_plate_hash: {
