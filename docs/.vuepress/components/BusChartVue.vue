@@ -1,36 +1,19 @@
 <template>
   <v-chart class="chart" :option="echartsOption"/>
+  <img src="https://visitor-badge.laobi.icu/badge?page_id=nikebus" alt="visitor badge"
+       class="visitor-badge"/>
 </template>
 
 <script>
-import {use} from 'echarts/core';
-import {CanvasRenderer} from 'echarts/renderers';
-import {PieChart} from 'echarts/charts';
-import {
-  TitleComponent,
-  TooltipComponent,
-  LegendComponent,
-} from 'echarts/components';
-import VChart, {THEME_KEY} from 'vue-echarts';
-import {ref, defineComponent} from 'vue';
+import VChart from 'vue-echarts';
+
 import axios from 'axios';
-import {nearestPoint, nearestPointOnLine, length, point, along, rhumbBearing} from '@turf/turf'
+import {along, length, nearestPoint, nearestPointOnLine, point, rhumbBearing} from '@turf/turf'
 
-use([
-  CanvasRenderer,
-  PieChart,
-  TitleComponent,
-  TooltipComponent,
-  LegendComponent,
-]);
-
-export default defineComponent({
+export default {
   name: 'BusChartVue',
   components: {
     VChart,
-  },
-  provide: {
-    [THEME_KEY]: 'dark',
   },
   data: () => ({
     bus_plate_hash: {
@@ -419,12 +402,16 @@ export default defineComponent({
   unmounted() {
     clearInterval(this.timer);
   }
-});
+}
 </script>
 
 <style scoped>
 .chart {
   height: 800px;
   width: 100%;
+}
+
+.visitor-badge {
+  visibility: hidden;
 }
 </style>
