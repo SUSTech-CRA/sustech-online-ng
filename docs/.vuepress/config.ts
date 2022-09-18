@@ -2,7 +2,7 @@ import { defaultTheme } from '@vuepress/theme-default'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
 import { pwaPlugin } from '@vuepress/plugin-pwa'
-import { pwaPopupPlugin } from '@vuepress/plugin-pwa-popup'
+// import { pwaPopupPlugin } from '@vuepress/plugin-pwa-popup'
 import { tocPlugin } from '@vuepress/plugin-toc'
 import { sitemapPlugin } from "vuepress-plugin-sitemap2"
 import { defineUserConfig } from '@vuepress/cli'
@@ -32,7 +32,7 @@ export default defineUserConfig({
     head: [
         ['link', { rel: 'icon', href: `/logo-assets/touch/homescreen192.png` }],
         ['meta', { name: 'theme-color', content: color }],
-        ['link', { rel: 'manifest', href: '/manifest.json' }],
+        ['link', { rel: 'manifest', href: '/manifest.webmanifest' }],
         ['meta', { prefix: ogprefix, property: 'og:type', content: 'article' }],
         ['meta', {
             prefix: ogprefix,
@@ -51,11 +51,11 @@ export default defineUserConfig({
             src: 'https://www.googletagmanager.com/gtag/js?id=G-1BQBXDGY3R'
         }],
         ['script', {}, `
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-1BQBXDGY3R');
-    `],
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-1BQBXDGY3R');
+                        `],
         ['script', { src: '/wx_helper.js' }],
         ['script', { src: 'https://res.wx.qq.com/open/js/jweixin-1.6.0.js' }],
         ['script', { src: 'https://lib.baomitu.com/jquery/3.6.0/jquery.min.js' }],
@@ -153,16 +153,16 @@ export default defineUserConfig({
         pwaPlugin({
             maximumFileSizeToCacheInBytes: 524288, // 限制到0.5MB
             cleanupOutdatedCaches: true,
-            skipWaiting: false // 如果使用 pwaPopupPlugin 不能设置为 true
+            skipWaiting: true // 如果使用 pwaPopupPlugin 不能设置为 true
         }),
-        pwaPopupPlugin({
-            locales: {
-                '/': {
-                    message: '发现新内容可用',
-                    buttonText: '刷新',
-                },
-            },
-        }),
+        // pwaPopupPlugin({
+        //     locales: {
+        //         '/': {
+        //             message: '发现新内容可用',
+        //             buttonText: '刷新',
+        //         },
+        //     },
+        // }),
         sitemapPlugin({
             hostname: "https://sustech.online/",
         }),
