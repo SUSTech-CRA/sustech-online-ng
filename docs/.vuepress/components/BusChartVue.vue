@@ -15,7 +15,7 @@ import {
   LinesChart
 } from "echarts/charts";
 import {
-  // TitleComponent,
+  TitleComponent,
   TooltipComponent,
   // LegendComponent,
   GridComponent,
@@ -23,7 +23,7 @@ import {
 
 use([
   CanvasRenderer,
-  // TitleComponent,
+  TitleComponent,
   TooltipComponent,
   // LegendComponent,
   GridComponent,
@@ -66,24 +66,24 @@ export default {
       tooltip: {
         show: false,
       },
-      // title: [{
-      //   text: '南科大校巴实时位置',
-      //   subtext: 'bilibili@交通数据小旭学长'
-      // }],
+      title: [{
+        // text: '南科大校巴实时位置',
+        subtext: 'By bilibili@交通数据小旭学长 / GitHub@ni1o1',
+        sublink: 'https://github.com/ni1o1/nikebus',
+      }],
       grid: [{
         top: '13%',
         bottom: '0%',
-        left: '3%',
-        right: '6%',
+        left: '0%',
+        right: '3%',
       }],
       yAxis: [{
         inverse: true,
         min: -100,
-        max: 5000,
+        max: 4500,
         type: 'value',
         boundaryGap: false,
         show: false,
-
         splitLine: {
           show: false
         }
@@ -428,11 +428,11 @@ export default {
 
 <style scoped>
 .chart {
-  height: 800px;
+  height: 80vh;
   width: 100%;
 }
 
 .visitor-badge {
-  visibility: hidden;
+  display: none;
 }
 </style>
