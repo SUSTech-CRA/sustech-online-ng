@@ -78,7 +78,7 @@ export default {
         top: '10%',
         bottom: '0%',
         left: '0%',
-        right: '3%',
+        right: '5%',
       }],
       yAxis: [{
         inverse: true,
