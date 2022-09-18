@@ -1,22 +1,28 @@
 <template>
   <div id="weather-container">
-    <span id="weather"></span>
+    <span id="weather">{{ text }}</span>
   </div>
 </template>
 
 
 <script>
+import axios from 'axios';
+
 export default {
   name: "weather-span",
+  data: () => ({
+    text: ""
+  }),
   mounted() {
     this.load_weather();
   },
 
   methods: {
     load_weather() {
-      $.getJSON("https://api.sustech.online/weather", function (data) {
-        $("#weather-container span").text(data.msg);
-      });
+      axios.get("https://api.sustech.online/weather")
+          .then((res) => {
+            this.text = res.data.msg;
+          })
     },
   },
 };
