@@ -152,6 +152,7 @@ export default defineUserConfig({
         }),
         pwaPlugin({
             maximumFileSizeToCacheInBytes: 524288, // 限制到0.5MB
+            cleanupOutdatedCaches: true,
             skipWaiting: false // 如果使用 pwaPopupPlugin 不能设置为 true
         }),
         pwaPopupPlugin({
