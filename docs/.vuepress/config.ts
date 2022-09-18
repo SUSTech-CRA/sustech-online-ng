@@ -6,6 +6,7 @@ import { pwaPopupPlugin } from '@vuepress/plugin-pwa-popup'
 import { tocPlugin } from '@vuepress/plugin-toc'
 import { sitemapPlugin } from "vuepress-plugin-sitemap2"
 import { defineUserConfig } from '@vuepress/cli'
+import { viteBundler } from '@vuepress/bundler-vite'
 
 const ogprefix = 'og: http://ogp.me/ns#'
 const title = '南科手册'
@@ -14,6 +15,13 @@ const color = '#49BF7C'
 const author = 'sustech.online'
 
 export default defineUserConfig({
+    bundler: viteBundler({
+        viteOptions: {
+            ssr: {
+                noExternal: ['echarts', 'vue-echarts', 'resize-detector', 'zrender'],
+            },
+        },
+    }),
     locales: {
         '/': {
             title: title,
