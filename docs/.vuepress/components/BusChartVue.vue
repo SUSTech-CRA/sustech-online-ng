@@ -5,10 +5,31 @@
 </template>
 
 <script>
-import VChart from 'vue-echarts';
-
 import axios from 'axios';
 import {along, length, nearestPoint, nearestPointOnLine, point, rhumbBearing} from '@turf/turf'
+import {use} from "echarts/core";
+import {CanvasRenderer} from "echarts/renderers";
+import {
+  ScatterChart,
+  LinesChart
+} from "echarts/charts";
+import {
+  // TitleComponent,
+  TooltipComponent,
+  // LegendComponent,
+  GridComponent,
+} from "echarts/components";
+import VChart from "vue-echarts";
+
+use([
+  CanvasRenderer,
+  // TitleComponent,
+  TooltipComponent,
+  // LegendComponent,
+  GridComponent,
+  ScatterChart,
+  LinesChart
+]);
 
 export default {
   name: 'BusChartVue',
