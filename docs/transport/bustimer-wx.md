@@ -12,11 +12,9 @@ navbar: false
 
 位置每5秒自动刷新。Location refreshes automatically every 5 seconds
 
-<Realtimemap></Realtimemap>
+<Realtimemap/>
 
-<BusChart/>
-
-[实时线路图 by ni1o1](https://github.com/ni1o1/nikebus)
+<BusChartVue/>
 
 ## 时间表 Timetable
 

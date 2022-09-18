@@ -16,7 +16,7 @@ function post_to_wx() {
 setInterval(post_to_wx, 1000);
 
 function handleOutURL(url, whitelist_flag, file_flag, file_ext) {
-    console.log("劫持链接 " + url);
+    // console.log("劫持链接 " + url);
     wx.miniProgram.navigateTo({
         url: '/pages/index/redirect?outURL=' + encodeURIComponent(url) +
             '&inwhitelist=' + whitelist_flag +
@@ -51,13 +51,13 @@ function override_onclick(event) {
         let file_flag = supportFiles.has(path_ext);
         if (whitelist_flag && !file_flag) {
             // 当 url 在白名单里面，且不为可微信显示的文件。
-            console.log("放行白名单页面 " + url);
+            // console.log("放行白名单页面 " + url);
             window.location.href = url;
             return;
         }
 
         event.preventDefault();
-        console.log("小程序环境，拦截外部链接或者可显示文件。");
+        // console.log("小程序环境，拦截外部链接或者可显示文件。");
         handleOutURL(url, whitelist_flag, file_flag, path_ext);
         // return false;
     }
@@ -72,7 +72,7 @@ function reset_all_anchor() {
     for (var i = 0; i < anchors.length; i++) {
         var anchor = anchors[i];
         if (anchor.hasAttribute("data-fancybox")) {
-            console.log("skip fancybox a tag: ", anchor.getAttribute('href'));
+            // console.log("skip fancybox a tag: ", anchor.getAttribute('href'));
         } else {
             anchor.onclick = function () {
                 override_onclick(event);

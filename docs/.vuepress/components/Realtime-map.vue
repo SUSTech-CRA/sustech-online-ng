@@ -23,25 +23,25 @@ export default {
     bus_location_data_api: [],
     bus_location_data_display: [],
     bus_plate_hash: {
-      "298": { "plate": "粤BDF298" },
-      "363": { "plate": "粤BDF363" },
-      "8040": { "plate": "粤BDF040" },
-      "8147": { "plate": "粤BDF147" },
-      "8267": { "plate": "粤BDF267" },
-      "8330": { "plate": "粤BDF330" },
-      "8335": { "plate": "粤BDF335" },
-      "8338": { "plate": "粤BDF338" },
-      "8345": { "plate": "粤BDF345" },
-      "8365": { "plate": "粤BDF365" },
-      "8371": { "plate": "粤BDF371" },
-      "8411": { "plate": "粤BDF411" },
-      "8421": { "plate": "粤BDF421" },
-      "8430": { "plate": "粤BDF430" },
-      "8447": { "plate": "粤BDE447" },
-      "8458": { "plate": "粤BDF458" },
-      "8470": { "plate": "粤BDF470" },
-      "8471": { "plate": "粤BDF471" },
-      "18447": { "plate": "粤BDF447" }
+      "298": {"plate": "粤BDF298"},
+      "363": {"plate": "粤BDF363"},
+      "8040": {"plate": "粤BDF040"},
+      "8147": {"plate": "粤BDF147"},
+      "8267": {"plate": "粤BDF267"},
+      "8330": {"plate": "粤BDF330"},
+      "8335": {"plate": "粤BDF335"},
+      "8338": {"plate": "粤BDF338"},
+      "8345": {"plate": "粤BDF345"},
+      "8365": {"plate": "粤BDF365"},
+      "8371": {"plate": "粤BDF371"},
+      "8411": {"plate": "粤BDF411"},
+      "8421": {"plate": "粤BDF421"},
+      "8430": {"plate": "粤BDF430"},
+      "8447": {"plate": "粤BDE447"},
+      "8458": {"plate": "粤BDF458"},
+      "8470": {"plate": "粤BDF470"},
+      "8471": {"plate": "粤BDF471"},
+      "18447": {"plate": "粤BDF447"}
     },
     geojson_line_1: [
       [113.99739584160139, 22.610765716856296],
@@ -269,78 +269,79 @@ export default {
       "type": "FeatureCollection", "features": [
         {
           "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [113.99020, 22.60336] },
-          "properties": { "name": "工学院 COE" }
+          "geometry": {"type": "Point", "coordinates": [113.99020, 22.60336]},
+          "properties": {"name": "工学院 COE"}
         },
         {
           "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [113.99153, 22.599643] },
-          "properties": { "name": "科研楼 Research Building" }
+          "geometry": {"type": "Point", "coordinates": [113.99153, 22.599643]},
+          "properties": {"name": "科研楼 Research Building"}
         },
         {
           "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [113.990399, 22.597132] },
-          "properties": { "name": "七号门 Gate7" }
+          "geometry": {"type": "Point", "coordinates": [113.990399, 22.597132]},
+          "properties": {"name": "七号门 Gate7"}
         },
         {
           "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [113.992403, 22.597011] },
-          "properties": { "name": "行政楼 Administration Building" }
+          "geometry": {"type": "Point", "coordinates": [113.992403, 22.597011]},
+          "properties": {"name": "行政楼 Administration Building"}
         },
         {
           "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [113.994898, 22.59569] },
-          "properties": { "name": "1号门 Gate1" }
+          "geometry": {"type": "Point", "coordinates": [113.994898, 22.59569]},
+          "properties": {"name": "1号门 Gate1"}
         },
         {
           "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [113.99939, 22.599893] },
-          "properties": { "name": "3号门 Gate3" }
+          "geometry": {"type": "Point", "coordinates": [113.99939, 22.599893]},
+          "properties": {"name": "3号门 Gate3"}
         },
         {
           "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [113.998329, 22.601975] },
-          "properties": { "name": "专家公寓 Guest Houses" }
+          "geometry": {"type": "Point", "coordinates": [113.998329, 22.601975]},
+          "properties": {"name": "专家公寓 Guest Houses"}
         },
         {
           "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [113.997811, 22.603325] },
-          "properties": { "name": "教工餐厅 Faculty Cafteria" }
+          "geometry": {"type": "Point", "coordinates": [113.997811, 22.603325]},
+          "properties": {"name": "教工餐厅 Faculty Cafteria"}
         },
         {
           "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [113.995981, 22.60293] },
-          "properties": { "name": "社康中心 C.Health.Center" }
+          "geometry": {"type": "Point", "coordinates": [113.995981, 22.60293]},
+          "properties": {"name": "社康中心 C.Health.Center"}
         },
         {
           "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [113.993824, 22.604854] },
-          "properties": { "name": "学生宿舍 Stu. Dormitories" }
+          "geometry": {"type": "Point", "coordinates": [113.993824, 22.604854]},
+          "properties": {"name": "学生宿舍 Stu. Dormitories"}
         },
         {
           "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [113.995238, 22.606518] },
-          "properties": { "name": "荔园 Lychee Hill" }
+          "geometry": {"type": "Point", "coordinates": [113.995238, 22.606518]},
+          "properties": {"name": "荔园 Lychee Hill"}
         },
         {
           "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [113.996732, 22.606278] },
-          "properties": { "name": "创园 Chuang Yuan" }
+          "geometry": {"type": "Point", "coordinates": [113.996732, 22.606278]},
+          "properties": {"name": "创园 Chuang Yuan"}
         },
         {
           "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [113.998372, 22.606102] },
-          "properties": { "name": "慧园 Hui Yuan" }
+          "geometry": {"type": "Point", "coordinates": [113.998372, 22.606102]},
+          "properties": {"name": "慧园 Hui Yuan"}
         },
         {
           "type": "Feature",
-          "geometry": { "type": "Point", "coordinates": [113.997473, 22.610667] },
-          "properties": { "name": "欣园 Joy Highland" }
+          "geometry": {"type": "Point", "coordinates": [113.997473, 22.610667]},
+          "properties": {"name": "欣园 Joy Highland"}
         }
       ]
     },
     bus_marker_arr: [],
-    map: []
+    map: [],
+    timer: {}
   }),
 
   async created() {
@@ -432,19 +433,19 @@ export default {
           // }
 
           var marker = new maplibre.Marker(bus_marker)
-            .setLngLat([this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat])
-            .setRotation(parseInt(this.bus_location_data_api[i].course))
-            .setPopup(
-              new maplibre.Popup({ offset: 25 }) // add popups
-                .setHTML(
-                  '<p class="car-plate">' +
-                  'Plate: <b>' + this.bus_plate_hash[this.bus_location_data_api[i].id].plate +
-                  '</b></p><p>' +
-                  'Speed: <b>' + this.bus_location_data_api[i].speed + "km/h" +
-                  '</b></p>'
-                )
-            )
-            .addTo(this.map);
+              .setLngLat([this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat])
+              .setRotation(parseInt(this.bus_location_data_api[i].course))
+              .setPopup(
+                  new maplibre.Popup({offset: 25}) // add popups
+                      .setHTML(
+                          '<p class="car-plate">' +
+                          'Plate: <b>' + this.bus_plate_hash[this.bus_location_data_api[i].id].plate +
+                          '</b></p><p>' +
+                          'Speed: <b>' + this.bus_location_data_api[i].speed + "km/h" +
+                          '</b></p>'
+                      )
+              )
+              .addTo(this.map);
 
           this.bus_marker_arr.push(marker)
 
@@ -493,15 +494,15 @@ export default {
 
     // Add geolocate control to the map.
     this.map.addControl(
-      new maplibre.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: true
-        },
-        // When active the map will receive updates to the device's location as it changes.
-        trackUserLocation: true,
-        // Draw an arrow next to the location dot to indicate which direction the device is heading.
-        showUserHeading: true
-      })
+        new maplibre.GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: true
+          },
+          // When active the map will receive updates to the device's location as it changes.
+          trackUserLocation: true,
+          // Draw an arrow next to the location dot to indicate which direction the device is heading.
+          showUserHeading: true
+        })
     );
 
 
@@ -563,42 +564,42 @@ export default {
       //add station
 
       this.map.loadImage(
-        'https://bus.sustcra.com/station_icon.png',
-        (error, image) => {
-          if (error) throw error;
-          this.map.addImage('custom-marker', image);
+          'https://bus.sustcra.com/station_icon.png',
+          (error, image) => {
+            if (error) throw error;
+            this.map.addImage('custom-marker', image);
 
-          this.map.addSource('stations', {
-            'type': 'geojson',
-            'data': this.stations_geojson
-          });
+            this.map.addSource('stations', {
+              'type': 'geojson',
+              'data': this.stations_geojson
+            });
 
-          this.map.addLayer({
-            'id': 'bus-station',
-            'type': 'symbol',
-            'source': 'stations',
-            'layout': {
-              'icon-size': 0.075,
-              'icon-image': 'custom-marker',
-              'text-field': ['get', 'name'],
-              // 'text-font': [
-              //   'Open Sans Semibold',
-              //   'Arial Unicode MS Bold'
-              // ],
-              'text-size': 10,
-              'text-offset': [0, 1.25],
-              'text-anchor': 'top'
-            },
-            "paint": {
-              "text-color": this.map_text_colour
-            },
-            // 'paint': {
-            //   'circle-radius': 6,
-            //   'circle-color': '#B42222'
-            // },
-            'filter': ['==', '$type', 'Point']
+            this.map.addLayer({
+              'id': 'bus-station',
+              'type': 'symbol',
+              'source': 'stations',
+              'layout': {
+                'icon-size': 0.075,
+                'icon-image': 'custom-marker',
+                'text-field': ['get', 'name'],
+                // 'text-font': [
+                //   'Open Sans Semibold',
+                //   'Arial Unicode MS Bold'
+                // ],
+                'text-size': 10,
+                'text-offset': [0, 1.25],
+                'text-anchor': 'top'
+              },
+              "paint": {
+                "text-color": this.map_text_colour
+              },
+              // 'paint': {
+              //   'circle-radius': 6,
+              //   'circle-color': '#B42222'
+              // },
+              'filter': ['==', '$type', 'Point']
+            });
           });
-        });
 
 
     });
@@ -608,11 +609,15 @@ export default {
 
     //refresh timer
 
-    const timer = setInterval(() => {
+    this.timer = setInterval(() => {
       this.refresh();
     }, 5000);
 
 
+  },
+
+  async unmounted() {
+    clearInterval(this.timer);
   }
 };
 </script>
