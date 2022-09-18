@@ -1,5 +1,5 @@
 <template>
-  <v-chart class="chart" :option="echartsOption"/>
+  <v-chart class="chart" :option="echartsOption" :autoresize="true"/>
   <img src="https://visitor-badge.laobi.icu/badge?page_id=nikebus" alt="visitor badge"
        class="visitor-badge"/>
 </template>
