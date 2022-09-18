@@ -68,11 +68,14 @@ export default {
       },
       title: [{
         // text: '南科大校巴实时位置',
-        subtext: 'By bilibili@交通数据小旭学长 / GitHub@ni1o1',
+        subtext: 'By bilibili@交通数据小旭学长\nGitHub@ni1o1',
         sublink: 'https://github.com/ni1o1/nikebus',
+        textAlign: 'right',
+        bottom: '5%',
+        left: '95%'
       }],
       grid: [{
-        top: '13%',
+        top: '0%',
         bottom: '0%',
         left: '0%',
         right: '3%',
