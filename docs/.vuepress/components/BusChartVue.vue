@@ -75,7 +75,7 @@ export default {
         left: '95%'
       }],
       grid: [{
-        top: '0%',
+        top: '10%',
         bottom: '0%',
         left: '0%',
         right: '3%',
@@ -431,7 +431,7 @@ export default {
 
 <style scoped>
 .chart {
-  height: 80vh;
+  height: 70vh;
   width: 100%;
 }
 
