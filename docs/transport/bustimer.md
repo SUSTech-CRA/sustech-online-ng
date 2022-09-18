@@ -10,7 +10,7 @@
 
 <Realtimemap></Realtimemap>
 
-<BusChart/>
+<BusChartReact/>
 
 [实时线路图 by ni1o1](https://github.com/ni1o1/nikebus)
 
