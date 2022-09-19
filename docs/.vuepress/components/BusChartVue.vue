@@ -71,14 +71,14 @@ export default {
         subtext: 'By bilibili@交通数据小旭学长\nGitHub@ni1o1',
         sublink: 'https://github.com/ni1o1/nikebus',
         textAlign: 'right',
-        bottom: '5%',
-        left: '95%'
+        bottom: '2%',
+        left: '98%'
       }],
       grid: [{
         top: '10%',
         bottom: '0%',
         left: '0%',
-        right: '5%',
+        right: '10%',
       }],
       yAxis: [{
         inverse: true,
