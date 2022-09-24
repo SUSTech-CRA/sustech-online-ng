@@ -9,7 +9,8 @@ import axios from 'axios';
 import {along, length, nearestPoint, nearestPointOnLine, point, rhumbBearing} from '@turf/turf'
 import ECharts from 'vue-echarts'
 import {use} from "echarts/core";
-import {CanvasRenderer} from "echarts/renderers";
+// import {CanvasRenderer} from "echarts/renderers";
+import {SVGRenderer} from "echarts/renderers";
 import {
   ScatterChart,
   LinesChart
@@ -22,7 +23,8 @@ import {
 } from "echarts/components";
 
 use([
-  CanvasRenderer,
+  // CanvasRenderer
+  SVGRenderer,
   TitleComponent,
   TooltipComponent,
   // LegendComponent,
