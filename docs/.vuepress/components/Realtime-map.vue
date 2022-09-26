@@ -18,7 +18,7 @@ export default {
   name: "MyMap",
 
   data: () => ({
-    map_style_url: "https://mirrors.sustech.edu.cn/osm-tile/styles/osm-street/style.json",
+    map_style_url: "https://mirrors.sustech.edu.cn/osm-tile/styles/osm-bright/style.json",
     map_text_colour: "#000000",
     bus_location_data_api: [],
     bus_location_data_display: [],
