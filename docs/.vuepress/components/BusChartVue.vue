@@ -80,8 +80,8 @@ export default {
       grid: [{
         top: '10%',
         bottom: '0%',
-        left: '0%',
-        right: '10%',
+        left: '26px',
+        right: '14px',
       }],
       yAxis: [{
         inverse: true,
@@ -132,6 +132,7 @@ export default {
         label: {
           fontSize: 11,
           show: true,
+          color: '#000',
           fontWeight: 'bold',
           position: 'right',
           distance: -5,
