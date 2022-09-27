@@ -133,6 +133,8 @@ export default {
           fontSize: 11,
           show: true,
           color: '#000',
+          textBorderColor:'#fff',
+          textBorderWidth:2,
           fontWeight: 'bold',
           position: 'right',
           distance: -5,
