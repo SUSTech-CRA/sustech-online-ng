@@ -146,10 +146,10 @@ export default defineUserConfig({
                 },
             },
         }),
-        googleAnalyticsPlugin({
-            // we have multiple deployments, which would use different id
-            id: 'G-1BQBXDGY3R',
-        }),
+        // googleAnalyticsPlugin({
+        //     // we have multiple deployments, which would use different id
+        //     id: 'G-1BQBXDGY3R',
+        // }),
         pwaPlugin({
             maximumFileSizeToCacheInBytes: 524288, // 限制到0.5MB
             cleanupOutdatedCaches: true,
