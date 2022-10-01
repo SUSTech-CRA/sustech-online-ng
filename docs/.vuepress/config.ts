@@ -1,6 +1,6 @@
 import { defaultTheme } from '@vuepress/theme-default'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
-import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
+// import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
 import { pwaPlugin } from '@vuepress/plugin-pwa'
 // import { pwaPopupPlugin } from '@vuepress/plugin-pwa-popup'
 import { tocPlugin } from '@vuepress/plugin-toc'
@@ -48,7 +48,7 @@ export default defineUserConfig({
         ['meta', { name: 'google-site-verification', content: 'Av-srANCmFA_yZ8Iasa1yQsIPJCF_zlP5AoD35m6_Ww' }],
         ['script', {
             async: true,
-            src: 'https://www.googletagmanager.com/gtag/js?id=G-1BQBXDGY3R'
+            src: 'https://googletagmanager.com/gtag/js?id=G-1BQBXDGY3R'
         }],
         ['script', {}, `
                         window.dataLayer = window.dataLayer || [];
