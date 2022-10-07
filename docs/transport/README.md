@@ -31,7 +31,7 @@
 
 </style>
 
-### 校园巴士线路图（2021年6月起）
+### 校园巴士线路图
 
 [点击这里](https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v3-2.pdf)下载矢量PDF版本，目前版本：**3.2**，2022年8月更新。
 
