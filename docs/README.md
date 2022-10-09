@@ -94,11 +94,6 @@ div.emergency p a {
 
 [牛娃课程评价社区](https://nces.cra.moe/)（NCES，Niuwa Curriculum Evaluation System）是南科大学生的课程评价社区，因此，只有拥有南科大邮箱的同学或老师才可以注册账户。[中科大同款评教系统](https://icourse.club/)，赓续教改初心。NCES现已支持通过课程名称，代码及教师快速检索课程并直达课程大纲，更加方便你的选课！
 
-::: warning 友情广告
-
-你是否在为湖畔无法使用有线网络，或是校园网游戏丢包而苦恼？现在订阅SUSTC IX，即可以低至30元每月的价格畅享高达1Gbps的电信宽带，性价比远超湖畔电信并保证家庭宽带级别的低丢包率，任何宿舍区域均可订购，可一对一提供安装及技术支持。详情请咨询：qq **2353508907** 或邮件 [mai.sakurajima.qwq@gmail.com](mailto:mai.sakurajima.qwq@gmail.com?subject=SUSTC%20IX咨询)
-:::
-
 ## 如果你是新生... <Badge text="For Freshman" type="tip"/>
 
 如果你是准大一的同学，可以先看看冯小漠为大家整理南科大的非正统历史故事[蓢村拾遗：南科大冷知识2021](./if-you-are-a-freshman/preview)。[点击这里](./if-you-are-a-freshman/2021.md)看看我们为 2021年的学生准备的 Quickstart of SUSTech，了解并开启你的大学生活！
