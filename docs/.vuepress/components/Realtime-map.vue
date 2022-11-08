@@ -1,6 +1,7 @@
 <template>
 
   <div class="map-container" ref="myMap"></div>
+  <span>Time drift: {{ time_difference }} sec.</span>
   <!--  <div id="map-style-menu">-->
   <!--    <input id="osm-street" type="radio" name="rtoggle" value="light">-->
   <!--    <label for="osm-street">light</label>-->
@@ -341,6 +342,7 @@ export default {
     },
     bus_marker_arr: [],
     map: [],
+    time_difference: 0,
     timer: {}
   }),
 
@@ -362,7 +364,8 @@ export default {
       console.log("bus location data fetched at " + parseInt(d.getTime() / 1000,));
       //console log the diff of report time and display time
       if (typeof this.bus_location_data_api[0].time_rt != "undefined") {
-        console.log("The clock drift is " + parseInt(d.getTime() / 1000 - this.bus_location_data_api[0].time_rt) + " seconds");
+        this.time_difference = parseInt(d.getTime() / 1000 - this.bus_location_data_api[0].time_rt);
+        console.log("The clock drift is " + this.time_difference + " seconds");
       }
       this.update_location()
     },
