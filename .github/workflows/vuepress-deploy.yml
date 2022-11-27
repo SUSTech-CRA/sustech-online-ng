@@ -40,18 +40,18 @@ jobs:
     name: Build site
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
-    - uses: szenius/set-timezone@v1.0
+    - uses: szenius/set-timezone@v1.1
       with:
         timezoneLinux: "Asia/Shanghai"
 
     - name: Check Time
       run: date
 
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: '16'
 
@@ -68,7 +68,7 @@ jobs:
       run: yarn docs:build
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: 'sustech-online-build'
         path: './docs/.vuepress/dist/'
@@ -79,7 +79,7 @@ jobs:
     needs: build
     if: github.repository_owner == 'SUSTech-CRA' && github.ref == 'refs/heads/master'
     steps:
-    - uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v3
       with:
         name: sustech-online-build
         path: "./docs/.vuepress/dist/"
