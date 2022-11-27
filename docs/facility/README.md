@@ -11,8 +11,6 @@
 <iframe src="https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#gate1,265,10,90,10" name="iframe_window" width="100%" height="600" scrolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
 
 
-
-
 ## 校园地图与主要建筑
 
 ![校园地图](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/facility/campus-map.png)
@@ -372,6 +370,12 @@
 - [荔园，二期宿舍（校园北侧）](https://mirrors.sustech.edu.cn/site/sustech-online/panolens/liyuan.html)
 - [慧园，欣园（校园东北侧）](https://mirrors.sustech.edu.cn/site/sustech-online/panolens/huiyuan.html)
 - [工学院 （校园西北侧）](https://mirrors.sustech.edu.cn/site/sustech-online/panolens/aoe.html)
+
+## 制霸南科 -- 标记去过的校园地点
+
+- <https://zhiba.sustech.online>
+
+![pic](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/facility/制霸南科.png)
 
 
 ## 图片版权
