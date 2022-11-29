@@ -152,9 +152,39 @@ export default defineUserConfig({
         // }),
         pwaPlugin({
             maximumFileSizeToCacheInBytes: 524288, // 限制到0.5MB
-            globIgnores: ['**/*.{png,svg,jpg,jpeg,gif,pdf}'], // 图片不再缓存
-            cleanupOutdatedCaches: true,
-            skipWaiting: true // 如果使用 pwaPopupPlugin 不能设置为 true
+            // globIgnores: ['**/*.{png,svg,jpg,jpeg,gif,pdf}'], // 图片不再缓存
+            runtimeCaching: [{
+                urlPattern: ({ url }) => url.origin === 'https://sustech.online',
+                handler: 'NetworkFirst',
+                options: {
+                    cacheName: 'web-cache',
+                    networkTimeoutSeconds: 5,
+                    expiration: {
+                        maxEntries: 50,
+                        maxAgeSeconds: 1 * 24 * 60 * 60, // 1 day
+                    },
+                    cacheableResponse: {
+                        statuses: [0, 200],
+                    },
+
+                }
+            }, {
+                urlPattern: ({ request }) => request.destination === 'image',
+                handler: 'StaleWhileRevalidate',
+                options: {
+                    cacheName: 'images-cache',
+                    expiration: {
+                        maxAgeSeconds: 1 * 24 * 60 * 60, // 1 day
+                    },
+                    cacheableResponse: {
+                        statuses: [0, 200],
+                    }
+                },
+            }],
+            skipWaiting: true, // 如果使用 pwaPopupPlugin 不能设置为 true
+            clientsClaim: true, // 立即接管
+            offlineGoogleAnalytics: true, // 离线也记录ga数据, 有网了再上报的意思。
+            cleanupOutdatedCaches: true,  // 尝试删除老版本缓存
         }),
         // pwaPopupPlugin({
         //     locales: {
