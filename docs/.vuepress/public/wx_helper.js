@@ -103,3 +103,27 @@ function isInWechatMP() {
 //     }
 // }
 // setTimeout("load_adsense()", 500);
+
+// 是否启用哀悼用黑白遮罩
+const setHomeGray = true;
+function changeGray() {
+    if (setHomeGray && window.location.pathname === '/') {
+        document.getElementsByClassName("navbar")[0].classList.add("home-gray");
+        document.getElementsByClassName("sidebar")[0].classList.add("home-gray");
+        document.getElementsByClassName("page")[0].classList.add("home-gray");
+    } else {
+        document.getElementsByClassName("page")[0].classList.remove("home-gray");
+        document.getElementsByClassName("sidebar")[0].classList.remove("home-gray");
+        document.getElementsByClassName("navbar")[0].classList.remove("home-gray");
+    }
+}
+
+const observer = new MutationObserver(function (mutations) {
+    changeGray();
+});
+const config = { subtree: true, childList: true };
+observer.observe(document, config);
+
+window.addEventListener('hashchange', () => {
+    changeGray();
+}, false);
