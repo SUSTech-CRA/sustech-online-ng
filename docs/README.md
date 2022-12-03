@@ -55,6 +55,7 @@
     <li><a href="https://sustech.online/facility/">校园街景</a></li>
     <li><a href="http://live.cra.moe/">校内核酸实况直播</a></li>
     <li><a href="https://hsdyjc.newhealth.com.cn/wh5/#/">校外核酸点服务状态</a></li>
+    <li><a href="https://zhiba.sustech.online/">南科制霸生成器<Badge text="学生新闻社合作" type="danger"/></a></li>
     <li><a href="https://nces.cra.moe/">牛娃课程评价社区<Badge text="春季选课" type="danger"/></a></li>
     </ul>
     </th>

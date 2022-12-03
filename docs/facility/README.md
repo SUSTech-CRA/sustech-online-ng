@@ -371,11 +371,11 @@
 - [慧园，欣园（校园东北侧）](https://mirrors.sustech.edu.cn/site/sustech-online/panolens/huiyuan.html)
 - [工学院 （校园西北侧）](https://mirrors.sustech.edu.cn/site/sustech-online/panolens/aoe.html)
 
-## 制霸南科 -- 标记去过的校园地点
+## 南科制霸 -- 标记去过的校园地点
 
 - <https://zhiba.sustech.online>
 
-![pic](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/facility/制霸南科.png)
+![pic](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/facility/南科制霸.png)
 
 
 ## 图片版权
