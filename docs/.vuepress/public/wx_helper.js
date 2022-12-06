@@ -1,3 +1,5 @@
+const ENABLE_DEBUG = false;
+
 function post_to_wx() {
     var obj = {
         'msgType': "heartbeat",
@@ -16,7 +18,9 @@ function post_to_wx() {
 setInterval(post_to_wx, 1000);
 
 function handleOutURL(url, whitelist_flag, file_flag, file_ext) {
-    // console.log("劫持链接 " + url);
+    if (ENABLE_DEBUG) {
+        console.log("劫持链接 " + url);
+    }
     wx.miniProgram.navigateTo({
         url: '/pages/index/redirect?outURL=' + encodeURIComponent(url) +
             '&inwhitelist=' + whitelist_flag +
@@ -26,6 +30,7 @@ function handleOutURL(url, whitelist_flag, file_flag, file_ext) {
 }
 
 function override_onclick(event) {
+    /// 优化小程序内的文件或者外链显示
     if (window.is_miniprogram) {
         let url = event.currentTarget.getAttribute('href');
 
@@ -51,20 +56,19 @@ function override_onclick(event) {
         let file_flag = supportFiles.has(path_ext);
         if (whitelist_flag && !file_flag) {
             // 当 url 在白名单里面，且不为可微信显示的文件。
-            // console.log("放行白名单页面 " + url);
+            if (ENABLE_DEBUG) {
+                console.log("放行白名单页面 " + url);
+            }
             window.location.href = url;
             return;
         }
 
         event.preventDefault();
-        // console.log("小程序环境，拦截外部链接或者可显示文件。");
+        if (ENABLE_DEBUG) {
+            console.log("小程序环境，拦截外部链接或者可显示文件。");
+        }
         handleOutURL(url, whitelist_flag, file_flag, path_ext);
-        // return false;
     }
-    // ------------
-    // else {
-    //     return true;
-    // }
 }
 
 function reset_all_anchor() {
@@ -72,15 +76,16 @@ function reset_all_anchor() {
     for (var i = 0; i < anchors.length; i++) {
         var anchor = anchors[i];
         if (anchor.hasAttribute("data-fancybox")) {
-            // console.log("skip fancybox a tag: ", anchor.getAttribute('href'));
+            if (ENABLE_DEBUG) {
+                console.log("skip fancybox a tag: ", anchor.getAttribute('href'));
+            }
         } else {
-            anchor.onclick = function () {
+            anchor.onclick = function (event) {
                 override_onclick(event);
             }
         }
     }
 }
-
 setInterval(reset_all_anchor, 1000);
 
 function isInWechatMP() {
@@ -105,9 +110,9 @@ function isInWechatMP() {
 // setTimeout("load_adsense()", 500);
 
 // 是否启用哀悼用黑白遮罩
-const setHomeGray = true;
+const ENABLE_HOME_GRAY = false;
 function changeGray() {
-    if (setHomeGray && window.location.pathname === '/') {
+    if (ENABLE_HOME_GRAY && window.location.pathname === '/') {
         document.getElementsByClassName("navbar")[0].classList.add("home-gray");
         document.getElementsByClassName("sidebar")[0].classList.add("home-gray");
         document.getElementsByClassName("page")[0].classList.add("home-gray");
@@ -119,6 +124,7 @@ function changeGray() {
 }
 
 const observer = new MutationObserver(function (mutations) {
+    // DOM 有任何变化，包括js导致的跳转
     changeGray();
 });
 const config = { subtree: true, childList: true };
