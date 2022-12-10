@@ -79,7 +79,7 @@ export default {
     }
 
     axios
-        .get("/2022.json")
+        .get("/2023.json")
         .then(response => {
           bus_redirect(response.data);
         });
