@@ -53,12 +53,9 @@
 
 ## 市内交通
 
-### 深圳地铁线路图（2021年12月起）
+### 深圳地铁线路图（2023年）
 
-![szmc-system-map-2021](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/transport/szmc-system-map-dec-2021.jpg)
-
-- [下载PDF版本 / MTR(SZ)](http://www.mtrsz.com.cn/files/20211228/20211228%E7%BA%BF%E8%B7%AF%E5%9B%BE1.pdf
-)
+![szmc-system-map-2022](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/transport/szmc-system-map-2023.jpg)
 
 ### 乘坐市内公共交通
 
