@@ -1,4 +1,4 @@
-const ENABLE_DEBUG = false;
+const ENABLE_LOG = false;
 
 function post_to_wx() {
     var obj = {
@@ -18,7 +18,7 @@ function post_to_wx() {
 setInterval(post_to_wx, 1000);
 
 function handleOutURL(url, whitelist_flag, file_flag, file_ext) {
-    if (ENABLE_DEBUG) {
+    if (ENABLE_LOG) {
         console.log("劫持链接 " + url);
     }
     wx.miniProgram.navigateTo({
@@ -56,7 +56,7 @@ function override_onclick(event) {
         let file_flag = supportFiles.has(path_ext);
         if (whitelist_flag && !file_flag) {
             // 当 url 在白名单里面，且不为可微信显示的文件。
-            if (ENABLE_DEBUG) {
+            if (ENABLE_LOG) {
                 console.log("放行白名单页面 " + url);
             }
             window.location.href = url;
@@ -64,7 +64,7 @@ function override_onclick(event) {
         }
 
         event.preventDefault();
-        if (ENABLE_DEBUG) {
+        if (ENABLE_LOG) {
             console.log("小程序环境，拦截外部链接或者可显示文件。");
         }
         handleOutURL(url, whitelist_flag, file_flag, path_ext);
@@ -76,7 +76,7 @@ function reset_all_anchor() {
     for (var i = 0; i < anchors.length; i++) {
         var anchor = anchors[i];
         if (anchor.hasAttribute("data-fancybox")) {
-            if (ENABLE_DEBUG) {
+            if (ENABLE_LOG) {
                 console.log("skip fancybox a tag: ", anchor.getAttribute('href'));
             }
         } else {
@@ -112,14 +112,16 @@ function isInWechatMP() {
 // 是否启用哀悼用黑白遮罩
 const ENABLE_HOME_GRAY = false;
 function changeGray() {
-    if (ENABLE_HOME_GRAY && window.location.pathname === '/') {
-        document.getElementsByClassName("navbar")[0].classList.add("home-gray");
-        document.getElementsByClassName("sidebar")[0].classList.add("home-gray");
-        document.getElementsByClassName("page")[0].classList.add("home-gray");
-    } else {
-        document.getElementsByClassName("page")[0].classList.remove("home-gray");
-        document.getElementsByClassName("sidebar")[0].classList.remove("home-gray");
-        document.getElementsByClassName("navbar")[0].classList.remove("home-gray");
+    if (ENABLE_HOME_GRAY) {
+        if (window.location.pathname === '/') {
+            document.getElementsByClassName("navbar")[0].classList.add("home-gray");
+            document.getElementsByClassName("sidebar")[0].classList.add("home-gray");
+            document.getElementsByClassName("page")[0].classList.add("home-gray");
+        } else {
+            document.getElementsByClassName("page")[0].classList.remove("home-gray");
+            document.getElementsByClassName("sidebar")[0].classList.remove("home-gray");
+            document.getElementsByClassName("navbar")[0].classList.remove("home-gray");
+        }
     }
 }
 
