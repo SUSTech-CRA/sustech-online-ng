@@ -266,6 +266,8 @@ export default {
       [113.99023530680027, 22.60268968810428],
       [113.99010219314502, 22.60332391993846]],
     geojson_line_2: [[113.991459678304494, 22.599604921099228], [113.991896923307195, 22.599936617485952], [113.992010569899804, 22.6005318195689], [113.991917242336896, 22.60102266627295], [113.991719622194296, 22.601431625928001], [113.991526274764496, 22.601612498395962], [113.992045849875581, 22.60262745159568], [113.992339522764453, 22.602968084896109], [113.992798857282978, 22.603280910653833], [113.99298710913483, 22.60350336409337], [113.993853067653333, 22.603677155592816], [113.994199451060737, 22.604268045049292], [113.993864148579476, 22.604784676421257], [113.993478403889895, 22.605480929778221], [113.995278497141001, 22.606402240970631], [113.995327766644706, 22.606673415602611], [113.996490585116902, 22.6063775771138], [113.997715653744606, 22.60596002561628], [113.998320711544395, 22.60613169032316], [113.998664870688501, 22.606599236851789], [113.998897946580101, 22.608153316116329], [113.998161891211794, 22.609753417676441], [113.9976555155949, 22.610514448689759], [113.997348907905405, 22.61067741494136]],
+    bldg_geojson: {},
+    gate_geojson: {},
     stations_geojson: {
       "type": "FeatureCollection", "features": [
         {
@@ -351,6 +353,13 @@ export default {
     // const realtime_location_api_data = await axios.get(`https://bus.sustcra.com/api/v1/bus/monitor_osm/`)
     // this.bus_location_data_api = realtime_location_api_data.data;
     // console.log("fetch complete")
+
+    // fetch geojson
+    const bldg_geojson = await axios.get(`https://bus.sustcra.com/geojson/sustech_bldg.json`)
+    this.bldg_geojson = bldg_geojson.data;
+    const gate_geojson = await axios.get(`https://bus.sustcra.com/geojson/sustech_gate.json`)
+    this.gate_geojson = gate_geojson.data;
+    console.log("Fetch geojson of sustech complete")
 
   },
 
@@ -570,11 +579,37 @@ export default {
           'https://bus.sustcra.com/station_icon.png',
           (error, image) => {
             if (error) throw error;
-            this.map.addImage('custom-marker', image);
+            this.map.addImage('bus-station', image);
+
+
+            //image of buildings
+            this.map.loadImage(
+                'https://bus.sustcra.com/bldg_icon.png',
+                (error, image) => {
+                  this.map.addImage('bldg-icon', image)
+                });
+
+            //image of gates
+            this.map.loadImage(
+                'https://bus.sustcra.com/gate_icon.png',
+                (error, image) => {
+                  this.map.addImage('gate-icon', image)
+                });
+
 
             this.map.addSource('stations', {
               'type': 'geojson',
               'data': this.stations_geojson
+            });
+
+            this.map.addSource('bldgs', {
+              'type': 'geojson',
+              'data': this.bldg_geojson
+            });
+
+            this.map.addSource('gates', {
+              'type': 'geojson',
+              'data': this.gate_geojson
             });
 
             this.map.addLayer({
@@ -583,7 +618,7 @@ export default {
               'source': 'stations',
               'layout': {
                 'icon-size': 0.075,
-                'icon-image': 'custom-marker',
+                'icon-image': 'bus-station',
                 'text-field': ['get', 'name'],
                 // 'text-font': [
                 //   'Open Sans Semibold',
@@ -602,6 +637,44 @@ export default {
               // },
               'filter': ['==', '$type', 'Point']
             });
+
+            this.map.addLayer({
+              'id': 'bldgs',
+              'type': 'symbol',
+              'source': 'bldgs',
+              'layout': {
+                'icon-size': 0.02,
+                'icon-image': 'bldg-icon',
+                'text-field': ['get', 'name'],
+                'text-size': 9,
+                'text-offset': [0, 0.3],
+                'text-anchor': 'top'
+              },
+              "paint": {
+                "text-color": this.map_text_colour
+              },
+              'filter': ['==', '$type', 'Point']
+            });
+
+            this.map.addLayer({
+              'id': 'gates',
+              'type': 'symbol',
+              'source': 'gates',
+              'layout': {
+                'icon-size': 0.05,
+                'icon-image': 'gate-icon',
+                'text-field': ['get', 'name'],
+                'text-size': 10,
+                'text-offset': [0, 0.6],
+                'text-anchor': 'top'
+              },
+              "paint": {
+                "text-color": this.map_text_colour
+              },
+              'filter': ['==', '$type', 'Point']
+            });
+
+
           });
 
 
@@ -637,4 +710,53 @@ export default {
   height: 400px;
   width: 100%;
 }
+
+.filter-group {
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  border-radius: 3px;
+  width: 120px;
+  color: #fff;
+}
+
+.filter-group input[type='checkbox']:first-child + label {
+  border-radius: 3px 3px 0 0;
+}
+
+.filter-group label:last-child {
+  border-radius: 0 0 3px 3px;
+  border: none;
+}
+
+.filter-group input[type='checkbox'] {
+  display: none;
+}
+
+.filter-group input[type='checkbox'] + label {
+  background-color: #3386c0;
+  display: block;
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.filter-group input[type='checkbox'] + label {
+  background-color: #3386c0;
+  text-transform: capitalize;
+}
+
+.filter-group input[type='checkbox'] + label:hover,
+.filter-group input[type='checkbox']:checked + label {
+  background-color: #4ea0da;
+}
+
+.filter-group input[type='checkbox']:checked + label:before {
+  content: '✔';
+  margin-right: 5px;
+}
+
 </style>
