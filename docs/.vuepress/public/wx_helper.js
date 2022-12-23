@@ -1,4 +1,4 @@
-const ENABLE_LOG = false;
+// const ENABLE_LOG = true;
 
 function post_to_wx() {
     var obj = {
