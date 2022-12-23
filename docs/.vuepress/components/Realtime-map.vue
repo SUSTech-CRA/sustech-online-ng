@@ -503,6 +503,7 @@ export default {
     });
     var nav = new maplibre.NavigationControl();
     this.map.addControl(nav, 'top-left');
+    this.map.addControl(new maplibre.FullscreenControl(), 'top-left');
 
     // Add geolocate control to the map.
     this.map.addControl(
