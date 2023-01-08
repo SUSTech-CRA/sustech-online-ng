@@ -55,7 +55,6 @@
     <li><a href="https://sustech.online/facility/">校园街景</a></li>
     <li><a href="https://frmzyjc.newhealth.com.cn:9913/frh5/#/">发热诊室一键查<Badge text="就诊" type="danger"/></a></li>
     <li><a href="https://hsdyjc.newhealth.com.cn/wh5/#/">校外核酸点服务状态</a></li>
-    <li><a href="https://zhiba.sustech.online/">南科制霸生成器<Badge text="学生新闻社合作" type="danger"/></a></li>
     <li><a href="https://nces.cra.moe/">牛娃课程评价社区<Badge text="春季选课" type="danger"/></a></li>
     <li><a href="http://live.cra.moe/">校园风景直播</a></li>
     </ul>
