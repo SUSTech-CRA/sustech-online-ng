@@ -83,7 +83,7 @@
 WAN6=eth0.2
 LAN=br-lan
 ip6tables -t nat -A POSTROUTING -o $WAN6 -j MASQUERADE
-ip6tables -A FORWARD -m conntrack –ctstate RELATED,ESTABLISHED -j ACCEPT
+ip6tables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 ```
 
 其中 `eth0.2` 和 `br-lan` 需要修改为你网络-接口中显示的内容：
