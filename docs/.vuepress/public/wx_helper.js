@@ -1,4 +1,4 @@
-// const ENABLE_LOG = true;
+ENABLE_LOG = false;
 
 function post_to_wx() {
     var obj = {
@@ -110,7 +110,7 @@ function isInWechatMP() {
 // setTimeout("load_adsense()", 500);
 
 // 是否启用哀悼用黑白遮罩
-const ENABLE_HOME_GRAY = false;
+ENABLE_HOME_GRAY = false;
 function changeGray() {
     if (ENABLE_HOME_GRAY) {
         if (window.location.pathname === '/') {
@@ -125,12 +125,11 @@ function changeGray() {
     }
 }
 
-const observer = new MutationObserver(function (mutations) {
+domObserver = new MutationObserver(function (mutations) {
     // DOM 有任何变化，包括js导致的跳转
     changeGray();
 });
-const config = { subtree: true, childList: true };
-observer.observe(document, config);
+domObserver.observe(document, { subtree: true, childList: true });
 
 window.addEventListener('hashchange', () => {
     changeGray();
