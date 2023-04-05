@@ -90,6 +90,12 @@ ip6tables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 
 ![img](./openwrt-pics/image-12.png)
 
+2023.3.22 更新：
+
+在新版本的linux/openwrt 中，iptables 已经被 nftables 取代，上述命令可能执行失败，我们可以使用以下命令来解决：
+ip6tables -t nat -I POSTROUTING -s \`uci get network.globals.ula_prefix\` -j MASQUERADE
+这样就无需上述防火墙自定义规则的配置了。
+
 如果有多拨需求的，提醒一下需要在负载均衡中将 defalut-rule 的备用成员改成默认（使用主路由表），由于我重新刷机做的教程且现在没有多拨的必要，就不演示了，没有需求的可以略过这一点。
 
 经过如上配置，重启路由器后，在网络，诊断中应该能够成功 ping 通 openwrt.org 的v6了，说明你的路由器已经成功接入 IPv6 网络了：
@@ -122,6 +128,9 @@ route -A inet6 add default gw fe80::3e8c:93ff:fed0:83c2 dev eth0.2
 route -A inet6 add default gw fe80::3e8c:93ff:fed0:83c2 dev eth0.2
 ```
 
+2023.3.22 更新：
+如果无法在防火墙自定义规则处修改，请在脚本中添加相关命令。
+
 最后一行需要修改成和刚才一样的内容，然后给予可执行权限。
 
 没有 WinSCP 的可以在终端内输入以下内容：
@@ -150,4 +159,4 @@ chmod +x /etc/hotplug.d/iface/restart-IPv6
 
 我的个人邮箱为：ntdgy2001@gmail.com / 12011211@mail.sustech.edu.cn
 
-原文章地址（NAT 部分）©️ 戴郭轶：[https://ntdgy.top/ntdgy/30/](https://ntdgy.top/ntdgy/30/)
+原文章地址（NAT 部分）©️ 戴郭轶：[[https://ntdgy.top/ntdgy/30/](https://ntdgy.top/ntdgy/30.html)]
