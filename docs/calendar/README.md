@@ -2,7 +2,7 @@
 
 [南科校历|南方科技大学](https://www.sustech.edu.cn/zh/academic-calendar.html)
 
-## 【当前学期】2022 秋季学期
+## 【当前学期】2023 春季学期
 
 <a data-fancybox title="" href="https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/calendar/pic/22-23-spring.jpg">![](./pic/22-23-spring.jpg)</a>
 
