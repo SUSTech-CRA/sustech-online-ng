@@ -47,7 +47,7 @@ async def get_professor_emails(session, link) -> List[str]:
 
 
 async def get_email_formated(session) -> str:
-    res = """# 教授邮件列表\n\n"""
+    res = """---\nsidebar: auto\n---\n\n# 教授邮件列表\n\n"""
     colleges=await get_college(session)
     for key in colleges:
         res += f"## {key}\n"
