@@ -85,6 +85,7 @@
 ### 计算机科学与工程系
 
 - [创新实践项目汇总](./cse/innovative-project.md)
+- [计算机安全/渗透测试公开教学与学术队伍](https://wiki.compass.college)
 
 ### 人文中心
 - [袁长庚老师所推荐的新生书单 2018年](./book-list-by-prof-yuan/2018)
