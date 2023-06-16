@@ -418,13 +418,13 @@ export default {
           var marker = new maplibre.Marker(bus_marker_up)
               .setLngLat([this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat])
               .setPopup(
-                  new maplibre.Popup({offset: 25}) // add popups
+                  new maplibre.Popup({offset: 20}) // add popups
                       .setHTML(
                         '<p class="car-plate">' +
                           'Plate: <b>' + this.bus_location_data_api[i].id +
                           '</b></p><p>' +
                           'Speed: <b>' + this.bus_location_data_api[i].speed + "km/h" +
-                          '</b></p><p>' + 'Next Sta: <b>' + this.bus_location_data_api[i].next_station_string +
+                          '</b></p><p>' + 'Line: <b>' + this.bus_location_data_api[i].route_code +
                           '</b></p>'
                       )
               )
@@ -433,13 +433,13 @@ export default {
             var marker = new maplibre.Marker(bus_marker_down)
                 .setLngLat([this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat])
                 .setPopup(
-                    new maplibre.Popup({offset: 25}) // add popups
+                    new maplibre.Popup({offset: 20}) // add popups
                         .setHTML(
                           '<p class="car-plate">' +
                           'Plate: <b>' + this.bus_location_data_api[i].id +
                           '</b></p><p>' +
                           'Speed: <b>' + this.bus_location_data_api[i].speed + "km/h" +
-                          '</b></p><p>' + 'Next Sta: <b>' + this.bus_location_data_api[i].next_station_string +
+                          '</b></p><p>' + 'Line: <b>' + this.bus_location_data_api[i].route_code +
                           '</b></p>'
                         )
                 )

@@ -6,10 +6,6 @@
 
 ## 车辆位置 Bus Realtime Loaction
 
-::: warning
-因校园巴士更换供应商，新车辆的位置上报模块正在安装，车辆实时位置预计于6月初恢复。请参考下方的时间表计划行程。
-:::
-
 位置每5秒自动刷新。Location refreshes automatically every 5 seconds
 
 <Realtimemap/>
