@@ -1,10 +1,10 @@
 <template>
   <div id="bustable">
     <object-selector :objs="{
-    '工作日 Workday': true,
-    '节假日 Holiday': false
+      '工作日 Workday': true,
+      '节假日 Holiday': false
     }" v-slot="weekdayProps">
-      <br/>
+      <br />
       <object-selector :objs="weekdayProps.selected ? {
         'Line 1 号线 │ 工学院方向 To COE': '/bus_times/one_down.json',
         'Line 1 号线 │ 欣园方向 To Joy Highland': '/bus_times/one_up.json',
@@ -40,53 +40,49 @@ export default {
     GridList
   },
   mounted() {
-    function bus_redirect(holidata) {
+    function toggleButtonBasedOnDate(holidata) {
       // JSON is from https://github.com/NateScarlet/holiday-cn
       // need to update by year.
       // Download the JSON to path "docs/.vuepress/public/YYYY.json"
-      var day_map = {};
+      var dayMap = {};
       for (let i = 0; i < holidata.days.length; i++) {
-        day_map[holidata.days[i].date] = holidata.days[i].isOffDay;
+        dayMap[holidata.days[i].date] = holidata.days[i].isOffDay;
       }
-      var now_date = new Date();
-      var ye = new Intl.DateTimeFormat('en', {year: 'numeric'}).format(now_date);
-      var mo = new Intl.DateTimeFormat('en', {month: '2-digit'}).format(now_date);
-      var da = new Intl.DateTimeFormat('en', {day: '2-digit'}).format(now_date);
-      var day_key = `${ye}-${mo}-${da}`;
-      var is_holiday;
-      if (day_map[day_key] == null) {
+      var nowDate = new Date();
+      var ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(nowDate);
+      var mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(nowDate);
+      var da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(nowDate);
+      var dayKey = `${ye}-${mo}-${da}`;
+      var isHoliday;
+      if (dayMap[dayKey] == null) {
         // 不在国家假日调整表里
         console.log("Not in GOV declaration");
-        var day_in_week = now_date.getDay();
-        var isWeekend = (day_in_week == 6) || (day_in_week == 0);
+        var dayInWeek = nowDate.getDay();
+        var isWeekend = (dayInWeek == 6) || (dayInWeek == 0);
         // 6 = Saturday, 0 = Sunday
-        is_holiday = isWeekend;
+        isHoliday = isWeekend;
       } else {
         console.log("In GOV declaration");
-        is_holiday = day_map[day_key];
+        isHoliday = dayMap[dayKey];
       }
-      if (is_holiday) {
+      if (isHoliday) {
         console.log("节假日");
-        const bus_div = document.getElementById("bustable");
-        const this_day_btn = bus_div.getElementsByTagName("button")[1];
-        this_day_btn.click();
+        const busDiv = document.getElementById("bustable");
+        const thisDayBtn = busDiv.getElementsByTagName("button")[1];
+        thisDayBtn.click();
       } else {
         console.log("工作日");
-        const bus_div = document.getElementById("bustable");
-        const this_day_btn = bus_div.getElementsByTagName("button")[0];
-        this_day_btn.click();
+        const busDiv = document.getElementById("bustable");
+        const thisDayBtn = busDiv.getElementsByTagName("button")[0];
+        thisDayBtn.click();
       }
     }
 
-    axios
-        .get("/2023.json")
-        .then(response => {
-          bus_redirect(response.data);
-        });
+    axios.get("/2023.json").then(response => {
+      toggleButtonBasedOnDate(response.data);
+    });
   },
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
