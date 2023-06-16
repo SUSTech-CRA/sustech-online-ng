@@ -301,8 +301,8 @@ export default {
                   dist = length(thisLine) * 1000 - p_nearest_loc * 1000;
                 }
                 
-                //如果距离大于50米，则不显示
-                if ((p_nearest.properties.dist * 1000 > 50)|(dist<50)) {
+                //如果距离大于100米，则不显示
+                if ((p_nearest.properties.dist * 1000 > 100)|(dist<100)) {
                   return {
                     value: [-1, 0],
                     name: f.id,
