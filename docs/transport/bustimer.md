@@ -15,6 +15,3 @@
 ## 时间表 Timetable
 
 <BusTable></BusTable>
-
-
-<TabView></TabView>
