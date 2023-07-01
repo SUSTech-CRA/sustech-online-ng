@@ -2,7 +2,7 @@
   <div>
     <a-config-provider :theme="{
       token: {
-        colorPrimary: '#00b96b',
+        colorPrimary: '#49BF7C',
       },
     }">
       <a-tabs type="card" size="large">

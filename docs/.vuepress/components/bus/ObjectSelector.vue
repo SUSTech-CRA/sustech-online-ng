@@ -1,7 +1,7 @@
 <template>
   <a-config-provider :theme="{
     token: {
-      colorPrimary: '#00b96b',
+      colorPrimary: '#49BF7C',
     },
   }">
     <a-button v-for="(value, key, index) in objs" :key="index" @click="select(key)"
