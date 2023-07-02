@@ -35,6 +35,7 @@ export default {
     AConfigProvider: ConfigProvider
   },
   setup() {
+    // 因为 RealtimeMap 和 BusTable 里面用了 document，所以需要用到异步加载。
     const TabsComponent = ref(null);
     const TabPaneComponent = ref(null);
     const RealtimeMapComponent = ref(null);
