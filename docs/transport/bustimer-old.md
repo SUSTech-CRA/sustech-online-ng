@@ -8,7 +8,7 @@
 
 位置每5秒自动刷新。Location refreshes automatically every 5 seconds
 
-<Realtimemap/>
+<RealtimeMap/>
 
 <BusChartVue/>
 

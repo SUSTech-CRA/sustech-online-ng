@@ -1,5 +1,4 @@
 <template>
-
   <div class="map-container" ref="myMap"></div>
   <span>Time drift: {{ time_difference }} sec.</span>
   <!--  <div id="map-style-menu">-->
@@ -13,6 +12,7 @@
 <script>
 import maplibre from 'maplibre-gl';
 import axios from "axios";
+import { onMounted, onUnmounted } from 'vue';
 
 
 export default {
@@ -24,25 +24,25 @@ export default {
     bus_location_data_api: [],
     bus_location_data_display: [],
     bus_plate_hash: {
-      "298": {"plate": "粤BDF298"},
-      "363": {"plate": "粤BDF363"},
-      "8040": {"plate": "粤BDF040"},
-      "8147": {"plate": "粤BDF147"},
-      "8267": {"plate": "粤BDF267"},
-      "8330": {"plate": "粤BDF330"},
-      "8335": {"plate": "粤BDF335"},
-      "8338": {"plate": "粤BDF338"},
-      "8345": {"plate": "粤BDF345"},
-      "8365": {"plate": "粤BDF365"},
-      "8371": {"plate": "粤BDF371"},
-      "8411": {"plate": "粤BDF411"},
-      "8421": {"plate": "粤BDF421"},
-      "8430": {"plate": "粤BDF430"},
-      "8447": {"plate": "粤BDE447"},
-      "8458": {"plate": "粤BDF458"},
-      "8470": {"plate": "粤BDF470"},
-      "8471": {"plate": "粤BDF471"},
-      "18447": {"plate": "粤BDF447"}
+      "298": { "plate": "粤BDF298" },
+      "363": { "plate": "粤BDF363" },
+      "8040": { "plate": "粤BDF040" },
+      "8147": { "plate": "粤BDF147" },
+      "8267": { "plate": "粤BDF267" },
+      "8330": { "plate": "粤BDF330" },
+      "8335": { "plate": "粤BDF335" },
+      "8338": { "plate": "粤BDF338" },
+      "8345": { "plate": "粤BDF345" },
+      "8365": { "plate": "粤BDF365" },
+      "8371": { "plate": "粤BDF371" },
+      "8411": { "plate": "粤BDF411" },
+      "8421": { "plate": "粤BDF421" },
+      "8430": { "plate": "粤BDF430" },
+      "8447": { "plate": "粤BDE447" },
+      "8458": { "plate": "粤BDF458" },
+      "8470": { "plate": "粤BDF470" },
+      "8471": { "plate": "粤BDF471" },
+      "18447": { "plate": "粤BDF447" }
     },
     geojson_line_1: [
       [113.99739584160139, 22.610765716856296],
@@ -272,73 +272,73 @@ export default {
       "type": "FeatureCollection", "features": [
         {
           "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [113.99020, 22.60336]},
-          "properties": {"name": "工学院 COE"}
+          "geometry": { "type": "Point", "coordinates": [113.99020, 22.60336] },
+          "properties": { "name": "工学院 COE" }
         },
         {
           "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [113.99153, 22.599643]},
-          "properties": {"name": "科研楼 Research Building"}
+          "geometry": { "type": "Point", "coordinates": [113.99153, 22.599643] },
+          "properties": { "name": "科研楼 Research Building" }
         },
         {
           "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [113.990399, 22.597132]},
-          "properties": {"name": "七号门 Gate7"}
+          "geometry": { "type": "Point", "coordinates": [113.990399, 22.597132] },
+          "properties": { "name": "七号门 Gate7" }
         },
         {
           "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [113.992403, 22.597011]},
-          "properties": {"name": "行政楼 Administration Building"}
+          "geometry": { "type": "Point", "coordinates": [113.992403, 22.597011] },
+          "properties": { "name": "行政楼 Administration Building" }
         },
         {
           "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [113.994898, 22.59569]},
-          "properties": {"name": "1号门 Gate1"}
+          "geometry": { "type": "Point", "coordinates": [113.994898, 22.59569] },
+          "properties": { "name": "1号门 Gate1" }
         },
         {
           "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [113.99939, 22.599893]},
-          "properties": {"name": "3号门 Gate3"}
+          "geometry": { "type": "Point", "coordinates": [113.99939, 22.599893] },
+          "properties": { "name": "3号门 Gate3" }
         },
         {
           "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [113.998329, 22.601975]},
-          "properties": {"name": "专家公寓 Guest Houses"}
+          "geometry": { "type": "Point", "coordinates": [113.998329, 22.601975] },
+          "properties": { "name": "专家公寓 Guest Houses" }
         },
         {
           "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [113.997811, 22.603325]},
-          "properties": {"name": "教工餐厅 Faculty Cafteria"}
+          "geometry": { "type": "Point", "coordinates": [113.997811, 22.603325] },
+          "properties": { "name": "教工餐厅 Faculty Cafteria" }
         },
         {
           "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [113.995981, 22.60293]},
-          "properties": {"name": "社康中心 C.Health.Center"}
+          "geometry": { "type": "Point", "coordinates": [113.995981, 22.60293] },
+          "properties": { "name": "社康中心 C.Health.Center" }
         },
         {
           "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [113.993824, 22.604854]},
-          "properties": {"name": "学生宿舍 Stu. Dormitories"}
+          "geometry": { "type": "Point", "coordinates": [113.993824, 22.604854] },
+          "properties": { "name": "学生宿舍 Stu. Dormitories" }
         },
         {
           "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [113.995238, 22.606518]},
-          "properties": {"name": "荔园 Lychee Hill"}
+          "geometry": { "type": "Point", "coordinates": [113.995238, 22.606518] },
+          "properties": { "name": "荔园 Lychee Hill" }
         },
         {
           "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [113.996732, 22.606278]},
-          "properties": {"name": "创园 Chuang Yuan"}
+          "geometry": { "type": "Point", "coordinates": [113.996732, 22.606278] },
+          "properties": { "name": "创园 Chuang Yuan" }
         },
         {
           "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [113.998372, 22.606102]},
-          "properties": {"name": "慧园 Hui Yuan"}
+          "geometry": { "type": "Point", "coordinates": [113.998372, 22.606102] },
+          "properties": { "name": "慧园 Hui Yuan" }
         },
         {
           "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [113.997473, 22.610667]},
-          "properties": {"name": "欣园 Joy Highland"}
+          "geometry": { "type": "Point", "coordinates": [113.997473, 22.610667] },
+          "properties": { "name": "欣园 Joy Highland" }
         }
       ]
     },
@@ -348,21 +348,23 @@ export default {
     timer: {}
   }),
 
-  async created() {
-    //fetch bus location (current no need)
-    // const realtime_location_api_data = await axios.get(`https://bus.sustcra.com/api/v1/bus/monitor_osm/`)
-    // this.bus_location_data_api = realtime_location_api_data.data;
-    // console.log("fetch complete")
+  setup() {
+    onMounted(async () => {
+      // fetch geojson
+      const bldg_geojson = await axios.get(`https://bus.sustcra.com/geojson/sustech_bldg.json`);
+      this.bldg_geojson = bldg_geojson.data;
 
-    // fetch geojson
-    const bldg_geojson = await axios.get(`https://bus.sustcra.com/geojson/sustech_bldg.json`)
-    this.bldg_geojson = bldg_geojson.data;
-    const gate_geojson = await axios.get(`https://bus.sustcra.com/geojson/sustech_gate.json`)
-    this.gate_geojson = gate_geojson.data;
-    console.log("Fetch geojson of sustech complete")
+      const gate_geojson = await axios.get(`https://bus.sustcra.com/geojson/sustech_gate.json`);
+      this.gate_geojson = gate_geojson.data;
 
+      console.log("Fetch geojson of sustech complete");
+      await this.build_map_onmount();
+    });
+
+    onUnmounted(async () => {
+      clearInterval(this.timer);
+    });
   },
-
 
   //update data
   methods: {
@@ -379,7 +381,7 @@ export default {
       }
       this.update_location()
     },
-    update_location: function () {
+    update_location() {
       this.display_data = [];
       this.bus_marker_arr.forEach((marker) => marker.remove())
       let i;
@@ -415,35 +417,35 @@ export default {
 
           // add marker to map
           if (this.bus_location_data_api[i].route_dir === 0) { //up
-          var marker = new maplibre.Marker(bus_marker_up)
+            var marker = new maplibre.Marker(bus_marker_up)
               .setLngLat([this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat])
               .setPopup(
-                  new maplibre.Popup({offset: 20}) // add popups
-                      .setHTML(
-                        '<p class="car-plate">' +
-                          'Plate: <b>' + this.bus_location_data_api[i].id +
-                          '</b></p><p>' +
-                          'Speed: <b>' + this.bus_location_data_api[i].speed + "km/h" +
-                          '</b></p><p>' + 'Line: <b>' + this.bus_location_data_api[i].route_code +
-                          '</b></p>'
-                      )
+                new maplibre.Popup({ offset: 20 }) // add popups
+                  .setHTML(
+                    '<p class="car-plate">' +
+                    'Plate: <b>' + this.bus_location_data_api[i].id +
+                    '</b></p><p>' +
+                    'Speed: <b>' + this.bus_location_data_api[i].speed + "km/h" +
+                    '</b></p><p>' + 'Line: <b>' + this.bus_location_data_api[i].route_code +
+                    '</b></p>'
+                  )
               )
               .addTo(this.map);
           } else {
             var marker = new maplibre.Marker(bus_marker_down)
-                .setLngLat([this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat])
-                .setPopup(
-                    new maplibre.Popup({offset: 20}) // add popups
-                        .setHTML(
-                          '<p class="car-plate">' +
-                          'Plate: <b>' + this.bus_location_data_api[i].id +
-                          '</b></p><p>' +
-                          'Speed: <b>' + this.bus_location_data_api[i].speed + "km/h" +
-                          '</b></p><p>' + 'Line: <b>' + this.bus_location_data_api[i].route_code +
-                          '</b></p>'
-                        )
-                )
-                .addTo(this.map);
+              .setLngLat([this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat])
+              .setPopup(
+                new maplibre.Popup({ offset: 20 }) // add popups
+                  .setHTML(
+                    '<p class="car-plate">' +
+                    'Plate: <b>' + this.bus_location_data_api[i].id +
+                    '</b></p><p>' +
+                    'Speed: <b>' + this.bus_location_data_api[i].speed + "km/h" +
+                    '</b></p><p>' + 'Line: <b>' + this.bus_location_data_api[i].route_code +
+                    '</b></p>'
+                  )
+              )
+              .addTo(this.map);
           }
 
           // var marker = new maplibre.Marker(bus_marker)
@@ -488,44 +490,40 @@ export default {
     async refresh() {
       await this.fetch_bus();
     },
+    async build_map_onmount() {
+      const initialState = {
+        lng: 113.99373,
+        lat: 22.60308,
+        zoom: 14,
+      };
 
+      const location_data = {
+        bus_location_data: this.bus_location_data,
+        geojson_line_1: this.geojson_line_1,
+        geojson_line_2: this.geojson_line_2
+      }
 
-  },
+      //determine day or night
+      const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const userPrefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      if (await userPrefersDark) {
+        console.log("dark mode enabled.")
+        this.map_text_colour = "#FFFFFF"
+        this.map_style_url = "https://mirrors.sustech.edu.cn/osm-tile/styles/osm-blue/style.json";
+      }
 
-  async mounted() {
-    const initialState = {
-      lng: 113.99373,
-      lat: 22.60308,
-      zoom: 14,
-    };
+      this.map = new maplibre.Map({
+        container: this.$refs.myMap,
+        style: this.map_style_url,
+        center: [initialState.lng, initialState.lat],
+        zoom: initialState.zoom
+      });
+      var nav = new maplibre.NavigationControl();
+      this.map.addControl(nav, 'top-left');
+      this.map.addControl(new maplibre.FullscreenControl(), 'top-left');
 
-    const location_data = {
-      bus_location_data: this.bus_location_data,
-      geojson_line_1: this.geojson_line_1,
-      geojson_line_2: this.geojson_line_2
-    }
-
-    //determine day or night
-    const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const userPrefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-    if (await userPrefersDark) {
-      console.log("dark mode enabled.")
-      this.map_text_colour = "#FFFFFF"
-      this.map_style_url = "https://mirrors.sustech.edu.cn/osm-tile/styles/osm-blue/style.json";
-    }
-
-    this.map = new maplibre.Map({
-      container: this.$refs.myMap,
-      style: this.map_style_url,
-      center: [initialState.lng, initialState.lat],
-      zoom: initialState.zoom
-    });
-    var nav = new maplibre.NavigationControl();
-    this.map.addControl(nav, 'top-left');
-    this.map.addControl(new maplibre.FullscreenControl(), 'top-left');
-
-    // Add geolocate control to the map.
-    this.map.addControl(
+      // Add geolocate control to the map.
+      this.map.addControl(
         new maplibre.GeolocateControl({
           positionOptions: {
             enableHighAccuracy: true
@@ -535,67 +533,67 @@ export default {
           // Draw an arrow next to the location dot to indicate which direction the device is heading.
           showUserHeading: true
         })
-    );
+      );
 
 
-    this.map.on('load', () => {
-      this.map.addSource('line1', {
-        'type': 'geojson',
-        'data': {
-          'type': 'Feature',
-          'properties': {},
-          'geometry': {
-            'type': 'LineString',
-            'coordinates': location_data.geojson_line_1
+      this.map.on('load', () => {
+        this.map.addSource('line1', {
+          'type': 'geojson',
+          'data': {
+            'type': 'Feature',
+            'properties': {},
+            'geometry': {
+              'type': 'LineString',
+              'coordinates': location_data.geojson_line_1
+            }
           }
-        }
-      });
+        });
 
-      this.map.addSource('line2', {
-        'type': 'geojson',
-        'data': {
-          'type': 'Feature',
-          'properties': {},
-          'geometry': {
-            'type': 'LineString',
-            'coordinates': location_data.geojson_line_2
+        this.map.addSource('line2', {
+          'type': 'geojson',
+          'data': {
+            'type': 'Feature',
+            'properties': {},
+            'geometry': {
+              'type': 'LineString',
+              'coordinates': location_data.geojson_line_2
+            }
           }
-        }
-      });
+        });
 
-      this.map.addLayer({
-        'id': 'line1',
-        'type': 'line',
-        'source': 'line1',
-        'layout': {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        'paint': {
-          'line-color': '#f7911d',
-          'line-width': 3
-          // 'line-dasharray': [1, 2]
-        }
-      });
+        this.map.addLayer({
+          'id': 'line1',
+          'type': 'line',
+          'source': 'line1',
+          'layout': {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          'paint': {
+            'line-color': '#f7911d',
+            'line-width': 3
+            // 'line-dasharray': [1, 2]
+          }
+        });
 
-      this.map.addLayer({
-        'id': 'line2',
-        'type': 'line',
-        'source': 'line2',
-        'layout': {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        'paint': {
-          'line-color': '#29abe2',
-          'line-width': 3
-          // 'line-dasharray': [1, 2]
-        }
-      });
+        this.map.addLayer({
+          'id': 'line2',
+          'type': 'line',
+          'source': 'line2',
+          'layout': {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          'paint': {
+            'line-color': '#29abe2',
+            'line-width': 3
+            // 'line-dasharray': [1, 2]
+          }
+        });
 
-      //add station
+        //add station
 
-      this.map.loadImage(
+        this.map.loadImage(
           'https://bus.sustcra.com/station_icon.png',
           (error, image) => {
             if (error) throw error;
@@ -604,17 +602,17 @@ export default {
 
             //image of buildings
             this.map.loadImage(
-                'https://bus.sustcra.com/bldg_icon.png',
-                (error, image) => {
-                  this.map.addImage('bldg-icon', image)
-                });
+              'https://bus.sustcra.com/bldg_icon.png',
+              (error, image) => {
+                this.map.addImage('bldg-icon', image)
+              });
 
             //image of gates
             this.map.loadImage(
-                'https://bus.sustcra.com/gate_icon.png',
-                (error, image) => {
-                  this.map.addImage('gate-icon', image)
-                });
+              'https://bus.sustcra.com/gate_icon.png',
+              (error, image) => {
+                this.map.addImage('gate-icon', image)
+              });
 
 
             this.map.addSource('stations', {
@@ -698,29 +696,23 @@ export default {
           });
 
 
-    });
+      });
 
 
-    await this.fetch_bus();
+      await this.fetch_bus();
 
-    //refresh timer
+      //refresh timer
 
-    this.timer = setInterval(() => {
-      this.refresh();
-    }, 5000);
-
-
+      this.timer = setInterval(() => {
+        this.refresh();
+      }, 5000);
+    },
   },
-
-  async unmounted() {
-    clearInterval(this.timer);
-  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style src="maplibre-gl/dist/maplibre-gl.css">
-</style>
+<style src="maplibre-gl/dist/maplibre-gl.css"></style>
 <style scoped>
 /* @import 'https://code.bdstatic.com/npm/maplibre-gl@1.15.2/dist/maplibre-gl.css'; */
 /* @import 'maplibre-gl/dist/maplibre-gl.css'; */
@@ -743,7 +735,7 @@ export default {
   color: #fff;
 }
 
-.filter-group input[type='checkbox']:first-child + label {
+.filter-group input[type='checkbox']:first-child+label {
   border-radius: 3px 3px 0 0;
 }
 
@@ -756,7 +748,7 @@ export default {
   display: none;
 }
 
-.filter-group input[type='checkbox'] + label {
+.filter-group input[type='checkbox']+label {
   background-color: #3386c0;
   display: block;
   cursor: pointer;
@@ -764,19 +756,18 @@ export default {
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 
-.filter-group input[type='checkbox'] + label {
+.filter-group input[type='checkbox']+label {
   background-color: #3386c0;
   text-transform: capitalize;
 }
 
-.filter-group input[type='checkbox'] + label:hover,
-.filter-group input[type='checkbox']:checked + label {
+.filter-group input[type='checkbox']+label:hover,
+.filter-group input[type='checkbox']:checked+label {
   background-color: #4ea0da;
 }
 
-.filter-group input[type='checkbox']:checked + label:before {
+.filter-group input[type='checkbox']:checked+label:before {
   content: '✔';
   margin-right: 5px;
 }
-
 </style>

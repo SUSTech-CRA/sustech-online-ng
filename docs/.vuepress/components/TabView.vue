@@ -44,7 +44,7 @@ export default {
     onMounted(async () => {
       const { Tabs } = await import('ant-design-vue');
       const { TabPane } = Tabs;
-      const RealtimeMap = await import('./Realtime-map.vue');
+      const RealtimeMap = await import('./RealtimeMap.vue');
       const BusChartVue = await import('./BusChartVue.vue');
       const BusTable = await import('./BusTable.vue');
 
