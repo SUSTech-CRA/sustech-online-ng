@@ -8,4 +8,6 @@ navbar: false
 
 <a data-fancybox title="" href="https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/transport/busline2.png">![](./busline2.png)</a>
 
-<TabView></TabView>
+<ClientOnly>
+  <TabView></TabView>
+</ClientOnly>
