@@ -8,7 +8,7 @@
       <object-selector :objs="weekdayProps.selected ? {
         'Line 1 号线 │ 工学院方向 To COE': '/bus_times/one_down.json',
         'Line 1 号线 │ 欣园方向 To Joy Highland': '/bus_times/one_up.json',
-        'Line 2 号线 │ 科研楼方向 To Research Building': '/bus_times/two_down.json',
+        'Line 2 号线 │ 科研楼方向 To Research Bldg.': '/bus_times/two_down.json',
         'Line 2 号线 │ 欣园方向 To Joy Highland': '/bus_times/two_up.json',
       } : {
         'Line 1 号线 │ 工学院方向  To COE': '/bus_times/one_down_holiday.json',
