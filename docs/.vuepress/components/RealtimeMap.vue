@@ -524,7 +524,7 @@ export default {
     this.map.addControl(nav, 'top-left');
     this.map.addControl(new maplibre.FullscreenControl(), 'top-left');
 
-    class ToggleControl {
+    class MapLockControl {
       onAdd(map) {
         this._map = map;
         this._container = document.createElement('div');
@@ -568,8 +568,8 @@ export default {
         return el;
       }
     }
-    const toggleControl = new ToggleControl();
-    this.map.addControl(toggleControl, 'top-left');
+    const mapLockControl = new MapLockControl();
+    this.map.addControl(mapLockControl, 'top-left');
 
     // Add geolocate control to the map.
     this.map.addControl(
