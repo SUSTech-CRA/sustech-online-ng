@@ -524,6 +524,53 @@ export default {
     this.map.addControl(nav, 'top-left');
     this.map.addControl(new maplibre.FullscreenControl(), 'top-left');
 
+    class ToggleControl {
+      onAdd(map) {
+        this._map = map;
+        this._container = document.createElement('div');
+        this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group mapboxgl-ctrl mapboxgl-ctrl-group';
+
+        const button = this._createButton('interaction-lock')
+        this._container.appendChild(button);
+        // 初始化锁定按钮，默认为锁定
+        button.click();
+        return this._container;
+      }
+      onRemove() {
+        this._container.parentNode.removeChild(this._container);
+        this._map = undefined;
+      }
+      _createButton(className) {
+        const el = window.document.createElement('button')
+        el.className = className;
+        el.isInteractionEnabled = true;
+
+        el.addEventListener('click', (e) => {
+          el.isInteractionEnabled = !el.isInteractionEnabled;
+          if (el.isInteractionEnabled) {
+            this._map.dragPan.enable();
+            this._map.boxZoom.enable();
+            this._map.doubleClickZoom.enable();
+            this._map.touchZoomRotate.enable();
+            this._map.scrollZoom.enable();
+            el.innerHTML = '<span class="maplibregl-ctrl-icon mapboxgl-ctrl-icon map-interaction-allow" aria-hidden="true"></span>';
+          } else {
+            this._map.dragPan.disable();
+            this._map.boxZoom.disable();
+            this._map.doubleClickZoom.disable();
+            this._map.touchZoomRotate.disable();
+            this._map.scrollZoom.disable();
+            el.innerHTML = '<span class="maplibregl-ctrl-icon mapboxgl-ctrl-icon map-interaction-lock" aria-hidden="true"></span>';
+          }
+          e.preventDefault();
+          e.stopPropagation();
+        }, false)
+        return el;
+      }
+    }
+    const toggleControl = new ToggleControl();
+    this.map.addControl(toggleControl, 'top-left');
+
     // Add geolocate control to the map.
     this.map.addControl(
         new maplibre.GeolocateControl({
@@ -778,5 +825,16 @@ export default {
   content: '✔';
   margin-right: 5px;
 }
+</style>
 
+<style>
+.map-interaction-allow {
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy1TVkctMjAwMTA5MDQvRFREL3N2ZzEwLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiB3aWR0aD0iNTEyLjAwMDAwMHB0IiBoZWlnaHQ9IjUxMi4wMDAwMDBwdCIgdmlld0JveD0iMCAwIDUxMi4wMDAwMDAgNTEyLjAwMDAwMCIKIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPgoKPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsNTEyLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIj4KPHBhdGggZD0iTTI0MzAgNDg5OSBjLTQ5MyAtNTcgLTg3NSAtNDQ1IC05MzAgLTk0OCAtMTMgLTEyMyAtNyAtMTc3IDMwIC0yMzQKMzcgLTU4IDk2IC04NyAxNzYgLTg3IDEzNSAxIDIxNCA4MiAyMTQgMjIzIDAgMTgzIDk5IDM4NCAyNDMgNDkzIDI4MSAyMTMgNjk4CjE2MyA5MDIgLTEwOSA1NyAtNzUgNzYgLTExMSAxMDYgLTIwMiAyMiAtNjcgMjMgLTg0IDI3IC00NTIgbDMgLTM4MiAtOTE4IC0zCi05MTggLTMgLTg1IC0zMSBjLTE2MyAtNTggLTI4OCAtMTY5IC0zNTkgLTMxNyAtNjkgLTE0NSAtNjYgLTkyIC02NiAtMTE0MiAwCi04NzQgMSAtOTU1IDE4IC0xMDE1IDYxIC0yMjYgMjMxIC0zOTYgNDU3IC00NTcgNjAgLTE3IDE1MSAtMTggMTIzMCAtMTggMTA3OQowIDExNzAgMSAxMjMwIDE4IDIyNiA2MSAzOTYgMjMxIDQ1NyA0NTcgMTcgNjAgMTggMTQxIDE4IDEwMjUgbDAgOTYwIC0yNyA4MApjLTQ5IDE0NSAtMTM3IDI2MiAtMjU3IDM0MiAtNjkgNDYgLTE5NiA5MCAtMjgzIDk5IGwtNjggNyAwIDMyOSBjMCAxODEgLTUKMzcyIC0xMSA0MjUgLTU2IDUwNSAtNDM3IDg4NiAtOTQyIDk0MiAtMTA3IDEyIC0xMzkgMTIgLTI0NyAweiBtMTI5NSAtMjE0OApjNTAgLTIyIDkxIC02OSAxMDUgLTExOSA2IC0yNCAxMCAtMzQ3IDEwIC05MzMgbDAgLTg5NSAtMjcgLTU1IGMtMjMgLTQ1IC0zNwotNTkgLTgyIC04MSBsLTU1IC0yOCAtMTExNSAwIC0xMTE2IDAgLTUxIDI0IGMtNTMgMjUgLTgzIDU4IC0xMDIgMTE1IC0xNiA0NQotMTcgMTc5OCAtMiAxODUzIDE0IDUwIDU1IDk3IDEwNSAxMTkgMzggMTggOTUgMTkgMTE2NSAxOSAxMDcwIDAgMTEyNyAtMQoxMTY1IC0xOXoiLz4KPHBhdGggZD0iTTI0ODcgMjM0MCBjLTIyMiAtMzkgLTM4MyAtMjYyIC0zNDcgLTQ4MiAxOCAtMTE0IDk1IC0yMzQgMTgxIC0yODUKbDI5IC0xNyAwIC0xNjkgYzAgLTE0NSAzIC0xNzMgMTkgLTIwNSAzOSAtNzUgMTAxIC0xMTIgMTkxIC0xMTIgOTAgMCAxNTIgMzcKMTkxIDExMiAxNiAzMiAxOSA2MCAxOSAyMDUgbDAgMTY4IDQ1IDMwIGMxNTYgMTA1IDIxNCAzMzAgMTMwIDUxMiAtNzkgMTc0Ci0yNzEgMjc2IC00NTggMjQzeiIvPgo8L2c+Cjwvc3ZnPgo=");
+  background-size: 86% 86%;
+}
+
+.map-interaction-lock {
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy1TVkctMjAwMTA5MDQvRFREL3N2ZzEwLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiB3aWR0aD0iNTEyLjAwMDAwMHB0IiBoZWlnaHQ9IjUxMi4wMDAwMDBwdCIgdmlld0JveD0iMCAwIDUxMi4wMDAwMDAgNTEyLjAwMDAwMCIKIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPgoKPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsNTEyLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIj4KPHBhdGggZD0iTTIzNzAgNTEwNSBjLTQ0MSAtNjkgLTgyNiAtMzk0IC05NjUgLTgxNSAtNTMgLTE2MSAtNTcgLTE5NSAtNjIKLTU0NiBsLTUgLTMzMSAtNzEgLTYgYy0yNTcgLTIwIC00OTcgLTE5OSAtNjA0IC00NTIgLTU0IC0xMjcgLTU0IC0xMjEgLTUxCi0xMjg1IGwzIC0xMDc1IDIzIC03MCBjODQgLTI1MCAyNTYgLTQyMCA1MDIgLTQ5NyBsNzUgLTIzIDEzNDUgMCAxMzQ1IDAgNzUKMjMgYzI0OCA3OSA0MTcgMjQ2IDUwMiA0OTcgbDIzIDcwIDMgMTA3NSBjMyAxMjI3IDcgMTE2MyAtNzkgMTMzOCAtNDIgODcgLTYzCjExNiAtMTMyIDE4NSAtNDUgNDUgLTExMSA5OSAtMTQ3IDEyMCAtODQgNDggLTIwNiA4NyAtMjk3IDk0IGwtNzMgNiAwIDI4MQpjLTEgMjk3IC03IDM4MiAtNDEgNTEwIC0xNTcgNjA3IC03NTEgOTk3IC0xMzY5IDkwMXogbTQxNSAtNTA5IGMyMDQgLTY5IDM2NwotMjE5IDQ0OSAtNDE0IDQ5IC0xMTUgNTYgLTE3OSA1NiAtNDg4IGwwIC0yODQgLTczMSAwIC03MzAgMCAzIDMxOCAzIDMxNyAyOAo4MCBjODggMjUyIDI4OCA0MzMgNTQyIDQ5MSA5OSAyMyAyODIgMTMgMzgwIC0yMHogbTEwODYgLTE2ODcgYzU2IC0yNiAxMDUKLTc1IDEyOCAtMTI5IGwyMSAtNDkgLTIgLTEwMzkgLTMgLTEwMzkgLTMwIC00OSBjLTE5IC0zMCAtNDkgLTYwIC03OSAtNzkKbC00OSAtMzAgLTEyOTcgMCAtMTI5NyAwIC00OSAzMCBjLTMwIDE5IC02MCA0OSAtNzkgNzkgbC0zMCA0OSAtMyAxMDM2IGMtMgo5MzYgLTEgMTA0MCAxNCAxMDc5IDMwIDgwIDk0IDEzNSAxNzYgMTUxIDI0IDUgNjA2IDggMTI5MyA4IDExMzAgLTIgMTI1MyAtNAoxMjg2IC0xOHoiLz4KPHBhdGggZD0iTTI0NjUgMjQyOCBjLTg5IC0xNyAtMTg0IC03MCAtMjUzIC0xNDIgLTIwNCAtMjEyIC0xODEgLTUzMyA1MSAtNzE2Cmw1NyAtNDUgMCAtMTgzIGMwIC0yMDYgOSAtMjQzIDc4IC0zMDMgNTAgLTQ0IDkxIC01OSAxNjQgLTU5IDc2IDAgMTM0IDI2IDE4MQo4MSA1MCA1NyA1NyA5NSA1NyAyOTAgbDAgMTc0IDU3IDQ1IGMyMzEgMTgyIDI1NSA1MDQgNTMgNzE0IC0xMTkgMTI0IC0yNzgKMTc2IC00NDUgMTQ0eiIvPgo8L2c+Cjwvc3ZnPgo=");
+  background-size: 86% 86%;
+}
 </style>
