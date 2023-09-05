@@ -4,6 +4,8 @@
 
 *——南科新知：[吃喝住行指南 | 新生攻略Vol.2](https://mp.weixin.qq.com/s/5wzuZjQ9uJacp4ioScBVww)*
 
+![南方科技大学餐饮地图](./catering_map.jpg)
+
 ## 校内餐厅
 
 ### 第二学生餐厅
