@@ -169,6 +169,66 @@ export default {
       }
       this.update_location()
     },
+    calculateBusAngle(lat1, lon1, lat2, lon2) {
+      const dLon = (lon2 - lon1);
+
+      const y = Math.sin(dLon) * Math.cos(lat2);
+      const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1)
+          * Math.cos(lat2) * Math.cos(dLon);
+
+      let brng = Math.atan2(y, x);
+
+      brng = brng * (180 / Math.PI);
+      brng = (brng + 360) % 360;
+      brng = 360 - brng; // 如果需要顺时针度数，请移除此行
+
+      return brng;
+    },
+    findNearestPointOnSegment(point, segmentStart, segmentEnd) {
+      const A = point[0] - segmentStart[0];
+      const B = point[1] - segmentStart[1];
+      const C = segmentEnd[0] - segmentStart[0];
+      const D = segmentEnd[1] - segmentStart[1];
+
+      const dot = A * C + B * D;
+      const len_sq = C * C + D * D;
+      const param = (len_sq !== 0) ? dot / len_sq : -1;
+
+      let xx, yy;
+
+      if (param < 0) {
+        xx = segmentStart[0];
+        yy = segmentStart[1];
+      } else if (param > 1) {
+        xx = segmentEnd[0];
+        yy = segmentEnd[1];
+      } else {
+        xx = segmentStart[0] + param * C;
+        yy = segmentStart[1] + param * D;
+      }
+
+      return [xx, yy];
+    },
+    findNearestSegment(busLocation, geojsonLine) {
+      let closestSegment = [geojsonLine[0], geojsonLine[1]];
+      let minDistance = Number.MAX_VALUE;
+
+      for (let i = 0; i < geojsonLine.length - 1; i++) {
+        const point1 = geojsonLine[i];
+        const point2 = geojsonLine[i + 1];
+        const distance = this.calculateDistance(busLocation, this.findNearestPointOnSegment(busLocation, point1, point2));
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestSegment = [point1, point2];
+        }
+      }
+
+      return closestSegment;
+    },
+    calculateDistance(point1, point2) {
+      return Math.sqrt(Math.pow(point2[0] - point1[0], 2) + Math.pow(point2[1] - point1[1], 2));
+    },
     update_location: function () {
       this.display_data = [];
       this.bus_marker_arr.forEach((marker) => marker.remove())
@@ -176,63 +236,83 @@ export default {
       for (i = 0; i < this.bus_location_data_api.length; i++) {
         // if current time - report time < 300s, then display
         if (parseInt(new Date().getTime() / 1000) - this.bus_location_data_api[i].time_mt < 300) {
+          const busLocation = [this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat];
+          if (this.bus_location_data_api[i].route_code.slice(-1) === '1') { //XYBS1
+            this.bus_location_data_api[i].route_geojson = this.geojson_line_1
+          } else { //XYBS2
+            this.bus_location_data_api[i].route_geojson = this.geojson_line_2
+          }
+          const closestSegment = this.findNearestSegment(busLocation, this.bus_location_data_api[i].route_geojson);
+          const busHeadingAngle = this.calculateBusAngle(busLocation[1], busLocation[0], closestSegment[1][1], closestSegment[1][0]);
+
 
           // create a DOM element for the marker
 
           //up direction (0)
           var bus_marker_up = document.createElement('div');
           bus_marker_up.className = 'marker';
-          bus_marker_up.style.backgroundImage = 'url(https://bus.sustcra.com/img/bus-uphill.png)';
-          bus_marker_up.style.width = 28 + 'px';
-          bus_marker_up.style.height = 28 + 'px';
+          bus_marker_up.style.backgroundImage = 'url(https://bus.sustcra.com/bus-top-view.png)';
+          bus_marker_up.style.width = '30px';
+          bus_marker_up.style.height = '30px';
           bus_marker_up.style.backgroundSize = 'cover';
 
           //down direction (1)
           var bus_marker_down = document.createElement('div');
           bus_marker_down.className = 'marker';
-          bus_marker_down.style.backgroundImage = 'url(https://bus.sustcra.com/img/bus-downhill.png)';
-          bus_marker_down.style.width = 28 + 'px';
-          bus_marker_down.style.height = 28 + 'px';
+          bus_marker_down.style.backgroundImage = 'url(https://bus.sustcra.com/bus-top-view.png)';
+          bus_marker_down.style.width = '30px';
+          bus_marker_down.style.height = '30px';
           bus_marker_down.style.backgroundSize = 'cover';
           bus_marker_down.style.cursor = "pointer";
 
-          var bus_marker = document.createElement('div');
-          bus_marker.className = 'marker';
-          bus_marker.style.backgroundImage = 'url(https://bus.sustcra.com/bus-top-view.png)';
-          bus_marker.style.width = 35 + 'px';
-          bus_marker.style.height = 35 + 'px';
-          bus_marker.style.backgroundSize = 'cover';
-          bus_marker_up.style.cursor = "pointer";
+          // var bus_marker = document.createElement('div');
+          // bus_marker.className = 'marker';
+          // bus_marker.style.backgroundImage = 'url(https://bus.sustcra.com/bus-top-view.png)';
+          // bus_marker.style.width = 35 + 'px';
+          // bus_marker.style.height = 35 + 'px';
+          // bus_marker.style.backgroundSize = 'cover';
+          // bus_marker_up.style.cursor = "pointer";
 
 
           // add marker to map
           if (this.bus_location_data_api[i].route_dir === 0) { //up
+            // console.log(busHeadingAngle)
+            this.bus_location_data_api[i].course = busHeadingAngle - 180
+            this.bus_location_data_api[i].route_dir_text = '上行UP'
             var marker = new maplibre.Marker({element: bus_marker_up})
               .setLngLat([this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat])
+              .setRotation(parseInt(this.bus_location_data_api[i].course))
               .setPopup(
                   new maplibre.Popup({offset: 20}) // add popups
                       .setHTML(
-                        '<p class="car-plate">' +
+                          '<div style="line-height: 1.2;">' + // 设置外层 div 的行距
+                          '<p class="car-plate" style="margin: 0; line-height: 1.2;">' + // 为每个 p 标签设置行距和边距
                           'Plate: <b>' + this.bus_location_data_api[i].id +
-                          '</b></p><p>' +
-                          'Speed: <b>' + this.bus_location_data_api[i].speed + "km/h" +
-                          '</b></p><p>' + 'Line: <b>' + this.bus_location_data_api[i].route_code +
-                          '</b></p>'
+                          '</b></p><p style="margin: 0; line-height: 1.2;">' +
+                          'Speed: <b>' + this.bus_location_data_api[i].speed + " km/h" +
+                          '</b></p><p style="margin: 0; line-height: 1.2;">' + 'Line <b>' + this.bus_location_data_api[i].route_code.slice(-1) + ' ' + this.bus_location_data_api[i].route_dir_text +
+                          '</b></p>' +
+                          '</div>'
                       )
               )
               .addTo(this.map);
           } else {
+            this.bus_location_data_api[i].course = busHeadingAngle
+            this.bus_location_data_api[i].route_dir_text = '下行DOWN'
             var marker = new maplibre.Marker({element: bus_marker_down})
                 .setLngLat([this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat])
+                .setRotation(parseInt(this.bus_location_data_api[i].course))
                 .setPopup(
                     new maplibre.Popup({offset: 20}) // add popups
                         .setHTML(
-                          '<p class="car-plate">' +
-                          'Plate: <b>' + this.bus_location_data_api[i].id +
-                          '</b></p><p>' +
-                          'Speed: <b>' + this.bus_location_data_api[i].speed + "km/h" +
-                          '</b></p><p>' + 'Line: <b>' + this.bus_location_data_api[i].route_code +
-                          '</b></p>'
+                            '<div style="line-height: 1.2;">' + // 设置外层 div 的行距
+                            '<p class="car-plate" style="margin: 0; line-height: 1.2;">' + // 为每个 p 标签设置行距和边距
+                            'Plate: <b>' + this.bus_location_data_api[i].id +
+                            '</b></p><p style="margin: 0; line-height: 1.2;">' +
+                            'Speed: <b>' + this.bus_location_data_api[i].speed + " km/h" +
+                            '</b></p><p style="margin: 0; line-height: 1.2;">' + 'Line <b>' + this.bus_location_data_api[i].route_code.slice(-1) + ' ' + this.bus_location_data_api[i].route_dir_text +
+                            '</b></p>' +
+                            '</div>'
                         )
                 )
                 .addTo(this.map);
@@ -628,5 +708,9 @@ export default {
 .map-interaction-lock {
   background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy1TVkctMjAwMTA5MDQvRFREL3N2ZzEwLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiB3aWR0aD0iNTEyLjAwMDAwMHB0IiBoZWlnaHQ9IjUxMi4wMDAwMDBwdCIgdmlld0JveD0iMCAwIDUxMi4wMDAwMDAgNTEyLjAwMDAwMCIKIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPgoKPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsNTEyLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKZmlsbD0iIzMzMzMzMyIgc3Ryb2tlPSJub25lIj4KPHBhdGggZD0iTTIzNzAgNTEwNSBjLTQ0MSAtNjkgLTgyNiAtMzk0IC05NjUgLTgxNSAtNTMgLTE2MSAtNTcgLTE5NSAtNjIKLTU0NiBsLTUgLTMzMSAtNzEgLTYgYy0yNTcgLTIwIC00OTcgLTE5OSAtNjA0IC00NTIgLTU0IC0xMjcgLTU0IC0xMjEgLTUxCi0xMjg1IGwzIC0xMDc1IDIzIC03MCBjODQgLTI1MCAyNTYgLTQyMCA1MDIgLTQ5NyBsNzUgLTIzIDEzNDUgMCAxMzQ1IDAgNzUKMjMgYzI0OCA3OSA0MTcgMjQ2IDUwMiA0OTcgbDIzIDcwIDMgMTA3NSBjMyAxMjI3IDcgMTE2MyAtNzkgMTMzOCAtNDIgODcgLTYzCjExNiAtMTMyIDE4NSAtNDUgNDUgLTExMSA5OSAtMTQ3IDEyMCAtODQgNDggLTIwNiA4NyAtMjk3IDk0IGwtNzMgNiAwIDI4MQpjLTEgMjk3IC03IDM4MiAtNDEgNTEwIC0xNTcgNjA3IC03NTEgOTk3IC0xMzY5IDkwMXogbTQxNSAtNTA5IGMyMDQgLTY5IDM2NwotMjE5IDQ0OSAtNDE0IDQ5IC0xMTUgNTYgLTE3OSA1NiAtNDg4IGwwIC0yODQgLTczMSAwIC03MzAgMCAzIDMxOCAzIDMxNyAyOAo4MCBjODggMjUyIDI4OCA0MzMgNTQyIDQ5MSA5OSAyMyAyODIgMTMgMzgwIC0yMHogbTEwODYgLTE2ODcgYzU2IC0yNiAxMDUKLTc1IDEyOCAtMTI5IGwyMSAtNDkgLTIgLTEwMzkgLTMgLTEwMzkgLTMwIC00OSBjLTE5IC0zMCAtNDkgLTYwIC03OSAtNzkKbC00OSAtMzAgLTEyOTcgMCAtMTI5NyAwIC00OSAzMCBjLTMwIDE5IC02MCA0OSAtNzkgNzkgbC0zMCA0OSAtMyAxMDM2IGMtMgo5MzYgLTEgMTA0MCAxNCAxMDc5IDMwIDgwIDk0IDEzNSAxNzYgMTUxIDI0IDUgNjA2IDggMTI5MyA4IDExMzAgLTIgMTI1MyAtNAoxMjg2IC0xOHoiLz4KPHBhdGggZD0iTTI0NjUgMjQyOCBjLTg5IC0xNyAtMTg0IC03MCAtMjUzIC0xNDIgLTIwNCAtMjEyIC0xODEgLTUzMyA1MSAtNzE2Cmw1NyAtNDUgMCAtMTgzIGMwIC0yMDYgOSAtMjQzIDc4IC0zMDMgNTAgLTQ0IDkxIC01OSAxNjQgLTU5IDc2IDAgMTM0IDI2IDE4MQo4MSA1MCA1NyA1NyA5NSA1NyAyOTAgbDAgMTc0IDU3IDQ1IGMyMzEgMTgyIDI1NSA1MDQgNTMgNzE0IC0xMTkgMTI0IC0yNzgKMTc2IC00NDUgMTQ0eiIvPgo8L2c+Cjwvc3ZnPgo=");
   background-size: 80% 80%;
+}
+
+.popup-content {
+  line-height: 1.2;
 }
 </style>
