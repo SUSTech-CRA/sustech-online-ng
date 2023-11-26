@@ -194,6 +194,7 @@ export default {
           bus_marker_down.style.width = 28 + 'px';
           bus_marker_down.style.height = 28 + 'px';
           bus_marker_down.style.backgroundSize = 'cover';
+          bus_marker_down.style.cursor = "pointer";
 
           var bus_marker = document.createElement('div');
           bus_marker.className = 'marker';
@@ -201,11 +202,12 @@ export default {
           bus_marker.style.width = 35 + 'px';
           bus_marker.style.height = 35 + 'px';
           bus_marker.style.backgroundSize = 'cover';
+          bus_marker_up.style.cursor = "pointer";
 
 
           // add marker to map
           if (this.bus_location_data_api[i].route_dir === 0) { //up
-          var marker = new maplibre.Marker(bus_marker_up)
+            var marker = new maplibre.Marker({element: bus_marker_up})
               .setLngLat([this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat])
               .setPopup(
                   new maplibre.Popup({offset: 20}) // add popups
@@ -220,7 +222,7 @@ export default {
               )
               .addTo(this.map);
           } else {
-            var marker = new maplibre.Marker(bus_marker_down)
+            var marker = new maplibre.Marker({element: bus_marker_down})
                 .setLngLat([this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat])
                 .setPopup(
                     new maplibre.Popup({offset: 20}) // add popups
