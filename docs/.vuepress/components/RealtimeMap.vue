@@ -13,6 +13,7 @@
 <script>
 import maplibre from 'maplibre-gl';
 import axios from "axios";
+import * as turf from '@turf/turf';
 
 
 export default {
@@ -170,28 +171,15 @@ export default {
       this.update_location()
     },
     calculateBusAngle(startLat, startLng, destLat, destLng) {
-      // 将度数转换为弧度
-      function toRadians(degrees) {
-        return degrees * Math.PI / 180;
-      };
-
-      // 将弧度转换为度数
-      function toDegrees(radians) {
-        return radians * 180 / Math.PI;
-      }
-
-      // 转换起始点和目标点的经纬度为弧度
-      startLat = toRadians(startLat);
-      startLng = toRadians(startLng);
-      destLat = toRadians(destLat);
-      destLng = toRadians(destLng);
+      // 创建 Turf.js 的点
+      const startPoint = turf.point([startLng, startLat]);
+      const endPoint = turf.point([destLng, destLat]);
 
       // 计算方位角
-      const y = Math.sin(destLng - startLng) * Math.cos(destLat);
-      const x = Math.cos(startLat) * Math.sin(destLat) - Math.sin(startLat) * Math.cos(destLat) * Math.cos(destLng - startLng);
-      let brng = Math.atan2(y, x);
-      brng = toDegrees(brng);
-      return (brng + 360) % 360;
+      const bearing = turf.rhumbBearing(startPoint, endPoint);
+
+      // Turf.js 返回的方位角是从北顺时针的角度
+      return bearing;
     },
     findNearestPointOnSegment(point, segmentStart, segmentEnd) {
       const A = point[0] - segmentStart[0];
@@ -256,7 +244,6 @@ export default {
           if (this.bus_location_data_api[i].route_code.slice(-1) === '1') { //XYBS1
             this.bus_location_data_api[i].route_geojson = this.geojson_line_1
             const closestSegment = this.findNearestSegment(busLocation, this.bus_location_data_api[i].route_geojson);
-            console.log(closestSegment)
             busHeadingAngle = this.calculateBusAngle(closestSegment[0][1], closestSegment[0][0], closestSegment[1][1], closestSegment[1][0]);
           } else { //XYBS2
             this.bus_location_data_api[i].route_geojson = this.geojson_line_2
