@@ -169,20 +169,29 @@ export default {
       }
       this.update_location()
     },
-    calculateBusAngle(lat1, lon1, lat2, lon2) {
-      const dLon = (lon2 - lon1);
+    calculateBusAngle(startLat, startLng, destLat, destLng) {
+      // 将度数转换为弧度
+      function toRadians(degrees) {
+        return degrees * Math.PI / 180;
+      };
 
-      const y = Math.sin(dLon) * Math.cos(lat2);
-      const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1)
-          * Math.cos(lat2) * Math.cos(dLon);
+      // 将弧度转换为度数
+      function toDegrees(radians) {
+        return radians * 180 / Math.PI;
+      }
 
+      // 转换起始点和目标点的经纬度为弧度
+      startLat = toRadians(startLat);
+      startLng = toRadians(startLng);
+      destLat = toRadians(destLat);
+      destLng = toRadians(destLng);
+
+      // 计算方位角
+      const y = Math.sin(destLng - startLng) * Math.cos(destLat);
+      const x = Math.cos(startLat) * Math.sin(destLat) - Math.sin(startLat) * Math.cos(destLat) * Math.cos(destLng - startLng);
       let brng = Math.atan2(y, x);
-
-      brng = brng * (180 / Math.PI);
-      brng = (brng + 360) % 360;
-      brng = 360 - brng; // 如果需要顺时针度数，请移除此行
-
-      return brng;
+      brng = toDegrees(brng);
+      return (brng + 360) % 360;
     },
     findNearestPointOnSegment(point, segmentStart, segmentEnd) {
       const A = point[0] - segmentStart[0];
@@ -210,21 +219,27 @@ export default {
       return [xx, yy];
     },
     findNearestSegment(busLocation, geojsonLine) {
-      let closestSegment = [geojsonLine[0], geojsonLine[1]];
+      let closestSegmentStart = geojsonLine[0];
+      let closestSegmentEnd = geojsonLine[1];
       let minDistance = Number.MAX_VALUE;
 
+      // 遍历 GeoJSON 线路的每个线段
       for (let i = 0; i < geojsonLine.length - 1; i++) {
-        const point1 = geojsonLine[i];
-        const point2 = geojsonLine[i + 1];
-        const distance = this.calculateDistance(busLocation, this.findNearestPointOnSegment(busLocation, point1, point2));
+        const segmentStart = geojsonLine[i];
+        const segmentEnd = geojsonLine[i + 1];
+        const nearestPoint = this.findNearestPointOnSegment(busLocation, segmentStart, segmentEnd);
+        const distance = this.calculateDistance(busLocation, nearestPoint);
 
+        // 更新最近线段
         if (distance < minDistance) {
           minDistance = distance;
-          closestSegment = [point1, point2];
+          closestSegmentStart = segmentStart;
+          closestSegmentEnd = segmentEnd;
         }
       }
 
-      return closestSegment;
+      // 确保线段的顺序与 GeoJSON 中的一致
+      return [closestSegmentStart, closestSegmentEnd];
     },
     calculateDistance(point1, point2) {
       return Math.sqrt(Math.pow(point2[0] - point1[0], 2) + Math.pow(point2[1] - point1[1], 2));
@@ -237,13 +252,18 @@ export default {
         // if current time - report time < 300s, then display
         if (parseInt(new Date().getTime() / 1000) - this.bus_location_data_api[i].time_mt < 300) {
           const busLocation = [this.bus_location_data_api[i].lng, this.bus_location_data_api[i].lat];
+          var busHeadingAngle = 0
           if (this.bus_location_data_api[i].route_code.slice(-1) === '1') { //XYBS1
             this.bus_location_data_api[i].route_geojson = this.geojson_line_1
+            const closestSegment = this.findNearestSegment(busLocation, this.bus_location_data_api[i].route_geojson);
+            console.log(closestSegment)
+            busHeadingAngle = this.calculateBusAngle(closestSegment[0][1], closestSegment[0][0], closestSegment[1][1], closestSegment[1][0]);
           } else { //XYBS2
             this.bus_location_data_api[i].route_geojson = this.geojson_line_2
+            const closestSegment = this.findNearestSegment(busLocation, this.bus_location_data_api[i].route_geojson);
+            busHeadingAngle = this.calculateBusAngle(closestSegment[0][1], closestSegment[0][0], closestSegment[1][1], closestSegment[1][0]) - 180;
           }
-          const closestSegment = this.findNearestSegment(busLocation, this.bus_location_data_api[i].route_geojson);
-          const busHeadingAngle = this.calculateBusAngle(busLocation[1], busLocation[0], closestSegment[1][1], closestSegment[1][0]);
+
 
 
           // create a DOM element for the marker
