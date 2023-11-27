@@ -277,7 +277,7 @@ export default {
     createPopup(busData) {
       // 创建弹窗内容
       const routeDirText = busData.route_dir === 0 ? '上行 UP' : '下行 DOWN';
-      const LineColour = busData.route_code.slice(-1) === '1' ? '#29abe2': '#f7911d';
+      const LineColour = busData.route_code.slice(-1) === '1' ? '#f7911d': '#29abe2';
       const htmlContent = `
     <div style="line-height: 1.2;">
       <p class="car-plate" style="margin: 0; line-height: 1.2;">
