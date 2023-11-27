@@ -4,9 +4,10 @@
     "features": [
         { "type": "Feature", "properties": { "name": "工学院", "dist": 0.0 }, "geometry": { "type": "Point", "coordinates": [113.9902, 22.60336] } },
         { "type": "Feature", "properties": { "name": "科研楼", "dist": 542.89970148591362 }, "geometry": { "type": "Point", "coordinates": [113.99153, 22.599643] } },
-        { "type": "Feature", "properties": { "name": "七号门", "dist": 907.62735789785825 }, "geometry": { "type": "Point", "coordinates": [113.990399, 22.597132] } },
+        { "type": "Feature", "properties": { "name": "7号门", "dist": 907.62735789785825 }, "geometry": { "type": "Point", "coordinates": [113.990399, 22.597132] } },
         { "type": "Feature", "properties": { "name": "行政楼", "dist": 1149.0456938127084 }, "geometry": { "type": "Point", "coordinates": [113.992403, 22.597011] } },
         { "type": "Feature", "properties": { "name": "1号门", "dist": 1513.4263569176362 }, "geometry": { "type": "Point", "coordinates": [113.994898, 22.59569] } },
+        { "type": "Feature", "properties": { "name": "2号门", "dist": 1752 }, "geometry": { "type": "Point", "coordinates": [113.99585,22.59788] } },
         { "type": "Feature", "properties": { "name": "3号门", "dist": 2230.3249460522952 }, "geometry": { "type": "Point", "coordinates": [113.99939, 22.599893] } },
         { "type": "Feature", "properties": { "name": "专家公寓", "dist": 2546.2198658400307 }, "geometry": { "type": "Point", "coordinates": [113.998329, 22.601975] } },
         { "type": "Feature", "properties": { "name": "教工餐厅", "dist": 2727.0013627137873 }, "geometry": { "type": "Point", "coordinates": [113.997811, 22.603325] } },

@@ -275,27 +275,32 @@ export default {
     },
 
     createPopup(busData) {
-      // 创建弹窗内容
-      const routeDirText = busData.route_dir === 0 ? '上行 UP' : '下行 DOWN';
+      let routeDirText;
+      const routeCodeLastDigit = busData.route_code.slice(-1);
+      if (routeCodeLastDigit === '1') {
+        routeDirText = busData.route_dir === 0 ? '欣园 Joy Highland' : '工学院 COE';
+      } else if (routeCodeLastDigit === '2') {
+        routeDirText = busData.route_dir === 0 ? '欣园 Joy Highland' : '科研楼 Research BLDG.';
+      } else {
+        routeDirText = '未知'; // Fallback text in case neither condition is true
+      }
       const LineColour = busData.route_code.slice(-1) === '1' ? '#f7911d': '#29abe2';
       const htmlContent = `
-    <div style="line-height: 1.2;">
-      <p class="car-plate" style="margin: 0; line-height: 1.2;">
+      <div style="margin-top: 0; font-size: 14px; margin: 0; color: #333; font-weight: bold;">
         粤B${busData.id.slice(2,)}
-      </p>
-      <p style="margin: 0; line-height: 1.2;">
+      </div>
+      <p style="font-size: 12px; margin: 0px 0; color: #666;">
         ${busData.speed} km/h
       </p>
-      <p style="margin: 0; line-height: 1.4;">
-        <span style="background-color: ${LineColour}; color: white; padding: 2px 4px; border-radius: 3px;"><b>Line ${busData.route_code.slice(-1)} 号线</b></span>
+      <p style="margin: 0px 0; line-height: 1.4;">
+        <span style="display: inline-block; background-color: ${LineColour}; color: white; padding: 2px 6px; border-radius: 3px; font-weight: bold;">Line ${busData.route_code.slice(-1)} 号线</span>
       </p>
-      <p style="margin: 0; line-height: 1.2;">
-        <b>${routeDirText}</b>
+      <p style="font-size: 12px; margin: 0px 0; color: #666;">
+        To往: <b>${routeDirText}</b>
       </p>
-      <p style="margin: 0; line-height: 1.2;">
-        下站: <b>${busData.next_station_string}</b>
+      <p style="font-size: 12px; margin: 0px 0; color: #666;">
+        下站: <b style="color: #333;">${busData.next_station_string}</b>
       </p>
-    </div>
   `;
       return new maplibre.Popup({ offset: 20 }).setHTML(htmlContent);
     },

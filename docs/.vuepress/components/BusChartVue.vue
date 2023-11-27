@@ -305,7 +305,7 @@ export default {
                 if ((p_nearest.properties.dist * 1000 > 100)|(dist<100)) {
                   return {
                     value: [-1, 0],
-                    name: f.id,
+                    name: '粤B' + f.id.slice(2,),
                     itemStyle: { color: "#222", show: false },
                     symbol: "image://https://bus.sustcra.com/bus-top-view.png",
                     symbolSize: 30,
@@ -315,7 +315,7 @@ export default {
                 }
                 return {
                   value: [1- f.route_dir + thisRoute * 2, dist],
-                  name: f.id,
+                  name: '粤B' + f.id.slice(2,),
                   itemStyle: { color: "#222" },
                   symbol: "image://https://bus.sustcra.com/bus-top-view.png",
                   symbolSize: 30,
