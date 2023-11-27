@@ -84,7 +84,7 @@ export default {
         {
           "type": "Feature",
           "geometry": {"type": "Point", "coordinates": [113.99585,22.59788]},
-          "properties": {"name": "商学院 Business School"}
+          "properties": {"name": "2号门 Gate2"}
         },
         {
           "type": "Feature",
