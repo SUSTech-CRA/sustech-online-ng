@@ -390,6 +390,40 @@ export default {
     const mapLockControl = new MapLockControl();
     this.map.addControl(mapLockControl, 'top-left');
 
+    class RasterToggleControl {
+      onAdd(map) {
+        this.map = map;
+        this.container = document.createElement('div');
+        this.container.className = 'maplibregl-ctrl maplibregl-ctrl-group'; // 使用默认控件样式
+        this.container.style.marginLeft = '10px'; // 与左边框的距离
+        this.container.style.marginBottom = '10px'; // 与底边框的距离
+
+        const button = document.createElement('button');
+        button.className = 'maplibregl-ctrl-icon'; // 使用默认控件图标样式
+        button.innerHTML = '🌍'; // 自定义图标内容
+
+        button.onclick = () => {
+          const visibility = this.map.getLayoutProperty('raster-layer', 'visibility');
+          if (visibility === 'visible') {
+            this.map.setLayoutProperty('raster-layer', 'visibility', 'none');
+          } else {
+            this.map.setLayoutProperty('raster-layer', 'visibility', 'visible');
+          }
+        };
+
+        this.container.appendChild(button);
+        return this.container;
+      }
+
+      onRemove() {
+        this.container.parentNode.removeChild(this.container);
+        this.map = undefined;
+      }
+    }
+
+    const rasterToggleControl = new RasterToggleControl();
+
+
     // Add geolocate control to the map.
     this.map.addControl(
         new maplibre.GeolocateControl({
@@ -400,11 +434,32 @@ export default {
           trackUserLocation: true,
           // Draw an arrow next to the location dot to indicate which direction the device is heading.
           showUserHeading: true
-        })
+        }), 'top-right'
     );
+
+    this.map.addControl(rasterToggleControl, 'top-right');
+
+
 
 
     this.map.on('load', () => {
+
+      this.map.addSource('raster-tiles', {
+        type: 'raster',
+        tiles: ['https://gac-geo.googlecnapps.cn/maps/vt?lyrs=s&x={x}&y={y}&z={z}'],
+        tileSize: 256
+      });
+      this.map.addLayer({
+        id: 'raster-layer',
+        type: 'raster',
+        source: 'raster-tiles',
+        layout: {
+          'visibility': 'none' // 初始设置为不可见
+        },
+        minzoom: 0,
+        maxzoom: 22
+      });
+
       this.map.addSource('line1', {
         'type': 'geojson',
         'data': {
