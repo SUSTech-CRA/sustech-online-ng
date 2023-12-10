@@ -17,8 +17,8 @@
       <div class="tab-container">
         <!-- 第一个 div 根据 value 控制显示与隐藏 -->
         <div v-if="currentSelect === 'bus-location'">
-          <div class="bus-location-hint">位置每5秒自动刷新。Location refreshes automatically every 5 seconds.</div>
-          <RealtimeMap />
+          <div class="bus-location-hint" v-if="showMapChart" >位置每5秒自动刷新。Location refreshes automatically every 5 seconds.</div>
+          <RealtimeMap v-if="showMapChart" />
           <BusChartVue />
         </div>
 
@@ -74,13 +74,7 @@ export default {
       currentSelect.value = tabOptionValue;
     };
 
-    if (!props.isMapTabEnabled) {
-      currentSelect.value = 'timetable';
-      initSelect.value = 'timetable';
-      // 移除第一个元素
-      tabOptions.value.shift();
-    }
-
+    let showMapChart = props.isMapTabEnabled;
 
     return {
       initSelect,
