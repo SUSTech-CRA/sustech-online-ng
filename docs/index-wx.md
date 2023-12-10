@@ -1,8 +1,8 @@
-# 📚南科手册
+# 📚你科手册
 
 <WeatherSpan/>
 
-* 为 SUSTecher 提供快捷信息查询服务。
+* 提供快捷信息查询服务。
 * 移动端须点击左上角，打开目录。
 * [微信小程序，点击这里](/miniapp)。
 * [内容有问题？功能提建议？手册招维护！](/about)
@@ -52,9 +52,7 @@
     <h3><a href="./transport/">交通 / 地图<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></h3>
     <ul>
     <li><a href="./transport/bustimer.html">巴士时刻表与车辆位置查看</a></li>
-    <li><a href="https://sustech.online/facility/">校园街景</a></li>
     <li><a href="https://nces.cra.moe/">牛娃课程评价社区<Badge text="春季选课" type="danger"/></a></li>
-    <li><a href="http://live.cra.moe/">校园风景直播</a></li>
     </ul>
     </th>
   </tr>
@@ -91,15 +89,15 @@ div.emergency p a {
 
 ## 牛娃课程评价社区 <Badge text="选课合作" type="tip"/>
 
-[牛娃课程评价社区](https://nces.cra.moe/)（NCES，Niuwa Curriculum Evaluation System）是南科大学生的课程评价社区，因此，只有拥有南科大邮箱的同学或老师才可以注册账户。[中科大同款评教系统](https://icourse.club/)，赓续教改初心。NCES现已支持通过课程名称，代码及教师快速检索课程并直达课程大纲，更加方便你的选课！
+[牛娃课程评价社区](https://nces.cra.moe/)（NCES，Niuwa Curriculum Evaluation System）是学生的课程评价社区，因此，只有拥有邮箱的同学或老师才可以注册账户。[中科大同款评教系统](https://icourse.club/)，赓续教改初心。NCES现已支持通过课程名称，代码及教师快速检索课程并直达课程大纲，更加方便你的选课！
 
 ## 如果你是新生... <Badge text="For Freshman" type="tip"/>
 
-如果你是准大一的同学，可以先看看冯小漠为大家整理南科大的非正统历史故事[蓢村拾遗：南科大冷知识2021](./if-you-are-a-freshman/preview)。[点击这里](./if-you-are-a-freshman/2021.md)看看我们为 2021年的学生准备的 Quickstart of SUSTech，了解并开启你的大学生活！
+如果你是准大一的同学，可以先看看冯小漠为大家整理的非正统历史故事[蓢村拾遗：冷知识2021](./if-you-are-a-freshman/preview)。[点击这里](./if-you-are-a-freshman/2021.md)看看我们为 2021年的学生准备的 Quickstart of SUSTech，了解并开启你的大学生活！
 
 ::: tip 数说大一
 
-- 你也可以阅读基于[南科大同学](https://luckychen.site/about-us/)大创项目的调查研究成果：
+- 你也可以阅读基于[同学](https://luckychen.site/about-us/)大创项目的调查研究成果：
 
   - [https://luckychen.site/](https://luckychen.site/) 帮助入学前、大一上、大一下阶段的你更好地适应大学的学习与生活，进而找到自己的发展方向。
 
@@ -113,11 +111,11 @@ div.emergency p a {
 
 ## 飞跃手册：申请与校招经验 <Badge text="秋季特别合作" type="tip"/>
 
-[南科大飞跃手册](https://sustech-application.com?utm_source=online)共有五部分，分别为英语学习，海外交流，选校经验，申请注意事项和个人申请总结，力求为 “如何在南方科技大学为申请国内、海外高校和入职优秀企业做出更全面的准备“ 这一问题作出解答。需要特别指出的是，**飞跃手册具有一定的时效性**，比如一些热门专业每年的申请形式都会发生极大变化，再比如当我们谈及“xx专业19fall是史上最难申请的一年”，这有可能意味着20fall会更难申请，所以参考往年飞跃手册时请注意。
+[飞跃手册](https://sustech-application.com?utm_source=online)共有五部分，分别为英语学习，海外交流，选校经验，申请注意事项和个人申请总结，力求为 “如何在南方科技大学为申请国内、海外高校和入职优秀企业做出更全面的准备“ 这一问题作出解答。需要特别指出的是，**飞跃手册具有一定的时效性**，比如一些热门专业每年的申请形式都会发生极大变化，再比如当我们谈及“xx专业19fall是史上最难申请的一年”，这有可能意味着20fall会更难申请，所以参考往年飞跃手册时请注意。
 
 ## 校园地图
 
-由sustech.online团队制作的校园地图。地图底图采用南科大2022版最新规划图，并添加校园巴士线路，打印机，商店，收发室等实用信息。[（尝试新版交互式校园地图！可全屏，实时定位）](./transport/bustimer)
+由sustech.online团队制作的校园地图。地图底图采用2022版最新规划图，并添加校园巴士线路，打印机，商店，收发室等实用信息。[（尝试新版交互式校园地图！可全屏，实时定位）](./transport/bustimer)
 
 <iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/pdfjs/web/viewer.html?file=https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v3-2.pdf" width="100%" height="600"></iframe>
 
@@ -151,7 +149,7 @@ Please use the [Google translation tool in Chrome](https://support.google.com/ch
 
 ### 关于广告
 
-南科手册的建设与运营均由同学独立完成。为了令「南科手册」能够稳定运行，我们可能会在某些页面的底部和小程序中开屏页面中展示由[微信](https://ad.weixin.qq.com/)和[Google](https://www.google.com/adsense/)提供的广告以维持服务器和CDN的开销，敬请谅解。
+你科手册的建设与运营均由同学独立完成。为了令「你科手册」能够稳定运行，我们可能会在某些页面的底部和小程序中开屏页面中展示由[微信](https://ad.weixin.qq.com/)和[Google](https://www.google.com/adsense/)提供的广告以维持服务器和CDN的开销，敬请谅解。
 
 我们将尽力确保：
 - 应急处理页面内不会出现广告
