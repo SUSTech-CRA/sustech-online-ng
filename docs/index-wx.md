@@ -51,7 +51,7 @@
     <th class="tg-0lax">
     <h3><a href="./transport/">交通 / 地图<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></h3>
     <ul>
-    <li><a href="./transport/bustimer.html">巴士时刻表与车辆位置查看</a></li>
+    <li><a href="./transport/bustimer-wx-jump.html">巴士时刻表与车辆位置查看</a></li>
     <li><a href="https://nces.cra.moe/">牛娃课程评价社区<Badge text="春季选课" type="danger"/></a></li>
     </ul>
     </th>
