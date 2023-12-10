@@ -36,7 +36,7 @@
 <script>
 import { ConfigProvider } from 'ant-design-vue';
 import { Segmented } from 'ant-design-vue';
-import { ref } from 'vue';
+import { watch, ref } from 'vue';
 
 export default {
   name: 'TabView',
@@ -44,7 +44,13 @@ export default {
     AConfigProvider: ConfigProvider,
     ASegmented: Segmented
   },
-  setup() {
+  props: {
+    isMapTabEnabled: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  setup(props) {
     const initSelect = ref('bus-location');
     const currentSelect = ref('bus-location');
     const tabOptions = ref([
@@ -68,6 +74,14 @@ export default {
       currentSelect.value = tabOptionValue;
     };
 
+    if (!props.isMapTabEnabled) {
+      currentSelect.value = 'timetable';
+      initSelect.value = 'timetable';
+      // 移除第一个元素
+      tabOptions.value.shift();
+    }
+
+
     return {
       initSelect,
       currentSelect,
@@ -90,7 +104,7 @@ export default {
   margin-top: 6px;
 }
 
-.bus-location-hint{
+.bus-location-hint {
   padding-bottom: 4px;
 }
 </style>

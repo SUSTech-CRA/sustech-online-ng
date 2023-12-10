@@ -11,5 +11,5 @@ navbar: false
 :::
 
 <ClientOnly>
-  <TabView></TabView>
+  <TabView :isMapTabEnabled="false"></TabView>
 </ClientOnly>
