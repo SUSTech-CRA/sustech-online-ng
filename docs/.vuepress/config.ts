@@ -9,7 +9,7 @@ import { defineUserConfig } from '@vuepress/cli'
 import { viteBundler } from '@vuepress/bundler-vite'
 
 const ogprefix = 'og: http://ogp.me/ns#'
-const title = '你科手册'
+const title = '南科手册'
 const description = 'Online manual for sustecher'
 const color = '#49BF7C'
 const author = 'sustech.online'

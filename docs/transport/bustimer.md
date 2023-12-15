@@ -7,5 +7,5 @@
 :::
 
 <ClientOnly>
-  <TabView></TabView>
+  <TabView :isMapTabEnabled="true"></TabView>
 </ClientOnly>
