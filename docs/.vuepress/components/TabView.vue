@@ -80,7 +80,8 @@ export default {
       initSelect,
       currentSelect,
       tabOptions,
-      switchTab
+      switchTab,
+      showMapChart
     };
   },
 };
