@@ -4,7 +4,7 @@ import TabView from "./components/TabView.vue";
 import RealtimeMap from './components/RealtimeMap.vue'
 import WeatherSpan from './components/weather-span.vue'
 import BusChartVue from './components/BusChartVue.vue'
-// import AdsenseUnit from './components/adsense-inline-article.vue'
+import CanteenTraffic from './components/CanteenTraffic.vue'
 
 export default defineClientConfig({
   enhance({ app }) {
@@ -13,6 +13,6 @@ export default defineClientConfig({
     app.component("RealtimeMap", RealtimeMap)
     app.component("WeatherSpan", WeatherSpan)
     app.component("BusChartVue", BusChartVue)
-    // app.component("AdsenseUnit", AdsenseUnit)
+    add.component("CanteenTraffic", CanteenTraffic)
   },
 })
