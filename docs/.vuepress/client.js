@@ -4,7 +4,9 @@ import TabView from "./components/TabView.vue";
 import RealtimeMap from './components/RealtimeMap.vue'
 import WeatherSpan from './components/weather-span.vue'
 import BusChartVue from './components/BusChartVue.vue'
+
 import CanteenTraffic from './components/CanteenTraffic.vue'
+import TrendChart from './components/TrendChart.vue'
 
 export default defineClientConfig({
   enhance({ app }) {
@@ -13,6 +15,8 @@ export default defineClientConfig({
     app.component("RealtimeMap", RealtimeMap)
     app.component("WeatherSpan", WeatherSpan)
     app.component("BusChartVue", BusChartVue)
-    add.component("CanteenTraffic", CanteenTraffic)
+    
+    app.component("CanteenTraffic", CanteenTraffic)
+    app.component("TrendChart", TrendChart)
   },
 })
