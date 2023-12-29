@@ -141,13 +141,13 @@ export default {
           subTitle: 'Queue Trend Chart',
         },
       },
-      // {
-      //   value: 'weekly-menus',
-      //   payload: {
-      //     title: '本周菜谱',
-      //     subTitle: 'Weekly Menus'
-      //   }
-      // }
+      {
+        value: 'weekly-menus',
+        payload: {
+          title: '本周菜谱',
+          subTitle: 'Weekly Menus'
+        }
+      }
     ]);
 
     const switchTab = (tabOptionValue) => {

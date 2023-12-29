@@ -272,7 +272,7 @@ export default defineUserConfig({
                 ],
             },
             '/surroundings/',
-            '/susteen/'
+            '/canteen/'
         ]
     }),
 })
