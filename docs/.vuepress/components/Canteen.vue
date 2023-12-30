@@ -7,7 +7,7 @@
     }">
       <a-segmented v-model:value="initSelect" :options="tabOptions" @change="switchTab">
         <template #label="{ payload }">
-          <div style="padding: 4px 8px">
+          <div style="padding: 4px 2px">
             <div>{{ payload.title }}</div>
             <div>{{ payload.subTitle }}</div>
           </div>
@@ -65,14 +65,14 @@ export default {
         value: 'realtime-queue-length',
         payload: {
           title: '实时排队人数',
-          subTitle: 'Realtime Queue Length',
+          subTitle: 'Queue Length',
         },
       },
       {
         value: 'queue-trend-chart',
         payload: {
           title: '排队趋势图',
-          subTitle: 'Queue Trend Chart',
+          subTitle: 'Queue Trend',
         },
       },
       {

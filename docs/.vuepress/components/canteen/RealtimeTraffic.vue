@@ -1,18 +1,20 @@
 <template>
+  <Transition mode="out-in" name="fade" appear>
   <div class="container mt-3" :class="{ 'dark-mode': isDarkMode }">
-    <div v-for="canteen in trafficList" :key="canteen.canteen_id" class="card mb-3">
-      <div class="card-header">
-        <h5 class="card-title">{{ canteen.canteen_name }}</h5>
-        <p class="card-subtitle">平均人数: {{ canteen.avg_number.toFixed(2) }}</p>
-        <p class="card-subtitle">更新时间: {{ timeFormat(canteen.time) }}</p>
+    <div class="card mb-3" v-for="canteen in trafficList" :key="canteen.canteen_id">
+        <div class="card-header">
+          <h5 class="card-title">{{ canteen.canteen_name }}</h5>
+          <p class="card-subtitle">平均人数: {{ canteen.avg_number.toFixed(2) }}</p>
+          <p class="card-subtitle">更新时间: {{ timeFormat(canteen.time) }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" v-for="booth in canteen.booth_traffic" :key="booth.booth_id">
+            <strong>{{ booth.booth_name }}</strong> - 排队人数约: {{ booth.avg_number }} 人
+          </li>
+        </ul>
       </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item" v-for="booth in canteen.booth_traffic" :key="booth.booth_id">
-          <strong>{{ booth.booth_name }}</strong> - 排队人数约: {{ booth.avg_number }} 人
-        </li>
-      </ul>
     </div>
-  </div>
+  </Transition>
 </template>
 
 <script>
@@ -36,7 +38,6 @@ export default {
         minute: '2-digit',
         second: '2-digit'
       }),
-      weeklyMenusUrl: "https://mp.weixin.qq.com/s/-SnCM3MMDTk26_0DYdA84A"
     };
   },
 
@@ -94,10 +95,11 @@ export default {
 
 .dark-mode {
   color: #ccc;
-  background-color: #2c2c2c;
+  /* background-color: #2c2c2c; */
 }
 
 .card {
+  padding-top: 10px;
   border: none;
   border-radius: 16px;
   overflow: hidden;
@@ -111,18 +113,29 @@ export default {
 }
 
 .card-header {
-  background-color: #007bff;
+  /* background-color: #007bff; */
   color: white;
-  padding: 16px 24px;
+  padding: 0px 24px;
 }
 
 .dark-mode .card-header {
-  background-color: #333;
+  /* background-color: #333; */
 }
 
 .card-subtitle {
   font-size: 0.875rem;
-  margin-top: 8px;
+  margin-top: 4px;
+}
+
+.list-group-item {
+  list-style-type: none; /* 移除列表项前的点 */
+  /* ... 其他已有的样式 ... */
+}
+
+/* 如果您想要对整个列表应用样式，而不仅仅是单个列表项 */
+.list-group-flush {
+  list-style-type: none;
+  padding-left: 0; /* 也可能需要移除默认的内边距 */
 }
 
 .list-group-item {
@@ -158,5 +171,13 @@ export default {
   padding-bottom: 4px;
 }
 
+/* 淡入淡出效果 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
 
-</style>
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}</style>
