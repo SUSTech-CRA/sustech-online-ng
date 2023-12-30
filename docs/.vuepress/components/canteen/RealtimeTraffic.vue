@@ -1,60 +1,30 @@
 <template>
-  <div>
-    <a-config-provider :theme="{
-      token: {
-        colorPrimary: '#49BF7C',
-      },
-    }">
-      <a-segmented v-model:value="initSelect" :options="tabOptions" @change="switchTab">
-        <template #label="{ payload }">
-          <div style="padding: 4px 8px">
-            <div>{{ payload.title }}</div>
-            <div>{{ payload.subTitle }}</div>
-          </div>
-        </template>
-      </a-segmented>
-
-      <div class="tab-container">
-        <!-- realtime-queue-length -->
-        <div v-if="currentSelect === 'realtime-queue-length'">
-          <div class="container mt-3" :class="{ 'dark-mode': isDarkMode }">
-            <div v-for="canteen in trafficList" :key="canteen.canteen_id" class="card mb-3">
-              <div class="card-header">
-                <h5 class="card-title">{{ canteen.canteen_name }}</h5>
-                <p class="card-subtitle">平均人数: {{ canteen.avg_number.toFixed(2) }}</p>
-                <p class="card-subtitle">更新时间: {{ timeFormat(canteen.time) }}</p>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item" v-for="booth in canteen.booth_traffic" :key="booth.booth_id">
-                  <strong>{{ booth.booth_name }}</strong> - 排队人数约: {{ booth.avg_number }} 人
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- 第二个 div 根据 value 控制显示与隐藏 -->
-        <div v-if="currentSelect === 'queue-trend-chart'">
-          <TrendChart></TrendChart>
-        </div>
+  <div class="container mt-3" :class="{ 'dark-mode': isDarkMode }">
+    <div v-for="canteen in trafficList" :key="canteen.canteen_id" class="card mb-3">
+      <div class="card-header">
+        <h5 class="card-title">{{ canteen.canteen_name }}</h5>
+        <p class="card-subtitle">平均人数: {{ canteen.avg_number.toFixed(2) }}</p>
+        <p class="card-subtitle">更新时间: {{ timeFormat(canteen.time) }}</p>
       </div>
-
-
-    </a-config-provider>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" v-for="booth in canteen.booth_traffic" :key="booth.booth_id">
+          <strong>{{ booth.booth_name }}</strong> - 排队人数约: {{ booth.avg_number }} 人
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import { ConfigProvider } from 'ant-design-vue';
-import { Segmented } from 'ant-design-vue';
 import { watch, ref } from 'vue';
 
+
 export default {
-  name: "CanteenTraffic",
+  name: "RealtimeTraffic",
   data() {
     return {
-      baseUrl: "http://localhost:8102/api/v1/traffic",
+      baseUrl: "https://susteen.itbill.cn/api/v1/traffic",
       trafficList: [],
       isDarkMode: false,
       formatter: new Intl.DateTimeFormat('zh-CN', {
@@ -65,7 +35,8 @@ export default {
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit'
-      })
+      }),
+      weeklyMenusUrl: "https://mp.weixin.qq.com/s/-SnCM3MMDTk26_0DYdA84A"
     };
   },
 
@@ -111,58 +82,6 @@ export default {
       const formattedTime = this.formatter.format(t)
       return formattedTime
     }
-  },
-
-  components: {
-    AConfigProvider: ConfigProvider,
-    ASegmented: Segmented
-  },
-  props: {
-    isMapTabEnabled: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  setup(props) {
-    const initSelect = ref('realtime-queue-length');
-    const currentSelect = ref('realtime-queue-length');
-    const tabOptions = ref([
-      {
-        value: 'realtime-queue-length',
-        payload: {
-          title: '实时排队人数',
-          subTitle: 'Realtime Queue Length',
-        },
-      },
-      {
-        value: 'queue-trend-chart',
-        payload: {
-          title: '排队趋势图',
-          subTitle: 'Queue Trend Chart',
-        },
-      },
-      {
-        value: 'weekly-menus',
-        payload: {
-          title: '本周菜谱',
-          subTitle: 'Weekly Menus'
-        }
-      }
-    ]);
-
-    const switchTab = (tabOptionValue) => {
-      currentSelect.value = tabOptionValue;
-    };
-
-    let showMapChart = props.isMapTabEnabled;
-
-    return {
-      initSelect,
-      currentSelect,
-      tabOptions,
-      switchTab,
-      showMapChart
-    };
   },
 };
 </script>
@@ -239,7 +158,5 @@ export default {
   padding-bottom: 4px;
 }
 
-.tab-container {
-  margin-top: 6px;
-}
+
 </style>

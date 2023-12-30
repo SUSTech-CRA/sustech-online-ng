@@ -33,8 +33,8 @@ import { CanvasRenderer } from 'echarts/renderers';
 import { LineChart } from 'echarts/charts';
 import { GridComponent, TooltipComponent, TitleComponent, LegendComponent, DataZoomComponent } from 'echarts/components';
 
-import ObjectSelector from "./bus/ObjectSelector.vue";
-import DataRequest from "./bus/DataRequest.vue";
+import ObjectSelector from "../bus/ObjectSelector.vue";
+import DataRequest from "../bus/DataRequest.vue";
 
 use([
   CanvasRenderer,
@@ -65,8 +65,13 @@ export default {
 
   methods: {
     getUrl(boothId, meal) {
-      const date = "20231113"; // TODO
-      return `http://localhost:8102/api/v1/traffic/booths/${boothId}?date=${date}&meal=${meal}`;
+      const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+      const day = String(currentDate.getDate()).padStart(2, '0');
+      const date = `${year}${month}${day}`;
+
+      return `https://susteen.itbill.cn/api/v1/traffic/booths/${boothId}?date=${date}&meal=${meal}`;
     },
 
     getChartData(trafficList, meal) {
@@ -112,6 +117,6 @@ export default {
 <style>
 .echarts {
   width: 100%;
-  height: 300px;
+  height: 250px;
 }
 </style>

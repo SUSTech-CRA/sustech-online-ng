@@ -1,5 +1,5 @@
 # 🍜饭堂服务
 
 <ClientOnly>
-  <CanteenTraffic></CanteenTraffic>
+  <Canteen></Canteen>
 </ClientOnly>
