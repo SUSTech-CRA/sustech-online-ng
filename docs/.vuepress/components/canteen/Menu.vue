@@ -19,10 +19,11 @@ export default {
       const month = String(currentDate.getMonth() + 1).padStart(2, '0');
       const day = String(currentDate.getDate()).padStart(2, '0');
 
-      axios.get(`http://localhost:8102/api/v1/menu/${year}/${month}/${day}`)
+      axios.get(`https://susteen.itbill.cn/api/v1/menu/${year}/${month}/${day}`)
         .then((res) => {
           dailyMenus.value = res.data.data;
-        });
+        })
+        .catch(error => console.log("Error in Menu: " + error));
     };
 
     onMounted(() => {
