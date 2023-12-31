@@ -1,18 +1,19 @@
 <template>
   <div id="bustable">
     <object-selector :objs="{
-      '中心餐厅': true,
-      '十栋餐厅': false
+      '中心餐厅 | Center Cafeteria': true,
+      '十栋餐厅 | Building 10 No.2 Cafeteria': false
     }" v-slot="canteenProps">
       <br />
+      <br />
       <object-selector :objs="canteenProps.selected ? {
-        '麻辣烫 ': 11,
-        '大众菜左': 12,
-        '大众菜右': 13,
-        '特色菜左': 14,
-        '特色菜中': 15,
-        '特色菜右': 16
-      } : { '大众菜左': 21, '大众菜右': 22 }
+        '麻辣烫 | Spicy Hot Pot': 11,
+        '大众菜左 | Popular Dishes': 12,
+        '大众菜右 | Popular Dishes': 13,
+        '风味面食 | Noodles': 14,
+        '潮汕卤味套餐 | Chiu Chow-style Brino Meat': 15,
+        '铁锅拌饭 | Rice with Mixed Vegetables': 16
+      } : { '大众菜左 | Popular Dishes': 21, '大众菜右 | Popular Dishes': 22 }
         " v-slot="boothProps">
         <div v-for="meal in [0, 1, 2]" :key="meal">
           <data-request :path="getUrl(boothProps.selected, meal)" v-slot="{ data }">
