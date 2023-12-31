@@ -36,7 +36,7 @@
 <script>
 import { ConfigProvider } from 'ant-design-vue';
 import { Segmented } from 'ant-design-vue';
-import { watch, ref } from 'vue';
+import { ref } from 'vue';
 
 export default {
   name: 'TabView',
