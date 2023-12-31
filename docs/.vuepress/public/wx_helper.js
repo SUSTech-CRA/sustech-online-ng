@@ -40,6 +40,7 @@ function override_onclick(event) {
         whitelist.add("bus.sustcra.com");
         whitelist.add("sustech.online");
         whitelist.add("daily.sustech.online");
+        whitelist.add("susteen.itbill.cn")
         whitelist.add("");
 
         let supportFiles = new Set();
