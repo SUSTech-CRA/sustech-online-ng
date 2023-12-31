@@ -57,9 +57,6 @@
     <li><a href="http://live.cra.moe/">校园风景直播</a></li>
     </ul>
     </th>
-    <th class="tg-0lax">
-    <h3><a href="./canteen/">饭堂<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></h3>
-    </th>
   </tr>
 </thead>
 </table>
