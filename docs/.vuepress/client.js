@@ -1,4 +1,5 @@
 import { defineClientConfig } from '@vuepress/client'
+import { defineAsyncComponent } from 'vue'
 import BusTable from "./components/BusTable.vue";
 import TabView from "./components/TabView.vue";
 import RealtimeMap from './components/RealtimeMap.vue'
@@ -10,7 +11,7 @@ export default defineClientConfig({
     app.component("TabView", TabView)
     app.component("RealtimeMap", RealtimeMap)
     app.component("WeatherSpan", WeatherSpan)
-    app.component("BusChartVue", () => import('./components/BusChartVue.vue'))
-    app.component("Canteen", () => import('./components/Canteen.vue'))
+    app.component("BusChartVue", defineAsyncComponent(_ => import('./components/BusChartVue.vue')))
+    app.component("Canteen", defineAsyncComponent(_ => import('./components/Canteen.vue')))
   },
 })

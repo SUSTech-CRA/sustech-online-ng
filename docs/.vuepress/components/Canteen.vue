@@ -38,7 +38,6 @@ import Menu from './canteen/Menu.vue'
 export default {
   name: "Canteen",
   components: {
-    AConfigProvider: ConfigProvider,
     ASegmented: Segmented,
     RealtimeTraffic,
     TrendChart,
