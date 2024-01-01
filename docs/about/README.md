@@ -21,10 +21,6 @@
     2. 提交规范编写的Word，Markdown 文件给管理员。
     3. 管理员整理上传。
 
-## 编写规范
-
-* 使用 Markdown 和 raw HTML / JavaScript 语言
-
 ## 贡献者
 
 <a href="https://github.com/sustech-cra/sustech-online-ng/graphs/contributors">

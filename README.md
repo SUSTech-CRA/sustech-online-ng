@@ -28,9 +28,10 @@ Online manual for SUSTecher.
     2. 提交规范编写的Word，Markdown 文件给管理员。
     3. 管理员整理上传。
 
-### 编写规范
+### 编译版本
 
-* 使用 Markdown 和 raw HTML / JavaScript 语言
+* nodejs版本：18
+* 推荐包管理器：pnpm
 
 ### 版本说明
 * 正式线上版本（master 分支构建）：https://sustech.online/
