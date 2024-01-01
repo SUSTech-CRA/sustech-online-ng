@@ -78,7 +78,7 @@ export default {
       }
     }
 
-    axios.get("/2023.json").then(response => {
+    axios.get("/2024.json").then(response => {
       toggleButtonBasedOnDate(response.data);
     });
   },
