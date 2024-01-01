@@ -67,7 +67,7 @@ jobs:
       run: |
         echo "pnpm version `pnpm --version`"
         echo "node version `node -v`"
-        pnpm list --pattern vuepress
+        pnpm list
 
     - name: Build Site
       run: |
