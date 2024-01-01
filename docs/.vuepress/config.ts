@@ -242,6 +242,7 @@ export default defineUserConfig({
             '/service/',
             '/life/',
             '/study/',
+            '/canteen/',
             '/organizations/',
             '/media/',
             {
@@ -271,8 +272,7 @@ export default defineUserConfig({
                     },
                 ],
             },
-            '/surroundings/',
-            '/canteen/'
+            '/surroundings/'
         ]
     }),
 })

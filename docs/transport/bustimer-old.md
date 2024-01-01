@@ -12,8 +12,10 @@
   <RealtimeMap/>
 </ClientOnly>
 
-<BusChartVue/>
+<ClientOnly>
+  <BusChartVue/>
+</ClientOnly>
 
 ## 时间表 Timetable
 
-<BusTable></BusTable>
+<BusTable/>

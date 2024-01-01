@@ -1,3 +1,7 @@
+---
+sidebar: false
+navbar: false
+---
 # 🍜饭堂服务
 
 <ClientOnly>
