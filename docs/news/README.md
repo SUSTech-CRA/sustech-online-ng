@@ -6,17 +6,17 @@
 
 ## 2021-01-31
 
-添加“[火车票学生优惠使用指南](https://sustech.online/service/student-train-ticket/)”的页面。
+添加“[火车票学生优惠使用指南](/service/student-train-ticket/)”的页面。
 
 ## 2021-01-25
 
-添加[申请邮箱别名](https://sustech.online/service/email/)的方法。
+添加[申请邮箱别名](/service/email/)的方法。
 
 修改更新日志的显示方式。
 
 ## 2021-01-23
 
-添加“[应急处理](https://sustech.online/emergency)”页面。
+添加“[应急处理](/emergency)”页面。
 
 ## 2021-01-04
 
