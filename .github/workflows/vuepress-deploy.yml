@@ -65,7 +65,9 @@ jobs:
         yarn list --pattern vuepress
 
     - name: Build Site
-      run: yarn docs:build
+      run: |
+        yarn docs:clean
+        yarn docs:build
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
