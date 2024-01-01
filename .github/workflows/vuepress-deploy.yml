@@ -52,6 +52,7 @@ jobs:
       run: date
 
     - uses: actions/setup-node@v3
+      name: Install Node.js
       with:
         node-version: '18'
 
