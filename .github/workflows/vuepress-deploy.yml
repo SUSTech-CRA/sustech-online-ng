@@ -55,12 +55,12 @@ jobs:
       with:
         node-version: '18'
 
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        with:
-          version: 8
+    - uses: pnpm/action-setup@v2
+      name: Install pnpm
+      with:
+        version: 8
 
-        - name: Install Dependencies
+    - name: Install Dependencies
       run: pnpm install
 
     - name: Check pnpm / node version
