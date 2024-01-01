@@ -11,6 +11,8 @@ export default defineClientConfig({
     app.component("TabView", TabView)
     app.component("RealtimeMap", RealtimeMap)
     app.component("WeatherSpan", WeatherSpan)
+
+    // 含有 echart的组件用动态加载，non-ssr模式
     app.component("BusChartVue", defineAsyncComponent(_ => import('./components/BusChartVue.vue')))
     app.component("Canteen", defineAsyncComponent(_ => import('./components/Canteen.vue')))
   },

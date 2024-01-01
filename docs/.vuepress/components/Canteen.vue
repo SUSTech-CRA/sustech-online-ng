@@ -2,7 +2,7 @@
   <div>
     <a-segmented v-model:value="initSelect" :options="tabOptions" @change="switchTab">
       <template #label="{ payload }">
-        <div style="padding: 4px 2px">
+        <div style="padding: 4px 0px">
           <div>{{ payload.title }}</div>
           <div>{{ payload.subTitle }}</div>
         </div>
