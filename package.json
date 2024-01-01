@@ -1,5 +1,8 @@
 {
   "devDependencies": {
+    "@vuepress/bundler-vite": "2.0.0-rc.0",
+    "@vuepress/cli": "2.0.0-rc.0",
+    "@vuepress/client": "2.0.0-rc.0",
     "@vuepress/plugin-docsearch": "2.0.0-rc.0",
     "@vuepress/plugin-git": "2.0.0-rc.0",
     "@vuepress/plugin-google-analytics": "2.0.0-rc.0",
@@ -9,6 +12,7 @@
     "@vuepress/plugin-pwa-popup": "2.0.0-rc.0",
     "@vuepress/plugin-register-components": "2.0.0-rc.0",
     "@vuepress/plugin-toc": "2.0.0-rc.0",
+    "@vuepress/theme-default": "2.0.0-rc.0",
     "ant-design-vue": "^4.0.7",
     "vue-echarts": "^6.2.3",
     "vuepress": "2.0.0-rc.0",
@@ -25,6 +29,7 @@
     "axios": "^1.6.0",
     "download": "^8.0.0",
     "echarts": "^5.4.0",
-    "maplibre-gl": "3.6.2"
+    "maplibre-gl": "3.6.2",
+    "vue": "^3.4.3"
   }
 }

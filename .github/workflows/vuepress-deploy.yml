@@ -55,19 +55,24 @@ jobs:
       with:
         node-version: '18'
 
-    - name: Install Dependencies
-      run: yarn install
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        with:
+          version: 8
 
-    - name: Check yarn / node version
+        - name: Install Dependencies
+      run: pnpm install
+
+    - name: Check pnpm / node version
       run: |
-        echo "yarn version `yarn --version`"
+        echo "pnpm version `pnpm --version`"
         echo "node version `node -v`"
-        yarn list --pattern vuepress
+        pnpm list --pattern vuepress
 
     - name: Build Site
       run: |
-        yarn docs:clean
-        yarn docs:build
+        pnpm docs:clean
+        pnpm docs:build
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
