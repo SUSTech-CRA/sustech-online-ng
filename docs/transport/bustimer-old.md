@@ -18,6 +18,4 @@
 
 ## 时间表 Timetable
 
-<ClientOnly>
-  <BusTable/>
-</ClientOnly>
+<BusTable/>
