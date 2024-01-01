@@ -10,12 +10,10 @@
 <script>
 import axios from "axios";
 import {
-  along,
   length,
   nearestPoint,
   nearestPointOnLine,
   point,
-  rhumbBearing,
 } from "@turf/turf";
 import ECharts from "vue-echarts";
 import { use } from "echarts/core";
