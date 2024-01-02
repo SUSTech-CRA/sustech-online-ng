@@ -54,7 +54,7 @@ jobs:
     - uses: actions/setup-node@v3
       name: Install Node.js
       with:
-        node-version: '18'
+        node-version-file: '.nvmrc'
 
     - uses: pnpm/action-setup@v2
       name: Install pnpm
