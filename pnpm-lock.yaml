@@ -68,8 +68,8 @@ devDependencies:
     specifier: ^4.0.7
     version: 4.0.8(vue@3.4.3)
   vue-echarts:
-    specifier: ^6.2.3
-    version: 6.6.8(echarts@5.4.3)(vue@3.4.3)
+    specifier: ~6.2.3
+    version: 6.2.4(echarts@5.4.3)(vue@3.4.3)
   vuepress:
     specifier: 2.0.0-rc.0
     version: 2.0.0-rc.0(@vuepress/client@2.0.0-rc.0)(vue@3.4.3)
@@ -6972,18 +6972,15 @@ packages:
       vue: 3.4.3
     dev: true
 
-  /vue-echarts@6.6.8(echarts@5.4.3)(vue@3.4.3):
-    resolution: {integrity: sha512-3EGrxKGCGjHnkhudRQQ4fkK5iJxxXNQ1fXvSWA/7mzR/oV7BBSHYvC3gDbG/WIW0A/Fcx2H8k5H3NDyWgjyi8g==}
+  /vue-echarts@6.2.4(echarts@5.4.3)(vue@3.4.3):
+    resolution: {integrity: sha512-k9Bd0LsDbQxJsNQ5y4MZyYU+9A3nxmw4gIOHw41IpDRFhHpqOFyj2dkJSiVpIZJLqL7Y/22lmQ3OrTaTN6jvBg==}
     requiresBuild: true
     peerDependencies:
       '@vue/composition-api': ^1.0.5
-      '@vue/runtime-core': ^3.0.0
-      echarts: ^5.4.1
+      echarts: ^5.1.2
       vue: ^2.6.12 || ^3.1.1
     peerDependenciesMeta:
       '@vue/composition-api':
-        optional: true
-      '@vue/runtime-core':
         optional: true
     dependencies:
       echarts: 5.4.3
