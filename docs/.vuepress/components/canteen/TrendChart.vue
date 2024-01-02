@@ -61,7 +61,7 @@ use([
 export default {
   name: "TrendChart",
   components: {
-    AConfigProvider: ConfigProvider,
+    'a-config-provider': ConfigProvider,
     'data-request': DataRequest,
     'object-selector': ObjectSelector,
     'v-chart': ECharts

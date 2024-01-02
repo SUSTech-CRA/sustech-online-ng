@@ -1,26 +1,40 @@
 <template>
   <div id="bustable">
-    <object-selector :objs="{
-      '工作日 Workday': true,
-      '节假日 Holiday': false
-    }" v-slot="weekdayProps">
-      <br />
-      <object-selector :objs="weekdayProps.selected ? {
-        'Line 1 号线 │ 工学院方向 To COE': '/bus_times/one_down.json',
-        'Line 1 号线 │ 欣园方向 To Joy Highland': '/bus_times/one_up.json',
-        'Line 2 号线 │ 科研楼方向 To Research Bldg.': '/bus_times/two_down.json',
-        'Line 2 号线 │ 欣园方向 To Joy Highland': '/bus_times/two_up.json',
-      } : {
-        'Line 1 号线 │ 工学院方向  To COE': '/bus_times/one_down_holiday.json',
-        'Line 1 号线 │ 欣园方向 To Joy Highland': '/bus_times/one_up_holiday.json'
-      }" v-slot="routeProps">
-        <data-request :path="routeProps.selected" v-slot="{ data }">
-          <bus-timer v-if="data" v-bind="data"></bus-timer>
-          <grid-list v-if="data" :data="data.times">
-          </grid-list>
-        </data-request>
+    <a-config-provider :theme="{
+      token: {
+        colorPrimary: '#ED6D00',
+      },
+    }">
+      <object-selector :objs="{
+        '工作日 Workday': true,
+        '节假日 Holiday': false
+      }" v-slot="weekdayProps">
+        <br />
+        <a-config-provider :theme="{
+          token: {
+            colorPrimary: '#49BF7C',
+          },
+        }">
+          <object-selector :objs="weekdayProps.selected ? {
+            'Line 1 号线 │ 工学院方向 To COE': '/bus_times/one_down.json',
+            'Line 1 号线 │ 欣园方向 To Joy Highland': '/bus_times/one_up.json',
+            'Line 2 号线 │ 科研楼方向 To Research Bldg.': '/bus_times/two_down.json',
+            'Line 2 号线 │ 欣园方向 To Joy Highland': '/bus_times/two_up.json',
+          } : {
+            'Line 1 号线 │ 工学院方向  To COE': '/bus_times/one_down_holiday.json',
+            'Line 1 号线 │ 欣园方向 To Joy Highland': '/bus_times/one_up_holiday.json'
+          }" v-slot="routeProps">
+            <data-request :path="routeProps.selected" v-slot="{ data }">
+              <bus-timer v-if="data" v-bind="data"></bus-timer>
+              <grid-list v-if="data" :data="data.times">
+              </grid-list>
+            </data-request>
+          </object-selector>
+        </a-config-provider>
+
       </object-selector>
-    </object-selector>
+    </a-config-provider>
+
   </div>
 </template>
 
@@ -30,14 +44,16 @@ import BusTimer from "./bus/BusTimer.vue";
 import ObjectSelector from "./bus/ObjectSelector.vue";
 import DataRequest from "./bus/DataRequest.vue";
 import GridList from "./bus/GridList.vue";
+import { ConfigProvider } from 'ant-design-vue';
 
 export default {
   name: "BusTable",
   components: {
-    BusTimer,
-    ObjectSelector,
-    DataRequest,
-    GridList
+    'a-config-provider': ConfigProvider,
+    'bus-timer': BusTimer,
+    'data-request': DataRequest,
+    'object-selector': ObjectSelector,
+    'grid-list': GridList
   },
   mounted() {
     function toggleButtonBasedOnDate(holidata) {

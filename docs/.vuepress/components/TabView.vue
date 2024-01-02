@@ -1,47 +1,40 @@
 <template>
   <div>
-    <a-config-provider :theme="{
-      token: {
-        colorPrimary: '#49BF7C',
-      },
-    }">
-      <a-segmented v-model:value="initSelect" :options="tabOptions" @change="switchTab">
-        <template #label="{ payload }">
-          <div style="padding: 4px 8px">
-            <div>{{ payload.title }}</div>
-            <div>{{ payload.subTitle }}</div>
-          </div>
-        </template>
-      </a-segmented>
 
-      <div class="tab-container">
-        <!-- 第一个 div 根据 value 控制显示与隐藏 -->
-        <div v-if="currentSelect === 'bus-location'">
-          <div class="bus-location-hint" v-if="showMapChart" >位置每5秒自动刷新。Location refreshes automatically every 5 seconds.</div>
-          <RealtimeMap v-if="showMapChart" />
-          <BusChartVue />
+    <a-segmented v-model:value="initSelect" :options="tabOptions" @change="switchTab">
+      <template #label="{ payload }">
+        <div style="padding: 4px 8px">
+          <div>{{ payload.title }}</div>
+          <div>{{ payload.subTitle }}</div>
         </div>
+      </template>
+    </a-segmented>
 
-        <!-- 第二个 div 根据 value 控制显示与隐藏 -->
-        <div v-if="currentSelect === 'timetable'">
-          <BusTable></BusTable>
+    <div class="tab-container">
+      <!-- 第一个 div 根据 value 控制显示与隐藏 -->
+      <div v-if="currentSelect === 'bus-location'">
+        <div class="bus-location-hint" v-if="showMapChart">位置每5秒自动刷新。Location refreshes automatically every 5 seconds.
         </div>
+        <RealtimeMap v-if="showMapChart" />
+        <BusChartVue />
       </div>
 
+      <!-- 第二个 div 根据 value 控制显示与隐藏 -->
+      <div v-if="currentSelect === 'timetable'">
+        <BusTable></BusTable>
+      </div>
+    </div>
 
-    </a-config-provider>
   </div>
 </template>
 
 <script>
-import { ConfigProvider } from 'ant-design-vue';
 import { Segmented } from 'ant-design-vue';
 import { ref } from 'vue';
 
 export default {
   name: 'TabView',
   components: {
-    AConfigProvider: ConfigProvider,
     ASegmented: Segmented
   },
   props: {
