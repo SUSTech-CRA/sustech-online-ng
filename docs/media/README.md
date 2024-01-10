@@ -72,6 +72,8 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 
 ## 自媒体
 
+[南科十年](https://10.suste.ch)：非官方的创作与声音
+
 ### 微信公众号
 
 | 名称 | 微信号 | 介绍 | 二维码 |

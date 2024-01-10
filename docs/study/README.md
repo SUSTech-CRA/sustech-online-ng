@@ -34,6 +34,7 @@
 * [南方科技大学 2019 年度本科毕业生就业质量报告](https://www.sustech.edu.cn/uploads/files/2021/01/06113735_69394.pdf)
 * [南方科技大学 2020 年度本科毕业生就业质量报告](http://career.sustech.edu.cn/detail/news?id=588518)
 * [南方科技大学 2021 届毕业生就业质量年度报告](http://career.sustech.edu.cn/detail/news?id=664725)
+* [南方科技大学 2022 届毕业生就业质量年度报告](http://career.sustech.edu.cn/detail/news?id=880924)
 
 
 ### GPA换算表（本科）
@@ -60,7 +61,7 @@
 - [2022本科](https://mirrors.sustech.edu.cn/site/sustech-online/documents/manual/南方科技大学学生手册2022-本科.pdf)
 - [2021本科](https://mirrors.sustech.edu.cn/site/sustech-online/documents/manual/南方科技大学学生手册2021-本科.pdf)
 - [2020本科](https://mirrors.sustech.edu.cn/site/sustech-online/documents/manual/南方科技大学学生手册2020-本科.pdf)
-- [2019本科](https://mirrors.sustech.edu.cn/site/sustech-online/documents/manual/南方科技大学学生手册2020-本科.pdf)
+- [2019本科](https://mirrors.sustech.edu.cn/site/sustech-online/documents/manual/南方科技大学学生手册2019-本科.pdf)
 
 ## 培养方案（本科）
 
@@ -86,6 +87,11 @@
 
 - [创新实践项目汇总](./cse/innovative-project.md)
 - [计算机安全/渗透测试公开教学与学术队伍](https://wiki.compass.college)
+- 计算机系毕业去向
+  - [2023届](https://mp.weixin.qq.com/s/vt9o_9wmnwYVY8lu8cLKFA)
+  - [2022届](https://mp.weixin.qq.com/s/YDpTou_LR6Qtcg84cHBsOA)
+  - [2021届](https://mp.weixin.qq.com/s/W0MBffPhLiSrpUVp97iFsA)
+  - [2020届](https://www.zhihu.com/question/377583285/answer/1247497149)
 
 ### 人文中心
 - [袁长庚老师所推荐的新生书单 2018年](./book-list-by-prof-yuan/2018)
