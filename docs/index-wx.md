@@ -1,4 +1,4 @@
-# 📚南科手册
+# 📚你科手册
 
 <WeatherSpan/>
 
@@ -151,7 +151,7 @@ Please use the [Google translation tool in Chrome](https://support.google.com/ch
 
 ### 关于广告
 
-南科手册的建设与运营均由同学独立完成。为了令「南科手册」能够稳定运行，我们可能会在某些页面的底部和小程序中开屏页面中展示由[微信](https://ad.weixin.qq.com/)和[Google](https://www.google.com/adsense/)提供的广告以维持服务器和CDN的开销，敬请谅解。
+你科手册的建设与运营均由同学独立完成。为了令「你科手册」能够稳定运行，我们可能会在某些页面的底部和小程序中开屏页面中展示由[微信](https://ad.weixin.qq.com/)和[Google](https://www.google.com/adsense/)提供的广告以维持服务器和CDN的开销，敬请谅解。
 
 我们将尽力确保：
 - 应急处理页面内不会出现广告
