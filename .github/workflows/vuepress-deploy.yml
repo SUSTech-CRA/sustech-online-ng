@@ -52,20 +52,29 @@ jobs:
       run: date
 
     - uses: actions/setup-node@v3
+      name: Install Node.js
       with:
-        node-version: '18'
+        node-version-file: '.nvmrc'
+
+    - uses: pnpm/action-setup@v2
+      name: Install pnpm
+      with:
+        version: 8
+        # pnpm、node兼容性矩阵：https://pnpm.io/installation#compatibility
 
     - name: Install Dependencies
-      run: yarn install
+      run: pnpm install
 
-    - name: Check yarn / node version
+    - name: Check pnpm / node version
       run: |
-        echo "yarn version `yarn --version`"
+        echo "pnpm version `pnpm --version`"
         echo "node version `node -v`"
-        yarn list --pattern vuepress
+        pnpm list
 
     - name: Build Site
-      run: yarn docs:build
+      run: |
+        pnpm docs:clean
+        pnpm docs:build
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3

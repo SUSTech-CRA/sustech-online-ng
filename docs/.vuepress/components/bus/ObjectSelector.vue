@@ -1,14 +1,9 @@
 <template>
-  <a-config-provider :theme="{
-    token: {
-      colorPrimary: '#49BF7C',
-    },
-  }">
-    <a-button v-for="(value, key, index) in objs" :key="index" @click="select(key)"
-      :class="key == keySelected ? 'selected' : 'unselected'" :type="key == keySelected ? 'primary' : 'default'" size="large">
-      {{ key }}
-    </a-button>
-  </a-config-provider>
+  <a-button v-for="(value, key, index) in objs" :key="index" @click="select(key)"
+    :class="key == keySelected ? 'selected' : 'unselected'" :type="key == keySelected ? 'primary' : 'default'"
+    size="large">
+    {{ key }}
+  </a-button>
 
   <slot v-bind:selected="objs[keySelected]"></slot>
 </template>
@@ -19,7 +14,6 @@ import { Button as AButton } from 'ant-design-vue';
 export default {
   components: {
     AButton,
-    AConfigProvider: ConfigProvider
   },
   data() {
     return {
