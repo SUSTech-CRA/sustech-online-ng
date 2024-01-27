@@ -36,12 +36,12 @@
 3.  [📶校园网测速](https://speedtest.cra.moe/)：内网测速。
 4.  [📺校园直播](http://live.cra.moe/)：日常校园风景直播，可提供校内社团活动、分享会、座谈会直播支持，详情咨询CRA的同学。
 5.  [📄Markdown](https://md.cra.moe/)：在线 Markdown 服务，可用CAS登陆 **（已开放公网访问）**。
-6.  [📄ShareLaTeX](https://sharelatex.cra.ac.cn/)：在线LaTex服务，Overleaf服务，想体验的同学请**自助注册**，如果邮箱**并非以**`sustech.edu.cn`结尾，请用南科大邮箱发一封标题为 `sharelatex申请` 的邮件（写明需要开通账户人的邮箱）到 `service@cra.moe`，看到邮件之后会手动给大家发送邀请。（如果在您在校外，可以通过 <https://sharelatex-ext.cra.ac.cn/> 访问）。
+6.  [📄ShareLaTeX](https://sharelatex.cra.ac.cn/)：在线LaTex服务，Overleaf服务，想体验的同学请**自助注册（使用CRA SSO / CAS登陆）**，如果邮箱**并非以**`sustech.edu.cn`结尾，请用南科大邮箱发一封标题为 `sharelatex申请` 的邮件（写明需要开通账户人的邮箱）到 `service@cra.moe`，看到邮件之后会手动给大家发送邀请。（如果在您在校外，可以通过 <https://sharelatex-ext.cra.ac.cn/> 访问）。
 7.  [📁Send 文件分享](https://send.cra.moe/)：上传最大10G的文件，并使用链接将文件分享给在校园网下的其他的同学。文件默认于服务上存储10天，最多可保存30天。文件被加密存储于科学计算中心的服务器上，仅链接拥有者可以访问。（后台无法看到文件的内容）您同时也可以在上传文件后主动删除文件或者设置成在一次下载后自动删除文件。
 8.  [🛠 软件资源下载](https://dl.cra.moe/)
 9.  [🖥️服务状态监控](https://monitor.cra.moe)：校园网络，CRA服务监控。
-10. [牛娃课程评价社区](https://nces.cra.moe/)：是南科大学生的课程评价社区，只有拥有南科大邮箱的同学或老师才可以注册账户。
-11. 🌊[牛娃广场（反馈社区）](https://c.cra.moe)：反馈与交流相关服务，现在已与牛娃小镇共同运营。可使用CAS登陆。
+10. [✏️牛娃课程评价社区](https://nces.cra.moe/)：是南科大学生的课程评价社区，只有拥有南科大邮箱的同学或老师才可以注册账户。
+11. ~~🌊[牛娃广场（反馈社区）](https://c.cra.moe)：反馈与交流相关服务，现在已与牛娃小镇共同运营。可使用CAS登陆。~~
 12. DNS123服务：`10.20.110.123`，可通过此服务访问[Google Scholar](https://scholar.google.com.hk/)等学术服务。
 
 
@@ -49,7 +49,6 @@
 部分项目与计算机研究协会（CRA）合作部署。
 
 1. [牛娃课程评价社区](https://nces.cra.moe/)：南科大学生的课程评价社区，因此，只有拥有南科大邮箱的同学或老师才可以注册账户。[中科大同款评教系统](https://icourse.club/)，赓续教改初心。
-2. [牛娃广场](https://niko.cra.moe/)：校园论坛。
 
 ### 飞跃手册：申请与校招经验
 
