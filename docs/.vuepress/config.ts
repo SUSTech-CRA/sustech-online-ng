@@ -99,9 +99,9 @@ export default defineUserConfig({
         //     },
         // ],
         docsearchPlugin({
-            appId: '6KECEJUGJH',
-            apiKey: '9a5c8aa7cb2d5d32ebd66790e1a84789',
-            indexName: 'sustech-online-keys',
+            appId: '51MD42WJ9Y',
+            apiKey: '9b4e38ac3e880ab6800175b16f674d78',
+            indexName: 'sustech',
             locales: {
                 '/': {
                     placeholder: '搜索手册',
