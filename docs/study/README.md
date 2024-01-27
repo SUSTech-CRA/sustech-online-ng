@@ -7,17 +7,15 @@
 - [学号的含义](/service/sid)
 
 ## 课程
-- [南方科技大学课程简介（2020年7月30日更新）](https://mirrors.sustech.edu.cn/site/sustech-online/documents/syllabus/sustech-course-catalogue-20200730.pdf)
-
 ### 课程详述
 
 包含课程简介，纲要与考核形式。推荐使用NCES评课社区 <https://nces.cra.moe> 进行检索，可使用课程名称，课程代码，授课老师等关键词进行查询。
 
-- [下载课程大纲PDF](https://mirrors.sustech.edu.cn/courses/%E6%95%99%E5%AD%A6%E5%A4%A7%E7%BA%B2%E6%B1%87%E6%80%BB/)
+- [下载课程大纲PDF](https://mirrors.sustech.edu.cn/courses/syllabus/) （按照课程代码编码）
 
 - 教工部提供的查看渠道：<https://course-tao.sustech.edu.cn/kcxxweb/KcxxwebChinesePC> （需CAS登陆）
 
-- [课程资料](https://dl.cra.moe/courseware/)：从 QQ 群等互联网来源获取并整理的课程资料。
+- 课程资料：从 QQ 群等互联网来源获取并整理的课程资料。请登陆[NCES](https://nces.cra.moe/)，并点击课程介绍下方的“课件”按钮进入（仅限校内访问）。
 
 ### 📖学习建议与攻略
 
@@ -65,7 +63,12 @@
 
 ## 培养方案（本科）
 
+- [2023级本科人才培养方案](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/2023级本科人才培养方案/)
+  - [Curriculum for International Students (2023)](https://mirrors.sustech.edu.cn/courses/curriculum_for_international_students/2023/)
+
 - [2022级本科人才培养方案](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/2022级本科人才培养方案/)
+  - [Curriculum for International Students (2022)](https://mirrors.sustech.edu.cn/courses/curriculum_for_international_students/2022/)
+
 - [2021级本科人才培养方案](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/2021级本科人才培养方案/)
   - [Curriculum for International Students (2021)](https://mirrors.sustech.edu.cn/courses/curriculum_for_international_students/2021/)
 
