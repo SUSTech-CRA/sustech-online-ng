@@ -4,7 +4,7 @@ import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import { pwaPlugin } from '@vuepress/plugin-pwa'
 // import { pwaPopupPlugin } from '@vuepress/plugin-pwa-popup'
 import { tocPlugin } from '@vuepress/plugin-toc'
-import { sitemapPlugin } from "vuepress-plugin-sitemap2"
+import { sitemapPlugin } from "@vuepress/plugin-sitemap"
 import { defineUserConfig } from '@vuepress/cli'
 import { viteBundler } from '@vuepress/bundler-vite'
 

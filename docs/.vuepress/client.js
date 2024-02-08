@@ -1,4 +1,4 @@
-import { defineClientConfig } from '@vuepress/client'
+import { defineClientConfig } from 'vuepress/client'
 import BusTable from "./components/BusTable.vue";
 import TabView from "./components/TabView.vue";
 import RealtimeMap from './components/RealtimeMap.vue'
