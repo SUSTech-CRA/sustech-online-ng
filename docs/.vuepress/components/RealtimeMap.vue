@@ -515,108 +515,117 @@ export default {
       });
 
       //add station
+      function loadLegendImage(url) {
+        return fetch(url)
+            .then(response => response.blob())
+            .then(blob => {
+              return new Promise((resolve, reject) => {
+                const image = new Image();
+                const url = URL.createObjectURL(blob);
 
-      this.map.loadImage(
-          'https://bus.sustcra.com/station_icon.png',
-          (error, image) => {
-            if (error) throw error;
-            this.map.addImage('bus-station', image);
-
-
-            //image of buildings
-            this.map.loadImage(
-                'https://bus.sustcra.com/bldg_icon.png',
-                (error, image) => {
-                  this.map.addImage('bldg-icon', image)
-                });
-
-            //image of gates
-            this.map.loadImage(
-                'https://bus.sustcra.com/gate_icon.png',
-                (error, image) => {
-                  this.map.addImage('gate-icon', image)
-                });
-
-
-            this.map.addSource('stations', {
-              'type': 'geojson',
-              'data': this.stations_geojson
+                image.onload = () => {
+                  URL.revokeObjectURL(url); // Clean up the URL object
+                  resolve(image);
+                };
+                image.onerror = () => {
+                  URL.revokeObjectURL(url);
+                  reject(new Error('Could not load image'));
+                };
+                image.src = url;
+              });
             });
+      }
 
-            this.map.addSource('bldgs', {
-              'type': 'geojson',
-              'data': this.bldg_geojson
-            });
+      Promise.all([
+        loadLegendImage('https://bus.sustcra.com/station_icon.png'),
+        loadLegendImage('https://bus.sustcra.com/bldg_icon.png'),
+        loadLegendImage('https://bus.sustcra.com/gate_icon.png')
+      ]).then(images => {
+        // All images have been loaded successfully
+        this.map.addImage('bus-station', images[0]);
+        this.map.addImage('bldg-icon', images[1]);
+        this.map.addImage('gate-icon', images[2]);
 
-            this.map.addSource('gates', {
-              'type': 'geojson',
-              'data': this.gate_geojson
-            });
+        // Now add sources and layers
+        // Add sources and layers after loading images
+        this.map.addSource('stations', {
+          'type': 'geojson',
+          'data': this.stations_geojson
+        });
 
-            this.map.addLayer({
-              'id': 'bus-station',
-              'type': 'symbol',
-              'source': 'stations',
-              'layout': {
-                'icon-size': 0.075,
-                'icon-image': 'bus-station',
-                'text-field': ['get', 'name'],
-                // 'text-font': [
-                //   'Open Sans Semibold',
-                //   'Arial Unicode MS Bold'
-                // ],
-                'text-size': 10,
-                'text-offset': [0, 1.25],
-                'text-anchor': 'top'
-              },
-              "paint": {
-                "text-color": this.map_text_colour
-              },
-              // 'paint': {
-              //   'circle-radius': 6,
-              //   'circle-color': '#B42222'
-              // },
-              'filter': ['==', '$type', 'Point']
-            });
+        this.map.addSource('bldgs', {
+          'type': 'geojson',
+          'data': this.bldg_geojson
+        });
 
-            this.map.addLayer({
-              'id': 'bldgs',
-              'type': 'symbol',
-              'source': 'bldgs',
-              'layout': {
-                'icon-size': 0.02,
-                'icon-image': 'bldg-icon',
-                'text-field': ['get', 'name'],
-                'text-size': 9,
-                'text-offset': [0, 0.3],
-                'text-anchor': 'top'
-              },
-              "paint": {
-                "text-color": this.map_text_colour
-              },
-              'filter': ['==', '$type', 'Point']
-            });
+        this.map.addSource('gates', {
+          'type': 'geojson',
+          'data': this.gate_geojson
+        });
 
-            this.map.addLayer({
-              'id': 'gates',
-              'type': 'symbol',
-              'source': 'gates',
-              'layout': {
-                'icon-size': 0.05,
-                'icon-image': 'gate-icon',
-                'text-field': ['get', 'name'],
-                'text-size': 10,
-                'text-offset': [0, 0.6],
-                'text-anchor': 'top'
-              },
-              "paint": {
-                "text-color": this.map_text_colour
-              },
-              'filter': ['==', '$type', 'Point']
-            });
+        this.map.addLayer({
+          'id': 'bus-station',
+          'type': 'symbol',
+          'source': 'stations',
+          'layout': {
+            'icon-size': 0.075,
+            'icon-image': 'bus-station',
+            'text-field': ['get', 'name'],
+            'text-size': 10,
+            'text-offset': [0, 1.25],
+            'text-anchor': 'top'
+          },
+          "paint": {
+            "text-color": this.map_text_colour
+          },
+          'filter': ['==', '$type', 'Point']
+        });
+
+        this.map.addLayer({
+          'id': 'bldgs',
+          'type': 'symbol',
+          'source': 'bldgs',
+          'layout': {
+            'icon-size': 0.02,
+            'icon-image': 'bldg-icon',
+            'text-field': ['get', 'name'],
+            'text-size': 9,
+            'text-offset': [0, 0.3],
+            'text-anchor': 'top'
+          },
+          "paint": {
+            "text-color": this.map_text_colour
+          },
+          'filter': ['==', '$type', 'Point']
+        });
+
+        this.map.addLayer({
+          'id': 'gates',
+          'type': 'symbol',
+          'source': 'gates',
+          'layout': {
+            'icon-size': 0.05,
+            'icon-image': 'gate-icon',
+            'text-field': ['get', 'name'],
+            'text-size': 10,
+            'text-offset': [0, 0.6],
+            'text-anchor': 'top'
+          },
+          "paint": {
+            "text-color": this.map_text_colour
+          },
+          'filter': ['==', '$type', 'Point']
+        });
 
 
-          });
+      }).catch(error => {
+        // Handle any errors that occurred during image loading
+        console.error('Error loading images:', error);
+      });
+
+
+
+
 
 
     });

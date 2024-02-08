@@ -28,7 +28,7 @@
     "axios": "^1.6.0",
     "download": "^8.0.0",
     "echarts": "^5.4.0",
-    "maplibre-gl": "3.6.2",
+    "maplibre-gl": "4.0.0",
     "vue": "^3.4.15"
   }
 }
