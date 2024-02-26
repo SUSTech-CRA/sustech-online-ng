@@ -459,7 +459,7 @@ mounted() {
 
 <style scoped>
 .chart {
-  height: 70vh;
+  height: 90vh;
   width: 100%;
 }
 
