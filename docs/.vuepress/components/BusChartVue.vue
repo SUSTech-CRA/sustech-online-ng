@@ -100,10 +100,10 @@ export default {
           axisLabel: { interval: 0 },
           type: "category",
           data: [
-            "1号线\n工学院方向",
-            "1号线\n欣园方向",
-            "2号线\n科研楼方向",
-            "2号线\n欣园方向",
+            "L1号线\n工学院方向\nCOE",
+            "L1号线\n欣园方向\nJHL",
+            "L2号线\n科研楼方向\nRSB",
+            "L2号线\n欣园方向\nJHL",
           ],
           splitLine: {
             show: false,
