@@ -98,7 +98,7 @@ export default {
         {
           "type": "Feature",
           "geometry": {"type": "Point", "coordinates": [113.997811, 22.603325]},
-          "properties": {"name": "教工餐厅 Faculty Cafteria"}
+          "properties": {"name": "教工餐厅 Faculty Cafeteria"}
         },
         {
           "type": "Feature",

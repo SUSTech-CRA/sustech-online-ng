@@ -6,3 +6,7 @@
 <ClientOnly>
   <TabView :isMapTabEnabled="true"></TabView>
 </ClientOnly>
+
+*如需切换亮/暗主题，请切换后刷新页面*
+
+*Pls REFRESH after toggle dark mode.*

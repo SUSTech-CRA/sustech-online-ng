@@ -50,6 +50,8 @@ export default {
     stops1: [],
     stops2: [],
     historyBusData: [],
+    themeColor: '#212529', // 默认颜色
+    themeColor_rev: '#DEE2E6',
     echartsOption: {
       tooltip: {
         show: false,
@@ -112,9 +114,9 @@ export default {
         {
           type: "scatter",
           label: {
-            fontSize: 10,
+            fontSize: 8,
             show: true,
-            color: "#999",
+            color: "#212529",
             position: "right",
             formatter: "{b}",
           },
@@ -126,19 +128,19 @@ export default {
           data: [],
         },
         {
+          type: "scatter",
+          name: "bus",
           label: {
             fontSize: 11,
             show: true,
-            color: "#000",
-            textBorderColor: "#fff",
-            textBorderWidth: 2,
+            color: "#212529",
+            textBorderColor: "#DEE2E6",
+            textBorderWidth: 2.5,
             fontWeight: "bold",
             position: "right",
             distance: -5,
             formatter: "{b}",
           },
-          type: "scatter",
-          name: "bus",
           data: [],
         },
       ],
@@ -152,6 +154,28 @@ export default {
   methods: {
     setEchartsOption(appendOption) {
       this.echartsOption = appendOption;
+    },
+    checkTheme() {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("dark") // 深色主题
+        this.themeColor = "#DEE2E6"
+        this.themeColor_rev = "#212529"
+      } else {
+        // console.log("bright") // 浅色主题
+        this.themeColor = "#212529"
+        this.themeColor_rev = "#DEE2E6"
+      }
+      this.updateSeriesColor();
+    },
+    updateSeriesColor() {
+      // 更新 series 中的 color
+      this.echartsOption.series = this.echartsOption.series.map(series => {
+        if (series.label) {
+          series.label.color = this.themeColor;
+          series.label.textBorderColor = this.themeColor_rev;
+        }
+        return series;
+      });
     },
     //加载线路与站点信息
     load_data() {
@@ -298,7 +322,7 @@ export default {
                 if (f.route_dir>0){
                   dist = length(thisLine) * 1000 - p_nearest_loc * 1000;
                 }
-                
+
                 //如果距离大于100米，则不显示
                 if ((p_nearest.properties.dist * 1000 > 100)|(dist<100)) {
                   return {
@@ -339,7 +363,7 @@ export default {
          navigator.geolocation.getCurrentPosition(pos => {
             let lat = pos.coords.latitude
             let lng = pos.coords.longitude
-   
+
             //标记出最近的站点
             const p = point([lng, lat])
             const nearest_line1 = nearestPoint(p, this.stops1);
@@ -416,7 +440,11 @@ export default {
   watch: {
     lines: "updateBusPos",
   },
-  mounted() {
+  created() {
+    this.checkTheme();
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', this.checkTheme);
+  },
+mounted() {
     this.load_data();
     this.updateBusPos();
     this.timer = setInterval(() => {
