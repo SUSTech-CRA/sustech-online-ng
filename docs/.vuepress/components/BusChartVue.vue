@@ -382,10 +382,10 @@ export default {
             const buspos_2 = this.historyBusData.filter(f => (f.value[0] === 2) && (f.value[1] <= line2_pos_dir2)).map(f => parseInt((line2_pos_dir2 - f.value[1]) / 250))
             //3
             const buspos_3 = this.historyBusData.filter(f => (f.value[0] === 3) && (f.value[1] <= line2_pos_dir1)).map(f => parseInt((line2_pos_dir1 - f.value[1]) / 250))
-            const bustext_0 = buspos_0.length > 0 ? '\n 约' + Math.min(...buspos_0) + '分钟' : ''
-            const bustext_1 = buspos_1.length > 0 ? '\n  约' + Math.min(...buspos_1) + '分钟' : ''
-            const bustext_2 = buspos_2.length > 0 ? '\n   约' + Math.min(...buspos_2) + '分钟' : ''
-            const bustext_3 = buspos_3.length > 0 ? '\n    约' + Math.min(...buspos_3) + '分钟' : ''
+            const bustext_0 = buspos_0.length > 0 ? '\n ~' + Math.min(...buspos_0) + 'min.' : ''
+            const bustext_1 = buspos_1.length > 0 ? '\n  ~' + Math.min(...buspos_1) + 'min.' : ''
+            const bustext_2 = buspos_2.length > 0 ? '\n   ~' + Math.min(...buspos_2) + 'min.' : ''
+            const bustext_3 = buspos_3.length > 0 ? '\n    ~' + Math.min(...buspos_3) + 'min.' : ''
             let data1 = [];
             let data2 = [];
 
