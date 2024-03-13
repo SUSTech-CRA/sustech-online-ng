@@ -160,3 +160,37 @@ chmod +x /etc/hotplug.d/iface/restart-IPv6
 我的个人邮箱为：ntdgy2001@gmail.com / 12011211@mail.sustech.edu.cn
 
 原文章地址（NAT 部分）©️ 戴郭轶：[[https://ntdgy.top/ntdgy/30/](https://ntdgy.top/ntdgy/30.html)]
+
+
+# IPv6 (Linux systemd)
+
+学校的 DHCPv6 服务器实现比较灵车，Linux桌面或服务器有时候无法获取到 IPv6 地址，如果你使用 systemd-networkd 配置网络，你可以使用以下设置：
+
+注意要让 systemd-networkd 接管网络配置。
+
+创建 `/etc/systemd/network/wan.network`，文件一定要以 .network 结尾。
+
+```
+[Match]
+Name=`interface`
+
+[Network]
+DHCP=yes
+IPv6AccpetRA=true
+
+[DHCPv6]
+WithoutRA=solicit
+DUIDType=link-layer
+RapidCommit=false
+
+[IPv6AcceptRA]
+Token=eui64
+DHCPv6Client=always
+```
+
+关键是要把 `RapidCommit=false` 关掉，带上这个标志后学校 DHCPv6 服务器就不会回复 DHCPv6 Solicit 请求。
+
+有时候学校二层里面也不会发 IPv6 RA，所以最好启用 `WithoutRA=solicit` 强制启动 DHCPv6 流程。
+
+Openwrt的客户端并不会带上 RapidCommit，所以没有啥问题。
+
