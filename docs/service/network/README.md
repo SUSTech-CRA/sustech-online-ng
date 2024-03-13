@@ -26,9 +26,26 @@ sidebar: auto
 
 接入学校有线网络暂时无需认证，接入电信自费宽带的有线网络时需要验证购买过套餐的同学的学号与密码。
 
-#### 无线网络
+#### 无线网络 （802.1x 认证）
 
-接入无线网络时，需要通过Web认证，输入学号与密码后才可上网，否则只能访问校内局域网，无线网络的认证地址为：[http://172.16.16.20:803/sustc_cas.php](http://172.16.16.20:803/sustc_cas.php)
+学校同时提供了基于802.1x的认证方式。
+
+##### 注册
+
+[https://wxrz.sustech.edu.cn/](https://wxrz.sustech.edu.cn/) （可能需要于校园网内访问），点击注册后使用CAS登陆，并跟随指引设置密码后即可登陆。
+
+##### 配置
+
+* 用户名（身份）：`xxxx@sustech.edu.cn` (教职工) / `your_studentID@mail.sustech.edu.cn` (学生)
+* 密码：eduroam系统登录密码（非CAS登录密码）
+* 加密类型：802.1x / EAP协议
+* EAP方法：`PEAP`
+* 阶段2身份验证：`MSCHAPv2`
+* CA证书：`不验证` / `Trust on first use`
+
+#### 无线网络 （Web Portal 认证）
+
+需要通过Web认证，输入学号与密码后才可上网，否则只能访问校内局域网，无线网络的认证地址为：[http://172.16.16.20:803/sustc_cas.php](http://172.16.16.20:803/sustc_cas.php)
 
 如联网设备不支持通过Web进行验证（如路由器，开发板等），可以尝试使用同学制作的[第三方脚本](https://www.whexy.com/post/openwrt-zhi-jie-jue-nan-ke-da-xiao-yuan-wang-deng-lu-nan-ti/)进行联网，或是更改可进行Web认证设备的Mac地址为不支持Web认证设备的Mac地址代为认证。
 
