@@ -176,7 +176,7 @@ Name=`interface`
 
 [Network]
 DHCP=yes
-IPv6AccpetRA=true
+IPv6AcceptRA=true
 
 [DHCPv6]
 WithoutRA=solicit
