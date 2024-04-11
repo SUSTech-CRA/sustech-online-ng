@@ -62,8 +62,9 @@
 
 ### 深圳地铁线路图（2024年）
 
-![szmc-system-map-2022](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/transport/szmc-system-map-2023.jpg)
+![szmc-system-map-early-2024](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/transport/szmc-system-map-early-2024.jpg)
 注：深圳地铁十三号线（石岩线）![](../assets/badge/szmc/13.svg) 暂未开通，小梅沙度假区预计2024年5月1日重新开业，深圳地铁十一号线（机场线）![](../assets/badge/szmc/11.svg) 东延段【岗厦北-红岭南】、三号线（龙岗线）![](../assets/badge/szmc/3.svg) 四期工程【双龙-坪地六联】、七号线（西丽线）![](../assets/badge/szmc/7.svg) 二期工程【西丽湖-学府医院】、十二号线（南宝线）![](../assets/badge/szmc/12.svg) 二期工程【海上田园东-松岗】、十三号线（石岩线）![](../assets/badge/szmc/13.svg) 一期工程南端【深圳湾口岸-高新中】预计年内（2024）开通.
+
 ### 乘坐市内公共交通
 
 #### 深圳通
