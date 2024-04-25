@@ -280,9 +280,9 @@ export default {
       if (routeCodeLastDigit === '1') {
         //log car plate and route dir
         // console.log("Car plate: " + busData.id.slice(2,) + " Route dir: " + busData.route_dir);
-        routeDirText = parseInt(busData.route_dir) === 0 ? 'RD0 欣园 Joy Highland' : 'RD1 工学院 COE';
+        routeDirText = parseInt(busData.route_dir) === 0 ? '欣园 Joy Highland' : '工学院 COE';
       } else if (routeCodeLastDigit === '2') {
-        routeDirText = parseInt(busData.route_dir) === 0 ? 'RD0 欣园 Joy Highland' : 'RD1 科研楼 Research BLDG.';
+        routeDirText = parseInt(busData.route_dir) === 0 ? '欣园 Joy Highland' : '科研楼 Research BLDG.';
       } else {
         routeDirText = '未知'; // Fallback text in case neither condition is true
       }
