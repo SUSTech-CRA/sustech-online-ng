@@ -250,7 +250,7 @@ export default {
               closestSegment[0][1], closestSegment[0][0],
               closestSegment[1][1], closestSegment[1][0]
           );
-          busHeadingAngle = busData.route_dir === 1 ? busHeadingAngle : busHeadingAngle - 180;
+          busHeadingAngle = parseInt(busData.route_dir) === 1 ? busHeadingAngle : busHeadingAngle - 180;
 
           // 创建标记元素
           const busMarker = document.createElement('div');
@@ -276,11 +276,13 @@ export default {
 
     createPopup(busData) {
       let routeDirText;
-      const routeCodeLastDigit = busData.route_code.slice(-1);
+      const routeCodeLastDigit = busData.route_code.slice(-1); // 检查是XYBS1还是XYBS2
       if (routeCodeLastDigit === '1') {
-        routeDirText = busData.route_dir === 0 ? '欣园 Joy Highland' : '工学院 COE';
+        //log car plate and route dir
+        // console.log("Car plate: " + busData.id.slice(2,) + " Route dir: " + busData.route_dir);
+        routeDirText = parseInt(busData.route_dir) === 0 ? 'RD0 欣园 Joy Highland' : 'RD1 工学院 COE';
       } else if (routeCodeLastDigit === '2') {
-        routeDirText = busData.route_dir === 0 ? '欣园 Joy Highland' : '科研楼 Research BLDG.';
+        routeDirText = parseInt(busData.route_dir) === 0 ? 'RD0 欣园 Joy Highland' : 'RD1 科研楼 Research BLDG.';
       } else {
         routeDirText = '未知'; // Fallback text in case neither condition is true
       }
