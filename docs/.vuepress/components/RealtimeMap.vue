@@ -448,7 +448,8 @@ export default {
 
       this.map.addSource('raster-tiles', {
         type: 'raster',
-        tiles: ['https://gac-geo.googlecnapps.cn/maps/vt?lyrs=s&x={x}&y={y}&z={z}'],
+        // tiles: ['https://gac-geo.googlecnapps.cn/maps/vt?lyrs=s&x={x}&y={y}&z={z}'], // now work after Apr 2024
+        tiles: ['https://google-proxy.zuzuche.com/vt/?lyrs=s&x={x}&y={y}&z={z}'],
         tileSize: 256
       });
       this.map.addLayer({
