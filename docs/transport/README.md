@@ -44,7 +44,7 @@
 
 可使用 **车来了** 微信小程序/ app，查看实时公交信息及发车预测。
 
-校园周边公交站及公交线路信息列表，更新于 2024.05 ：[点击这里下载校园周边公交线路图（PDF）](./bus_routes_sustech.pdf)
+校园周边公交站及公交线路信息列表，更新于 2024.05 ：[点击这里下载校园周边公交线路图（PDF）](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/transport/bus_routes_sustech.pdf)
 
 * 南方科技大学①：M554路
   - 学苑大道西行/西丽方向，校园一号门东侧（出门左转）沿学苑大道约150m处，亦可通过二号门步行到达
