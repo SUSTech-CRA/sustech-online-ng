@@ -27,7 +27,7 @@ jobs:
         export GIT_CURL_VERBOSE=1
         git push --verbose --force --mirror "https://${USER}:${PERSONAL_TOKEN}@${REMOTE_REPO_URL}"
       env:
-        USER: project_252_bot
+        USER: ${{ secrets.SUSTECH_GITLAB_SYNC_USER }}
         PERSONAL_TOKEN: ${{ secrets.SUSTECH_GITLAB_SYNC_TOKEN }}
         GITHUB_REPO_URL: https://github.com/SUSTech-CRA/sustech-online-ng.git
         REMOTE_REPO_URL: "mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng.git"
