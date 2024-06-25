@@ -6,6 +6,7 @@ import WeatherSpan from './components/weather-span.vue'
 import BusChartVue from './components/BusChartVue.vue'
 import Canteen from './components/Canteen.vue'
 import AdSenseInline from './components/adsense-inline.vue'
+import AdSenseDisplayAD from './components/adsense-displayad.vue'
 
 export default defineClientConfig({
   enhance({ app }) {
@@ -14,6 +15,7 @@ export default defineClientConfig({
     app.component("RealtimeMap", RealtimeMap)
     app.component("WeatherSpan", WeatherSpan)
     app.component("AdSenseInline", AdSenseInline)
+    app.component("AdSenseDisplayAD", AdSenseDisplayAD)
 
     // 含有echart的组件，注意需要用non-ssr模式
     app.component("BusChartVue", BusChartVue)

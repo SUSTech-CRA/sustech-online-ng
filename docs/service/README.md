@@ -179,3 +179,5 @@
 - 南科大品牌文化服务网（标识，VI，信纸，ppt模版下载）[http://files.sustech.edu.cn/](http://files.sustech.edu.cn/)（需CAS认证）
 - [SUSTech LaTex 模板目录](https://github.com/SUSTC/latex-template)
 - [Typst 本科生毕业论文模版](https://github.com/dazhi0619/sustech-ug-thesis-typst) (非官方模版)
+
+<AdSenseDisplayAD/>
