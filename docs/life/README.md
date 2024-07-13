@@ -2,6 +2,12 @@
 
 ## 住宿
 
+::: tip 宿舍房型图
+
+宿舍房型图可至[此页面](/life/dormitory/dorm-floor-plan.html)查看。
+
+:::
+
 - [🏠住在南科](./dormitory)
 
   宿舍概况，设置及Q&A，由树德书院《南科行前记》团队提供。

@@ -158,6 +158,12 @@
 
 #### 湖畔宿舍群
 
+::: tip 宿舍房型图
+
+宿舍房型图可至[此页面](/life/dormitory/dorm-floor-plan.html)查看。
+
+:::
+
 [![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node568,190,20,110,0)
 
 
@@ -212,6 +218,12 @@
 - [游泳馆](https://sustc.wiki/游泳馆)
 
 ### 二期宿舍
+
+::: tip 宿舍房型图
+
+宿舍房型图可至[此页面](/life/dormitory/dorm-floor-plan.html)查看。
+
+:::
 
 [![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node1000,250,5,130,0)
 
