@@ -3,14 +3,13 @@ sidebar: false
 navbar: false
 ---
 # 🚌校园巴士时刻表 SUSTech Campus Bus Info
-<Badge text="食堂人流统计" type="tip"/>
-
-![](https://mirrors.sustech.edu.cn/site/sustech-online/img/misc/cateen-flow-ad-202312.png)
-[**🍚点此查看食堂人流🍜**](/canteen/canteen-wx.html)
 
 <ClientOnly>
   <TabView :isMapTabEnabled="true"></TabView>
 </ClientOnly>
+
+![](https://mirrors.sustech.edu.cn/site/sustech-online/img/misc/nces-ad-202308.png)
+[**点此访问NCES**](https://nces.cra.moe/)
 
 *如需切换暗色主题，请切换后刷新页面*
 
