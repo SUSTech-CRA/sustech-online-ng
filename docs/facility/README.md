@@ -1,5 +1,7 @@
 # 🏫建筑与设施
 
+![校园全景（从宝能城拍摄）](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/campus_202209.jpg)
+
 ## 校园街景<Badge text="2022年4月更新" type="tip"/>
 
 ::: tip
@@ -83,6 +85,8 @@
 ~~ 第二教学楼主要教室都是**机房**（2019年换的电脑是i7-8700K+1080Ti)，一般会用于上电子系，计算机系的实验课和一些电脑测评/考试。~~ 二教还有**一间多功能教室**，现在一般用于乐器排练和美术课程。
 
 #### 第三教学楼
+
+![第三教学楼与商学院，前景是大草坪](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/teach_building_3_and_school_of_business.jpeg)
 
 第三教学楼位于南科大中心与理学院和琳恩图书馆遥遥相望，毗邻商学院大楼。为5层建筑，其中一楼、二楼为阶梯教室以及混合教学教室，三楼为授课型教室，四楼为研讨型教室，五楼为教学机房，共56间教室，教室使用总面积为5800平。
 
@@ -178,8 +182,8 @@
 |  2   |     致仁     |
 |  3   |     致诚     |
 |  4   |    研究生    |
-|  5   |     研究生、树德     |
-|  6   |      研究生、树德     |
+|  5   |     研究生     |
+|  6   |      研究生     |
 
 
 
@@ -221,17 +225,17 @@
 
 | 楼栋 |    入住学生归属    |
 | :--: | :----------------: |
-|  7   |          博士生          |
-|  8   |        博士生         |
-|  9   |       博士生       |
-|  10  |       博士生       |
-|  11  | 新生楼（大一学生） |
-|  12  |       研究生       |
+|  7   |          硕士/博士生          |
+|  8   |        硕士/博士生      |
+|  9   |       硕士/博士生       |
+|  10  |       硕士/博士生       |
+|  11  | 本科生 |
+|  12  |       硕士/博士生       |
 |  13  |        树德        |
 |  14  |        致新        |
 |  15  |        树仁        |
 |  16  |        树礼        |
-|  17  |         研究生           |
+|  17  |       硕士/博士生        |
 
 ### 工学院
 
@@ -239,7 +243,7 @@
 
 ![建设中的工学院](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/Engineering_College_Building_of_Southern_University_of_Science_and_Technology_Under_Construction.jpg)
 
-上图是正在建设中的工学院。
+工学院已于2022年开始使用，上图是正在建设中的工学院。
 
 工学院分为南座和北座。
 
