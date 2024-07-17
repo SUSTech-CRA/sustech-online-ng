@@ -32,6 +32,12 @@ Online manual for SUSTecher.
 
 * nodejs版本：18
 * 推荐包管理器：pnpm
+  * 安装依赖：pnpm install
+  * 升级依赖：pnpm up
+  * 快速构建：pnpm run docs:fastbuild
+  * 构建：pnpm run docs:build
+  * 预览：pnpm run docs:dev
+  * 清理：pnpm run docs:clean
 
 ### 版本说明
 * 正式线上版本（master 分支构建）：https://sustech.online/

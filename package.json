@@ -10,12 +10,12 @@
     "@vuepress/plugin-pwa": "next",
     "@vuepress/plugin-pwa-popup": "next",
     "@vuepress/plugin-register-components": "next",
+    "@vuepress/plugin-sitemap": "next",
     "@vuepress/plugin-toc": "next",
     "@vuepress/theme-default": "next",
-    "ant-design-vue": "^4.0.7",
-    "vue-echarts": "~6.2.3",
-    "vuepress": "next",
-    "@vuepress/plugin-sitemap": "next"
+    "ant-design-vue": "^4.2.3",
+    "vue-echarts": "~6.2.4",
+    "vuepress": "next"
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",
@@ -27,8 +27,8 @@
     "@turf/turf": "^7.0.0",
     "axios": "^1.7.2",
     "download": "^8.0.0",
-    "echarts": "^5.4.0",
-    "maplibre-gl": "4.5.0",
-    "vue": "3.4.31"
+    "echarts": "^5.5.1",
+    "maplibre-gl": "^4.5.0",
+    "vue": "^3.4.32"
   }
 }
