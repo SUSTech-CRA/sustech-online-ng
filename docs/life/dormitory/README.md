@@ -14,6 +14,11 @@ sidebar: auto
 学校每年的宿舍分配情况均有细微变化，本表格更新于2024年秋季。
 :::
 
+### 宿舍地理位置
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/maps/dorm_geojson_202407.html" width="100%" height="450"></iframe>
+
+欣园地理位置最高，二期宿舍次之，湖畔最接近山下教学区。
+
 ### 本科生
 
 本科生可能被分配至：
