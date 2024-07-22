@@ -404,6 +404,7 @@
   - [书院活动室上方的阳台](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/湖畔阳台.jpg)/sparktour
   - [风雨操场](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/sports-center.jpg)/sparktour
   - [建设中的工学院](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/Engineering_College_Building_of_Southern_University_of_Science_and_Technology_Under_Construction.jpg)/sparktour
+  - [校园全景（从宝能城拍摄）](https://commons.wikimedia.org/wiki/File:Shenzhen_Southern_University_of_Science_and_Technology_Campus_(3).jpg)/[Dinkun Chen](https://commons.wikimedia.org/wiki/User:Dinkun_Chen)
 - 权利归作者所有
   - [一期校园](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/underhill.jpg)/sparktour
   - [第一教学楼](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/第一教学楼.jpg)/南方科技大学
