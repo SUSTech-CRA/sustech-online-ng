@@ -79,7 +79,7 @@ curl "https://cas.sustech.edu.cn/cas/login?service=http%3A%2F%2F172.16.16.20%3A8
 
 #### 在路由器后获取IPv6地址
 
-- [https://c.cra.moe/t/topic/38](https://c.cra.moe/t/topic/38)
+- [https://ntdgy.top/ntdgy/30.html](https://ntdgy.top/ntdgy/30.html)
 
 #### 使用`dhcpclient`时获取不到IPv6地址
 
@@ -90,7 +90,7 @@ curl "https://cas.sustech.edu.cn/cas/login?service=http%3A%2F%2F172.16.16.20%3A8
 
 ### 出口
 
-学校目前拥有4Gbps电信163出口带宽，2.5Gbps电信CN2出口带宽，以及1.5Gbps教育网出口带宽。[](https://biddingoffice.sustc.edu.cn/search/news/id/5085/pid)学校信息中心会将访问境外网站的流量发往CN2出口，因此学校内访问境外网站的质量会显著高于普通电信网络。
+学校目前拥有4Gbps电信163出口带宽，2.5Gbps电信CN2出口带宽，以及1.5Gbps教育网出口带宽。[https://biddingoffice.sustc.edu.cn/search/news/id/5085/pid](https://biddingoffice.sustc.edu.cn/search/news/id/5085/pid)学校信息中心会将访问境外网站的流量发往CN2出口，因此学校内访问境外网站的质量会显著高于普通电信网络。
 
 学校目前对普通网段设备不限速（Fair Use@Up to 1000Mbps），对科研教学网段限速50Mbps，对教育网IPv4限速20Mbps，暂不对教育网IPv6限速。
 
