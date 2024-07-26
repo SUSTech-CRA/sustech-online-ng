@@ -20,7 +20,7 @@ export default {
   name: "MyMap",
 
   data: () => ({
-    map_style_url: "https://mirrors.sustech.edu.cn/osm-tile/styles/osm-bright/style.json",
+    map_style_url: "https://bus.sustcra.com/static/osm-style/osm-bright.json",
     map_text_colour: "#000000",
     bus_location_data_api: [],
     bus_location_data_display: [],
@@ -332,7 +332,7 @@ export default {
     if (await userPrefersDark) {
       console.log("dark mode enabled.")
       this.map_text_colour = "#FFFFFF"
-      this.map_style_url = "https://mirrors.sustech.edu.cn/osm-tile/styles/osm-blue/style.json";
+      this.map_style_url = "https://bus.sustcra.com/static/osm-style/osm-blue.json";
     }
 
     this.map = new maplibre.Map({
