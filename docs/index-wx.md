@@ -18,8 +18,25 @@
 * [校园卡二维码](https://campuscard.sustech.edu.cn/epay/thirdconsume/qrcode) -->
 
 <style type="text/css">
-.tg{border: 1px solid transparent;font-weight:normal;}
-.tg .tg-0lax{border:inherit;font-weight:inherit;text-align:left;vertical-align:top;}
+.tg {
+    border: 1px solid transparent;
+    font-weight: normal
+}
+
+.tg tr {
+    background-color: transparent;
+}
+
+.tg .tg-0lax {
+    border: inherit;
+    font-weight: inherit;
+    text-align: left;
+    vertical-align: top
+}
+
+.tg-0lax h3 {
+    padding-top: 50px;
+}
 </style>
 
 <svg style="display: none">
