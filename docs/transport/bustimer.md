@@ -7,6 +7,7 @@
 
 *Pls REFRESH after toggle dark mode.*
 
+![](https://mirrors.sustech.edu.cn/site/sustech-online/img/misc/lzexp-ad-20241012.jpg)
 ![](https://mirrors.sustech.edu.cn/site/sustech-online/img/misc/sustown-ad-202409.png)
 ![](https://mirrors.sustech.edu.cn/site/sustech-online/img/misc/nces-ad-202308.png)
 [**点此访问NCES**](https://nces.cra.moe/)
