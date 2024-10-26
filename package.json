@@ -13,8 +13,7 @@
     "@vuepress/plugin-sitemap": "next",
     "@vuepress/plugin-toc": "next",
     "@vuepress/theme-default": "next",
-    "ant-design-vue": "^4.2.5",
-    "sass-embedded": "^1.79.5",
+    "ant-design-vue": "^4.2.3",
     "vue-echarts": "~6.2.4",
     "vuepress": "next"
   },
@@ -25,11 +24,11 @@
     "docs:clean": "rm -rf docs/.vuepress/.cache docs/.vuepress/.temp docs/.vuepress/dist"
   },
   "dependencies": {
-    "@turf/turf": "^7.1.0",
-    "axios": "^1.7.7",
+    "@turf/turf": "^7.0.0",
+    "axios": "^1.7.4",
     "download": "^8.0.0",
     "echarts": "^5.5.1",
-    "maplibre-gl": "^4.7.1",
-    "vue": "^3.5.12"
+    "maplibre-gl": "^4.5.0",
+    "vue": "^3.4.32"
   }
 }
