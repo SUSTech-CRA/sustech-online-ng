@@ -115,6 +115,9 @@
    - 包含一年免费.me域名，Digital Ocean一年100美金代金券等服务。
 4. [AutoDesk软件](https://www.autodesk.com.cn/education/free-software/featured)
    - 软件授权为教育版
+5. [Tableau for Students](https://www.tableau.com/academic/students)
+   - 包含Tableau Desktop和Tableau Prep Builder
+   - 有效期一年，但是到期后可以重新申请
 
 ### 非官方Windows套件激活服务<Badge text="仅限学习与评估用途" type="warning"/>
 
