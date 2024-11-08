@@ -37,23 +37,23 @@ jobs:
     name: Build site
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
-    - uses: szenius/set-timezone@v1.1
+    - uses: szenius/set-timezone@v2.0
       with:
         timezoneLinux: "Asia/Shanghai"
 
     - name: Check Time
       run: date
 
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       name: Install Node.js
       with:
         node-version-file: '.nvmrc'
 
-    - uses: pnpm/action-setup@v2
+    - uses: pnpm/action-setup@v4
       name: Install pnpm
       with:
         version: 9
