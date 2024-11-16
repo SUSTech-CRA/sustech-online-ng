@@ -2,11 +2,11 @@ import { defaultTheme } from '@vuepress/theme-default'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 // import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
 import { pwaPlugin } from '@vuepress/plugin-pwa'
-// import { pwaPopupPlugin } from '@vuepress/plugin-pwa-popup'
 import { tocPlugin } from '@vuepress/plugin-toc'
 import { sitemapPlugin } from "@vuepress/plugin-sitemap"
 import { defineUserConfig } from '@vuepress/cli'
 import { viteBundler } from '@vuepress/bundler-vite'
+import ProcessExitPlugin from './components/vite-plugin-vue-process-exit'
 
 const ogprefix = 'og: http://ogp.me/ns#'
 const title = '南科手册'
@@ -198,6 +198,7 @@ export default defineUserConfig({
             hostname: "https://sustech.online/",
         }),
         tocPlugin(),
+        ProcessExitPlugin(),
     ],
     theme: defaultTheme({
         navbar: [
