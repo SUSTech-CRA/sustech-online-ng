@@ -51,9 +51,6 @@ importers:
       '@vuepress/plugin-pwa':
         specifier: next
         version: 2.0.0-rc.60(vuepress@2.0.0-rc.18(@vuepress/bundler-vite@2.0.0-rc.18(@types/node@22.9.0)(terser@5.36.0))(vue@3.5.13))
-      '@vuepress/plugin-pwa-popup':
-        specifier: next
-        version: 2.0.0-rc.14(vuepress@2.0.0-rc.18(@vuepress/bundler-vite@2.0.0-rc.18(@types/node@22.9.0)(terser@5.36.0))(vue@3.5.13))
       '@vuepress/plugin-register-components':
         specifier: next
         version: 2.0.0-rc.54(vuepress@2.0.0-rc.18(@vuepress/bundler-vite@2.0.0-rc.18(@types/node@22.9.0)(terser@5.36.0))(vue@3.5.13))
@@ -1679,16 +1676,6 @@ packages:
     resolution: {integrity: sha512-OvNperPbQ43GsWlbI853wNLr+BUf2B8XzgoeNkOg3+HXdjSP0DHEOyNFadKKFXO2pGeVDgxCWV3yAKetuDfddg==}
     peerDependencies:
       vuepress: 2.0.0-rc.18
-
-  '@vuepress/plugin-pwa-popup@2.0.0-rc.14':
-    resolution: {integrity: sha512-BL+djkj2QvvKLWSDaCf1T+XV7zdIGED939DaiuECqLao24RQmJKXQxI5RjybYDmAFfJiSuczopX2vMcXY0xcwQ==}
-    peerDependencies:
-      vuepress: 2.0.0-rc.7
-
-  '@vuepress/plugin-pwa@2.0.0-rc.14':
-    resolution: {integrity: sha512-0GUXWb6V2+0AeZP33KwGMgeq7qF4Tbk9/vRMwX2wJVukP5dYEA5C7YPfbo2ryJK2x5rnaU4WpeMDj7bhnlh9zg==}
-    peerDependencies:
-      vuepress: 2.0.0-rc.7
 
   '@vuepress/plugin-pwa@2.0.0-rc.60':
     resolution: {integrity: sha512-h8y8rcQmxm+aolBddRIwg8OcxW85Z8D6mKPcUkrbgpplaLnCw7LiQ9TZijEdGIY3q+bVm2WheJA/h3qbJeMdcg==}
@@ -6399,28 +6386,6 @@ snapshots:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - '@vueuse/core'
-      - typescript
-
-  '@vuepress/plugin-pwa-popup@2.0.0-rc.14(vuepress@2.0.0-rc.18(@vuepress/bundler-vite@2.0.0-rc.18(@types/node@22.9.0)(terser@5.36.0))(vue@3.5.13))':
-    dependencies:
-      '@vuepress/plugin-pwa': 2.0.0-rc.14(vuepress@2.0.0-rc.18(@vuepress/bundler-vite@2.0.0-rc.18(@types/node@22.9.0)(terser@5.36.0))(vue@3.5.13))
-      vue: 3.5.13
-      vuepress: 2.0.0-rc.18(@vuepress/bundler-vite@2.0.0-rc.18(@types/node@22.9.0)(terser@5.36.0))(vue@3.5.13)
-    transitivePeerDependencies:
-      - '@types/babel__core'
-      - supports-color
-      - typescript
-
-  '@vuepress/plugin-pwa@2.0.0-rc.14(vuepress@2.0.0-rc.18(@vuepress/bundler-vite@2.0.0-rc.18(@types/node@22.9.0)(terser@5.36.0))(vue@3.5.13))':
-    dependencies:
-      mitt: 3.0.1
-      register-service-worker: 1.7.2
-      vue: 3.5.13
-      vuepress: 2.0.0-rc.18(@vuepress/bundler-vite@2.0.0-rc.18(@types/node@22.9.0)(terser@5.36.0))(vue@3.5.13)
-      workbox-build: 7.3.0
-    transitivePeerDependencies:
-      - '@types/babel__core'
-      - supports-color
       - typescript
 
   '@vuepress/plugin-pwa@2.0.0-rc.60(vuepress@2.0.0-rc.18(@vuepress/bundler-vite@2.0.0-rc.18(@types/node@22.9.0)(terser@5.36.0))(vue@3.5.13))':

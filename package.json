@@ -8,7 +8,6 @@
     "@vuepress/plugin-medium-zoom": "next",
     "@vuepress/plugin-nprogress": "next",
     "@vuepress/plugin-pwa": "next",
-    "@vuepress/plugin-pwa-popup": "next",
     "@vuepress/plugin-register-components": "next",
     "@vuepress/plugin-sitemap": "next",
     "@vuepress/plugin-toc": "next",
