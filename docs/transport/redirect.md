@@ -28,7 +28,7 @@
         // JSON is from https://github.com/NateScarlet/holiday-cn
         // need to update by year.
         // Download the JSON to path "docs/.vuepress/public/YYYY.json"
-        $.getJSON("/2024.json", function (data) {
+        $.getJSON("/2025.json", function (data) {
             var day_map = {};
             for (let i = 0; i < data.days.length; i++) {
                 day_map[data.days[i].date] = data.days[i].isOffDay;
