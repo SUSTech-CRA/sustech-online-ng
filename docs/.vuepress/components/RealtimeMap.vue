@@ -14,13 +14,14 @@
 import maplibre from 'maplibre-gl';
 import axios from "axios";
 import * as turf from '@turf/turf';
+import { Protocol } from "pmtiles";
 
 
 export default {
   name: "MyMap",
 
   data: () => ({
-    map_style_url: "https://bus.sustcra.com/static/osm-style/osm-bright.json",
+    map_style_url: "https://bus.sustcra.com/static/protomaps/pmtiles-style/pmtiles-light.json",
     map_text_colour: "#000000",
     bus_location_data_api: [],
     bus_location_data_display: [],
@@ -326,13 +327,17 @@ export default {
       geojson_line_2: this.geojson_line_2
     }
 
+    //init pmtiles protocol
+    let pmtiles_protocol = new Protocol();
+    maplibre.addProtocol("pmtiles",pmtiles_protocol.tile);
+
     //determine day or night
     const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const userPrefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
     if (await userPrefersDark) {
       console.log("dark mode enabled.")
       this.map_text_colour = "#FFFFFF"
-      this.map_style_url = "https://bus.sustcra.com/static/osm-style/osm-blue.json";
+      this.map_style_url = "https://bus.sustcra.com/static/protomaps/pmtiles-style/pmtiles-dark.json";
     }
 
     this.map = new maplibre.Map({
