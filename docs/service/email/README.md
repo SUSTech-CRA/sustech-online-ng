@@ -31,7 +31,7 @@
 |          密码          | `sustech-manual`               |                    |
 | 邮件服务器（Exchange） | ex.exmail.qq.com               |                    |
 |   发件服务器（SMTP）   | smtp.exmail.qq.com             | 使用SSL，端口号465 |
-|   发件服务器（POP3）   | pop.exmail.qq.com              | 使用SSL，端口号995 |
+|   收件服务器（POP3）   | pop.exmail.qq.com              | 使用SSL，端口号995 |
 |   收件服务器（IMAP）   | imap.exmail.qq.com             | 使用SSL，端口号993 |
 
 ### 微信
