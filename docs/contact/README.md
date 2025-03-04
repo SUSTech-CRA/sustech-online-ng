@@ -197,10 +197,11 @@
 
 ### 欢迎大家通过问卷分享群聊
 
-想了解更多校园实用 Q 群？可参与问卷分享，查看收集结果。
+南科大常用 QQ 群收集表，欢迎各位在校同学投稿/宣群
 
 - [【问卷】常用Q群收集问卷](https://docs.qq.com/form/page/DQ3J5emhNSFBsYUxU)
-  - [【结果】对应的收集结果](https://docs.qq.com/sheet/DQ1FnTWJ6bVFtdWdz)
+  - ↓在这里查看收集结果↓  
+  [【结果】对应的收集结果](https://docs.qq.com/sheet/DQ1FnTWJ6bVFtdWdz)
 
 ### 必备 <Badge text="推荐加入" type="tip"/>
 
