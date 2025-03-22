@@ -257,16 +257,6 @@ export default defineUserConfig({
                         children: [],
                     },
                     {
-                        text: '🚌校园巴士-工作日',
-                        link: '/transport/workday.md',
-                        children: [],
-                    },
-                    {
-                        text: '🚌校园巴士-节假日',
-                        link: '/transport/holiday.md',
-                        children: [],
-                    },
-                    {
                         text: '周围交通',
                         link: '/transport/',
                         children: [],

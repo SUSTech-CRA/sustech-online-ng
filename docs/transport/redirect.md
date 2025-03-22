@@ -2,13 +2,6 @@
 
 ## 根据国家法定节假日和周末自动跳转。如停留在此页面，请刷新。
 
-## 🚌校园巴士
-
-<div id="button-div">
-<div class='bt-sub'><a href="./workday.html">💼 工作日</a></div>
-<div class='bt-sub'><a href="./holiday.html">💤 节假日</a></div>
-</div>
-
 <!-- <ClientOnly> -->
 <style>
 .bt-sub {
