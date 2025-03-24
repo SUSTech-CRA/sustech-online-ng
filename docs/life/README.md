@@ -1,5 +1,9 @@
 # 👨‍🎓生活在南科
 
+## 讲座日历（Beta）
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/cal/modern-cal-embed/iframe.html?ical=https%3A%2F%2Foutlook-ics-proxy.cra.moe%2Fowa%2Fcalendar%2F9ad18ccb98fb4f11958947563a718699%40cra.ac.cn%2F9c081d1696b547758794495ed7e228921134831105760187210%2Fcalendar.ics&title=1&nav=1&date=1&view=1&details=1&monstart=1&dview=0&color=%23299764&colorbg=%23FFFFFF&colortxt=%23000000&colorsecondarytxt=%23FFFFFF" width="100%" height="480" ></iframe>
+
 ## 住宿
 
 ::: tip 宿舍房型图
