@@ -57,6 +57,8 @@
 | 绩点       | 4.0      | 3.7     | 3.3     | 3.0     | 2.7     | 2.3     | 2.0     | 1.7     | 1.3     | 1.0     |   0   |
 | 百分  参考 | 95~  100 | 90~  94 | 85~  89 | 80~  84 | 77~  79 | 73~  76 | 70~  72 | 67~  69 | 63~  66 | 60~  62 |  <60  |
 
+- [向境外院校发送成绩单与证书](./send-transcripts-to-other-universites)
+
 ## 学生手册
 
 - [2022本科](https://mirrors.sustech.edu.cn/site/sustech-online/documents/manual/南方科技大学学生手册2022-本科.pdf)
