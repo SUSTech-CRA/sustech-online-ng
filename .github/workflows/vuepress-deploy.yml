@@ -111,16 +111,6 @@ jobs:
         remote_user: ${{ secrets.USERNAME }}
         remote_key: ${{ secrets.SSH_KEY }}
 
-    - name: copy file to server SZX-CC
-      uses: burnett01/rsync-deployments@5.0
-      with:
-        switches: -avzr --delete
-        path: "./docs/.vuepress/dist/"
-        remote_path: ${{ secrets.HTML_PATH }}
-        remote_host: ${{ secrets.HOST_SZX_CC }}
-        remote_user: ${{ secrets.USERNAME }}
-        remote_key: ${{ secrets.SSH_KEY }}
-
     - name: copy file to server SZX
       uses: burnett01/rsync-deployments@5.0
       with:
