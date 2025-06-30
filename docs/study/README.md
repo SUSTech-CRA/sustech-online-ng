@@ -58,6 +58,7 @@
 | 百分  参考 | 95~  100 | 90~  94 | 85~  89 | 80~  84 | 77~  79 | 73~  76 | 70~  72 | 67~  69 | 63~  66 | 60~  62 |  <60  |
 
 - [向境外院校发送成绩单与证书](./send-transcripts-to-other-universites)
+- [向境外院校发送的成绩单，课程，奖助学金证明模版（by LuckyChen3141）](https://github.com/LuckyChen3141/SUSTech-Proof-Kit/)
 
 ## 学生手册
 
