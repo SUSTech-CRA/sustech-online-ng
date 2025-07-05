@@ -1,7 +1,7 @@
 # 🚌校园巴士时刻表 SUSTech Campus Bus Info
 ![](https://mirrors.sustech.edu.cn/site/sustech-online/img/misc/bustimer-banner1.png)
 
-（您可以保存图片以识别二维码，或复制问卷链接至浏览器填写： https://docs.qq.com/form/page/DY0RtVGRWSnVZQUtV ）
+（您可以保存图片以识别二维码，或复制问卷链接至浏览器填写： [https://docs.qq.com/form/page/DY0RtVGRWSnVZQUtV](https://docs.qq.com/form/page/DY0RtVGRWSnVZQUtV) ）
 
 <ClientOnly>
   <TabView :isMapTabEnabled="true"></TabView>
