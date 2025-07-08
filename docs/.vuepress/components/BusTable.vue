@@ -65,7 +65,7 @@
                 :key="row.hour"
                 class="mobile-schedule-row"
             >
-              <div class="mobile-hour">{{ row.hour }}</div>
+              <div class="mobile-hour">{{ row.hour }}:</div>
               <div class="mobile-minutes">
                 <a-tag
                     v-for="minute in row.minutes"
