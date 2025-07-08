@@ -3,8 +3,6 @@
     <a-config-provider :theme="{ token: { colorPrimary: '#ED6C00' } }">
       <!-- Header -->
       <header class="mobile-header">
-        <h1 class="header-title">校园巴士时刻表</h1>
-        <p class="header-sub">Campus Bus Timetable</p>
         <div class="current-time">{{ currentTime }}</div>
       </header>
 
@@ -20,15 +18,15 @@
       <div class="legend-container">
         <h3 class="legend-title">图例 / Legend</h3>
         <div class="legend-item">
-          <a-tag class="minute-tag next-bus">MM</a-tag>
+          <a-tag class="minute-tag next-bus">分钟/Min</a-tag>
           <div class="legend-desc"><b>下一班 (Next Bus)</b>: 即将发车</div>
         </div>
         <div class="legend-item">
-          <a-tag class="minute-tag running-bus">MM</a-tag>
+          <a-tag class="minute-tag running-bus">分钟/Min</a-tag>
           <div class="legend-desc"><b>运行中 (Running)</b>: 在途中</div>
         </div>
         <div class="legend-item">
-          <a-tag class="minute-tag">MM</a-tag>
+          <a-tag class="minute-tag">分钟/Min</a-tag>
           <div class="legend-desc"><b>常规 (Regular)</b>: 其他班次</div>
         </div>
       </div>
