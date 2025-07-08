@@ -1,11 +1,6 @@
 <template>
   <div id="bus-table" class="mobile-container">
     <a-config-provider :theme="{ token: { colorPrimary: '#ED6C00' } }">
-      <!-- Header -->
-      <header class="mobile-header">
-        <div class="current-time">{{ currentTime }}</div>
-      </header>
-
       <!-- Day-type selector -->
       <a-segmented
           class="segmented-day"
@@ -82,6 +77,7 @@
       </a-spin>
     </a-config-provider>
   </div>
+  <div class="current-time">Timetable updated at {{ currentTime }}</div>
 </template>
 
 <script>
@@ -560,7 +556,7 @@ export default {
 .current-time {
   display: inline-block;
   margin-top: 0.5rem;
-  background: rgba(239, 68, 68, 0.9);
+  background: rgba(41, 151, 100, 0.9);
   color: #fff;
   padding: 0.1rem 0.6rem;
   border-radius: 9999px;
