@@ -12,6 +12,28 @@
           @change="onDayTypeChange"
       />
 
+      <div class="legend-container">
+        <h3 class="legend-title">图例 / Legend</h3>
+        <div class="legend-item">
+          <a-tag class="minute-tag next-bus">MM</a-tag>
+          <div class="legend-desc">
+            <b>下一班 (Next Bus)</b>: 即将发车的班次
+          </div>
+        </div>
+        <div class="legend-item">
+          <a-tag class="minute-tag running-bus">MM</a-tag>
+          <div class="legend-desc">
+            <b>运行中 (Running)</b>: 在途中的班次
+          </div>
+        </div>
+        <div class="legend-item">
+          <a-tag class="minute-tag">MM</a-tag>
+          <div class="legend-desc">
+            <b>常规 (Regular)</b>: 其他班次
+          </div>
+        </div>
+      </div>
+
       <a-tabs
           v-model:activeKey="line"
           class="line-tabs"
@@ -46,6 +68,7 @@
           </a-card>
         </div>
       </a-spin>
+
     </a-config-provider>
   </div>
 </template>
@@ -318,6 +341,9 @@ export default {
   background-color: var(--bg-color);
   padding: 0.5rem 0.75rem;
   transition: background-color 0.3s ease;
+
+  /* 调整基础字体大小。你可以在这里修改数值来改变整体字体大小。*/
+  font-size: 16px;
 }
 
 .mobile-header {
@@ -329,12 +355,11 @@ export default {
 .mobile-schedule-card {
   border-radius: 0.75rem;
   margin-bottom: 1rem;
-  background-color: var(--card-bg) !important; /* 使用 !important 确保覆盖 antd 默认样式 */
+  background-color: var(--card-bg) !important;
   border: 1px solid var(--row-border-color);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-/* 覆盖 antd 卡片标题和内容的默认颜色 */
 .mobile-schedule-card :deep(.ant-card-head-title),
 .mobile-schedule-card :deep(.ant-card-body) {
   color: var(--text-color);
@@ -354,7 +379,8 @@ export default {
   width: 3rem;
   flex-shrink: 0;
   font-weight: 700;
-  font-size: 1rem;
+  /* 字体大小使用 rem 单位，会随父级 font-size 缩放 */
+  font-size: 1.1rem;
   color: var(--text-color);
   opacity: 0.85;
   font-family: 'Roboto Mono', monospace;
@@ -370,6 +396,8 @@ export default {
   margin: 2px 4px;
   border-radius: 9999px !important;
   font-family: 'Roboto Mono', monospace;
+  /* 字体大小使用 rem 单位，会随父级 font-size 缩放 */
+  font-size: 0.95rem;
 }
 
 @keyframes breathing {
@@ -384,8 +412,8 @@ export default {
   font-weight: 700 !important;
   transform: scale(1.1);
   background-color: rgba(237, 108, 0, 0.8) !important;
-  box-shadow: 0 0 12px rgba(237, 108, 0, 0.6);
-  border: none !important;
+  box-shadow: 0 0 10px rgba(237, 108, 0, 0.6);
+  border-color: transparent !important;
 }
 
 .running-bus {
@@ -395,25 +423,53 @@ export default {
   border-color: #2bb7b3 !important;
 }
 
+/* 新增图例样式 */
+.legend-container {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--row-border-color);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+}
+.legend-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--row-border-color);
+  padding-bottom: 0.75rem;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+.legend-item:last-child {
+  margin-bottom: 0;
+}
+.legend-item .minute-tag {
+  flex-shrink: 0;
+  margin-right: 1rem;
+}
+.legend-desc {
+  font-size: 0.9rem;
+}
 
+/* --- 夜间模式修复与调整 --- */
 @media (prefers-color-scheme: dark) {
-  /* 在夜间模式下，重写变量的值 */
-
-  /* 修复 antd tabs 在夜间模式下未选中项的颜色 */
-  :deep(.ant-tabs-tab:not(.ant-tabs-tab-active) .ant-tabs-tab-btn) {
-    color: rgba(255, 255, 255, 0.45); /* 设置一个更亮的灰色 */
-  }
-
-  /* 修复未选中项在 hover 状态下的颜色 */
-  :deep(.ant-tabs-tab:not(.ant-tabs-tab-active):hover .ant-tabs-tab-btn) {
-    color: rgba(255, 255, 255, 0.85);
-  }
-
   .mobile-container {
     --bg-color: #1B1B1F;
     --text-color: rgba(255, 255, 255, 0.85);
     --card-bg: #1d1d1d;
     --row-border-color: #303030;
+  }
+
+  /*  Tabs 未选中项颜色 */
+  .line-tabs :deep(.ant-tabs-tab) {
+    color: rgba(255, 255, 255, 0.45);
+  }
+  .line-tabs :deep(.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn) {
+    color: var(--sustech-orange);
   }
 
   /* 覆盖 antd Tag 的默认夜间模式样式，使其更匹配主题 */
@@ -423,13 +479,9 @@ export default {
     border-color: #424242;
   }
 
-  /* 调整高亮样式在夜间模式下的视觉效果 */
   .next-bus {
     box-shadow: 0 0 12px rgba(237, 108, 0, 0.4);
-    /* 依然可以加上橙色背景，但颜色更柔和 */
-    background-color: rgba(237, 108, 0, 0.8) !important;
   }
-
   .running-bus {
     background-color: #004D40 !important;
     color: #b2dfdb !important;
@@ -437,28 +489,28 @@ export default {
   }
 }
 
-/* 剩余的通用样式 */
+/* 通用样式 */
 .header-title {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 700;
 }
 .header-sub {
-  font-size: 0.875rem;
+  font-size: 1rem;
   opacity: 0.8;
   margin: 0;
 }
 .current-time {
   display: inline-block;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
   background: rgba(239, 68, 68, 0.9);
   color: #fff;
-  padding: 0 0.5rem;
+  padding: 0.1rem 0.6rem;
   border-radius: 9999px;
   font-family: 'Roboto Mono', monospace;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
 }
 .segmented-day {
-  margin: 0.5rem 0;
+  margin: 0.75rem 0;
 }
 
 </style>
