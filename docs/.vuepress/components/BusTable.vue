@@ -194,8 +194,8 @@ export default {
       this.applyFilterToAll()
     }
   },
-  mounted () {
-    this.detectHoliday()
+  async mounted () { // <-- Add async
+    await this.detectHoliday() // <-- Add await
     this.startClock()
     this.fetchSchedules()
   },
@@ -209,9 +209,10 @@ export default {
         this.currentDate = new Date()
       }, 60 * 1000)
     },
-    detectHoliday () {
+    async detectHoliday() { // <-- Add async
       const year = new Date().getFullYear()
-      axios.get(`/${year}.json`).then(res => {
+      try {
+        const res = await axios.get(`/${year}.json`) // <-- Add await
         const dayMap = {}
         res.data.days.forEach(d => {
           dayMap[d.date] = d.isOffDay
@@ -221,17 +222,26 @@ export default {
             .toString()
             .padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`
         const weekend = now.getDay() === 6 || now.getDay() === 0
-        const isHoliday = dayMap[key] == null ? weekend : dayMap[key]
-        this.dayType = isHoliday ? 'holiday' : 'workday'
-        // parse data from summer_winter_holidays in json
-        res.data.summer_winter_holidays.forEach(holiday => {
-          const start = new Date(holiday.start)
-          const end = new Date(holiday.end)
-          if (now >= start && now <= end) {
-            this.dayType = 'holiday'
+
+        let isHoliday = dayMap[key] == null ? weekend : dayMap[key]
+
+        if (!isHoliday) {
+          for (const holiday of res.data.summer_winter_holidays) {
+            const start = new Date(holiday.start)
+            const end = new Date(holiday.end)
+            if (now >= start && now <= end) {
+              isHoliday = true
+              break
+            }
           }
-        })
-      })
+        }
+
+        this.dayType = isHoliday ? 'holiday' : 'workday'
+        console.log(`Today is ${isHoliday ? 'Holiday' : 'Workday'} (${key})`)
+      } catch (e) {
+        console.error('Failed to detect holiday, defaulting to workday.', e)
+        this.dayType = 'workday' // Default on error
+      }
     },
 
     /* ---------- 数据拉取 ---------- */
@@ -489,6 +499,14 @@ export default {
   border-radius: 0.75rem;
   padding: 1rem 1.25rem;
   margin-top: 1rem;
+}
+
+/* 选择节假日的选项卡 segmented-day */
+.segmented-day :deep(.ant-segmented-item-label) {
+  color: rgb(236,236,245);
+}
+.segmented-day :deep(.ant-segmented-item-selected .ant-segmented-item-label) {
+  color: rgb(31,31,31);
 }
 
 /* --- 夜间模式修复与调整 --- */
