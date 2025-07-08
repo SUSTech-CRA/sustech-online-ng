@@ -2,8 +2,6 @@
   <div id="bus-table" class="mobile-container">
     <a-config-provider :theme="themeConfig">
       <header class="mobile-header">
-        <h1 class="header-title">校园巴士时刻表</h1>
-        <p class="header-sub">Campus Bus Timetable</p>
         <div class="current-time">{{ currentTime }}</div>
       </header>
 
@@ -303,74 +301,51 @@ export default {
 </script>
 
 <style scoped>
-/* 3. (夜间模式) 将变量定义移到组件根选择器下，方便覆盖 */
-.mobile-container {
+/* 定义基础颜色变量 */
+:root {
   --sustech-orange: #ed6c00;
   --sustech-cyan: #2bb7b3;
   --sustech-darkgreen: #003f43;
+}
+
+/* 默认（亮色）模式下的样式 */
+.mobile-container {
+  --bg-color: #ffffff;
   --text-color: #333;
   --card-bg: #fff;
   --row-border-color: #f0f0f0;
+
+  background-color: var(--bg-color);
   padding: 0.5rem 0.75rem;
+  transition: background-color 0.3s ease;
 }
 
-/* 3. (夜间模式) 添加 night 模式下的变量覆盖 */
-html.dark .mobile-container {
-  --text-color: rgba(255, 255, 255, 0.85);
-  --card-bg: #1d1d1d;
-  --row-border-color: #303030;
-}
-
-
-/* layout */
 .mobile-header {
   text-align: center;
   margin-bottom: 0.5rem;
-  color: var(--text-color); /* 使用变量 */
+  color: var(--text-color);
 }
 
-.header-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.header-sub {
-  font-size: 0.875rem;
-  opacity: 0.8;
-  margin: 0;
-}
-
-.current-time {
-  display: inline-block;
-  margin-top: 0.25rem;
-  background: rgba(239, 68, 68, 0.9);
-  color: #fff;
-  padding: 0 0.5rem;
-  border-radius: 9999px;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.75rem;
-}
-
-.segmented-day {
-  margin: 0.5rem 0;
-}
-
-/* schedule cards */
 .mobile-schedule-card {
   border-radius: 0.75rem;
   margin-bottom: 1rem;
-  /* 3. (夜间模式) 使用变量 */
-  background-color: var(--card-bg);
+  background-color: var(--card-bg) !important; /* 使用 !important 确保覆盖 antd 默认样式 */
   border: 1px solid var(--row-border-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* 覆盖 antd 卡片标题和内容的默认颜色 */
+.mobile-schedule-card :deep(.ant-card-head-title),
+.mobile-schedule-card :deep(.ant-card-body) {
+  color: var(--text-color);
 }
 
 .mobile-schedule-row {
   display: flex;
   align-items: baseline;
   padding: 0.5rem 0;
-  border-bottom: 1px solid var(--row-border-color); /* 使用变量 */
+  border-bottom: 1px solid var(--row-border-color);
 }
-
 .mobile-schedule-row:last-child {
   border-bottom: none;
 }
@@ -380,7 +355,7 @@ html.dark .mobile-container {
   flex-shrink: 0;
   font-weight: 700;
   font-size: 1rem;
-  color: var(--text-color); /* 使用变量 */
+  color: var(--text-color);
   opacity: 0.85;
   font-family: 'Roboto Mono', monospace;
 }
@@ -391,36 +366,26 @@ html.dark .mobile-container {
   flex-wrap: wrap;
 }
 
-/* minute tag */
 .minute-tag {
   margin: 2px 4px;
   border-radius: 9999px !important;
   font-family: 'Roboto Mono', monospace;
 }
 
-/* 3. (夜间模式) 覆盖 antd 默认 tag 样式 */
-html.dark .minute-tag {
-  color: var(--text-color);
-  background: #262626;
-  border-color: #424242;
-}
-
-
-/* highlight styles */
 @keyframes breathing {
   0% { opacity: 0.7; transform: scale(0.98); }
   50% { opacity: 1; transform: scale(1.02); }
   100% { opacity: 0.7; transform: scale(0.98); }
 }
 
-/* 1. (高亮样式) 增强 .next-bus 的视觉效果 */
 .next-bus {
   background-color: var(--sustech-orange) !important;
   color: #fff !important;
   font-weight: 700 !important;
-  transform: scale(1.1); /* 新增 */
-  box-shadow: 0 0 10px rgba(237, 108, 0, 0.6); /* 新增 */
-  border-color: transparent !important; /* 新增 */
+  transform: scale(1.1);
+  background-color: rgba(237, 108, 0, 0.8) !important;
+  box-shadow: 0 0 12px rgba(237, 108, 0, 0.6);
+  border: none !important;
 }
 
 .running-bus {
@@ -430,11 +395,70 @@ html.dark .minute-tag {
   border-color: #2bb7b3 !important;
 }
 
-/* 3. (夜间模式) 覆盖 running-bus 在暗色模式下的颜色，使其更亮 */
-html.dark .running-bus {
-  background-color: #004D40 !important;
-  color: #b2dfdb !important;
-  border-color: #00796B !important;
+
+@media (prefers-color-scheme: dark) {
+  /* 在夜间模式下，重写变量的值 */
+
+  /* 修复 antd tabs 在夜间模式下未选中项的颜色 */
+  :deep(.ant-tabs-tab:not(.ant-tabs-tab-active) .ant-tabs-tab-btn) {
+    color: rgba(255, 255, 255, 0.45); /* 设置一个更亮的灰色 */
+  }
+
+  /* 修复未选中项在 hover 状态下的颜色 */
+  :deep(.ant-tabs-tab:not(.ant-tabs-tab-active):hover .ant-tabs-tab-btn) {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .mobile-container {
+    --bg-color: #1B1B1F;
+    --text-color: rgba(255, 255, 255, 0.85);
+    --card-bg: #1d1d1d;
+    --row-border-color: #303030;
+  }
+
+  /* 覆盖 antd Tag 的默认夜间模式样式，使其更匹配主题 */
+  .minute-tag {
+    color: var(--text-color);
+    background: #262626;
+    border-color: #424242;
+  }
+
+  /* 调整高亮样式在夜间模式下的视觉效果 */
+  .next-bus {
+    box-shadow: 0 0 12px rgba(237, 108, 0, 0.4);
+    /* 依然可以加上橙色背景，但颜色更柔和 */
+    background-color: rgba(237, 108, 0, 0.8) !important;
+  }
+
+  .running-bus {
+    background-color: #004D40 !important;
+    color: #b2dfdb !important;
+    border-color: #00796B !important;
+  }
+}
+
+/* 剩余的通用样式 */
+.header-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.header-sub {
+  font-size: 0.875rem;
+  opacity: 0.8;
+  margin: 0;
+}
+.current-time {
+  display: inline-block;
+  margin-top: 0.25rem;
+  background: rgba(239, 68, 68, 0.9);
+  color: #fff;
+  padding: 0 0.5rem;
+  border-radius: 9999px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.75rem;
+}
+.segmented-day {
+  margin: 0.5rem 0;
 }
 
 </style>
