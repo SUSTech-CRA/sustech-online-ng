@@ -223,6 +223,14 @@ export default {
         const weekend = now.getDay() === 6 || now.getDay() === 0
         const isHoliday = dayMap[key] == null ? weekend : dayMap[key]
         this.dayType = isHoliday ? 'holiday' : 'workday'
+        // parse data from summer_winter_holidays in json
+        res.data.summer_winter_holidays.forEach(holiday => {
+          const start = new Date(holiday.start)
+          const end = new Date(holiday.end)
+          if (now >= start && now <= end) {
+            this.dayType = 'holiday'
+          }
+        })
       })
     },
 
