@@ -13,15 +13,16 @@
     <div class="tab-container">
       <!-- 第一个 div 根据 value 控制显示与隐藏 -->
       <div v-if="currentSelect === 'bus-location'">
-        <div class="bus-location-hint" v-if="showMapChart">位置每5秒自动刷新。Location refreshes automatically every 5 seconds.
+        <div class="bus-location-hint" v-if="showMapChart"><b>位置每5秒自动刷新。</b>Location refreshes automatically every 5 seconds. <br><b>电瓶车暂未安装定位模块，地图中仅显示公交车的位置。</b>Shuttle Electric Vehicle (SEV) are not equipped with GPS modules yet, so only the Bus locations are shown on the map.
         </div>
         <RealtimeMap v-if="showMapChart" />
         <BusChartVue />
       </div>
 
-      <!-- 第二个 div 根据 value 控制显示与隐藏 -->
+<!--       第二个 div 根据 value 控制显示与隐藏 -->
       <div v-if="currentSelect === 'timetable'">
-        <BusTable></BusTable>
+<!--        <BusTable></BusTable>-->
+        <BusTable_img />
       </div>
     </div>
 
