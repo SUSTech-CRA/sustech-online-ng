@@ -1,104 +1,440 @@
 <template>
-  <div id="bustable">
-    <a-config-provider :theme="{
-      token: {
-        colorPrimary: '#ED6D00',
-      },
-    }">
-      <object-selector :objs="{
-        '工作日 Workday': true,
-        '节假日 Holiday': false
-      }" v-slot="weekdayProps">
-        <br />
-        <a-config-provider :theme="{
-          token: {
-            colorPrimary: '#49BF7C',
-          },
-        }">
-          <object-selector :objs="weekdayProps.selected ? {
-            'Line 1 号线 │ 工学院方向 To COE': '/bus_times/one_down.json',
-            'Line 1 号线 │ 欣园方向 To Joy Highland': '/bus_times/one_up.json',
-            'Line 2 号线 │ 科研楼方向 To Research Bldg.': '/bus_times/two_down.json',
-            'Line 2 号线 │ 欣园方向 To Joy Highland': '/bus_times/two_up.json',
-          } : {
-            'Line 1 号线 │ 工学院方向  To COE': '/bus_times/one_down_holiday.json',
-            'Line 1 号线 │ 欣园方向 To Joy Highland': '/bus_times/one_up_holiday.json'
-          }" v-slot="routeProps">
-            <data-request :path="routeProps.selected" v-slot="{ data }">
-              <bus-timer v-if="data" v-bind="data"></bus-timer>
-              <grid-list v-if="data" :data="data.times">
-              </grid-list>
-            </data-request>
-          </object-selector>
-        </a-config-provider>
+  <div id="bus-table" class="mobile-container">
+    <a-config-provider :theme="themeConfig">
+      <header class="mobile-header">
+        <h1 class="header-title">校园巴士时刻表</h1>
+        <p class="header-sub">Campus Bus Timetable</p>
+        <div class="current-time">{{ currentTime }}</div>
+      </header>
 
-      </object-selector>
+      <a-segmented
+          class="segmented-day"
+          v-model:value="dayType"
+          :options="dayOptions"
+          @change="onDayTypeChange"
+      />
+
+      <a-tabs
+          v-model:activeKey="line"
+          class="line-tabs"
+          animated
+          @change="onLineChange"
+      >
+        <a-tab-pane key="line1" tab="1号线" />
+        <a-tab-pane key="line2" tab="2号线" />
+        <a-tab-pane key="shuttle" tab="电瓶车" />
+      </a-tabs>
+
+      <a-spin :spinning="loading">
+        <div v-for="(dir, idx) in directions" :key="idx">
+          <a-card :title="dir.title" class="mobile-schedule-card" :headStyle="{fontWeight:600}">
+            <div
+                v-for="row in dir.scheduleRows"
+                :key="row.hour"
+                class="mobile-schedule-row"
+            >
+              <div class="mobile-hour">{{ row.hour }}</div>
+              <div class="mobile-minutes">
+                <a-tag
+                    v-for="minute in row.minutes"
+                    :key="minute"
+                    class="minute-tag"
+                    :class="getTagClass(dir, row.hour, minute)"
+                >
+                  {{ minute }}
+                </a-tag>
+              </div>
+            </div>
+          </a-card>
+        </div>
+      </a-spin>
     </a-config-provider>
-
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import BusTimer from "./bus/BusTimer.vue";
-import ObjectSelector from "./bus/ObjectSelector.vue";
-import DataRequest from "./bus/DataRequest.vue";
-import GridList from "./bus/GridList.vue";
-import { ConfigProvider } from 'ant-design-vue';
+import axios from 'axios'
+import {
+  ConfigProvider,
+  Segmented,
+  Tabs,
+  TabPane,
+  Card,
+  Tag,
+  Spin
+} from 'ant-design-vue'
+// 3. (夜间模式) 导入 antd 的暗色算法
+import { theme } from 'ant-design-vue';
 
 export default {
-  name: "BusTable",
+  name: 'BusTable',
   components: {
     'a-config-provider': ConfigProvider,
-    'bus-timer': BusTimer,
-    'data-request': DataRequest,
-    'object-selector': ObjectSelector,
-    'grid-list': GridList
+    'a-segmented': Segmented,
+    'a-tabs': Tabs,
+    'a-tab-pane': TabPane,
+    'a-card': Card,
+    'a-tag': Tag,
+    'a-spin': Spin
   },
-  mounted() {
-    function toggleButtonBasedOnDate(holidata) {
-      // JSON is from https://github.com/NateScarlet/holiday-cn
-      // need to update by year.
-      // Download the JSON to path "docs/.vuepress/public/YYYY.json"
-      var dayMap = {};
-      for (let i = 0; i < holidata.days.length; i++) {
-        dayMap[holidata.days[i].date] = holidata.days[i].isOffDay;
-      }
-      var nowDate = new Date();
-      var ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(nowDate);
-      var mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(nowDate);
-      var da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(nowDate);
-      var dayKey = `${ye}-${mo}-${da}`;
-      var isHoliday;
-      if (dayMap[dayKey] == null) {
-        // 不在国家假日调整表里
-        console.log("Not in GOV declaration");
-        var dayInWeek = nowDate.getDay();
-        var isWeekend = (dayInWeek == 6) || (dayInWeek == 0);
-        // 6 = Saturday, 0 = Sunday
-        isHoliday = isWeekend;
-      } else {
-        console.log("In GOV declaration");
-        isHoliday = dayMap[dayKey];
-      }
-      if (isHoliday) {
-        console.log("节假日");
-        const busDiv = document.getElementById("bustable");
-        const thisDayBtn = busDiv.getElementsByTagName("button")[1];
-        thisDayBtn.click();
-      } else {
-        console.log("工作日");
-        const busDiv = document.getElementById("bustable");
-        const thisDayBtn = busDiv.getElementsByTagName("button")[0];
-        thisDayBtn.click();
+  data() {
+    return {
+      // ui state
+      dayType: 'workday',
+      dayOptions: [
+        { label: '工作日\nWorkday', value: 'workday' },
+        { label: '节假日\nHoliday', value: 'holiday' }
+      ],
+      line: 'line1',
+      loading: false,
+      currentDate: new Date(),
+      directions: [],
+      timerId: null,
+      // 3. (夜间模式) 新增状态来追踪夜间模式
+      isDarkMode: false,
+      // internal mapping
+      scheduleMapping: {
+        line1: {
+          directions: [
+            {
+              title: '欣园总站 → 工学院 / Joy Highland → COE',
+              workday: '/bus_times/one_down.json',
+              holiday: '/bus_times/one_down_holiday.json'
+            },
+            {
+              title: '工学院 → 欣园总站 / COE → Joy Highland',
+              workday: '/bus_times/one_up.json',
+              holiday: '/bus_times/one_up_holiday.json'
+            }
+          ]
+        },
+        line2: {
+          directions: [
+            {
+              title: '欣园总站 → 科研楼 / Joy Highland → Research Bldg.',
+              workday: '/bus_times/two_down.json',
+              holiday: '/bus_times/two_down_holiday.json'
+            },
+            {
+              title: '科研楼 → 欣园总站 / Research Bldg. → Joy Highland',
+              workday: '/bus_times/two_up.json',
+              holiday: '/bus_times/two_up_holiday.json'
+            }
+          ]
+        },
+        shuttle: {
+          directions: [
+            {
+              title: '欣园总站 → 一号门 / Joy Highland → Gate 1',
+              workday: '/bus_times/shuttle_down.json',
+              holiday: '/bus_times/shuttle_down_holiday.json'
+            },
+            {
+              title: '一号门 → 欣园总站 / Gate 1 → Joy Highland',
+              workday: '/bus_times/shuttle_up.json',
+              holiday: '/bus_times/shuttle_up_holiday.json'
+            }
+          ]
+        }
+      },
+    }
+  },
+  computed: {
+    currentTime() {
+      const h = this.currentDate.getHours().toString().padStart(2, '0')
+      const m = this.currentDate.getMinutes().toString().padStart(2, '0')
+      return `${h}:${m}`
+    },
+    currentMinutes() {
+      return (
+          this.currentDate.getHours() * 60 + this.currentDate.getMinutes()
+      )
+    },
+    // 3. (夜间模式) 新增计算属性来动态生成主题配置
+    themeConfig() {
+      return {
+        token: { colorPrimary: '#ED6C00' },
+        algorithm: this.isDarkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
       }
     }
-
-    axios.get("/2025.json").then(response => {
-      toggleButtonBasedOnDate(response.data);
-    });
   },
+  watch: {
+    currentMinutes() {
+      this.computeNextBus()
+    }
+  },
+  mounted() {
+    this.detectHoliday()
+    this.startClock()
+    this.fetchSchedules()
+    // 3. (夜间模式) 初始化并监听主题变化
+    this.setupThemeDetector()
+  },
+  beforeUnmount() {
+    clearInterval(this.timerId)
+    // 3. (夜间模式) 停止监听
+    if (this.themeObserver) this.themeObserver.disconnect();
+  },
+  methods: {
+    onDayTypeChange() {
+      this.fetchSchedules()
+    },
+    onLineChange() {
+      this.fetchSchedules()
+    },
+    startClock() {
+      this.timerId = setInterval(() => {
+        this.currentDate = new Date()
+      }, 20 * 1000) // 每20秒更新一次即可
+    },
+    detectHoliday() {
+      const year = new Date().getFullYear();
+      axios.get(`/${year}.json`).then(response => {
+        const holidata = response.data
+        const dayMap = {}
+        holidata.days.forEach(d => {
+          dayMap[d.date] = d.isOffDay
+        })
+        const now = new Date()
+        const ye = now.getFullYear()
+        const mo = (now.getMonth() + 1).toString().padStart(2, '0')
+        const da = now.getDate().toString().padStart(2, '0')
+        const key = `${ye}-${mo}-${da}`
+        let isHoliday
+        if (dayMap[key] == null) {
+          const dayInWeek = now.getDay()
+          isHoliday = dayInWeek === 6 || dayInWeek === 0
+        } else {
+          isHoliday = dayMap[key]
+        }
+        this.dayType = isHoliday ? 'holiday' : 'workday'
+      })
+    },
+    async fetchSchedules() {
+      this.loading = true
+      try {
+        const dirConfigs = this.scheduleMapping[this.line].directions
+        const requests = dirConfigs.map(cfg =>
+            axios.get(cfg[this.dayType])
+        )
+        const responses = await Promise.all(requests)
+        this.directions = responses.map((res, idx) => {
+          const cfg = dirConfigs[idx]
+          const timesArr = res.data.times || []
+
+          // 2. (小时乱序) 将原始 times 数组按小时分组并排序
+          const hourGroups = this.groupByHour(timesArr);
+          const scheduleRows = Object.keys(hourGroups)
+              .sort((a, b) => parseInt(a) - parseInt(b)) // <-- 关键排序！
+              .map(hour => ({
+                hour: hour,
+                minutes: hourGroups[hour]
+              }));
+
+          const tripDuration =
+              res.data.minuteOnRoad != null ? res.data.minuteOnRoad : 15
+          return {
+            title: cfg.title,
+            allTimes: timesArr,
+            scheduleRows, // <-- 使用排好序的数组
+            nextBusTime: null,
+            tripDuration
+          }
+        })
+        this.computeNextBus()
+      } catch (e) {
+        console.error(e)
+      } finally {
+        this.loading = false
+      }
+    },
+    groupByHour(timesArr) {
+      const map = {}
+      timesArr.forEach(t => {
+        const [h, m] = t.split(':')
+        if (!map[h]) map[h] = []
+        map[h].push(m)
+      })
+      return map
+    },
+    computeNextBus() {
+      this.directions.forEach(dir => {
+        dir.nextBusTime = dir.allTimes.find(t => {
+          const [h, m] = t.split(':')
+          const dep = parseInt(h) * 60 + parseInt(m)
+          return dep > this.currentMinutes
+        })
+      })
+    },
+    getTagClass(dir, hour, minute) {
+      const timeStr = `${hour.padStart(2, '0')}:${minute}` // 确保小时是两位数
+      const depMinutes = parseInt(hour) * 60 + parseInt(minute)
+      if (
+          depMinutes <= this.currentMinutes &&
+          this.currentMinutes < depMinutes + dir.tripDuration
+      ) {
+        return 'running-bus'
+      }
+      if (timeStr === dir.nextBusTime) {
+        return 'next-bus'
+      }
+      return ''
+    },
+    // 3. (夜间模式) 新增方法来监听 <html> class 的变化
+    setupThemeDetector() {
+      const htmlEl = document.documentElement;
+
+      // 检查初始状态
+      this.isDarkMode = htmlEl.classList.contains('dark');
+
+      // 使用 MutationObserver 监听 class 变化
+      this.themeObserver = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+          if (mutation.attributeName === 'class') {
+            this.isDarkMode = htmlEl.classList.contains('dark');
+          }
+        });
+      });
+
+      this.themeObserver.observe(htmlEl, { attributes: true });
+    }
+  }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+/* 3. (夜间模式) 将变量定义移到组件根选择器下，方便覆盖 */
+.mobile-container {
+  --sustech-orange: #ed6c00;
+  --sustech-cyan: #2bb7b3;
+  --sustech-darkgreen: #003f43;
+  --text-color: #333;
+  --card-bg: #fff;
+  --row-border-color: #f0f0f0;
+  padding: 0.5rem 0.75rem;
+}
+
+/* 3. (夜间模式) 添加 night 模式下的变量覆盖 */
+html.dark .mobile-container {
+  --text-color: rgba(255, 255, 255, 0.85);
+  --card-bg: #1d1d1d;
+  --row-border-color: #303030;
+}
+
+
+/* layout */
+.mobile-header {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: var(--text-color); /* 使用变量 */
+}
+
+.header-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.header-sub {
+  font-size: 0.875rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.current-time {
+  display: inline-block;
+  margin-top: 0.25rem;
+  background: rgba(239, 68, 68, 0.9);
+  color: #fff;
+  padding: 0 0.5rem;
+  border-radius: 9999px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.75rem;
+}
+
+.segmented-day {
+  margin: 0.5rem 0;
+}
+
+/* schedule cards */
+.mobile-schedule-card {
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+  /* 3. (夜间模式) 使用变量 */
+  background-color: var(--card-bg);
+  border: 1px solid var(--row-border-color);
+}
+
+.mobile-schedule-row {
+  display: flex;
+  align-items: baseline;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--row-border-color); /* 使用变量 */
+}
+
+.mobile-schedule-row:last-child {
+  border-bottom: none;
+}
+
+.mobile-hour {
+  width: 3rem;
+  flex-shrink: 0;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-color); /* 使用变量 */
+  opacity: 0.85;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.mobile-minutes {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* minute tag */
+.minute-tag {
+  margin: 2px 4px;
+  border-radius: 9999px !important;
+  font-family: 'Roboto Mono', monospace;
+}
+
+/* 3. (夜间模式) 覆盖 antd 默认 tag 样式 */
+html.dark .minute-tag {
+  color: var(--text-color);
+  background: #262626;
+  border-color: #424242;
+}
+
+
+/* highlight styles */
+@keyframes breathing {
+  0% { opacity: 0.7; transform: scale(0.98); }
+  50% { opacity: 1; transform: scale(1.02); }
+  100% { opacity: 0.7; transform: scale(0.98); }
+}
+
+/* 1. (高亮样式) 增强 .next-bus 的视觉效果 */
+.next-bus {
+  background-color: var(--sustech-orange) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  transform: scale(1.1); /* 新增 */
+  box-shadow: 0 0 10px rgba(237, 108, 0, 0.6); /* 新增 */
+  border-color: transparent !important; /* 新增 */
+}
+
+.running-bus {
+  background-color: #e0f2f1 !important;
+  color: var(--sustech-darkgreen) !important;
+  animation: breathing 2s ease-in-out infinite;
+  border-color: #2bb7b3 !important;
+}
+
+/* 3. (夜间模式) 覆盖 running-bus 在暗色模式下的颜色，使其更亮 */
+html.dark .running-bus {
+  background-color: #004D40 !important;
+  color: #b2dfdb !important;
+  border-color: #00796B !important;
+}
+
+</style>

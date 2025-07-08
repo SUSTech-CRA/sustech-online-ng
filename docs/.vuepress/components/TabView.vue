@@ -21,8 +21,8 @@
 
 <!--       第二个 div 根据 value 控制显示与隐藏 -->
       <div v-if="currentSelect === 'timetable'">
-<!--        <BusTable></BusTable>-->
-        <BusTable_img />
+        <BusTable></BusTable>
+<!--        <BusTable_img />-->
       </div>
     </div>
 
