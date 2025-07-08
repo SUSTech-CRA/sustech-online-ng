@@ -1,10 +1,14 @@
 <template>
   <div id="bus-table" class="mobile-container">
-    <a-config-provider :theme="themeConfig">
+    <a-config-provider :theme="{ token: { colorPrimary: '#ED6C00' } }">
+      <!-- Header -->
       <header class="mobile-header">
+        <h1 class="header-title">校园巴士时刻表</h1>
+        <p class="header-sub">Campus Bus Timetable</p>
         <div class="current-time">{{ currentTime }}</div>
       </header>
 
+      <!-- Day-type selector -->
       <a-segmented
           class="segmented-day"
           v-model:value="dayType"
@@ -12,42 +16,52 @@
           @change="onDayTypeChange"
       />
 
+      <!-- Legend -->
       <div class="legend-container">
         <h3 class="legend-title">图例 / Legend</h3>
         <div class="legend-item">
           <a-tag class="minute-tag next-bus">MM</a-tag>
-          <div class="legend-desc">
-            <b>下一班 (Next Bus)</b>: 即将发车的班次
-          </div>
+          <div class="legend-desc"><b>下一班 (Next Bus)</b>: 即将发车</div>
         </div>
         <div class="legend-item">
           <a-tag class="minute-tag running-bus">MM</a-tag>
-          <div class="legend-desc">
-            <b>运行中 (Running)</b>: 在途中的班次
-          </div>
+          <div class="legend-desc"><b>运行中 (Running)</b>: 在途中</div>
         </div>
         <div class="legend-item">
           <a-tag class="minute-tag">MM</a-tag>
-          <div class="legend-desc">
-            <b>常规 (Regular)</b>: 其他班次
-          </div>
+          <div class="legend-desc"><b>常规 (Regular)</b>: 其他班次</div>
         </div>
       </div>
 
+      <!-- Filter toggle -->
+      <div class="filter-toggle-container">
+        <div class="filter-toggle">
+          <a-checkbox class="filter-toggle-checkbox" v-model:checked="showUpcomingOnly" @change="onFilterChange">
+            仅显示即将 / 运行中班次 Only show bus after now
+          </a-checkbox>
+        </div>
+      </div>
+
+      <!-- Line tabs -->
       <a-tabs
           v-model:activeKey="line"
           class="line-tabs"
           animated
           @change="onLineChange"
       >
-        <a-tab-pane key="line1" tab="1号线" />
-        <a-tab-pane key="line2" tab="2号线" />
-        <a-tab-pane key="shuttle" tab="电瓶车" />
+        <a-tab-pane key="line1" tab="1号线/Line 1" />
+        <a-tab-pane key="line2" tab="2号线/Line 2" />
+        <a-tab-pane key="shuttle" tab="电瓶车/Shuttle" />
       </a-tabs>
 
+      <!-- Schedules -->
       <a-spin :spinning="loading">
         <div v-for="(dir, idx) in directions" :key="idx">
-          <a-card :title="dir.title" class="mobile-schedule-card" :headStyle="{fontWeight:600}">
+          <a-card
+              :title="dir.title"
+              class="mobile-schedule-card"
+              :headStyle="{ fontWeight: 600 }"
+          >
             <div
                 v-for="row in dir.scheduleRows"
                 :key="row.hour"
@@ -68,7 +82,6 @@
           </a-card>
         </div>
       </a-spin>
-
     </a-config-provider>
   </div>
 </template>
@@ -82,10 +95,9 @@ import {
   TabPane,
   Card,
   Tag,
-  Spin
+  Spin,
+  Checkbox
 } from 'ant-design-vue'
-// 3. (夜间模式) 导入 antd 的暗色算法
-import { theme } from 'ant-design-vue';
 
 export default {
   name: 'BusTable',
@@ -96,24 +108,25 @@ export default {
     'a-tab-pane': TabPane,
     'a-card': Card,
     'a-tag': Tag,
-    'a-spin': Spin
+    'a-spin': Spin,
+    'a-checkbox': Checkbox
   },
-  data() {
+  data () {
     return {
-      // ui state
+      /** UI state */
       dayType: 'workday',
       dayOptions: [
         { label: '工作日\nWorkday', value: 'workday' },
-        { label: '节假日\nHoliday', value: 'holiday' }
+        { label: '节假日\nHoliday （暑假）', value: 'holiday' }
       ],
       line: 'line1',
       loading: false,
       currentDate: new Date(),
+      showUpcomingOnly: true, // 默认只看未来 / 运行中
       directions: [],
       timerId: null,
-      // 3. (夜间模式) 新增状态来追踪夜间模式
-      isDarkMode: false,
-      // internal mapping
+
+      /** 路线-文件映射 */
       scheduleMapping: {
         line1: {
           directions: [
@@ -157,119 +170,102 @@ export default {
             }
           ]
         }
-      },
+      }
     }
   },
   computed: {
-    currentTime() {
+    /** 当前时间 (HH:MM) */
+    currentTime () {
       const h = this.currentDate.getHours().toString().padStart(2, '0')
       const m = this.currentDate.getMinutes().toString().padStart(2, '0')
       return `${h}:${m}`
     },
-    currentMinutes() {
-      return (
-          this.currentDate.getHours() * 60 + this.currentDate.getMinutes()
-      )
-    },
-    // 3. (夜间模式) 新增计算属性来动态生成主题配置
-    themeConfig() {
-      return {
-        token: { colorPrimary: '#ED6C00' },
-        algorithm: this.isDarkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
-      }
+    /** 当前时间对应的分钟值 */
+    currentMinutes () {
+      return this.currentDate.getHours() * 60 + this.currentDate.getMinutes()
     }
   },
   watch: {
-    currentMinutes() {
+    /** 每分钟刷新高亮与过滤 */
+    currentMinutes () {
       this.computeNextBus()
+      this.applyFilterToAll()
+    },
+    /** 切换过滤 */
+    showUpcomingOnly () {
+      this.applyFilterToAll()
     }
   },
-  mounted() {
+  mounted () {
     this.detectHoliday()
     this.startClock()
     this.fetchSchedules()
-    // 3. (夜间模式) 初始化并监听主题变化
-    this.setupThemeDetector()
   },
-  beforeUnmount() {
+  beforeUnmount () {
     clearInterval(this.timerId)
-    // 3. (夜间模式) 停止监听
-    if (this.themeObserver) this.themeObserver.disconnect();
   },
   methods: {
-    onDayTypeChange() {
-      this.fetchSchedules()
-    },
-    onLineChange() {
-      this.fetchSchedules()
-    },
-    startClock() {
+    /* ---------- 基础时钟 / 国假检测 ---------- */
+    startClock () {
       this.timerId = setInterval(() => {
         this.currentDate = new Date()
-      }, 20 * 1000) // 每20秒更新一次即可
+      }, 60 * 1000)
     },
-    detectHoliday() {
-      const year = new Date().getFullYear();
-      axios.get(`/${year}.json`).then(response => {
-        const holidata = response.data
+    detectHoliday () {
+      const year = new Date().getFullYear()
+      axios.get(`/${year}.json`).then(res => {
         const dayMap = {}
-        holidata.days.forEach(d => {
+        res.data.days.forEach(d => {
           dayMap[d.date] = d.isOffDay
         })
         const now = new Date()
-        const ye = now.getFullYear()
-        const mo = (now.getMonth() + 1).toString().padStart(2, '0')
-        const da = now.getDate().toString().padStart(2, '0')
-        const key = `${ye}-${mo}-${da}`
-        let isHoliday
-        if (dayMap[key] == null) {
-          const dayInWeek = now.getDay()
-          isHoliday = dayInWeek === 6 || dayInWeek === 0
-        } else {
-          isHoliday = dayMap[key]
-        }
+        const key = `${now.getFullYear()}-${(now.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`
+        const weekend = now.getDay() === 6 || now.getDay() === 0
+        const isHoliday = dayMap[key] == null ? weekend : dayMap[key]
         this.dayType = isHoliday ? 'holiday' : 'workday'
       })
     },
-    async fetchSchedules() {
+
+    /* ---------- 数据拉取 ---------- */
+    async fetchSchedules () {
       this.loading = true
       try {
-        const dirConfigs = this.scheduleMapping[this.line].directions
-        const requests = dirConfigs.map(cfg =>
-            axios.get(cfg[this.dayType])
+        const cfgList = this.scheduleMapping[this.line].directions
+        const resps = await Promise.all(
+            cfgList.map(cfg => axios.get(cfg[this.dayType]))
         )
-        const responses = await Promise.all(requests)
-        this.directions = responses.map((res, idx) => {
-          const cfg = dirConfigs[idx]
-          const timesArr = res.data.times || []
 
-          // 2. (小时乱序) 将原始 times 数组按小时分组并排序
-          const hourGroups = this.groupByHour(timesArr);
-          const scheduleRows = Object.keys(hourGroups)
-              .sort((a, b) => parseInt(a) - parseInt(b)) // <-- 关键排序！
-              .map(hour => ({
-                hour: hour,
-                minutes: hourGroups[hour]
-              }));
+        this.directions = resps.map((resp, idx) => {
+          const cfg = cfgList[idx]
+          const times = resp.data.times || []
+          const minuteOnRoad = resp.data.minuteOnRoad ?? 15
 
-          const tripDuration =
-              res.data.minuteOnRoad != null ? res.data.minuteOnRoad : 15
+          // 小时分组 & 排序
+          const hourGroups = this.groupByHour(times)
+          const scheduleRowsAll = this.buildSortedRows(hourGroups)
+
           return {
             title: cfg.title,
-            allTimes: timesArr,
-            scheduleRows, // <-- 使用排好序的数组
-            nextBusTime: null,
-            tripDuration
+            tripDuration: minuteOnRoad,
+            allTimes: times,
+            scheduleRowsAll,
+            scheduleRows: [],
+            nextBusTime: null
           }
         })
+
         this.computeNextBus()
+        this.applyFilterToAll()
       } catch (e) {
         console.error(e)
       } finally {
         this.loading = false
       }
     },
-    groupByHour(timesArr) {
+
+    groupByHour (timesArr) {
       const map = {}
       timesArr.forEach(t => {
         const [h, m] = t.split(':')
@@ -278,46 +274,71 @@ export default {
       })
       return map
     },
-    computeNextBus() {
+
+    buildSortedRows (hourGroups) {
+      return Object.keys(hourGroups)
+          .sort((a, b) => parseInt(a) - parseInt(b))
+          .map(h => ({
+            hour: h.padStart(2, '0'),
+            minutes: hourGroups[h].sort((a, b) => parseInt(a) - parseInt(b))
+          }))
+    },
+
+    /* ---------- 下一班 / 高亮 ---------- */
+    computeNextBus () {
       this.directions.forEach(dir => {
         dir.nextBusTime = dir.allTimes.find(t => {
           const [h, m] = t.split(':')
-          const dep = parseInt(h) * 60 + parseInt(m)
-          return dep > this.currentMinutes
+          return parseInt(h) * 60 + parseInt(m) > this.currentMinutes
         })
       })
     },
-    getTagClass(dir, hour, minute) {
-      const timeStr = `${hour.padStart(2, '0')}:${minute}` // 确保小时是两位数
-      const depMinutes = parseInt(hour) * 60 + parseInt(minute)
+
+    /* ---------- 过滤展示 ---------- */
+    applyFilterToAll () {
+      this.directions.forEach(this.updateDisplayedRows)
+    },
+    updateDisplayedRows (dir) {
+      if (this.showUpcomingOnly) {
+        const cutoff = this.currentMinutes - dir.tripDuration // 运行中 + 将来
+        dir.scheduleRows = dir.scheduleRowsAll
+            .map(row => {
+              const mins = row.minutes.filter(min => {
+                const dep = parseInt(row.hour) * 60 + parseInt(min)
+                return dep >= cutoff
+              })
+              return mins.length ? { hour: row.hour, minutes: mins } : null
+            })
+            .filter(Boolean)
+      } else {
+        dir.scheduleRows = dir.scheduleRowsAll
+      }
+    },
+
+    /* ---------- UI handlers ---------- */
+    onDayTypeChange () {
+      this.fetchSchedules()
+    },
+    onLineChange () {
+      this.fetchSchedules()
+    },
+    onFilterChange () {
+      this.applyFilterToAll()
+    },
+
+    /* ---------- 样式辅助 ---------- */
+    getTagClass (dir, hour, minute) {
+      const dep = parseInt(hour) * 60 + parseInt(minute)
       if (
-          depMinutes <= this.currentMinutes &&
-          this.currentMinutes < depMinutes + dir.tripDuration
+          dep <= this.currentMinutes &&
+          this.currentMinutes < dep + dir.tripDuration
       ) {
         return 'running-bus'
       }
-      if (timeStr === dir.nextBusTime) {
+      if (`${hour}:${minute}` === dir.nextBusTime) {
         return 'next-bus'
       }
       return ''
-    },
-    // 3. (夜间模式) 新增方法来监听 <html> class 的变化
-    setupThemeDetector() {
-      const htmlEl = document.documentElement;
-
-      // 检查初始状态
-      this.isDarkMode = htmlEl.classList.contains('dark');
-
-      // 使用 MutationObserver 监听 class 变化
-      this.themeObserver = new MutationObserver(mutations => {
-        mutations.forEach(mutation => {
-          if (mutation.attributeName === 'class') {
-            this.isDarkMode = htmlEl.classList.contains('dark');
-          }
-        });
-      });
-
-      this.themeObserver.observe(htmlEl, { attributes: true });
     }
   }
 }
@@ -455,6 +476,15 @@ export default {
   font-size: 0.9rem;
 }
 
+.filter-toggle-container {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--row-border-color);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+}
+
 /* --- 夜间模式修复与调整 --- */
 @media (prefers-color-scheme: dark) {
   .mobile-container {
@@ -462,6 +492,10 @@ export default {
     --text-color: rgba(255, 255, 255, 0.85);
     --card-bg: #1d1d1d;
     --row-border-color: #303030;
+  }
+
+  .filter-toggle-container :deep(.ant-checkbox-wrapper) {
+    color: var(--text-color);
   }
 
   /*  Tabs 未选中项颜色 */
