@@ -3,8 +3,7 @@ sidebar: false
 navbar: false
 ---
 # 🚌校园巴士时刻表 SUSTech Campus Bus Info
-
-![](https://mirrors.sustech.edu.cn/site/sustech-online/img/misc/bustimer-banner1.png)
+<BusAnnouncement />
 
 <ClientOnly>
   <TabView :isMapTabEnabled="true"></TabView>

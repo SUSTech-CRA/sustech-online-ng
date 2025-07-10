@@ -30,6 +30,9 @@ importers:
         specifier: ^3.5.13
         version: 3.5.13
     devDependencies:
+      '@ant-design/icons-vue':
+        specifier: ^7.0.1
+        version: 7.0.1(vue@3.5.13)
       '@vuepress/bundler-vite':
         specifier: next
         version: 2.0.0-rc.19(@types/node@22.10.3)(sass-embedded@1.83.0)(terser@5.37.0)
@@ -69,6 +72,9 @@ importers:
       ant-design-vue:
         specifier: ^4.2.6
         version: 4.2.6(vue@3.5.13)
+      marked:
+        specifier: ^16.0.0
+        version: 16.0.0
       sass-embedded:
         specifier: ^1.83.0
         version: 1.83.0
@@ -3002,6 +3008,11 @@ packages:
 
   markdown-it@14.1.0:
     resolution: {integrity: sha512-a54IwgWPaeBCAAsv13YgmALOF1elABB08FxO9i+r4VFk5Vl4pKokRPeX8u5TCgSsPi6ec1otfLjdOpVcgbpshg==}
+    hasBin: true
+
+  marked@16.0.0:
+    resolution: {integrity: sha512-MUKMXDjsD/eptB7GPzxo4xcnLS6oo7/RHimUMHEDRhUooPwmN9BEpMl7AEOJv3bmso169wHI2wUF9VQgL7zfmA==}
+    engines: {node: '>= 20'}
     hasBin: true
 
   math-intrinsics@1.1.0:
@@ -8254,6 +8265,8 @@ snapshots:
       mdurl: 2.0.0
       punycode.js: 2.3.1
       uc.micro: 2.1.0
+
+  marked@16.0.0: {}
 
   math-intrinsics@1.1.0: {}
 
