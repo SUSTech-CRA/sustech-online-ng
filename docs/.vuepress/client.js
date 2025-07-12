@@ -2,6 +2,7 @@ import { defineClientConfig } from 'vuepress/client'
 import BusTable from "./components/BusTable.vue";
 import BusTable_img from "./components/BusTable_img.vue";
 import BusAnnouncement from "./components/BusAnnouncement.vue";
+import BusETAdemo from "./components/BusETAdemo.vue";
 import TabView from "./components/TabView.vue";
 import RealtimeMap from './components/RealtimeMap.vue'
 import CampusMap from './components/CampusMap.vue'
@@ -16,6 +17,7 @@ export default defineClientConfig({
     app.component("BusTable", BusTable)
     app.component("BusTable_img", BusTable_img)
     app.component("BusAnnouncement", BusAnnouncement)
+    app.component("BusETAdemo", BusETAdemo)
     app.component("TabView", TabView)
     app.component("RealtimeMap", RealtimeMap)
     app.component("CampusMap", CampusMap)
