@@ -35,7 +35,7 @@
             <div v-for="eta in sortedEtas" :key="eta.plate" class="eta-item">
               <div class="eta-time">
                 <span class="eta-minutes">{{ eta.eta_minutes }}</span>
-                <span class="eta-unit">分钟</span>
+                <span class="eta-unit">Min.</span>
               </div>
               <div class="eta-details">
                 <div class="eta-plate">
