@@ -424,7 +424,10 @@ export default {
         return `
                 <div class="eta-item">
                     <span class="line-tag" style="background-color:${color};">L${lineNum}</span>
-                    <span class="plate-tag">粤B${eta.plate.slice(2)}</span>
+                    <span class="plate-tag terminal-station">
+                      ${eta.terminal_station_name}
+                    </span>
+<!--                    <span class="plate-tag">${eta.plate.slice(2)}</span>-->
 <!--                    <span>下站 <strong>${eta.next_station}</strong></span>-->
                     <span class="eta-time">${eta.eta_minutes} Min.</span>
                 </div>
@@ -535,7 +538,7 @@ export default {
   font-size: 15px;
   font-weight: bold;
   border-bottom: 1px solid #eee;
-  padding-bottom: 5px;
+  padding-bottom: 1px;
   margin-bottom: 8px;
 }
 .popup-body {
