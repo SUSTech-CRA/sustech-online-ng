@@ -13,7 +13,10 @@
     <div class="tab-container">
       <!-- 第一个 div 根据 value 控制显示与隐藏 -->
       <div v-if="currentSelect === 'bus-location'">
-        <div class="bus-location-hint" v-if="showMapChart"><b>位置每5秒自动刷新。</b>Location refreshes automatically every 5 seconds. <br><b>电瓶车暂未安装定位模块，地图中仅显示公交车的位置。</b>Shuttle Electric Vehicle (SEV) are not equipped with GPS modules yet, so only the Bus locations are shown on the map.
+        <div class="bus-location-hint" v-if="showMapChart">
+          <b>位置每5秒自动刷新。</b>Location refreshes automatically every 5 seconds.<br>
+          <b>电瓶车的实时位置暂不可用。</b>Realtime location of Shuttle EVs are not available yet.<br>
+          <b>在地图上点击对应的站点，可查看实时到站时间预测。</b>Click on the station on the map to see the realtime ETA.
         </div>
         <RealtimeMapv2 v-if="showMapChart" />
         <BusETAdemo />
