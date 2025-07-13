@@ -5,6 +5,7 @@ import BusAnnouncement from "./components/BusAnnouncement.vue";
 import BusETAdemo from "./components/BusETAdemo.vue";
 import TabView from "./components/TabView.vue";
 import RealtimeMap from './components/RealtimeMap.vue'
+import RealtimeMapv2 from './components/RealtimeMapv2.vue'
 import CampusMap from './components/CampusMap.vue'
 import WeatherSpan from './components/weather-span.vue'
 import BusChartVue from './components/BusChartVue.vue'
@@ -20,6 +21,7 @@ export default defineClientConfig({
     app.component("BusETAdemo", BusETAdemo)
     app.component("TabView", TabView)
     app.component("RealtimeMap", RealtimeMap)
+    app.component("RealtimeMapv2", RealtimeMapv2)
     app.component("CampusMap", CampusMap)
     app.component("WeatherSpan", WeatherSpan)
     app.component("AdSenseInline", AdSenseInline)

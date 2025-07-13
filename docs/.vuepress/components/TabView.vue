@@ -15,7 +15,7 @@
       <div v-if="currentSelect === 'bus-location'">
         <div class="bus-location-hint" v-if="showMapChart"><b>位置每5秒自动刷新。</b>Location refreshes automatically every 5 seconds. <br><b>电瓶车暂未安装定位模块，地图中仅显示公交车的位置。</b>Shuttle Electric Vehicle (SEV) are not equipped with GPS modules yet, so only the Bus locations are shown on the map.
         </div>
-        <RealtimeMap v-if="showMapChart" />
+        <RealtimeMapv2 v-if="showMapChart" />
         <BusETAdemo />
         <BusChartVue />
       </div>
