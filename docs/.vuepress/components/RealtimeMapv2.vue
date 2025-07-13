@@ -525,6 +525,7 @@ export default {
 }
 
 .bus-popup {
+  color: black;
   font-size: 13px;
   line-height: 1.6;
 }
