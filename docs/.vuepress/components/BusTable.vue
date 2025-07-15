@@ -77,7 +77,7 @@
       </a-spin>
     </a-config-provider>
   </div>
-  <div class="current-time">Timetable updated at {{ currentTime }}</div>
+  <div class="current-time">Effective: 2025-07-16, refreshed at {{ currentTime }}.</div>
 </template>
 
 <script>
@@ -153,12 +153,12 @@ export default {
         shuttle: {
           directions: [
             {
-              title: '欣园总站 → 一号门 / Joy Highland → Gate 1',
+              title: '欣园总站 → 工学院 / Joy Highland → COE',
               workday: '/bus_times/shuttle_down.json',
               holiday: '/bus_times/shuttle_down_holiday.json'
             },
             {
-              title: '一号门 → 欣园总站 / Gate 1 → Joy Highland',
+              title: '工学院 → 欣园总站 / COE → Joy Highland',
               workday: '/bus_times/shuttle_up.json',
               holiday: '/bus_times/shuttle_up_holiday.json'
             }
