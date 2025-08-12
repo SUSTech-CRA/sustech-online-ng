@@ -11,7 +11,7 @@ navbar: false
 
 ![](https://mirrors.sustech.edu.cn/site/sustech-online/img/misc/sustown-ad-202409.png)
 ![](https://mirrors.sustech.edu.cn/site/sustech-online/img/misc/nces-ad-202308.png)
-[**点此访问NCES**](https://nces.cra.moe/)
+[**点此访问NCES**](https://ncesnext.com/)
 
 *如需切换暗色主题，请切换后刷新页面*
 

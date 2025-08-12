@@ -12,13 +12,13 @@
 ## 课程
 ### 课程详述
 
-包含课程简介，纲要与考核形式。推荐使用NCES评课社区 <https://nces.cra.moe> 进行检索，可使用课程名称，课程代码，授课老师等关键词进行查询。
+包含课程简介，纲要与考核形式。推荐使用NCES评课社区 <https://ncesnext.com> 进行检索，可使用课程名称，课程代码，授课老师等关键词进行查询。
 
 - [下载课程大纲PDF](https://mirrors.sustech.edu.cn/courses/syllabus/) （按照课程代码编码）
 
 - 教工部提供的查看渠道：<https://course-tao.sustech.edu.cn/kcxxweb/KcxxwebChinesePC> （需CAS登陆）
 
-- 课程资料：从 QQ 群等互联网来源获取并整理的课程资料。请登陆[NCES](https://nces.cra.moe/)，并点击课程介绍下方的“课件”按钮进入（仅限校内访问）。
+- 课程资料：从 QQ 群等互联网来源获取并整理的课程资料。请登陆[NCES](https://ncesnext.com/)，并点击课程介绍下方的“课件”按钮进入（仅限校内访问）。
 
 ### 📖学习建议与攻略
 

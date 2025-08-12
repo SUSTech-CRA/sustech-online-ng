@@ -70,7 +70,7 @@
     <ul>
     <li><a href="./transport/bustimer.html">巴士时刻表与车辆位置查看</a></li>
     <li><a href="/facility/">校园街景</a></li>
-    <li><a href="https://nces.cra.moe/">牛娃课程评价社区<Badge text="春季选课" type="danger"/></a></li>
+    <li><a href="https://ncesnext.com/">牛娃课程评价社区<Badge text="春季选课" type="danger"/></a></li>
     <li><a href="http://live.cra.moe/">校园风景直播</a></li>
     </ul>
     </th>
@@ -108,7 +108,7 @@ div.emergency p a {
 
 ## 牛娃课程评价社区 <Badge text="选课合作" type="tip"/>
 
-[牛娃课程评价社区](https://nces.cra.moe/)（NCES，Niuwa Curriculum Evaluation System）是南科大学生的课程评价社区，因此，只有拥有南科大邮箱的同学或老师才可以注册账户。[中科大同款评教系统](https://icourse.club/)，赓续教改初心。NCES现已支持通过课程名称，代码及教师快速检索课程并直达课程大纲，更加方便你的选课！
+[牛娃课程评价社区](https://ncesnext.com/)（NCES，Niuwa Curriculum Evaluation System）是南科大学生的课程评价社区，因此，只有拥有南科大邮箱的同学或老师才可以注册账户。[中科大同款评教系统](https://icourse.club/)，赓续教改初心。NCES现已支持通过课程名称，代码及教师快速检索课程并直达课程大纲，更加方便你的选课！
 
 ## 如果你是新生... <Badge text="For Freshman" type="tip"/>
 
