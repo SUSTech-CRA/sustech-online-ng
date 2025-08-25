@@ -42,9 +42,11 @@
           animated
           @change="onLineChange"
       >
-        <a-tab-pane key="line1" tab="1号线/Line 1" />
-        <a-tab-pane key="line2" tab="2号线/Line 2" />
-        <a-tab-pane key="shuttle" tab="电瓶车/Shuttle" />
+        <a-tab-pane key="line1" tab="1号线/L1" />
+        <a-tab-pane key="shuttle1" tab="电瓶车/Shuttle" />
+        <a-tab-pane key="line2" tab="2号线/L2" />
+        <a-tab-pane key="shuttle2" tab="2号线电瓶车/Shuttle2" />
+
       </a-tabs>
 
       <!-- Schedules -->
@@ -77,7 +79,7 @@
       </a-spin>
     </a-config-provider>
   </div>
-  <div class="current-time">Effective: 2025-07-16, refreshed at {{ currentTime }}.</div>
+  <div class="current-time">Effective: 2025-08-26, refreshed at {{ currentTime }}.</div>
 </template>
 
 <script>
@@ -139,28 +141,42 @@ export default {
         line2: {
           directions: [
             {
-              title: '欣园总站 → 科研楼 / Joy Highland → Research Bldg.',
+              title: '欣园 → 科研楼 / Joy Highland → Research Bldg.',
               workday: '/bus_times/two_down.json',
               holiday: '/bus_times/two_down_holiday.json'
             },
             {
-              title: '科研楼 → 欣园总站 / Research Bldg. → Joy Highland',
+              title: '科研楼 → 欣园 / Research Bldg. → Joy Highland',
               workday: '/bus_times/two_up.json',
               holiday: '/bus_times/two_up_holiday.json'
             }
           ]
         },
-        shuttle: {
+        shuttle1: {
           directions: [
             {
-              title: '欣园总站 → 工学院 / Joy Highland → COE',
-              workday: '/bus_times/shuttle_down.json',
-              holiday: '/bus_times/shuttle_down_holiday.json'
+              title: '欣园 → 工学院 / Joy Highland → COE',
+              workday: '/bus_times/one_shuttle_down.json',
+              holiday: '/bus_times/one_shuttle_down_holiday.json'
             },
             {
-              title: '工学院 → 欣园总站 / COE → Joy Highland',
-              workday: '/bus_times/shuttle_up.json',
-              holiday: '/bus_times/shuttle_up_holiday.json'
+              title: '工学院 → 欣园 / COE → Joy Highland',
+              workday: '/bus_times/one_shuttle_up.json',
+              holiday: '/bus_times/one_shuttle_up_holiday.json'
+            }
+          ]
+        },
+        shuttle2: {
+          directions: [
+            {
+              title: '欣园 → 科研楼 / Joy Highland → Research Bldg.',
+              workday: '/bus_times/two_shuttle_down.json',
+              holiday: '/bus_times/two_shuttle_down_holiday.json'
+            },
+            {
+              title: '科研楼 → 欣园 / Research Bldg. → Joy Highland',
+              workday: '/bus_times/two_shuttle_up.json',
+              holiday: '/bus_times/two_shuttle_up_holiday.json'
             }
           ]
         }
