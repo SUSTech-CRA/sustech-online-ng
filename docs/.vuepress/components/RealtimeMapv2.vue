@@ -36,6 +36,7 @@ export default {
 
       // --- State Management ---
       busLocations: [],
+      sevLocations: [],
       busMarkers: [],
       unifiedStationsLookup: {}, // { "lng,lat": { name, routes: [{...}] } }
       allStationsGeoJSON: { type: 'FeatureCollection', features: [] },
@@ -273,7 +274,15 @@ export default {
     async fetchBusLocations() {
       try {
         const response = await axios.get(`https://bus.sustcra.com/api/v2/monitor_osm/`);
+        //also fetch sev locations https://bus.sustcra.com/api/v2/monitor_sev_osm/
+        const response_sev = await axios.get(`https://bus.sustcra.com/api/v2/monitor_sev_osm/`);
+
         this.busLocations = response.data;
+        this.sevLocations = response_sev.data;
+
+        // merge busLocations and sevLocations
+        this.busLocations = this.busLocations.concat(this.sevLocations);
+
         const now = Date.now() / 1000;
         if (this.busLocations.length > 0 && this.busLocations[0].time_mt) {
           this.timeDrift = Math.round(now - this.busLocations[0].time_mt);
@@ -290,7 +299,7 @@ export default {
 
       const now = Date.now() / 1000;
       this.busLocations.forEach(bus => {
-        if (now - bus.time_mt < 150) { // 只显示150秒内有数据上报的车辆
+        if (now - bus.time_mt < 1200) { // 只显示120秒内有数据上报的车辆
           const busEl = document.createElement('div');
           busEl.className = 'bus-marker';
 
@@ -397,15 +406,32 @@ export default {
     },
 
     createBusInfoPopup(bus) {
-      const directionMapL1 = { '0': '欣园 Joy Highland', '1': '工学院 COE' };
-      const directionMapL2 = { '0': '欣园 Joy Highland', '1': '科研楼' };
-      const lineNum = bus.route_code.slice(-1);
-      const direction = lineNum === '1' ? directionMapL1[bus.route_dir] : directionMapL2[bus.route_dir];
-      const color = lineNum === '1' ? '#f7911d': '#29abe2';
+      // 配置表，每条线路单独定义方向映射 & 颜色
+      const routeConfig = {
+        XYBS1: {
+          directions: { '0': '欣园 Joy Highland', '1': '工学院 COE' },
+          color: '#f7911d'
+        },
+        XYBS2: {
+          directions: { '0': '欣园 Joy Highland', '1': '科研楼' },
+          color: '#29abe2'
+        },
+        SEV1: { // 新增的路线
+          directions: { '-1': '' },
+          color: '#7030a1'
+        }
+      };
+
+      // 使用时直接查表
+      const lineNum = bus.route_code;
+      const config = routeConfig[bus.route_code] || {};
+      const direction = config.directions?.[bus.route_dir] ?? '';
+      const color = config.color ?? '#cccccc';
+
 
       const html = `
         <div class="bus-popup">
-          <div class="plate">粤B${bus.id.slice(2)} (${bus.speed} km/h)</div>
+          <div class="plate">${bus.id.slice(2)} (${bus.speed} km/h)</div>
           <div><span class="line-tag" style="background-color:${color}">Line ${lineNum}</span> To: <strong>${direction}</strong></div>
           <div>Next: <strong>${bus.next_station_string}</strong></div>
         </div>
