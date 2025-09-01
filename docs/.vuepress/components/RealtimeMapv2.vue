@@ -409,21 +409,24 @@ export default {
       // 配置表，每条线路单独定义方向映射 & 颜色
       const routeConfig = {
         XYBS1: {
+          name: '1',
           directions: { '0': '欣园 Joy Highland', '1': '工学院 COE' },
           color: '#f7911d'
         },
         XYBS2: {
+          name: '2',
           directions: { '0': '欣园 Joy Highland', '1': '科研楼' },
           color: '#29abe2'
         },
         SEV1: { // 新增的路线
+          name: '电瓶车',
           directions: { '-1': '' },
           color: '#7030a1'
         }
       };
 
       // 使用时直接查表
-      const lineNum = bus.route_code;
+      const lineNum = routeConfig[bus.route_code]?.name || bus.route_code;
       const config = routeConfig[bus.route_code] || {};
       const direction = config.directions?.[bus.route_dir] ?? '';
       const color = config.color ?? '#cccccc';
