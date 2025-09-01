@@ -409,12 +409,12 @@ export default {
       // 配置表，每条线路单独定义方向映射 & 颜色
       const routeConfig = {
         XYBS1: {
-          name: '1',
+          name: 'L1',
           directions: { '0': '欣园 Joy Highland', '1': '工学院 COE' },
           color: '#f7911d'
         },
         XYBS2: {
-          name: '2',
+          name: 'L2',
           directions: { '0': '欣园 Joy Highland', '1': '科研楼' },
           color: '#29abe2'
         },
@@ -435,7 +435,7 @@ export default {
       const html = `
         <div class="bus-popup">
           <div class="plate">${bus.id.slice(2)} (${bus.speed} km/h)</div>
-          <div><span class="line-tag" style="background-color:${color}">Line ${lineNum}</span> To: <strong>${direction}</strong></div>
+          <div><span class="line-tag" style="background-color:${color}">${lineNum}</span> To: <strong>${direction}</strong></div>
           <div>Next: <strong>${bus.next_station_string}</strong></div>
         </div>
       `;
