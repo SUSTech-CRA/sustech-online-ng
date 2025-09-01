@@ -299,7 +299,7 @@ export default {
 
       const now = Date.now() / 1000;
       this.busLocations.forEach(bus => {
-        if (now - bus.time_mt < 1200) { // 只显示120秒内有数据上报的车辆
+        if (now - bus.time_mt < 120) { // 只显示120秒内有数据上报的车辆
           const busEl = document.createElement('div');
           busEl.className = 'bus-marker';
 
@@ -418,7 +418,7 @@ export default {
           directions: { '0': '欣园 Joy Highland', '1': '科研楼' },
           color: '#29abe2'
         },
-        SEV1: { // 新增的路线
+        SEV: { // 新增的路线
           name: '电瓶车',
           directions: { '-1': '' },
           color: '#7030a1'
