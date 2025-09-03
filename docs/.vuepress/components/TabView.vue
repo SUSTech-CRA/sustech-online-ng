@@ -15,8 +15,7 @@
       <div v-if="currentSelect === 'bus-location'">
         <div class="bus-location-hint" v-if="showMapChart">
           <b>位置每5秒自动刷新。</b>Location refreshes automatically every 5 seconds.<br>
-          <b>电瓶车的实时位置暂不可用。</b>Realtime location of Shuttle EVs are not available yet.<br>
-          <b>在地图上点击对应的站点，可查看实时到站时间预测。</b>Click on the station on the map to see the realtime ETA.
+          <b>（测试中）图上点击对应的站点，可查看实时到站时间预测。</b>Click on the station on the map to see the realtime ETA. (testing)
         </div>
         <RealtimeMapv2 v-if="showMapChart" />
         <BusETAdemo />
