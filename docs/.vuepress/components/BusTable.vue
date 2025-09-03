@@ -130,7 +130,7 @@ export default {
       dayType: 'workday',
       dayOptions: [
         { label: '工作日\nWorkday', value: 'workday' },
-        { label: '节假日\nHoliday （暑假）', value: 'holiday' }
+        { label: '周末及节假日\nWeekend & Holiday', value: 'holiday' }
       ],
       lineGroup: 'group1',
       directionIndex: 0,
@@ -442,6 +442,14 @@ export default {
   font-size: 15px;
   max-width: 100%;
   margin: 0 auto;
+}
+
+/* Dark mode overrides for Ant Design Segmented */
+[data-theme="dark"] .ant-segmented,
+[data-theme="dark"] .ant-segmented-item
+{
+  background: #222 !important;
+  color: #eee !important;
 }
 
 /* Dark mode detection - multiple methods for compatibility */

@@ -85,18 +85,19 @@ export default {
 </script>
 
 <style scoped>
-.ant-segmented {
-  color: unset;
-  font-size: unset;
-  font-variant: unset;
-  font-feature-settings: unset;
-}
-
 .tab-container {
   margin-top: 6px;
 }
 
 .bus-location-hint {
   padding-bottom: 4px;
+}
+
+/* Dark mode overrides for Ant Design Segmented */
+[data-theme="dark"] .ant-segmented,
+[data-theme="dark"] .ant-segmented-item
+{
+  background: #222 !important;
+  color: #eee !important;
 }
 </style>
