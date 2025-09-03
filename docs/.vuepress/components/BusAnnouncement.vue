@@ -60,7 +60,6 @@ export default {
       announcement: null,
       error: null,
       appTheme: {}, // 用于控制 antd 主题的对象
-      mediaQuery: null, // 用于存储媒体查询对象
     };
   },
 
@@ -95,12 +94,9 @@ export default {
     },
 
     // 更新主题的函数
-    updateTheme(event) {
-      if (event.matches) {
-        this.appTheme = { algorithm: darkAlgorithm };
-      } else {
-        this.appTheme = {};
-      }
+    updateTheme() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      this.appTheme = isDark ? { algorithm: darkAlgorithm } : {};
     },
   },
 
@@ -108,17 +104,25 @@ export default {
   mounted() {
     this.fetchAnnouncement();
 
-    if (window.matchMedia) {
-      this.mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      this.updateTheme(this.mediaQuery);
-      this.mediaQuery.addEventListener('change', this.updateTheme);
-    }
+    // Initial theme set
+    this.updateTheme();
+
+    // Listen for changes to [data-theme] attribute
+    this._themeObserver = new MutationObserver(() => {
+      this.updateTheme();
+    });
+    this._themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
   },
 
   // 使用 beforeUnmount (Vue 3) 钩子来清理监听器
   beforeUnmount() {
-    if (this.mediaQuery) {
-      this.mediaQuery.removeEventListener('change', this.updateTheme);
+    // Clean up observer
+    if (this._themeObserver) {
+      this._themeObserver.disconnect();
+      this._themeObserver = null;
     }
   },
 };
