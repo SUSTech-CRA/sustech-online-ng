@@ -98,7 +98,7 @@
       </a-spin>
     </a-config-provider>
   </div>
-  <div class="current-time">Effective: 2025-08-26, refreshed at {{ currentTime }}.</div>
+  <div class="current-time">Effective: 2025-09-06, refreshed at {{ currentTime }}.</div>
 </template>
 
 <script>
