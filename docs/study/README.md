@@ -95,7 +95,7 @@
 ### 计算机科学与工程系
 
 - [创新实践项目汇总](./cse/innovative-project.md)
-- [计算机安全/渗透测试公开教学与学术队伍](https://wiki.compass.college)
+- [计算机安全/渗透测试公开教学与学术队伍](https://blog.compassc.tf)
 - 计算机系毕业去向
   - [2023届](https://mp.weixin.qq.com/s/vt9o_9wmnwYVY8lu8cLKFA)
   - [2022届](https://mp.weixin.qq.com/s/YDpTou_LR6Qtcg84cHBsOA)
