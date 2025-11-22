@@ -15,19 +15,19 @@
         <div class="legend-grid">
           <div class="legend-item">
             <div class="legend-color line1-color"></div>
-            <span>1号线 Line 1</span>
+            <span>环线 Loop Line</span>
           </div>
           <div class="legend-item">
             <div class="legend-color shuttle1-color"></div>
-            <span>电瓶车1 Shuttle 1</span>
+            <span>环线电瓶车 Shuttle Loop Line</span>
           </div>
           <div class="legend-item">
             <div class="legend-color line2-color"></div>
-            <span>2号线 Line 2</span>
+            <span>环线大站快车 Rapid Loop</span>
           </div>
           <div class="legend-item">
             <div class="legend-color shuttle2-color"></div>
-            <span>电瓶车2 Shuttle 2</span>
+            <span>电瓶环线大站快车 Shuttle Rapid Loop</span>
           </div>
           <div class="legend-item">
             <div class="legend-color en-route-color"></div>
@@ -54,8 +54,8 @@
           animated
           @change="onLineGroupChange"
       >
-        <a-tab-pane key="group1" tab="1号线 · Line 1" />
-        <a-tab-pane key="group2" tab="2号线 · Line 2" />
+        <a-tab-pane key="group1" tab="欣园环线 Joy Highland Loop Line" />
+        <a-tab-pane key="group2" tab="环线大站快车 Rapid Loop Line" />
       </a-tabs>
 
       <!-- Direction toggle -->
@@ -98,7 +98,7 @@
       </a-spin>
     </a-config-provider>
   </div>
-  <div class="current-time">Effective: 2025-09-06, refreshed at {{ currentTime }}.</div>
+  <div class="current-time">Effective: 2025-11-24, refreshed at {{ currentTime }}.</div>
 </template>
 
 <script>
@@ -147,7 +147,7 @@ export default {
         group1: {
           directions: [
             {
-              title: '欣园总站 → 工学院 / Joy Highland → COE',
+              title: '顺时针 / ClockWise',
               lines: [
                 {
                   type: 'line1',
@@ -162,7 +162,7 @@ export default {
               ]
             },
             {
-              title: '工学院 → 欣园总站 / COE → Joy Highland',
+              title: '逆时针 / Counter Clockwise',
               lines: [
                 {
                   type: 'line1',
@@ -181,7 +181,7 @@ export default {
         group2: {
           directions: [
             {
-              title: '欣园 → 科研楼 / Joy Highland → Research Bldg.',
+              title: '顺时针大站快车 / Rapid ClockWise',
               lines: [
                 {
                   type: 'line2',
@@ -196,7 +196,7 @@ export default {
               ]
             },
             {
-              title: '科研楼 → 欣园 / Research Bldg. → Joy Highland',
+              title: '逆时针大站快车 / Rapid Counter Clockwise',
               lines: [
                 {
                   type: 'line2',
