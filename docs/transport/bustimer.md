@@ -26,8 +26,7 @@
 
 *Pls REFRESH after toggle dark mode.*
 
-![](https://mirrors.sustech.edu.cn/site/sustech-online/img/misc/sustown-ad-202409.png)
 ![](https://mirrors.sustech.edu.cn/site/sustech-online/img/misc/nces-ad.svg)
-[**（或点此访问NCES）**](https://ncesnext.com/)
+[**（点此访问NCES）**](https://ncesnext.com/)
 
 <AdSenseDisplayAD/>
