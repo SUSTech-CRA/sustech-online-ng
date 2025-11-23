@@ -24,7 +24,8 @@
 
 <!--       第二个 div 根据 value 控制显示与隐藏 -->
       <div v-if="currentSelect === 'timetable'">
-        <BusTable></BusTable>
+        <!-- <BusTable></BusTable> -->
+         时刻表信息尚在更新中，敬请谅解。Update in progess
 <!--        <BusTable_img />-->
       </div>
     </div>
