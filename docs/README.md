@@ -136,7 +136,7 @@ div.emergency p a {
 
 由sustech.online团队制作的校园地图。地图底图采用南科大2022版最新规划图，并添加校园巴士线路，打印机，商店，收发室等实用信息。[（尝试新版交互式校园地图！可全屏，实时定位）](./transport/bustimer)
 
-<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/pdfjs/web/viewer.html?file=https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v4-0.pdf" width="100%" height="600"></iframe>
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/pdfjs/web/viewer.html?file=https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v4-1.pdf" width="100%" height="600"></iframe>
 
 [点击这里](https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v4-1.pdf)下载矢量PDF版本，目前版本：**4.1**，2025年10月更新。
 

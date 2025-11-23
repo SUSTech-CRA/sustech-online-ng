@@ -333,14 +333,14 @@
 
 ### 运动场
 
-#### 润扬体育馆
+#### 润杨体育馆
 
 [![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202106/#node448,132,11,70)
 
 
 ![润杨体育馆](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/润杨体育馆.jpg)
 
-叫“润扬体育馆”的原因是因为体育馆是润杨集团[冠名](https://newshub.sustech.edu.cn/zh/html/201909/26624.html)的。
+叫“润杨体育馆”的原因是因为体育馆是润杨集团[冠名](https://newshub.sustech.edu.cn/zh/html/201909/26624.html)的。
 
 体育馆南侧目前是野战场地，学校购置了基于红外线的模拟枪，可以打真人CS。这里还有一面攀岩墙。
 
