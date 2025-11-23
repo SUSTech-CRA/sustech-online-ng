@@ -9,9 +9,8 @@ navbar: false
   <TabView :isMapTabEnabled="true"></TabView>
 </ClientOnly>
 
-![](https://mirrors.sustech.edu.cn/site/sustech-online/img/misc/sustown-ad-202409.png)
-![](https://mirrors.sustech.edu.cn/site/sustech-online/img/misc/campus-bus-schedule-20251124.jpg)
-[**（或点此访问NCES）**](https://ncesnext.com/)
+![](https://mirrors.sustech.edu.cn/site/sustech-online/img/misc/nces-ad.svg)
+[**（点此访问NCES）**](https://ncesnext.com/)
 
 *如需切换暗色主题，请切换后刷新页面*
 

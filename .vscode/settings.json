@@ -1,7 +1,0 @@
-{
-    "markdown.extension.toc.updateOnSave": false,
-    "search.exclude": {
-        "**/docs/.vuepress/.temp/*": true,
-        "**/docs/.vuepress/.cache/*":true
-    }
-}

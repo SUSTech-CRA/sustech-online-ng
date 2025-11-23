@@ -15,16 +15,17 @@
       <div v-if="currentSelect === 'bus-location'">
         <div class="bus-location-hint" v-if="showMapChart">
           <b>位置每5秒自动刷新。</b>Location refreshes automatically every 5 seconds.<br>
-          <b>（测试中）图上点击对应的站点，可查看实时到站时间预测。</b>Click on the station on the map to see the realtime ETA. (testing)
+          <b>由于线路调整，实时到站时间功能暂时停用。请参考时刻表计划行程。</b>Arrival estimates are not available now due to route adjustments. Please refer to the timetable to plan your trip.<br>>
         </div>
         <RealtimeMapv2 v-if="showMapChart" />
-        <BusETAdemo />
-        <BusChartVue />
+        <!-- <BusETAdemo /> -->
+        <!-- <BusChartVue /> -->
       </div>
 
 <!--       第二个 div 根据 value 控制显示与隐藏 -->
       <div v-if="currentSelect === 'timetable'">
-        <BusTable></BusTable>
+        <!-- <BusTable></BusTable> -->
+         时刻表信息尚在更新中，敬请谅解。Update in progess
 <!--        <BusTable_img />-->
       </div>
     </div>

@@ -31,8 +31,6 @@ export default {
       // --- Data Placeholders ---
       // 在这里填入你的线路GeoJSON坐标数据
       geojson_XYBS1: [],
-      geojson_XYBS2: [],
-      geojson_SEV1: [],
 
       // --- State Management ---
       busLocations: [],
@@ -172,17 +170,11 @@ export default {
 
     async loadGeoJSONLines() {
       try {
-        const [XYBS1Res, XYBS2Res, SEV1Res] = await Promise.all([
-          axios.get('https://bus.sustcra.com/static/lines/XYBS1.json'),
-          axios.get('https://bus.sustcra.com/static/lines/XYBS2.json'),
-          axios.get('https://bus.sustcra.com/static/lines/SEV1.json'),
+        const [XYBS1Res] = await Promise.all([
+          axios.get('https://bus.sustcra.com/static/lines/XYBS1_clockwise.json')
         ]);
         // console.log('XYBS1:', XYBS1Res.data);
-        // console.log('XYBS2:', XYBS2Res.data);
-        // console.log('SEV1:', SEV1Res.data);
         this.geojson_XYBS1 = XYBS1Res.data;
-        this.geojson_XYBS2 = XYBS2Res.data;
-        this.geojson_SEV1 = SEV1Res.data;
       } catch (error) {
         console.error("Failed to fetch GeoJSON lines:", error);
       }
@@ -192,8 +184,7 @@ export default {
     setupMapLayers() {
       // 添加线路图层
       this.addRouteLayer('line1', this.geojson_XYBS1, '#f7911d');
-      this.addRouteLayer('line2', this.geojson_XYBS2, '#29abe2');
-      this.addRouteLayer('line3', this.geojson_SEV1, '#7030a1');
+      console.log("XYBS1 route layer added.");
 
       // 添加站点、建筑和校门图层
       this.addSymbolLayer('stations', this.allStationsGeoJSON, 'bus-station-icon', 0.075, [0, 1.25]);
@@ -316,7 +307,7 @@ export default {
 
     // --- 4. Event Handlers & Interaction ---
     setupMapListeners() {
-      this.map.on('click', 'stations-layer', this.onStationClick);
+      // this.map.on('click', 'stations-layer', this.onStationClick);
       this.map.on('mouseenter', 'stations-layer', () => this.map.getCanvas().style.cursor = 'pointer');
       this.map.on('mouseleave', 'stations-layer', () => this.map.getCanvas().style.cursor = '');
     },

@@ -1,6 +1,13 @@
 # 🚌校园巴士时刻表 SUSTech Campus Bus Info
 <BusAnnouncement />
 
+<b>自 2025.11.24 起，校巴改用环线运行。南科手册上的内容正在更新，以适配新运行图。请各位同学参考如下 pdf 乘车。</b>
+This page is being updated after the route change at 2025.11.24. As of now, please refer the the following pdf to plan your trip.
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/SUSTech-Campus-Map-v5-0.pdf" width="100%" height="600"></iframe>
+
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/sustech_bus_schedule_2025.11.24.pdf" width="100%" height="600"></iframe>
+
 <hr>
 
 <div id="button-div">
@@ -26,8 +33,7 @@
 
 *Pls REFRESH after toggle dark mode.*
 
-![](https://mirrors.sustech.edu.cn/site/sustech-online/img/misc/sustown-ad-202409.png)
-![](https://mirrors.sustech.edu.cn/site/sustech-online/img/misc/campus-bus-schedule-20251124.jpg)
-[**（或点此访问NCES）**](https://ncesnext.com/)
+![](https://mirrors.sustech.edu.cn/site/sustech-online/img/misc/nces-ad.svg)
+[**（点此访问NCES）**](https://ncesnext.com/)
 
 <AdSenseDisplayAD/>
