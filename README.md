@@ -30,7 +30,7 @@ Online manual for SUSTecher.
 
 ### 编译版本
 
-* nodejs版本：18
+* nodejs版本：v24
 * 推荐包管理器：pnpm
   * 安装依赖：pnpm install
   * 升级依赖：pnpm up
