@@ -30,7 +30,7 @@ export default {
 
       // --- Data Placeholders ---
       // 在这里填入你的线路GeoJSON坐标数据
-      geojson_XYBS1: [],
+      geojson_NKDH1: [],
 
       // --- State Management ---
       busLocations: [],
@@ -170,11 +170,11 @@ export default {
 
     async loadGeoJSONLines() {
       try {
-        const [XYBS1Res] = await Promise.all([
-          axios.get('https://bus.sustcra.com/static/lines/XYBS1_clockwise.json')
+        const [NKDH1Res] = await Promise.all([
+          axios.get('https://bus.sustcra.com/static/lines/NKDH1_clockwise.json')
         ]);
-        // console.log('XYBS1:', XYBS1Res.data);
-        this.geojson_XYBS1 = XYBS1Res.data;
+        // console.log('NKDH1:', NKDH1Res.data);
+        this.geojson_NKDH1 = NKDH1Res.data;
       } catch (error) {
         console.error("Failed to fetch GeoJSON lines:", error);
       }
@@ -183,8 +183,8 @@ export default {
 
     setupMapLayers() {
       // 添加线路图层
-      this.addRouteLayer('line1', this.geojson_XYBS1, '#f7911d');
-      console.log("XYBS1 route layer added.");
+      this.addRouteLayer('line1', this.geojson_NKDH1, '#747474');
+      console.log("NKDH1 route layer added.");
 
       // 添加站点、建筑和校门图层
       this.addSymbolLayer('stations', this.allStationsGeoJSON, 'bus-station-icon', 0.075, [0, 1.25]);
@@ -399,15 +399,15 @@ export default {
     createBusInfoPopup(bus) {
       // 配置表，每条线路单独定义方向映射 & 颜色
       const routeConfig = {
-        XYBS1: {
+        NKDH1: {
           name: 'L1',
-          directions: { '0': '欣园 Joy Highland', '1': '工学院 COE' },
-          color: '#f7911d'
+          directions: { '0': '顺时针 Clockwise', '1': '' },
+          color: '#4ca963'
         },
-        XYBS2: {
+        NKDH2: {
           name: 'L2',
-          directions: { '0': '欣园 Joy Highland', '1': '科研楼' },
-          color: '#29abe2'
+          directions: { '0': '逆时针 Counter-Clockwise', '1': '' },
+          color: '#db7490'
         },
         SEV: { // 新增的路线
           name: '电瓶车',
