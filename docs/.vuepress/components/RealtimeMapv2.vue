@@ -57,7 +57,11 @@ export default {
       // --- State Management ---
       busLocations: [],
       sevLocations: [],
-      busMarkers: [],
+      // 格式：{ 'bus_id': Marker实例 }
+      busMarkers: {},
+      // 存储每辆车的动画帧ID，用于取消未完成的动画
+      busAnimations: {},
+
       unifiedStationsLookup: {}, // { "lng,lat": { name, routes: [{...}] } }
       allStationsGeoJSON: { type: 'FeatureCollection', features: [] },
       bldgGeoJSON: {},
@@ -262,7 +266,7 @@ export default {
     // --- 3. Bus Tracking ---
     startBusTracking() {
       this.fetchBusLocations(); // 立即执行一次
-      this.busUpdateTimer = setInterval(this.fetchBusLocations, 5000); // 每5秒刷新
+      this.busUpdateTimer = setInterval(this.fetchBusLocations, 8000); // 每8秒刷新
     },
 
     // 计算公交车的方位角
@@ -351,31 +355,109 @@ export default {
       }
     },
 
+    createBusMarker(bus) {
+      const busEl = document.createElement('div');
+      busEl.className = 'bus-marker';
+
+      const config = this.routeConfig[bus.route_code];
+      const iconUrl = config ? config.icon : 'https://bus.sustcra.com/bus-icon-view.png';
+      busEl.style.backgroundImage = `url('${iconUrl}')`;
+
+      // 创建 Marker 并绑定 Popup
+      const marker = new maplibre.Marker({ element: busEl, anchor: 'center' })
+          .setLngLat([bus.lng, bus.lat])
+          .setPopup(this.createBusInfoPopup(bus)) // 创建新的 Popup 实例
+          .setRotation(bus.heading || 0)
+          .addTo(this.map);
+
+      this.busMarkers[bus.id] = marker;
+    },
+
+    animateBusMarker(id, busData) {
+      const marker = this.busMarkers[id];
+
+      if (this.busAnimations[id]) {
+        cancelAnimationFrame(this.busAnimations[id]);
+      }
+
+      // 更新 Popup 内容而不关闭它 ---
+      const popup = marker.getPopup(); // 获取当前绑定的 popup 实例
+      const newHTML = this.getBusPopupHTML(busData); // 生成新的 HTML
+
+      // 只有当内容发生变化时才更新 DOM（可选优化）
+      // MapLibre 的 setHTML 性能很好，直接调用也没问题
+      popup.setHTML(newHTML);
+
+      // 2. 这里的动画逻辑保持不变
+      const startLngLat = marker.getLngLat();
+      const startLng = startLngLat.lng;
+      const startLat = startLngLat.lat;
+      const endLng = busData.lng;
+      const endLat = busData.lat;
+
+      // 如果位置没变，直接返回
+      if (Math.abs(startLng - endLng) < 0.000001 && Math.abs(startLat - endLat) < 0.000001) {
+        return;
+      }
+
+      const duration = 1000;
+      const startTime = performance.now();
+
+      // 更新旋转角度
+      marker.setRotation(busData.heading || 0);
+
+      const animate = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        const currentLng = startLng + (endLng - startLng) * progress;
+        const currentLat = startLat + (endLat - startLat) * progress;
+
+        marker.setLngLat([currentLng, currentLat]);
+
+        if (progress < 1) {
+          this.busAnimations[id] = requestAnimationFrame(animate);
+        } else {
+          delete this.busAnimations[id];
+        }
+      };
+
+      this.busAnimations[id] = requestAnimationFrame(animate);
+    },
+
     updateBusMarkers() {
-      this.busMarkers.forEach(marker => marker.remove());
-      this.busMarkers = [];
-
       const now = Date.now() / 1000;
+      // 用于记录本次更新中存在的车辆ID，方便后续找出需要删除的车辆
+      const currentBusIds = new Set();
+
       this.busLocations.forEach(bus => {
-        if (now - bus.time_mt < 120) { // 只显示120秒内有数据上报的车辆
-          const busEl = document.createElement('div');
-          busEl.className = 'bus-marker';
+        // 只处理最近 120 秒有数据的车
+        if (now - bus.time_mt > 120) return;
 
-          // [核心修改] 根据 route_code 获取对应的图片
-          const config = this.routeConfig[bus.route_code];
-          // 如果找不到配置，使用原来的默认图片作为 fallback
-          const iconUrl = config ? config.icon : 'https://bus.sustcra.com/bus-icon-view.png';
+        currentBusIds.add(bus.id);
 
-          // 动态设置背景图片
-          busEl.style.backgroundImage = `url('${iconUrl}')`;
+        if (this.busMarkers[bus.id]) {
+          // --- 情况 A: 车辆已存在，执行平滑移动 ---
+          this.animateBusMarker(bus.id, bus);
+        } else {
+          // --- 情况 B: 新车辆，创建 Marker ---
+          this.createBusMarker(bus);
+        }
+      });
 
-          const marker = new maplibre.Marker({ element: busEl, anchor: 'center' })
-              .setLngLat([bus.lng, bus.lat])
-              .setPopup(this.createBusInfoPopup(bus))
-              .setRotation(bus.heading || 0)
-              .addTo(this.map);
-
-          this.busMarkers.push(marker);
+      // --- 情况 C: 清理已消失的车辆 ---
+      // 遍历现有的所有 Marker，如果它不在本次 API 返回的列表(currentBusIds)里，说明下线了
+      Object.keys(this.busMarkers).forEach(id => {
+        if (!currentBusIds.has(id)) {
+          // 移除地图上的图标
+          this.busMarkers[id].remove();
+          // 删除引用
+          delete this.busMarkers[id];
+          // 如果有正在进行的动画，也取消掉
+          if (this.busAnimations[id]) {
+            cancelAnimationFrame(this.busAnimations[id]);
+            delete this.busAnimations[id];
+          }
         }
       });
     },
@@ -471,21 +553,26 @@ export default {
       });
     },
 
-    createBusInfoPopup(bus) {
+    // 只负责生成 HTML 字符串
+    getBusPopupHTML(bus) {
       const config = this.routeConfig[bus.route_code] || {};
-
       const lineNum = config.name || bus.route_code;
       const direction = config.directions?.[bus.route_dir] ?? '';
       const color = config.color ?? '#cccccc';
 
-      const html = `
-        <div class="bus-popup">
-          <div class="plate">${bus.id.slice(2)} (${bus.speed} km/h)</div>
-          <div><span class="line-tag" style="background-color:${color}">${lineNum}</span> To: <strong>${direction}</strong></div>
-          <div>Next: <strong>${bus.next_station_string}</strong></div>
-        </div>
-      `;
-      return new maplibre.Popup({ offset: 20 }).setHTML(html);
+      return `
+      <div class="bus-popup">
+        <div class="plate">${bus.id.slice(2)} (${bus.speed} km/h)</div>
+        <div><span class="line-tag" style="background-color:${color}">${lineNum}</span> To: <strong>${direction}</strong></div>
+        <div>Next: <strong>${bus.next_station_string}</strong></div>
+      </div>
+    `;
+    },
+
+    // 创建 Popup 对象时调用上面的方法
+    createBusInfoPopup(bus) {
+      return new maplibre.Popup({ offset: 20 })
+          .setHTML(this.getBusPopupHTML(bus));
     },
 
     createEtaListHtml(etas) {
@@ -547,6 +634,10 @@ export default {
 
   unmounted() {
     clearInterval(this.busUpdateTimer);
+
+    // 清理所有正在进行的动画
+    Object.values(this.busAnimations).forEach(id => cancelAnimationFrame(id));
+
     if (this.themeChangeHandler) {
       window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', this.themeChangeHandler);
     }
