@@ -187,7 +187,52 @@ export default {
       console.log("NKDH1 route layer added.");
 
       // 添加站点、建筑和校门图层
-      this.addSymbolLayer('stations', this.allStationsGeoJSON, 'bus-station-icon', 0.075, [0, 1.25]);
+      // station 语义缩放
+      if (!this.map.getSource('stations-source')) {
+        this.map.addSource('stations-source', {
+          type: 'geojson',
+          data: this.allStationsGeoJSON
+        });
+      }
+
+      // (B) 添加圆点图层
+      this.map.addLayer({
+        'id': 'stations-dots',
+        'type': 'circle',
+        'source': 'stations-source',
+        'maxzoom': 16.5,
+        'paint': {
+          'circle-radius': 4,
+          'circle-color': '#1fa252',
+          'circle-stroke-width': 1.5,
+          'circle-stroke-color': '#ffffff'
+        }
+      });
+
+      // (C) 添加图标图层
+      this.map.addLayer({
+        'id': 'stations-icons',
+        'type': 'symbol',
+        'source': 'stations-source',
+        'minzoom': 16.5,
+        'layout': {
+          'icon-image': 'bus-station-icon',
+          'icon-size': 0.075,
+          'icon-anchor': 'bottom',
+          'icon-offset': [0, 0],
+          'text-field': ['get', 'name'],
+          'text-size': 12,
+          'text-offset': [0, 1.25],
+          'text-anchor': 'top'
+        },
+        'paint': {
+          'text-color': '#333',
+          'text-halo-color': '#fff',
+          'text-halo-width': 2
+        }
+      });
+
+      // this.addSymbolLayer('stations', this.allStationsGeoJSON, 'bus-station-icon', 0.075, [0, 1.25]);
       this.addSymbolLayer('buildings', this.bldgGeoJSON, 'bldg-icon', 0.02, [0, 0.3], 11);
       this.addSymbolLayer('gates', this.gateGeoJSON, 'gate-icon', 0.05, [0, 0.6]);
     },
