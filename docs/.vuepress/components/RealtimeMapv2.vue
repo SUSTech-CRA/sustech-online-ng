@@ -28,6 +28,28 @@ export default {
       mapTextColor: '#000000',
       mapTextHaloColor: '#FFFFFF', // 为文字描边颜色创建一个状态
 
+      // 配置表，每条线路单独定义方向映射 & 颜色
+      routeConfig: {
+        NKDH1: {
+          name: 'L1',
+          directions: { '0': '顺时针🔁CW', '1': '' },
+          icon: 'https://bus.sustcra.com/static/icon/bus-icon-NKDH1.png',
+          color: '#4ca963'
+        },
+        NKDH2: {
+          name: 'L2',
+          directions: { '0': '逆时针🔄CCW', '1': '' },
+          icon: 'https://bus.sustcra.com/static/icon/bus-icon-NKDH2.png',
+          color: '#db7490'
+        },
+        SEV: { // 新增的路线
+          name: '电瓶车',
+          directions: { '-1': '' },
+          icon: 'https://bus.sustcra.com/static/icon/bus-icon-SEV.png',
+          color: '#7030a1'
+        }
+      },
+
       // --- Data Placeholders ---
       // 在这里填入你的线路GeoJSON坐标数据
       geojson_NKDH1: [],
@@ -339,6 +361,14 @@ export default {
           const busEl = document.createElement('div');
           busEl.className = 'bus-marker';
 
+          // [核心修改] 根据 route_code 获取对应的图片
+          const config = this.routeConfig[bus.route_code];
+          // 如果找不到配置，使用原来的默认图片作为 fallback
+          const iconUrl = config ? config.icon : 'https://bus.sustcra.com/bus-icon-view.png';
+
+          // 动态设置背景图片
+          busEl.style.backgroundImage = `url('${iconUrl}')`;
+
           const marker = new maplibre.Marker({ element: busEl, anchor: 'center' })
               .setLngLat([bus.lng, bus.lat])
               .setPopup(this.createBusInfoPopup(bus))
@@ -442,31 +472,11 @@ export default {
     },
 
     createBusInfoPopup(bus) {
-      // 配置表，每条线路单独定义方向映射 & 颜色
-      const routeConfig = {
-        NKDH1: {
-          name: 'L1',
-          directions: { '0': '顺时针 Clockwise', '1': '' },
-          color: '#4ca963'
-        },
-        NKDH2: {
-          name: 'L2',
-          directions: { '0': '逆时针 Counter-Clockwise', '1': '' },
-          color: '#db7490'
-        },
-        SEV: { // 新增的路线
-          name: '电瓶车',
-          directions: { '-1': '' },
-          color: '#7030a1'
-        }
-      };
+      const config = this.routeConfig[bus.route_code] || {};
 
-      // 使用时直接查表
-      const lineNum = routeConfig[bus.route_code]?.name || bus.route_code;
-      const config = routeConfig[bus.route_code] || {};
+      const lineNum = config.name || bus.route_code;
       const direction = config.directions?.[bus.route_dir] ?? '';
       const color = config.color ?? '#cccccc';
-
 
       const html = `
         <div class="bus-popup">
@@ -576,7 +586,6 @@ export default {
 .bus-marker {
   width: 25px;
   height: 25px;
-  background-image: url('https://bus.sustcra.com/bus-icon-view.png');
   background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;

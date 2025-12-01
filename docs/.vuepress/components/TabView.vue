@@ -15,7 +15,6 @@
       <div v-if="currentSelect === 'bus-location'">
         <div class="bus-location-hint" v-if="showMapChart">
           <b>位置每5秒自动刷新。</b>Location refreshes automatically every 5 seconds.<br>
-          <b>由于线路调整，实时到站时间功能暂时停用。请参考时刻表计划行程。</b>Arrival estimates are not available now due to route adjustments. Please refer to the timetable to plan your trip.<br>>
         </div>
         <RealtimeMapv2 v-if="showMapChart" />
         <!-- <BusETAdemo /> -->
