@@ -2,16 +2,17 @@
 
 [南科校历|南方科技大学](https://www.sustech.edu.cn/zh/academic-calendar.html)
 
-## 【当前学年】2024-2025 学年 春季学期
+## 【当前学年】2025-2026 学年 春季学期
 
-- [下载校历](https://www.sustech.edu.cn/uploads/files/2024/12/24093901_29176.pdf)
+- [下载校历](https://sustech.edu.cn/uploads/images/2025/11/25155122_83600.jpg)
 
-<a data-fancybox title="" href="https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/calendar/pic/2025-1.png">![](./pic/2025-1.png)</a>
+<a data-fancybox title="" href="https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/calendar/pic/2026-1.jpg">![](./pic/2026-1.jpg)</a>
 
-<a data-fancybox title="" href="https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/calendar/pic/2025-2.png">![](./pic/2025-2.png)</a>
+<a data-fancybox title="" href="https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/calendar/pic/2026-2.jpg">![](./pic/2026-2.jpg)</a>
 
 ## 历史校历（存档）
 
+* [2025-2026 学年](2025-2026.md)
 * [2024-2025 学年](2024-2025.md)
 * [2023-2024 学年](2023-2024.md)
 * [2022-2023 学年](2022-2023.md)
