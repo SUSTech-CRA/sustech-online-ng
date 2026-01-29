@@ -1,6 +1,5 @@
 {
-  "times": [
-  ],
+  "times": [],
   "stations": [
     [
       "欣园",
@@ -31,5 +30,5 @@
       1
     ]
   ],
-  "minuteOnRoad": 10
+  "minuteOnRoad": 23
 }

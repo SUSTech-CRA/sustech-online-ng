@@ -149,7 +149,7 @@ export default {
       now: new Date(),
       timer: null,
       showUpcomingOnly: true,
-      defaultTripDuration: 20 // Default duration in minutes for "en-route" calculation
+      defaultminuteOnRoad: 20 // Default duration in minutes for "en-route" calculation
     }
   },
   computed: {
@@ -249,13 +249,15 @@ export default {
                const results = await Promise.all(promises)
                results.forEach(res => {
                  const times = res.data.times || []
+                 const duration = res.data.minuteOnRoad
                  // Tag them
                  times.forEach(t => {
                    mergedTimes.push({
                      text: t,
                      val: this.timeToMinutes(t),
                      type: res.type || 'bus', // 'bus' or 'shuttle'
-                     status: 'future'
+                     status: 'future',
+                     duration: duration
                    })
                  })
                })
@@ -267,12 +269,14 @@ export default {
             try {
               const res = await axios.get(routeConfig.timesUrl)
               const times = res.data.times || []
+              const duration = res.data.minuteOnRoad
               times.forEach(t => {
                 mergedTimes.push({
                   text: t,
                   val: this.timeToMinutes(t),
                   type: 'bus',
-                  status: 'future'
+                  status: 'future',
+                  duration: duration
                 })
               })
             } catch (err) { console.error(err) }
@@ -312,9 +316,10 @@ export default {
           let nextFound = false
           r.times.forEach(t => {
             // Status logic
-            if (t.val < now - this.defaultTripDuration) {
+            const duration = t.duration || this.defaultminuteOnRoad
+            if (t.val < now - duration) {
               t.status = 'past'
-            } else if (t.val <= now && t.val >= now - this.defaultTripDuration) {
+            } else if (t.val <= now && t.val >= now - duration) {
               t.status = 'en-route'
             } else {
               // Future
