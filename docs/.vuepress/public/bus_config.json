@@ -61,7 +61,7 @@
                     ]
                 },
                 {
-                    "name": "B",
+                    "name": "区间快速下行 B",
                     "description": "荔园西 → 一号门\nLychee Hills W → Gate 1",
                     "type": "point-to-point",
                     "color": "#444",
@@ -79,7 +79,7 @@
             "title": "区间快速 上行\nShort-turn Rapid Service Uphill",
             "routes": [
                 {
-                    "name": "A",
+                    "name": "区间快速上行 A",
                     "description": "科研楼 → 欣园\nResearch Bldgs. → Joy Highland",
                     "type": "point-to-point",
                     "color": "#444",
@@ -95,7 +95,7 @@
                     ]
                 },
                 {
-                    "name": "B",
+                    "name": "区间快速上行 B",
                     "description": "二号门 → 欣园\nGate 2 → Joy Highland",
                     "type": "point-to-point",
                     "color": "#444",
@@ -113,7 +113,7 @@
             "title": "南山智园线\nNanshan iPark Line",
             "routes": [
                 {
-                    "name": "",
+                    "name": "南山智园离校线",
                     "description": "欣园 - 慧园 - 荔园西 - 学生宿舍 - 二号门 - 一号门 - 南山智园C1\nJoy Highland ... Nanshan iPark C1",
                     "type": "point-to-point",
                     "color": "#444",
@@ -125,7 +125,7 @@
                     ]
                 },
                 {
-                    "name": "",
+                    "name": "南山智园进校线",
                     "description": "南山智园C1 - 二号门 - 学生宿舍 - 荔园南 - 慧园 - 欣园\nNanshan iPark C1 ... Joy Highland",
                     "type": "point-to-point",
                     "color": "#444",
@@ -143,8 +143,8 @@
             "title": "集悦城线\nSoFunLand Line",
             "routes": [
                 {
-                    "name": "集悦城 - 六号门\nSoFunLand - Gate 6",
-                    "description": "",
+                    "name": "集悦城进校线",
+                    "description": "集悦城 → 六号门\nSoFunLand → Gate 6",
                     "type": "point-to-point",
                     "color": "#444",
                     "sources": [
@@ -155,8 +155,8 @@
                     ]
                 },
                 {
-                    "name": "六号门 - 集悦城\nGate 6 - SoFunLand",
-                    "description": "",
+                    "name": "集悦城离校线",
+                    "description": "六号门 → 集悦城\nGate 6 → SoFunLand",
                     "type": "point-to-point",
                     "color": "#444",
                     "sources": [
