@@ -49,7 +49,7 @@
             "title": "区间快速 下行\nShort-turn Rapid Service Downhill",
             "routes": [
                 {
-                    "name": "A",
+                    "name": "区间快速下行 A",
                     "description": "荔园西 → 科研楼\nLychee Hills W → Research Bldgs.",
                     "type": "point-to-point",
                     "color": "#444",
@@ -219,8 +219,8 @@
             "title": "集悦城线\nSoFunLand Line",
             "routes": [
                 {
-                    "name": "集悦城 - 六号门\nSoFunLand - Gate 6",
-                    "description": "",
+                    "name": "集悦城进校线",
+                    "description": "集悦城 → 六号门\nSoFunLand → Gate 6",
                     "type": "point-to-point",
                     "color": "#444",
                     "sources": [
@@ -231,8 +231,8 @@
                     ]
                 },
                 {
-                    "name": "六号门 - 集悦城\nGate 6 - SoFunLand",
-                    "description": "",
+                    "name": "集悦城离校线",
+                    "description": "六号门 → 集悦城\nGate 6 → SoFunLand",
                     "type": "point-to-point",
                     "color": "#444",
                     "sources": [

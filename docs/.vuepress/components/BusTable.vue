@@ -68,16 +68,17 @@
             >
               <!-- Left: Route Info -->
               <div class="route-info" :style="{ borderLeftColor: route.color || group.color || '#ccc' }">
-                <!-- If it's the first route in group, show Group Title? 
+                <!-- If it's the first route in group, show Group Title?
                      Or show Route Name?
-                     Image 1: "1 Line 1 CW" is the big box. 
-                     Image 1: "Short-turn" has "A" and "B". 
+                     Image 1: "1 Line 1 CW" is the big box.
+                     Image 1: "Short-turn" has "A" and "B".
                      I'll show Group Title for the first route if pertinent, or just Route Name.
                      Let's use a combination.
                 -->
                 <div class="route-title-main">
-                  <span v-if="rIndex === 0 && group.routes.length > 1" class="group-title-text">{{ group.title.split('\n')[0] }}</span>
-                  <span v-else class="route-name-text">{{ route.name || group.title }}</span>
+                  <span v-if="rIndex === 0 && group.routes.length > 1" class="group-title-text">{{ route.name || group.title.split('\n')[0] }}</span>
+                  <span v-else-if="rIndex === 0" class="route-name-text">{{ route.name || group.title }}</span>
+                  <span v-else class="route-name-text">{{ route.name }}</span>
                 </div>
                 <div class="route-desc" v-if="route.description">
                    {{ route.description.split('\n')[0] }}
