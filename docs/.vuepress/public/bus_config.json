@@ -87,6 +87,10 @@
                         {
                             "url": "/bus_times/short_up_a.json",
                             "type": "bus"
+                        },
+                        {
+                            "url": "/bus_times/short_shuttle_up_a.json",
+                            "type": "shuttle"
                         }
                     ]
                 },
