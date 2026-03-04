@@ -465,13 +465,15 @@ export default {
 .route-title-main {
   font-weight: 700;
   font-size: 1rem;
-  margin-bottom: 0.3rem;
   line-height: 1.2;
+  display: inline;
 }
 
 .route-desc {
   font-size: 0.75rem;
   opacity: 0.7;
+  display: inline;
+  margin-left: 0.3rem;
 }
 
 .route-times {
@@ -553,12 +555,14 @@ export default {
     width: 100%;
     border-left: none;
     border-top: 4px solid #ccc; /* Move color to top */
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
     padding: 0.5rem;
   }
-  .route-title-main { margin-bottom: 0; }
-  .route-desc { text-align: right; }
+  .route-title-main,
+  .route-desc {
+    display: inline;
+  }
+  .route-desc {
+    margin-left: 0.3rem;
+  }
 }
 </style>

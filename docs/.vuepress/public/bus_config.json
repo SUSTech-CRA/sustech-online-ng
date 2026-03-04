@@ -5,7 +5,7 @@
             "title": "1 路 / Line 1",
             "routes": [
                 {
-                    "name": "Line 1 CW",
+                    "name": "1路 内环",
                     "description": "顺时针 / Clockwise (欣园 → 欣园)",
                     "type": "loop",
                     "color": "#FF901C",
@@ -27,7 +27,7 @@
             "title": "2 路 / Line 2",
             "routes": [
                 {
-                    "name": "Line 2 CCW",
+                    "name": "2路 外环",
                     "description": "逆时针 / Counter-Clockwise (欣园 → 欣园)",
                     "type": "loop",
                     "color": "#F0608F",
@@ -175,7 +175,7 @@
             "title": "1 路 / Line 1",
             "routes": [
                 {
-                    "name": "Line 1 CW",
+                    "name": "1路 内环",
                     "description": "顺时针 / Clockwise (欣园 → 欣园)",
                     "type": "loop",
                     "color": "#009966",
@@ -197,7 +197,7 @@
             "title": "2 路 / Line 2",
             "routes": [
                 {
-                    "name": "Line 2 CCW",
+                    "name": "2路 外环",
                     "description": "逆时针 / Counter-Clockwise (欣园 → 欣园)",
                     "type": "loop",
                     "color": "#F0608F",
