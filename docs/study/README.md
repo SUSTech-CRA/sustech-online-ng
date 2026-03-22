@@ -36,6 +36,8 @@
 * [南方科技大学 2020 年度本科毕业生就业质量报告](http://career.sustech.edu.cn/detail/news?id=588518)
 * [南方科技大学 2021 届毕业生就业质量年度报告](http://career.sustech.edu.cn/detail/news?id=664725)
 * [南方科技大学 2022 届毕业生就业质量年度报告](http://career.sustech.edu.cn/detail/news?id=880924)
+* [南方科技大学 2023 届毕业生就业质量年度报告](https://career.sustech.edu.cn/detail/news?id=1039558)
+* [南方科技大学 2024 届毕业生就业质量年度报告](https://career.sustech.edu.cn/detail/news?id=1647576)
 
 
 ### GPA换算表（本科）
