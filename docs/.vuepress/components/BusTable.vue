@@ -20,16 +20,18 @@
       <!-- Legend -->
       <div class="legend-bar">
         <div class="legend-item">
-          <span class="dot bus"></span> 巴士 Bus
+          <span class="dot bus"></span>
+          <span class="dot bus-next"></span>
+          巴士 Bus
         </div>
         <div class="legend-item">
           <span class="dot shuttle"></span> 电瓶车 EV Shuttle
         </div>
         <div class="legend-item">
-          <span class="tag next">07:20</span> 下一班 Next
+          <span class="tag next bus">07:20</span> 下一班 Next
         </div>
         <div class="legend-item">
-          <span class="tag en-route">07:10</span> 运行中 En-route
+          <span class="tag en-route bus">07:10</span> 运行中 En-route
         </div>
       </div>
       
@@ -396,6 +398,7 @@ export default {
   display: inline-block;
 }
 .dot.bus { background: #333; }
+.dot.bus-next { background: #ED6C00; }
 .dot.shuttle { background: #00bcd4; } /* Cyan for shuttle as per image */
 
 [data-theme='dark'] .dot.bus { background: #aaa; }
@@ -507,33 +510,66 @@ export default {
 [data-theme='dark'] .time-pill.bus { color: #ddd; }
 
 /* Status Styling */
-.time-pill.en-route {
+/* Bus en-route */
+.time-pill.bus.en-route {
   border: 1px solid #ED6C00;
   color: #ED6C00 !important;
   background: rgba(237, 108, 0, 0.1);
 }
 
-.time-pill.next {
+/* Shuttle en-route */
+.time-pill.shuttle.en-route {
+  border: 1px solid #00bcd4;
+  color: #00bcd4 !important;
+  background: rgba(0, 188, 212, 0.1);
+}
+
+/* Bus next */
+.time-pill.bus.next {
   background: #ED6C00;
   color: white !important;
   font-weight: bold;
   box-shadow: 0 2px 5px rgba(237, 108, 0, 0.4);
 }
 
+/* Shuttle next */
+.time-pill.shuttle.next {
+  background: #00bcd4;
+  color: white !important;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 188, 212, 0.4);
+}
+
 .time-pill.past {
   opacity: 0.3;
 }
-/* Legend tags */
-.tag.next {
+/* Legend tags - Bus */
+.tag.next.bus {
   background: #ED6C00;
   color: white;
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 0.8em;
 }
-.tag.en-route {
+.tag.en-route.bus {
   border: 1px solid #ED6C00;
   color: #ED6C00;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.8em;
+}
+
+/* Legend tags - Shuttle */
+.tag.next.shuttle {
+  background: #00bcd4;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8em;
+}
+.tag.en-route.shuttle {
+  border: 1px solid #00bcd4;
+  color: #00bcd4;
   padding: 1px 5px;
   border-radius: 4px;
   font-size: 0.8em;
