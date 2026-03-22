@@ -48,30 +48,30 @@
 <thead>
   <tr>
     <th class="tg-0lax">
-    <h3>快捷入口</h3>
+    <h3>🔥 常用入口</h3>
     <ul>
-    <li><a href="https://www.sustech.edu.cn/" target="_blank" rel="noopener noreferrer">官网链接
+    <li><a href="https://www.sustech.edu.cn/" target="_blank" rel="noopener noreferrer">🌐 官网链接
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
-    <li><a href="https://lib.sustech.edu.cn/" target="_blank" rel="noopener noreferrer">图书馆
+    <li><a href="https://lib.sustech.edu.cn/" target="_blank" rel="noopener noreferrer">📖 图书馆
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
-    <li><a href="https://mail.sustech.edu.cn" target="_blank" rel="noopener noreferrer">邮箱服务
+    <li><a href="https://mail.sustech.edu.cn" target="_blank" rel="noopener noreferrer">📧 邮箱服务
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
-    <li><a href="https://ehall.sustech.edu.cn/new/index.html" target="_blank" rel="noopener noreferrer">服务大厅
+    <li><a href="https://ehall.sustech.edu.cn/new/index.html" target="_blank" rel="noopener noreferrer">📝 服务大厅
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
-    <li><a href="https://sakai.sustech.edu.cn" target="_blank" rel="noopener noreferrer">Sakai
-    <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a>, <a href="https://bb.sustech.edu.cn/" target="_blank" rel="noopener noreferrer">Blackboard<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
-    <li><a href="https://pms.sustech.edu.cn" target="_blank" rel="noopener noreferrer">联创打印<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a>, <a href="http://172.18.1.141/" target="_blank" rel="noopener noreferrer">（备用）<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
-      <li><a href="https://campuscard.sustech.edu.cn/epay/thirdconsume/qrcode" target="_blank" rel="noopener noreferrer">校园卡二维码
-    <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
+    <li><a href="https://sakai.sustech.edu.cn" target="_blank" rel="noopener noreferrer">📚 Sakai
+    <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a>, <a href="https://bb.sustech.edu.cn/" target="_blank" rel="noopener noreferrer">📚 Blackboard<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
+    <li><a href="https://pms.sustech.edu.cn" target="_blank" rel="noopener noreferrer">🖨️ 联创打印<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a>, <a href="http://172.18.1.141/" target="_blank" rel="noopener noreferrer">（备用）<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
     </ul>
     </th>
     <th class="tg-0lax">
-    <h3><a href="./transport/">交通 / 地图<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></h3>
+    <h3>🔥 常用入口</h3>
     <ul>
-    <li><a href="./transport/bustimer.html">巴士时刻表与车辆位置查看</a></li>
-    <li><a href="/facility/">校园街景</a></li>
-    <li><a href="https://ncesnext.com/">牛娃课程评价社区<Badge text="春季选课" type="danger"/></a></li>
-    <li><a href="http://live.cra.moe/">校园风景直播</a></li>
+    <li><a href="https://campuscard.sustech.edu.cn/epay/thirdconsume/qrcode" target="_blank" rel="noopener noreferrer">🆔 校园卡二维码
+    <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
+    <li><a href="./transport/bustimer.html">🚌 巴士时刻表与车辆位置查看</a></li>
+    <li><a href="/facility/">📍 校园街景</a></li>
+    <li><a href="https://ncesnext.com/">⭐ 牛娃课程评价社区<Badge text="春季选课" type="danger"/></a></li>
+    <li><a href="./study/talks/">🎤 近日讲座</a></li>
     </ul>
     </th>
   </tr>
