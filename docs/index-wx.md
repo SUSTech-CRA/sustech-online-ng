@@ -64,7 +64,6 @@
     </ul>
     </th>
     <th class="tg-0lax">
-    <h3>🔥 常用入口</h3>
     <ul>
     <li><a href="https://campuscard.sustech.edu.cn/epay/thirdconsume/qrcode" target="_blank" rel="noopener noreferrer">🆔 校园卡二维码
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
