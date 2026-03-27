@@ -209,30 +209,72 @@ export default {
 
     async loadPredictionData() {
       try {
-        const [line1Res, line2Res, stop1Res, stop2Res] = await Promise.all([
-          axios.get('/bus_echart/line1.json'),
-          axios.get('/bus_echart/line2.json'),
-          axios.get('/bus_echart/stop1.json'),
-          axios.get('/bus_echart/stop2.json'),
+        const [cwLineRes, ccwLineRes, xybs1Dir0Res, xybs1Dir1Res] = await Promise.all([
+          axios.get('https://bus.sustcra.com/static/lines/XYBS1_clockwise.json'),
+          axios.get('https://bus.sustcra.com/static/lines/XYBS2.json'),
+          axios.get(`${this.apiBaseUrl}/XYBS1/0/stations`),
+          axios.get(`${this.apiBaseUrl}/XYBS1/1/stations`),
+        ]);
+
+        const latestStationGeoJSON = this.mergeStationFeatures([
+          xybs1Dir0Res.data,
+          xybs1Dir1Res.data,
         ]);
 
         this.predictionRoutes = this.buildPredictionRoutes([
           {
-            routeName: 'L1',
+            key: 'sev-cw',
+            routeName: 'CW',
+            directionLabel: '顺时针 CW',
             color: this.routeConfig.NKDH1.color,
-            lineGeoJSON: line1Res.data,
-            stopGeoJSON: stop1Res.data,
+            lineGeoJSON: cwLineRes.data,
+            stopGeoJSON: latestStationGeoJSON,
           },
           {
-            routeName: 'L2',
+            key: 'sev-ccw',
+            routeName: 'CCW',
+            directionLabel: '逆时针 CCW',
             color: this.routeConfig.NKDH2.color,
-            lineGeoJSON: line2Res.data,
-            stopGeoJSON: stop2Res.data,
+            lineGeoJSON: ccwLineRes.data,
+            stopGeoJSON: latestStationGeoJSON,
           },
         ]);
       } catch (error) {
         console.error('Failed to load SEV prediction data:', error);
       }
+    },
+
+    mergeStationFeatures(featureCollections) {
+      const featureMap = new Map();
+
+      featureCollections.forEach((collection) => {
+        const features = collection?.features || [];
+        features.forEach((feature) => {
+          const coordinates = feature.geometry?.coordinates?.slice(0, 2);
+          if (!coordinates || coordinates.length < 2) {
+            return;
+          }
+
+          const key = coordinates.map((value) => Number(value).toFixed(6)).join(',');
+          if (!featureMap.has(key)) {
+            featureMap.set(key, {
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                coordinates,
+              },
+              properties: {
+                ...feature.properties,
+              },
+            });
+          }
+        });
+      });
+
+      return {
+        type: 'FeatureCollection',
+        features: Array.from(featureMap.values()),
+      };
     },
 
     buildPredictionRoutes(routeDefinitions) {
@@ -247,41 +289,26 @@ export default {
         }
 
         const totalLengthKm = turf.length(lineFeature, { units: 'kilometers' });
-        const orderedStops = stopFeatures
+        const stops = stopFeatures
             .map((feature) => {
               const snapped = turf.nearestPointOnLine(lineFeature, feature, { units: 'kilometers' });
               return {
                 shortName: this.getShortStationName(feature.properties.name),
                 displayName: this.getStationDisplayName(feature.properties.name),
                 coordinates: feature.geometry.coordinates.slice(0, 2),
-                baseProgressKm: snapped.properties.location,
+                progressKm: snapped.properties.location,
               };
             })
-            .sort((a, b) => a.baseProgressKm - b.baseProgressKm);
+            .sort((a, b) => a.progressKm - b.progressKm);
 
-        const firstStop = orderedStops[0];
-        const lastStop = orderedStops[orderedStops.length - 1];
-
-        routes[`${definition.routeName}-forward`] = this.createPredictionRoute({
-          key: `${definition.routeName}-forward`,
+        routes[definition.key] = this.createPredictionRoute({
+          key: definition.key,
           routeName: definition.routeName,
+          directionLabel: definition.directionLabel,
           color: definition.color,
           lineFeature,
           totalLengthKm,
-          orderedStops,
-          directionLabel: `${firstStop.shortName} -> ${lastStop.shortName}`,
-          reversed: false,
-        });
-
-        routes[`${definition.routeName}-reverse`] = this.createPredictionRoute({
-          key: `${definition.routeName}-reverse`,
-          routeName: definition.routeName,
-          color: definition.color,
-          lineFeature,
-          totalLengthKm,
-          orderedStops,
-          directionLabel: `${lastStop.shortName} -> ${firstStop.shortName}`,
-          reversed: true,
+          stops,
         });
       });
 
@@ -294,17 +321,9 @@ export default {
       color,
       lineFeature,
       totalLengthKm,
-      orderedStops,
       directionLabel,
-      reversed,
+      stops,
     }) {
-      const stops = orderedStops
-          .map((stop) => ({
-            ...stop,
-            progressKm: reversed ? totalLengthKm - stop.baseProgressKm : stop.baseProgressKm,
-          }))
-          .sort((a, b) => a.progressKm - b.progressKm);
-
       return {
         key,
         routeName,
@@ -312,7 +331,6 @@ export default {
         lineFeature,
         totalLengthKm,
         directionLabel,
-        reversed,
         stops,
         lineCoordinates: lineFeature.geometry.coordinates.map((coord) => coord.slice(0, 2)),
       };
@@ -470,18 +488,12 @@ export default {
       const segmentStart = route.lineCoordinates[segmentIndex];
       const segmentEnd = route.lineCoordinates[Math.min(segmentIndex + 1, route.lineCoordinates.length - 1)];
 
-      let routeBearing = this.normalizeBearing(
+      const routeBearing = this.normalizeBearing(
           this.calculateBusAngle(segmentStart[1], segmentStart[0], segmentEnd[1], segmentEnd[0])
       );
 
-      if (route.reversed) {
-        routeBearing = this.normalizeBearing(routeBearing + 180);
-      }
-
       return {
-        progressKm: route.reversed
-            ? route.totalLengthKm - snapped.properties.location
-            : snapped.properties.location,
+        progressKm: snapped.properties.location,
         distanceMeters: (snapped.properties.dist || 0) * 1000,
         routeBearing,
       };
