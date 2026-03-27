@@ -51,8 +51,9 @@ export default {
       },
 
       // --- Data Placeholders ---
-      // 在这里填入你的线路GeoJSON坐标数据
       geojson_NKDH1: [],
+      predictionRoutes: {},
+      sevPredictionHistory: {},
 
       // --- State Management ---
       busLocations: [],
@@ -102,11 +103,11 @@ export default {
 
     // --- 2. Data Loading ---
     async loadMapData() {
-      // 并发加载所有数据
       await Promise.all([
         this.loadAllStationData(),
         this.loadBuildingAndGateData(),
         this.loadGeoJSONLines(),
+        this.loadPredictionData(),
       ]);
       this.loadMapIconsAndLayers();
     },
@@ -204,6 +205,117 @@ export default {
       } catch (error) {
         console.error("Failed to fetch GeoJSON lines:", error);
       }
+    },
+
+    async loadPredictionData() {
+      try {
+        const [line1Res, line2Res, stop1Res, stop2Res] = await Promise.all([
+          axios.get('/bus_echart/line1.json'),
+          axios.get('/bus_echart/line2.json'),
+          axios.get('/bus_echart/stop1.json'),
+          axios.get('/bus_echart/stop2.json'),
+        ]);
+
+        this.predictionRoutes = this.buildPredictionRoutes([
+          {
+            routeName: 'L1',
+            color: this.routeConfig.NKDH1.color,
+            lineGeoJSON: line1Res.data,
+            stopGeoJSON: stop1Res.data,
+          },
+          {
+            routeName: 'L2',
+            color: this.routeConfig.NKDH2.color,
+            lineGeoJSON: line2Res.data,
+            stopGeoJSON: stop2Res.data,
+          },
+        ]);
+      } catch (error) {
+        console.error('Failed to load SEV prediction data:', error);
+      }
+    },
+
+    buildPredictionRoutes(routeDefinitions) {
+      const routes = {};
+
+      routeDefinitions.forEach((definition) => {
+        const lineFeature = definition.lineGeoJSON?.features?.[0];
+        const stopFeatures = definition.stopGeoJSON?.features || [];
+
+        if (!lineFeature || stopFeatures.length === 0) {
+          return;
+        }
+
+        const totalLengthKm = turf.length(lineFeature, { units: 'kilometers' });
+        const orderedStops = stopFeatures
+            .map((feature) => {
+              const snapped = turf.nearestPointOnLine(lineFeature, feature, { units: 'kilometers' });
+              return {
+                shortName: this.getShortStationName(feature.properties.name),
+                displayName: this.getStationDisplayName(feature.properties.name),
+                coordinates: feature.geometry.coordinates.slice(0, 2),
+                baseProgressKm: snapped.properties.location,
+              };
+            })
+            .sort((a, b) => a.baseProgressKm - b.baseProgressKm);
+
+        const firstStop = orderedStops[0];
+        const lastStop = orderedStops[orderedStops.length - 1];
+
+        routes[`${definition.routeName}-forward`] = this.createPredictionRoute({
+          key: `${definition.routeName}-forward`,
+          routeName: definition.routeName,
+          color: definition.color,
+          lineFeature,
+          totalLengthKm,
+          orderedStops,
+          directionLabel: `${firstStop.shortName} -> ${lastStop.shortName}`,
+          reversed: false,
+        });
+
+        routes[`${definition.routeName}-reverse`] = this.createPredictionRoute({
+          key: `${definition.routeName}-reverse`,
+          routeName: definition.routeName,
+          color: definition.color,
+          lineFeature,
+          totalLengthKm,
+          orderedStops,
+          directionLabel: `${lastStop.shortName} -> ${firstStop.shortName}`,
+          reversed: true,
+        });
+      });
+
+      return routes;
+    },
+
+    createPredictionRoute({
+      key,
+      routeName,
+      color,
+      lineFeature,
+      totalLengthKm,
+      orderedStops,
+      directionLabel,
+      reversed,
+    }) {
+      const stops = orderedStops
+          .map((stop) => ({
+            ...stop,
+            progressKm: reversed ? totalLengthKm - stop.baseProgressKm : stop.baseProgressKm,
+          }))
+          .sort((a, b) => a.progressKm - b.progressKm);
+
+      return {
+        key,
+        routeName,
+        color,
+        lineFeature,
+        totalLengthKm,
+        directionLabel,
+        reversed,
+        stops,
+        lineCoordinates: lineFeature.geometry.coordinates.map((coord) => coord.slice(0, 2)),
+      };
     },
 
 
@@ -333,6 +445,176 @@ export default {
       return Math.sqrt(Math.pow(point2[0] - point1[0], 2) + Math.pow(point2[1] - point1[1], 2));
     },
 
+    normalizeBearing(angle) {
+      return ((angle % 360) + 360) % 360;
+    },
+
+    calculateAngleDifference(a, b) {
+      const normalizedA = this.normalizeBearing(a);
+      const normalizedB = this.normalizeBearing(b);
+      const diff = Math.abs(normalizedA - normalizedB);
+      return Math.min(diff, 360 - diff);
+    },
+
+    getShortStationName(name = '') {
+      return name.split('\n')[0].trim();
+    },
+
+    getStationDisplayName(name = '') {
+      return name.replace(/\n/g, ' ').trim();
+    },
+
+    projectBusToPredictionRoute(busPoint, route) {
+      const snapped = turf.nearestPointOnLine(route.lineFeature, busPoint, { units: 'kilometers' });
+      const segmentIndex = Math.min(snapped.properties.index || 0, Math.max(route.lineCoordinates.length - 2, 0));
+      const segmentStart = route.lineCoordinates[segmentIndex];
+      const segmentEnd = route.lineCoordinates[Math.min(segmentIndex + 1, route.lineCoordinates.length - 1)];
+
+      let routeBearing = this.normalizeBearing(
+          this.calculateBusAngle(segmentStart[1], segmentStart[0], segmentEnd[1], segmentEnd[0])
+      );
+
+      if (route.reversed) {
+        routeBearing = this.normalizeBearing(routeBearing + 180);
+      }
+
+      return {
+        progressKm: route.reversed
+            ? route.totalLengthKm - snapped.properties.location
+            : snapped.properties.location,
+        distanceMeters: (snapped.properties.dist || 0) * 1000,
+        routeBearing,
+      };
+    },
+
+    findNextStopForRoute(route, progressKm) {
+      const progressMarginKm = 0.02;
+      return route.stops.find((stop) => stop.progressKm >= progressKm + progressMarginKm)
+          || route.stops[route.stops.length - 1]
+          || null;
+    },
+
+    predictSevRoute(bus) {
+      const predictionRoutes = Object.values(this.predictionRoutes);
+      if (predictionRoutes.length === 0) {
+        return null;
+      }
+
+      const busPoint = turf.point([bus.lng, bus.lat]);
+      const speed = Number(bus.speed) || 0;
+      const course = Number(bus.course);
+      const previousState = this.sevPredictionHistory[bus.id];
+      const gpsMoveKm = previousState
+          ? turf.distance(
+              turf.point([previousState.lng, previousState.lat]),
+              busPoint,
+              { units: 'kilometers' }
+          )
+          : 0;
+
+      const candidates = predictionRoutes
+          .map((route) => {
+            const projection = this.projectBusToPredictionRoute(busPoint, route);
+            let score = projection.distanceMeters * 4;
+
+            if (speed > 3 && Number.isFinite(course) && course > 0) {
+              projection.courseDiff = this.calculateAngleDifference(course, projection.routeBearing);
+              score += projection.courseDiff * 0.7;
+            }
+
+            const previousProgress = previousState?.progressByRoute?.[route.key];
+            if (typeof previousProgress === 'number') {
+              const progressDeltaKm = projection.progressKm - previousProgress;
+              const dtSeconds = Math.max((bus.time_mt || 0) - (previousState.time_mt || 0), 1);
+              const maxReasonableMoveKm = Math.max(gpsMoveKm + 0.08, ((speed + 12) * dtSeconds) / 3600);
+
+              projection.progressDeltaKm = progressDeltaKm;
+
+              if (progressDeltaKm < -0.03) {
+                score += 180;
+              }
+              if (progressDeltaKm > maxReasonableMoveKm + 0.15) {
+                score += 90;
+              }
+              if (gpsMoveKm > 0.01 && Math.abs(progressDeltaKm - gpsMoveKm) > 0.12) {
+                score += 35;
+              }
+              if (progressDeltaKm > 0.01) {
+                score -= Math.min(progressDeltaKm * 600, 30);
+              }
+            }
+
+            return {
+              ...projection,
+              route,
+              score,
+            };
+          })
+          .sort((a, b) => a.score - b.score);
+
+      let bestCandidate = candidates[0];
+      const previousChoice = previousState?.lastPredictionKey
+          ? candidates.find((candidate) => candidate.route.key === previousState.lastPredictionKey)
+          : null;
+
+      // 使用轻微滞回，避免在重合路段上来回抖动
+      if (previousChoice && previousChoice.score <= bestCandidate.score + 45) {
+        bestCandidate = previousChoice;
+      }
+
+      const nextStop = this.findNextStopForRoute(bestCandidate.route, bestCandidate.progressKm);
+      const prediction = nextStop && bestCandidate.distanceMeters <= 160
+          ? {
+              routeKey: bestCandidate.route.key,
+              routeName: bestCandidate.route.routeName,
+              directionLabel: bestCandidate.route.directionLabel,
+              nextStop,
+              color: bestCandidate.route.color,
+              heading: bestCandidate.routeBearing,
+              lineDistanceMeters: bestCandidate.distanceMeters,
+            }
+          : null;
+
+      this.sevPredictionHistory[bus.id] = {
+        lng: bus.lng,
+        lat: bus.lat,
+        time_mt: bus.time_mt,
+        progressByRoute: Object.fromEntries(
+            candidates.map((candidate) => [candidate.route.key, candidate.progressKm])
+        ),
+        lastPredictionKey: prediction?.routeKey
+            || previousState?.lastPredictionKey
+            || bestCandidate?.route.key
+            || null,
+      };
+
+      return prediction;
+    },
+
+    prepareBusForDisplay(bus) {
+      if (bus.route_code !== 'SEV') {
+        return {
+          ...bus,
+          heading: Number(bus.course) || 0,
+        };
+      }
+
+      const prediction = this.predictSevRoute(bus);
+      const fallbackHeading = Number.isFinite(Number(bus.course)) ? Number(bus.course) : 0;
+      return {
+        ...bus,
+        heading: prediction?.heading ?? fallbackHeading,
+        sevPrediction: prediction,
+      };
+    },
+
+    getMarkerRotation(bus) {
+      if (bus.route_code === 'SEV') {
+        return 0;
+      }
+      return bus.heading || 0;
+    },
+
     async fetchBusLocations() {
       try {
         const response = await axios.get(`https://bus.sustcra.com/api/v2/monitor_osm/`);
@@ -367,7 +649,7 @@ export default {
       const marker = new maplibre.Marker({ element: busEl, anchor: 'center' })
           .setLngLat([bus.lng, bus.lat])
           .setPopup(this.createBusInfoPopup(bus)) // 创建新的 Popup 实例
-          .setRotation(bus.heading || 0)
+          .setRotation(this.getMarkerRotation(bus))
           .addTo(this.map);
 
       this.busMarkers[bus.id] = marker;
@@ -404,7 +686,7 @@ export default {
       const startTime = performance.now();
 
       // 更新旋转角度
-      marker.setRotation(busData.heading || 0);
+      marker.setRotation(this.getMarkerRotation(busData));
 
       const animate = (currentTime) => {
         const elapsed = currentTime - startTime;
@@ -430,9 +712,11 @@ export default {
       // 用于记录本次更新中存在的车辆ID，方便后续找出需要删除的车辆
       const currentBusIds = new Set();
 
-      this.busLocations.forEach(bus => {
+      this.busLocations.forEach((rawBus) => {
         // 只处理最近 120 秒有数据的车
-        if (now - bus.time_mt > 120) return;
+        if (now - rawBus.time_mt > 120) return;
+
+        const bus = this.prepareBusForDisplay(rawBus);
 
         currentBusIds.add(bus.id);
 
@@ -453,6 +737,7 @@ export default {
           this.busMarkers[id].remove();
           // 删除引用
           delete this.busMarkers[id];
+          delete this.sevPredictionHistory[id];
           // 如果有正在进行的动画，也取消掉
           if (this.busAnimations[id]) {
             cancelAnimationFrame(this.busAnimations[id]);
@@ -464,9 +749,15 @@ export default {
 
     // --- 4. Event Handlers & Interaction ---
     setupMapListeners() {
-      // this.map.on('click', 'stations-layer', this.onStationClick);
-      this.map.on('mouseenter', 'stations-layer', () => this.map.getCanvas().style.cursor = 'pointer');
-      this.map.on('mouseleave', 'stations-layer', () => this.map.getCanvas().style.cursor = '');
+      ['stations-dots', 'stations-icons'].forEach((layerId) => {
+        this.map.on('mouseenter', layerId, () => {
+          this.map.getCanvas().style.cursor = 'pointer';
+        });
+        this.map.on('mouseleave', layerId, () => {
+          this.map.getCanvas().style.cursor = '';
+        });
+        this.map.on('click', layerId, this.onStationClick);
+      });
     },
 
     async onStationClick(e) {
@@ -557,14 +848,25 @@ export default {
     getBusPopupHTML(bus) {
       const config = this.routeConfig[bus.route_code] || {};
       const lineNum = config.name || bus.route_code;
-      const direction = config.directions?.[bus.route_dir] ?? '';
+      const direction = bus.route_code === 'SEV'
+          ? (bus.sevPrediction?.directionLabel || '方向预测中')
+          : (config.directions?.[bus.route_dir] ?? '');
       const color = config.color ?? '#cccccc';
+      const nextStation = bus.route_code === 'SEV'
+          ? (bus.sevPrediction?.nextStop?.displayName || '暂无预测')
+          : bus.next_station_string;
+      const directionLabel = bus.route_code === 'SEV' ? 'Predicted' : 'To';
+      const nextLabel = bus.route_code === 'SEV' ? 'Predicted Next' : 'Next';
+      const predictionBadge = bus.route_code === 'SEV'
+          ? '<span class="plate-tag">轨迹预测</span>'
+          : '';
 
       return `
       <div class="bus-popup">
         <div class="plate">${bus.id.slice(2)} (${bus.speed} km/h)</div>
-        <div><span class="line-tag" style="background-color:${color}">${lineNum}</span> To: <strong>${direction}</strong></div>
-        <div>Next: <strong>${bus.next_station_string}</strong></div>
+        <div><span class="line-tag" style="background-color:${color}">${lineNum}</span> ${predictionBadge}</div>
+        <div>${directionLabel}: <strong>${direction}</strong></div>
+        <div>${nextLabel}: <strong>${nextStation}</strong></div>
       </div>
     `;
     },
