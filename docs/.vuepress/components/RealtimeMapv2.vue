@@ -1,5 +1,23 @@
 <template>
   <div class="map-wrapper">
+    <div class="map-legend">
+      <div class="legend-item">
+        <span class="legend-icon station-dot"></span>
+        <span class="legend-text">站点 Station</span>
+      </div>
+      <div class="legend-item">
+        <img class="legend-icon bus-icon" src="https://bus.sustcra.com/static/icon/bus-icon-NKDH1.png" alt="1路" />
+        <span class="legend-text">1路 内环 顺时针 CW</span>
+      </div>
+      <div class="legend-item">
+        <img class="legend-icon bus-icon" src="https://bus.sustcra.com/static/icon/bus-icon-NKDH2.png" alt="2路" />
+        <span class="legend-text">2路 外环 逆时针 CCW</span>
+      </div>
+      <div class="legend-item">
+        <img class="legend-icon bus-icon" src="https://bus.sustcra.com/static/icon/bus-icon-SEV.png" alt="EV" />
+        <span class="legend-text">电瓶车 EV Shuttle</span>
+      </div>
+    </div>
     <div class="map-container" ref="mapContainer"></div>
     <span v-if="timeDrift" class="time-drift-display">Time Drift: {{ timeDrift }}s</span>
   </div>
@@ -968,6 +986,47 @@ export default {
   position: relative;
   width: 100%;
   height: 50vh; /* Give it a good height */
+}
+
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 8px 12px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 12px;
+  align-items: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-icon {
+  display: inline-block;
+}
+
+.legend-icon.station-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #1fa252;
+  border-radius: 50%;
+  border: 1.5px solid #ffffff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+.legend-icon.bus-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.legend-text {
+  color: #333;
+  white-space: nowrap;
 }
 
 .map-container {
