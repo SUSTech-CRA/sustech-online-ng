@@ -13,10 +13,10 @@
     <div class="tab-container">
       <!-- 第一个 div 根据 value 控制显示与隐藏 -->
       <div v-if="currentSelect === 'bus-location'">
-        <div class="bus-location-hint" v-if="showMapChart">
-          <b>位置每5秒自动刷新。</b>Location refreshes automatically every 5 seconds.<br>
-        </div>
         <RealtimeMapv2 v-if="showMapChart" />
+        <div class="bus-location-hint" v-if="showMapChart">
+          <b>位置每5秒刷新</b> Location updates every 5s<br>
+        </div>
         <!-- <BusETAdemo /> -->
         <!-- <BusChartVue /> -->
       </div>
