@@ -986,6 +986,8 @@ export default {
   position: relative;
   width: 100%;
   height: 50vh; /* Give it a good height */
+  display: flex;
+  flex-direction: column;
 }
 
 .map-legend {
@@ -1031,7 +1033,8 @@ export default {
 
 .map-container {
   width: 100%;
-  height: 100%;
+  flex: 1;
+  min-height: 0;
 }
 
 .time-drift-display {

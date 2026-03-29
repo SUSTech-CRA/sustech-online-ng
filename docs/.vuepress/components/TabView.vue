@@ -89,7 +89,7 @@ export default {
 }
 
 .bus-location-hint {
-  padding-bottom: 4px;
+  padding-top: 3px;
 }
 
 /* Dark mode overrides for Ant Design Segmented */
