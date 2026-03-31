@@ -8,20 +8,7 @@
 
 ---
 
-<!-- *旧版时间表：*
-<div id="button-div">
-<div class='bt-sub'><a href="./workday.html">💼 工作日</a></div>
-<div class='bt-sub'><a href="./redirect.html">自动选择</a></div>
-<div class='bt-sub'><a href="./holiday.html">💤 节假日</a></div>
-</div> -->
-
 <style>
-.bt-sub {
-    margin-top: 1%;
-    display: inline-block;
-    width: 32%;
-    text-align: center;
-}
 .bt-sub-new {
     margin-top: 1%;
     display: inline-block;
