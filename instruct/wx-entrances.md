@@ -8,7 +8,8 @@
 |---------|---------|------|
 | `docs/index-wx.md` | 📚 你科手册 | 微信版主页面，提供常用快捷入口、校园地图、新生指南等内容 |
 | `docs/transport/bustimer-wx.md` | 🚌 校园巴士时刻表 | 微信版巴士时刻表与车辆位置查看页面 |
-| `docs/canteen/canteen-wx.md` | 🍜 饭堂服务 | 微信版食堂服务页面 |
+| `docs/canteen/canteen-wx.md` | 🍜 饭堂服务 | 微信版食堂服务页面                      |
+| `docs/study/talks/talks-wx.md` | 🎤 讲座目录 | 微信版讲座目录入口页                      |
 
 ## 技术特点
 
