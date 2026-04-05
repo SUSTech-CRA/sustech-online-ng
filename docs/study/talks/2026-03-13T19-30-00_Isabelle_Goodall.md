@@ -1,7 +1,10 @@
-# Isabelle Goodall 学术主管：2026牛津大学暑期项目宣讲会
+﻿# Ms Isabelle Goodall Academic Officer：2026牛津大学暑期项目宣讲会
+
+> 以下内容根据公开信息整理，并经大模型处理生成，可能存在疏漏或误差，请以实际信息为准。
+
 
 * 题目: 2026牛津大学暑期项目宣讲会
-* 主讲人：Isabelle Goodall 学术主管 @ Oxford Prospects and Global Development Institute
+* 主讲人：Ms Isabelle Goodall Academic Officer @ Oxford Prospects and Global Development Institute
 * 时间：2026年3月13日 19:30-20:30
 * 地点：腾讯会议 911-338-004
 
