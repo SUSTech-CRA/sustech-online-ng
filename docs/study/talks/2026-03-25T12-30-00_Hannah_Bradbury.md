@@ -1,9 +1,12 @@
-# 《2026 Spring CLE Workshop 系列 第2期》Hannah Bradbury：2026春季CLE工作坊（第二讲）：自然表达——利用习语和日常用语提升对话技巧
+﻿# 《2026春季CLE工作坊 第2期》讲师 Hannah Bradbury：自然表达：运用惯用语和日常表达提升会话技巧
 
-* 题目: 2026春季CLE工作坊（第二讲）：自然表达——利用习语和日常用语提升对话技巧
-* 主讲人：Hannah Bradbury @ Southern University of Science and Technology Center for Language Education
+> 以下内容根据公开信息整理，并经大模型处理生成，可能存在疏漏或误差，请以实际信息为准。
+
+
+* 题目: 自然表达：运用惯用语和日常表达提升会话技巧
+* 主讲人：讲师 Hannah Bradbury @ 南方科技大学语言教育中心
 * 时间：2026年3月25日 12:30-13:30
-* 地点：SUSTech Study Lounge (Second Floor Above Starbuks)
+* 地点：南方科技大学学习室（二楼星巴克上方）
 
 ## 主讲人简介
 暂无简介
