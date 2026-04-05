@@ -1,4 +1,5 @@
 ENABLE_LOG = false;
+ENABLE_FOR_AUDIT = true;
 
 function post_to_wx() {
     var obj = {
@@ -21,12 +22,14 @@ function handleOutURL(url, whitelist_flag, file_flag, file_ext) {
     if (ENABLE_LOG) {
         console.log("劫持链接 " + url);
     }
-    wx.miniProgram.navigateTo({
-        url: '/pages/index/redirect?outURL=' + encodeURIComponent(url) +
-            '&inwhitelist=' + whitelist_flag +
-            '&handleFile=' + file_flag +
-            '&ext=' + file_ext,
-    });
+    if (!ENABLE_FOR_AUDIT) {
+        wx.miniProgram.navigateTo({
+            url: '/pages/index/redirect?outURL=' + encodeURIComponent(url) +
+                '&inwhitelist=' + whitelist_flag +
+                '&handleFile=' + file_flag +
+                '&ext=' + file_ext,
+        });
+    }
 }
 
 function override_onclick(event) {
