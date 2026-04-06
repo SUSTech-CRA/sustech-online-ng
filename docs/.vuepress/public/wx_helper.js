@@ -1,5 +1,5 @@
 ENABLE_LOG = false;
-ENABLE_FOR_AUDIT = true;
+ENABLE_FOR_AUDIT = false;
 
 function post_to_wx() {
     var obj = {
