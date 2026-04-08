@@ -1,140 +1,236 @@
-ENABLE_LOG = false;
-ENABLE_FOR_AUDIT = false;
+(() => {
+  const ENABLE_LOG = false;
+  const ENABLE_FOR_AUDIT = false;
+  const ENABLE_HOME_GRAY = false;
+  const HEARTBEAT_INTERVAL_MS = 1000;
+  const ADSENSE_DELAY_MS = 500;
 
-function post_to_wx() {
-    var obj = {
-        'msgType': "heartbeat",
-        'shareTitle': document.title,
-        'shareURL': document.URL,
-        'scrollTop': document.documentElement.scrollTop,
-        'time': (new Date()).valueOf()
-    };
-    wx.miniProgram.postMessage({
-        data: obj
-    });
-    wx.miniProgram.getEnv(function (res) {
-        window.is_miniprogram = res.miniprogram;
-    });
-}
-setInterval(post_to_wx, 1000);
+  const WHITELIST_HOSTS = new Set([
+    "mirrors.sustech.edu.cn",
+    "bus.sustcra.com",
+    "sustech.online",
+    "daily.sustech.online",
+    "susteen.itbill.cn",
+  ]);
 
-function handleOutURL(url, whitelist_flag, file_flag, file_ext) {
+  const SUPPORTED_FILE_EXTENSIONS = new Set([
+    "doc",
+    "docx",
+    "xls",
+    "xlsx",
+    "ppt",
+    "pptx",
+    "pdf",
+  ]);
+
+  window.is_miniprogram = window.is_miniprogram || false;
+
+  function log(...args) {
     if (ENABLE_LOG) {
-        console.log("劫持链接 " + url);
+      console.log("[wx_helper]", ...args);
     }
-    if (!ENABLE_FOR_AUDIT) {
-        wx.miniProgram.navigateTo({
-            url: '/pages/index/redirect?outURL=' + encodeURIComponent(url) +
-                '&inwhitelist=' + whitelist_flag +
-                '&handleFile=' + file_flag +
-                '&ext=' + file_ext,
-        });
+  }
+
+  function getMiniProgramAPI() {
+    return window.wx && window.wx.miniProgram ? window.wx.miniProgram : null;
+  }
+
+  function isInWechatMP() {
+    return (
+      /miniprogram/i.test(navigator.userAgent) ||
+      window.__wxjs_environment === "miniprogram" ||
+      window.is_miniprogram === true
+    );
+  }
+
+  function updateMiniProgramEnv() {
+    const miniProgram = getMiniProgramAPI();
+    if (!miniProgram || typeof miniProgram.getEnv !== "function") {
+      return;
     }
-}
 
-function override_onclick(event) {
-    /// 优化小程序内的文件或者外链显示
-    if (window.is_miniprogram) {
-        let url = event.currentTarget.getAttribute('href');
+    miniProgram.getEnv((res) => {
+      window.is_miniprogram = Boolean(res && res.miniprogram);
+    });
+  }
 
-        let url_obj = new URL(url);
-        let whitelist = new Set();
-        whitelist.add("mirrors.sustech.edu.cn");
-        whitelist.add("bus.sustcra.com");
-        whitelist.add("sustech.online");
-        whitelist.add("daily.sustech.online");
-        whitelist.add("susteen.itbill.cn")
-        whitelist.add("");
-
-        let supportFiles = new Set();
-        supportFiles.add("doc");
-        supportFiles.add("docx");
-        supportFiles.add("xls");
-        supportFiles.add("xlsx");
-        supportFiles.add("ppt");
-        supportFiles.add("pptx");
-        supportFiles.add("pdf");
-        let the_hostname = url_obj.hostname;
-        let path_ext = url_obj.pathname.split('.').pop().toLowerCase();
-        let whitelist_flag = whitelist.has(the_hostname);
-        let file_flag = supportFiles.has(path_ext);
-        if (whitelist_flag && !file_flag) {
-            // 当 url 在白名单里面，且不为可微信显示的文件。
-            if (ENABLE_LOG) {
-                console.log("放行白名单页面 " + url);
-            }
-            window.location.href = url;
-            return;
-        }
-
-        event.preventDefault();
-        if (ENABLE_LOG) {
-            console.log("小程序环境，拦截外部链接或者可显示文件。");
-        }
-        handleOutURL(url, whitelist_flag, file_flag, path_ext);
+  function postHeartbeatToWx() {
+    const miniProgram = getMiniProgramAPI();
+    if (!miniProgram || typeof miniProgram.postMessage !== "function") {
+      return;
     }
-}
 
-function reset_all_anchor() {
-    var anchors = document.getElementsByTagName('a');
-    for (var i = 0; i < anchors.length; i++) {
-        var anchor = anchors[i];
-        if (anchor.hasAttribute("data-fancybox")) {
-            if (ENABLE_LOG) {
-                console.log("skip fancybox a tag: ", anchor.getAttribute('href'));
-            }
-        } else {
-            anchor.onclick = function (event) {
-                override_onclick(event);
-            }
-        }
+    miniProgram.postMessage({
+      data: {
+        msgType: "heartbeat",
+        shareTitle: document.title,
+        shareURL: document.URL,
+        scrollTop: document.documentElement.scrollTop,
+        time: Date.now(),
+      },
+    });
+
+    updateMiniProgramEnv();
+  }
+
+  function getResolvedURL(rawUrl) {
+    try {
+      return new URL(rawUrl, window.location.href);
+    } catch (error) {
+      log("invalid url", rawUrl, error);
+      return null;
     }
-}
-setInterval(reset_all_anchor, 1000);
+  }
 
-function isInWechatMP() {
-    return navigator.userAgent.match(/miniprogram/i) || window.__wxjs_environment === 'miniprogram';
-};
-
-function load_adsense() {
-    console.log("判断环境，加载 adsense")
-
-    if (isInWechatMP() === false) {
-        console.log("非小程序环境，加载");
-        var oScript = document.createElement("script");
-        oScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
-        oScript.setAttribute("async", "");
-        oScript.setAttribute("data-ad-client", "ca-pub-9039393129169217");
-        document.head.appendChild(oScript);
-        // <script data-ad-client="ca-pub-9039393129169217" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    } else {
-        console.log("小程序环境，跳过");
+  function getPathExtension(pathname) {
+    const segments = pathname.split(".");
+    if (segments.length < 2) {
+      return "";
     }
-}
-setTimeout("load_adsense()", 500);
 
-// 是否启用哀悼用黑白遮罩
-ENABLE_HOME_GRAY = false;
-function changeGray() {
-    if (ENABLE_HOME_GRAY) {
-        if (window.location.pathname === '/') {
-            document.getElementsByClassName("navbar")[0].classList.add("home-gray");
-            document.getElementsByClassName("sidebar")[0].classList.add("home-gray");
-            document.getElementsByClassName("page")[0].classList.add("home-gray");
-        } else {
-            document.getElementsByClassName("page")[0].classList.remove("home-gray");
-            document.getElementsByClassName("sidebar")[0].classList.remove("home-gray");
-            document.getElementsByClassName("navbar")[0].classList.remove("home-gray");
-        }
+    return segments.pop().toLowerCase();
+  }
+
+  function getURLMeta(url) {
+    const urlObject = getResolvedURL(url);
+    if (!urlObject) {
+      return null;
     }
-}
 
-domObserver = new MutationObserver(function (mutations) {
-    // DOM 有任何变化，包括js导致的跳转
+    const fileExt = getPathExtension(urlObject.pathname);
+    return {
+      url: urlObject.toString(),
+      hostname: urlObject.hostname,
+      fileExt,
+      isWhitelisted: WHITELIST_HOSTS.has(urlObject.hostname),
+      isSupportedFile: SUPPORTED_FILE_EXTENSIONS.has(fileExt),
+    };
+  }
+
+  function handleOutURL(meta) {
+    const miniProgram = getMiniProgramAPI();
+    if (!miniProgram || typeof miniProgram.navigateTo !== "function") {
+      return;
+    }
+
+    log("intercept url", meta.url, meta);
+
+    if (ENABLE_FOR_AUDIT) {
+      return;
+    }
+
+    miniProgram.navigateTo({
+      url:
+        "/pages/index/redirect?outURL=" +
+        encodeURIComponent(meta.url) +
+        "&inwhitelist=" +
+        meta.isWhitelisted +
+        "&handleFile=" +
+        meta.isSupportedFile +
+        "&ext=" +
+        meta.fileExt,
+    });
+  }
+
+  function shouldBypassAnchor(anchor) {
+    return (
+      !anchor ||
+      anchor.hasAttribute("data-fancybox") ||
+      anchor.hasAttribute("download") ||
+      anchor.target === "_blank" ||
+      anchor.getAttribute("href") === null
+    );
+  }
+
+  function handleAnchorClick(event) {
+    if (!isInWechatMP()) {
+      return;
+    }
+
+    if (!(event.target instanceof Element)) {
+      return;
+    }
+
+    const anchor = event.target.closest("a");
+    if (shouldBypassAnchor(anchor)) {
+      return;
+    }
+
+    const href = anchor.getAttribute("href");
+    const meta = getURLMeta(href);
+    if (!meta) {
+      return;
+    }
+
+    if (meta.isWhitelisted && !meta.isSupportedFile) {
+      log("allow whitelisted url", meta.url);
+      return;
+    }
+
+    event.preventDefault();
+    handleOutURL(meta);
+  }
+
+  function loadAdsense() {
+    log("check environment before loading adsense");
+
+    if (isInWechatMP()) {
+      log("skip adsense in mini program");
+      return;
+    }
+
+    if (document.querySelector('script[data-ad-client="ca-pub-9039393129169217"]')) {
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+    script.async = true;
+    script.setAttribute("data-ad-client", "ca-pub-9039393129169217");
+    document.head.appendChild(script);
+  }
+
+  function toggleClass(element, className, shouldAdd) {
+    if (!element) {
+      return;
+    }
+
+    element.classList.toggle(className, shouldAdd);
+  }
+
+  function changeGray() {
+    if (!ENABLE_HOME_GRAY) {
+      return;
+    }
+
+    const isHomePage = window.location.pathname === "/";
+    toggleClass(document.querySelector(".navbar"), "home-gray", isHomePage);
+    toggleClass(document.querySelector(".sidebar"), "home-gray", isHomePage);
+    toggleClass(document.querySelector(".page"), "home-gray", isHomePage);
+  }
+
+  function bindEvents() {
+    document.addEventListener("click", handleAnchorClick, true);
+    window.addEventListener("hashchange", changeGray, false);
+  }
+
+  function observeDOMChanges() {
+    const domObserver = new MutationObserver(() => {
+      changeGray();
+    });
+
+    domObserver.observe(document, { subtree: true, childList: true });
+  }
+
+  function init() {
+    updateMiniProgramEnv();
+    postHeartbeatToWx();
+    setInterval(postHeartbeatToWx, HEARTBEAT_INTERVAL_MS);
+    setTimeout(loadAdsense, ADSENSE_DELAY_MS);
+    bindEvents();
+    observeDOMChanges();
     changeGray();
-});
-domObserver.observe(document, { subtree: true, childList: true });
+  }
 
-window.addEventListener('hashchange', () => {
-    changeGray();
-}, false);
+  init();
+})();
