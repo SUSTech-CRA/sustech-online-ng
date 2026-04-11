@@ -1,0 +1,18 @@
+﻿# 《Math Colloquium 第314期》Jean-Pierre Ramis：具有应用于Connes-Moscovici谱、匹配Zeta零点及黑洞线性摄动的复解析内在理论
+
+> 以下内容根据公开信息整理，并经大模型处理生成，可能存在疏漏或误差，请以实际信息为准。
+
+
+* 题目: 具有应用于Connes-Moscovici谱、匹配Zeta零点及黑洞线性摄动的复解析内在理论
+* 主讲人：Jean-Pierre Ramis @ Université de Toulouse
+* 时间：2026年4月13日 16:30-17:30
+* 地点：M1001, College of Science Building
+
+## 主讲人简介
+Jean-Pierre Ramis was born in 1943. He is a distinguished French mathematician and member of the French Academy of Sciences. He was a student at the École Normale Supérieure in Paris, where he completed his PhD thesis under the supervision of Henri Cartan, focusing on infinite-dimensional complex geometry. He later served as a professor at the University of Strasbourg and the University of Toulouse. One of his major contributions is the theory of summability of divergent power series, which he successfully applied to analytic dynamical systems—including singular differential equations, q-difference equations, and their classifications. Notably, he established a correspondence between Newton polygons and Gevrey rates of divergence. Another significant body of his work is dedicated to Differential Galois theory, which is closely connected to summability theory.
+
+## 讲座简介
+I propose a new paradigm for the spectral theory of ODEs with analytic coefficients. The classical approach of the spectral theory is based on Hilbert spaces and linear operators (non necessarily bounded). My approach is based on analytic continuation in the complex domain, and k-summability of divergent series, a notion that I introduced in 1979. My analytic spectra are intrinsic, the boundary conditions are “contained in the equation”. I recently discovered that this last concept has been clearly formulated by Erwin Schrödinger in a letter of december 27-th 1925 in relation with the hydrogen spectrum. The analytic spectra are compatible with some “natural transformations” of ODEs as s-homotopic transformations and gauge transformations. There are strong relations with special functions theory and the spectra appearing in natural sciences are in a lot of cases analytic spectra. There are numerous examples in quantum chemistry and in black holes theory. The analytic spectra are defined by the fact that the eigenfunctions are special solutions connecting local special solutions at two singular points. These local special solutions are, by definition, eigenfunctions of the monodromy at a regular singular point and k-sum of a “purely exponential formal solution” at an irregular singular point. I will explain my understanding of the ideas of Schrödinger on the hydrogen spectrum at the end of 1925. It is a first version of my notion of spectrum. In relation with my spectral theory, I will give some results on the generalized polynomial solutions of the Confluent Heun Equations (CHE). Such solutions are defined by the fact that their logarithmic derivative is rational. Equivalently they connect 3 special local solutions. One get them using the first step (n=1) of the Kovacic algorithm. I will quote a new surprising result about the existence of algebraic one parameter families of CHEs admitting a basis of generalised polynomial solutions. I will give a new and simple definition of the Connes-Moscovici spectrum, which matches the zeros of zeta, as an analytic bi-irregular spectrum and some consequences; I will explain briefly how analytic spectra appear in the theory of linear perturbations of black-holes, in relation with the Quasi-Normal-Modes (QNM) and with the algebraically special solutions. In this last case our results on the CHE admitting a basis of generalized polynomial solutions give a new light on the underlying physics.
+
+## 海报链接
+![](https://gtimg.liziwl.cn/post-img/2026-04-13T16-30-00_Jean-Pierre_Ramis.jpg)
