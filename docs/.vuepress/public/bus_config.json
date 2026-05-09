@@ -6,9 +6,9 @@
             "routes": [
                 {
                     "name": "1路 内环",
-                    "description": "顺时针 / Clockwise (欣园 → 欣园)",
+                    "description": "顺时针 / Clockwise\n欣园 → 欣园 Joy Highland Loop)",
                     "type": "loop",
-                    "color": "#FF901C",
+                    "color": "#00ab5b",
                     "sources": [
                         {
                             "url": "/bus_times/one_down.json",
@@ -28,7 +28,7 @@
             "routes": [
                 {
                     "name": "2路 外环",
-                    "description": "逆时针 / Counter-Clockwise (欣园 → 欣园)",
+                    "description": "逆时针 / Counter-Clockwise\n(欣园 → 欣园 Joy Highland Loop)",
                     "type": "loop",
                     "color": "#F0608F",
                     "sources": [
@@ -114,7 +114,7 @@
             "routes": [
                 {
                     "name": "南山智园离校线",
-                    "description": "欣园 - 慧园 - 荔园西 - 学生宿舍 - 二号门 - 一号门 - 南山智园C1\nJoy Highland ... Nanshan iPark C1",
+                    "description": "欣园 - 慧园 - 荔园西 - 学生宿舍 - 二号门 - 一号门 - 南山智园C1\nJoy Highland → Nanshan iPark C1",
                     "type": "point-to-point",
                     "color": "#444",
                     "sources": [
@@ -126,7 +126,7 @@
                 },
                 {
                     "name": "南山智园进校线",
-                    "description": "南山智园C1 - 二号门 - 学生宿舍 - 荔园南 - 慧园 - 欣园\nNanshan iPark C1 ... Joy Highland",
+                    "description": "南山智园C1 - 二号门 - 学生宿舍 - 荔园南 - 慧园 - 欣园\nNanshan iPark C1 → Joy Highland",
                     "type": "point-to-point",
                     "color": "#444",
                     "sources": [
@@ -176,7 +176,7 @@
             "routes": [
                 {
                     "name": "1路 内环",
-                    "description": "顺时针 / Clockwise (欣园 → 欣园)",
+                    "description": "顺时针 / Clockwise\n(欣园 → 欣园 Joy Highland Loop)",
                     "type": "loop",
                     "color": "#009966",
                     "sources": [
@@ -198,7 +198,7 @@
             "routes": [
                 {
                     "name": "2路 外环",
-                    "description": "逆时针 / Counter-Clockwise (欣园 → 欣园)",
+                    "description": "逆时针 / Counter-Clockwise\n(欣园 → 欣园 Joy Highland Loop)",
                     "type": "loop",
                     "color": "#F0608F",
                     "sources": [

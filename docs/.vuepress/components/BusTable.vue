@@ -17,6 +17,16 @@
         </template>
       </a-segmented>
 
+      <div class="top-note">
+        2026.05.09 / “时间表”中的部分班次发车时间与实际不符的问题已修正。对于带来的不便，南科手册深表歉意。
+        <br>
+        The issue where some departure times in the "timetable" did not match the actual schedule has been corrected. We sincerely apologize for any inconvenience caused.
+      </div>
+
+      <div style="margin-bottom: 1rem">
+      表中所列时间为首站发车时间。Times listed are departure times from the terminus.
+      </div>
+
       <!-- Legend -->
       <div class="legend-bar">
         <div class="legend-item">
@@ -314,6 +324,7 @@ export default {
     
     updateStatuses() {
       const now = this.currentMinutes
+      const nextHighlightWindow = 20
       
       this.scheduleGroups.forEach(g => {
         g.routes.forEach(r => {
@@ -327,7 +338,7 @@ export default {
               t.status = 'en-route'
             } else {
               // Future
-              if (!nextFound) {
+              if (!nextFound && t.val - now <= nextHighlightWindow) {
                 t.status = 'next'
                 nextFound = true
               } else {
@@ -372,6 +383,22 @@ export default {
 }
 [data-theme='dark'] .day-segmented {
   background: #333;
+}
+
+.top-note {
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+[data-theme='dark'] .top-note {
+  background: rgba(154, 52, 18, 0.16);
+  border-color: rgba(249, 115, 22, 0.35);
+  color: #fdba74;
 }
 
 .legend-bar {
