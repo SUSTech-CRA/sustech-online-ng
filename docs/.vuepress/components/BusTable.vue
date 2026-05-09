@@ -113,7 +113,8 @@
       </a-spin>
       
       <div class="footer-note">
-        自 2025.11.24 起使用 Effective from 2025.11.24
+        自 2025.11.24 起使用（网页内容于 2026.05.09 修正为实际时刻表）<br>
+        Effective from 24 Nov 2025 (webpage corrected to actual schedule on 9 May 2026)
       </div>
 
     </a-config-provider>
