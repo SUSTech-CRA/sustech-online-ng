@@ -1,4 +1,4 @@
-import { defineClientConfig } from 'vuepress/client'
+﻿import { defineClientConfig } from 'vuepress/client'
 import BusTable from "./components/BusTable.vue";
 import BusTable_img from "./components/BusTable_img.vue";
 import BusAnnouncement from "./components/BusAnnouncement.vue";
@@ -12,6 +12,7 @@ import BusChartVue from './components/BusChartVue.vue'
 import Canteen from './components/Canteen.vue'
 import AdSenseInline from './components/adsense-inline.vue'
 import AdSenseDisplayAD from './components/adsense-displayad.vue'
+import TalksTodayNav from './components/TalksTodayNav.vue'
 
 export default defineClientConfig({
   enhance({ app }) {
@@ -26,9 +27,11 @@ export default defineClientConfig({
     app.component("WeatherSpan", WeatherSpan)
     app.component("AdSenseInline", AdSenseInline)
     app.component("AdSenseDisplayAD", AdSenseDisplayAD)
+    app.component("TalksTodayNav", TalksTodayNav)
 
     // 含有echart的组件，注意需要用non-ssr模式
     app.component("BusChartVue", BusChartVue)
     app.component("Canteen", Canteen)
   },
 })
+
