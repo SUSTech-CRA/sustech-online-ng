@@ -18,6 +18,7 @@
 
 - 10:30 - [《科学大讲堂系列 第241期》Prof. Ralf I. Kaiser：冷化学，热影响：星际空间中的分子复杂性](2026-05-26T10-30-00_Ralf_I._Kaiser.md)
 - 14:30 - [《科学大讲堂 第241期》Prof. Ralf I. Kaiser：冷化学，热影响：星际空间中的分子复杂性](2026-05-26T14-30-00_Ralf_I._Kaiser.md)
+- 19:30 - [《学术前沿大咖说》Paul Power, 刘添伊, Roberto Rinaldi：学术前沿大咖说](2026-05-26T19-30-00_Paul_Power,_刘添伊,_Roberto_Rinaldi.md)
 
 ## 2026-05-25 周一
 
