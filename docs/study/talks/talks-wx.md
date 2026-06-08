@@ -14,6 +14,10 @@ navbar: false
 - 10:00 - [《科学大讲堂 第245期》游书力 院士：去芳构化新反应：从基态到激发态化学](2026-06-12T10-00-00_游书力.md)
 - 10:30 - [Xinwei Wang Professor：光学声子与声学声子之间的热非平衡态：高分辨率频率分辨拉曼探测](2026-06-12T10-30-00_Xinwei_Wang.md)
 
+## 2026-06-11 周四
+
+- 15:00 - [《DS DEAN'S LECTURE》Kent Larson 实践教授、Luis Alberto Alonso Pastor 首席研究科学家：DS讲席讲座：变革型社区-为变化而设计](2026-06-11T15-00-00_Kent_Larson、Luis_Alberto_Alonso_Pastor.md)
+
 ## 2026-06-06 周六
 
 - 14:00 - [刘昼 教授：南方科技大学科创MBA·2027级招生启动大会：科创驱动 商业破局](2026-06-06T14-00-00_刘昼.md)
