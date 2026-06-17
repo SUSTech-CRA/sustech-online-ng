@@ -17,12 +17,6 @@
         </template>
       </a-segmented>
 
-      <div class="top-note">
-        2026.05.09 / “时间表”中的部分班次发车时间与实际不符的问题已修正。对于带来的不便，南科手册深表歉意。
-        <br>
-        The issue where some departure times in the "timetable" did not match the actual schedule has been corrected. We sincerely apologize for any inconvenience caused.
-      </div>
-
       <div style="margin-bottom: 1rem">
       表中所列时间为首站发车时间。Times listed are departure times from the terminus.
       </div>
