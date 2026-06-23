@@ -4,6 +4,10 @@
 
 <TalksTodayNav />
 
+## 2026-06-29 周一
+
+- 15:00 - [《南科大讲堂 第43期》John Mekalanos 院士：病原体、宿主与共生微生物群互作如何决定疾病结局](2026-06-29T15-00-00_John_Mekalanos.md)
+
 ## 2026-06-26 周五
 
 - 11:00 - [《科学大讲堂 第249期》Prof. Yingying Fan：Model-X knockoffs框架及其稳健性](2026-06-26T11-00-00_Yingying_Fan.md)
