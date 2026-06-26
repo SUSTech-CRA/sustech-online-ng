@@ -10,7 +10,7 @@
 
 ## 2026-06-26 周五
 
-- 11:00 - [《科学大讲堂 第249期》Prof. Yingying Fan：Model-X knockoffs框架及其稳健性](2026-06-26T11-00-00_Yingying_Fan.md)
+- 11:00 - [《科学大讲堂 第249期》Yingying Fan 教授：Model-X knockoffs框架及其稳健性](2026-06-26T11-00-00_Yingying_Fan.md)
 
 ## 2026-06-22 周一
 
