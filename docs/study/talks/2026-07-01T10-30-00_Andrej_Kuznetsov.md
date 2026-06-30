@@ -1,0 +1,22 @@
+﻿# 《大湾区物理讲堂 第12期》Andrej Kuznetsov 教授：耐辐射半导体——认知还是现实
+
+> 以下内容根据公开信息整理，并经大模型处理生成，可能存在疏漏或误差，请以实际信息为准。
+
+
+* 题目: 耐辐射半导体——认知还是现实
+* 主讲人：Andrej Kuznetsov 教授 @ 奥斯陆大学
+* 时间：2026年7月1日 10:30
+* 地点：理学院 P1078 教室
+
+## 主讲人简介
+Andrej Kuznetsov was awarded with a Ph.D. degree in physics from the Russian Academy of Sciences in 1992 and accomplished his habilitation in solid state electronics in 2000 at the Royal Institute of Technology in Sweden. In 2001 he joined the University of Oslo in Norway as an associate professor at the Department of Physics, where he was subsequently promoted to a full professor rank in 2003. From 2018 he acts as the Chair of the Centre of Excellence: Light and Electricity from Novel Semiconductors (LENS) - as a part of the Centre for Materials Science and Nanotechnology at UiO. The focus is to understand novel semiconductors, searching for new fundamental phenomena and enabling new device functionalities.
+
+## 讲座简介
+Interaction of accelerated particles with solids is a nexus of many fundamental phenomena. Such particles, or radiations, may be of different nature, ranging from photons to swift heavy ions. However, one aspect is common: as soon as the energy of the accelerated particles overcomes the energy of atomic bonding, particles knock out atoms from their lattice sites, i.e. causing disordering of lattice. This effect is particularly prominent in semiconductors, often resulting in device failures. In this context, searching for radiation tolerant semiconductors has been a fascinating odyssey. Importantly, in 2023, extraordinarily high radiation tolerance of gamma phase of gallium oxide (γ-Ga2O3) was reported and explained in terms of unprecedentedly strong recrystallization trend in O-sublattice to recover the face-centered cubic stackings [1]. More recently, it was shown that swift heavy ions leave no tracks in γ-Ga2O3, demonstrating that the disorder formed by ion impacts gets rapidly erased, giving a perception of ions leaving no tracks [2]. Concurrently, we learned that, in contrast to the bulk measurements in Refs.1 and 2, the near-surface-region of γ-Ga2O3 can be quite effectively disordered by ion impacts, clearly weakening the message of the high radiation tolerance of γ-Ga2O3. To overcome this disadvantage, very recently, we tested whether the use of ternary (AlGa)2O3 instead of binary Ga2O3 samples may improve the surface radiation tolerance, e.g accounting for the variations in thermodynamics, self-diffusion, and heat transfer parameters. Indeed, we observed significant improvements in the near-surface region radiation tolerance in ternary (AlGa)2O3 [3]. Thus, we conclude that Ga2O3, not least enhanced by alloying, is a promising semiconductor platform for devices capable to operate in extremely harsh radiation environments.
+
+[1] A. Azarov et al. Universal radiation tolerant semiconductor, Nature Communications 14, 4855 (2023)
+[2] A. Abdullaev et al. Ions leaving no tracks, Nature Communications (2026) accepted and arxiv.org/abs/2509.07440
+[3] A.Azarov et al., Lifting the radiation tolerance of Ga2O3-by alloying, manuscript in preparation
+
+## 海报链接
+![](https://gtimg.liziwl.cn/post-img/2026-07-01T10-30-00_Andrej_Kuznetsov.jpg)
