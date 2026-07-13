@@ -11,7 +11,7 @@ navbar: false
 
 ## 2026-07-17 周五
 
-- 16:00 - [《科学大讲堂系列 第253期》Prof. Gernot Frenking 教授：主族化合物的配位键](2026-07-17T16-00-00_Gernot_Frenking.md)
+- 16:00 - [《科学大讲堂 第253期》Prof. Gernot Frenking：主族化合物的配位键](2026-07-17T16-00-00_Gernot_Frenking.md)
 
 ## 2026-07-16 周四
 
