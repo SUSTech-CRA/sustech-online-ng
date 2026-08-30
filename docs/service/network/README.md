@@ -2,194 +2,66 @@
 sidebar: auto
 ---
 
-# 🌐网络与信息中心 (its@sustech.edu.cn)
-[[toc]]
+# 🌐 校园网络
 
-## 校内局域网
+::: warning 安全提示
 
-南科大的校内局域网主要分为主要包含教学/科研/业务计算机的科研教学网段(`172.18.0.0/16`)和包含大部分师生员工的个人有线与无线设备的普通网段(`10.16.0.0/13`)。
-
-在普通网段中，`10.20.0.0/16`，`10.16.0.0/16`为有线网段，`10.22.0.0/16`为电信自费宽带网段。
-
-学校为支持IPv6的设备分配前缀为`2001:DA8:201D::/48`的IPv6地址。(仅教育网可访问：[SUSTC6-CERNET2](http://www.nic.edu.cn/member-cgi/i6obj?query=SUSTC6-CERNET2))
-
-### 接入网络
-
-南科大师生员工无需为互联网服务付费（电信自费宽带除外）。设备获取的内网IP地址在遵循前述原则下与Mac地址绑定，在较长的时间内不会改变。
-
-网络接入管理地址：[http://172.16.16.20:8900/home](http://172.16.16.20:8900/home)
-* MAC 无感知认证：为无法进行 Web 认证的设备，例如：Nintendo Switch，智能音箱，进行入网认证。
-* 查看上网设备
-* 查看上网记录
-
-#### 有线网络
-
-接入学校有线网络暂时无需认证，接入电信自费宽带的有线网络时需要验证购买过套餐的同学的学号与密码。
-
-#### 无线网络 （802.1x 认证）
-
-学校同时提供了基于802.1x的认证方式。
-
-##### 注册
-
-[https://wxrz.sustech.edu.cn/](https://wxrz.sustech.edu.cn/) （可能需要于校园网内访问），点击注册后使用CAS登陆，并跟随指引设置密码后即可登陆。
-
-##### 配置
-
-* 用户名（身份）：`xxxx@sustech.edu.cn` (教职工) / `your_studentID@mail.sustech.edu.cn` (学生)
-* 密码：eduroam系统登录密码（非CAS登录密码）
-* 加密类型：802.1x / EAP协议
-* EAP方法：`PEAP`
-* 阶段2身份验证：`MSCHAPv2`
-* CA证书：`不验证` / `Trust on first use`
-
-#### 无线网络 （Web Portal 认证）
-
-需要通过Web认证，输入学号与密码后才可上网，否则只能访问校内局域网，无线网络的认证地址为：[http://172.16.16.20:803/sustc_cas.php](http://172.16.16.20:803/sustc_cas.php)
-
-如联网设备不支持通过Web进行验证（如路由器，开发板等），可以尝试使用同学制作的[第三方脚本](https://www.whexy.com/post/openwrt-zhi-jie-jue-nan-ke-da-xiao-yuan-wang-deng-lu-nan-ti/)进行联网，或是更改可进行Web认证设备的Mac地址为不支持Web认证设备的Mac地址代为认证。
-
-
-::: details 同学制作的无线网络登陆脚本
-``` bash
-#!/bin/bash
-source /etc/profile
-set -e
-curl https://cas.sustech.edu.cn/cas/login?service=http%3A%2F%2F172.16.16.20%3A803%2Fsustc_cas.php > a.txt
-s=$(grep -o -E "on\"\ value=\"(.+?)\"" a.txt)
-echo $s
-s=${s#*\"}
-s=${s#*\"}
-s=${s%%\"*}
-echo $s
-unm=此处填入教/学工号
-pwd=此处填入密码
-curl "https://cas.sustech.edu.cn/cas/login?service=http%3A%2F%2F172.16.16.20%3A803%2Fsustc_cas.php" --data "username=$unm&password=$pwd&execution=$s&_eventId=submit&geolocation="
-```
-[给路由器写了一个登录南科大校园网的脚本](https://www.whexy.com/post/openwrt-zhi-jie-jue-nan-ke-da-xiao-yuan-wang-deng-lu-nan-ti/)
+校园网络的认证方式、无线网络名称、证书和宿舍端口配置会调整。只在南科大官方域名和系统中输入统一身份认证或邮箱凭据；遇到证书错误、非官方登录页或要求关闭证书验证时，应立即停止输入密码并联系网络信息中心。
 
 :::
 
-#### 湖畔宿舍区域的有线网络<Badge text="需特别配置" type="warning"/>
+## 官方入口
 
-湖畔区域墙上的网口仅能以百兆接入校园网。若需以千兆速度接入校园网，可使用AP上的网口接入校园网。**AP上的网口仅能访问校园网内网，但不能访问校外网络**。
+| 用途 | 当前入口 |
+| --- | --- |
+| 学生常用系统汇总 | [南科大学生常用系统](https://www.sustech.edu.cn/zh/students.html) |
+| eduroam 注册与说明 | [eduroam 用户服务](https://eduroam.user.sustech.edu.cn/) |
+| 校外访问校内资源 | [南科大 VPN](https://vpn.sustech.edu.cn/) |
+| 网上服务 | [南科大网上服务大厅](https://ehall.sustech.edu.cn/) |
 
+网络信息中心当前学校目录联系方式：
 
-### 其他有关网络的问题
+- 电话：**0755-88010777**
+- 邮箱：**its@sustech.edu.cn**
+- 来源：[南方科技大学联系电话目录](https://www.sustech.edu.cn/zh/contact_us.html)
 
-#### 在路由器后获取IPv6地址
+## 无线网络
 
-- [https://ntdgy.top/ntdgy/30.html](https://ntdgy.top/ntdgy/30.html)
+### eduroam
 
-#### 使用`dhcpclient`时获取不到IPv6地址
+优先按[南科大 eduroam 官方页面](https://eduroam.user.sustech.edu.cn/)的当前流程注册和配置。官方页面目前说明，学生账号使用 `学号@mail.sustech.edu.cn`，教职工账号使用 `账号@sustech.edu.cn`，注册时通过 CAS 绑定邮箱；具体身份格式、密码规则和安装描述文件以页面实时提示为准。
 
-- 通常是因为学校的DHCPv6服务器不响应DHCPv6 Solicitation造成的。此问题常出现在安装Debian/Ubuntu（使用dhcpclient作为dhcp客户端的发行版中），如果希望快速解决，可以尝试讲dhcp客户端更改为`dhcpcd`。
+不要照抄本站旧稿中的“CA 证书不验证”或“Trust on first use”设置。证书验证是防止把校园账号和密码交给伪造热点的重要环节；如果设备无法按官方说明完成配置，请联系网络信息中心，而不是降低验证要求。
 
+### 其他校园无线网络
 
-## 互联网
+网页认证、无感知认证及智能设备接入方式可能随网络改造变化。请从学校当前网络入口或网上服务大厅查找说明。本站不再提供旧内网 IP 登录地址、MAC 地址冒用方法或把 CAS 密码写进自动登录脚本的教程。
 
-### 出口
+## 有线网络与宿舍路由器
 
-学校目前拥有4Gbps电信163出口带宽，2.5Gbps电信CN2出口带宽，以及1.5Gbps教育网出口带宽。[https://biddingoffice.sustc.edu.cn/search/news/id/5085/pid](https://biddingoffice.sustc.edu.cn/search/news/id/5085/pid)学校信息中心会将访问境外网站的流量发往CN2出口，因此学校内访问境外网站的质量会显著高于普通电信网络。
+- 墙面端口、无线 AP 端口、可用速率和是否需要认证可能因宿舍区和设备改造不同，请以现场标识及网络信息中心答复为准。
+- 不要通过复制他人 MAC 地址、关闭证书验证或运行来源不明的登录脚本绕过认证。
+- 选购路由器前可查看[路由器选择说明](./choose-a-router/)，但型号、价格和端口速率属于时间敏感信息，应再核对当前宿舍条件。
+- IPv6 的社区配置经验见[IPv6 页面](./ipv6/)。涉及防火墙、端口开放或公网地址时，应先确认风险并使用当前系统文档。
 
-学校目前对普通网段设备不限速（Fair Use@Up to 1000Mbps），对科研教学网段限速50Mbps，对教育网IPv4限速20Mbps，暂不对教育网IPv6限速。
+## 校外访问
 
-## 电信自费宽带<Badge text="不再推荐" type="warning"/>
+需要从校外访问校内资源时，请使用学校[官方 VPN](https://vpn.sustech.edu.cn/)，并参照[VPN 开通](./apply-for-vpn/)和[VPN 使用](./use-vpn/)页面。不要把远程桌面、打印机或管理后台直接暴露到公网。
 
-::: warning
-由于学校已经放宽网络限速，电信宽带的性价比较低。建议参考[湖畔宿舍区域的有线网络](#湖畔宿舍区域的有线网络)一节进行配置。
-:::
+## 常见问题处理
 
-中国电信为居住于湖畔宿舍区的同学提供自费电信宽带。
+1. **无法连接或频繁断线**：先记录时间、地点、网络名称、设备系统及错误提示，再联系网络信息中心。
+2. **证书或域名异常**：不要继续输入密码，保存不含密码和验证码的错误截图后报修。
+3. **忘记密码**：从学校官方统一身份认证、邮箱门户或网上服务入口发起重置，不通过 QQ 群或个人代办。
+4. **需要设备入网、VPN 或网络报修**：优先搜索[网上服务大厅](https://ehall.sustech.edu.cn/)中的当前服务。
 
-宽带速率可选50Mbps和100Mbps。其中，100Mbps宽带和手机卡套餐的总价为70元/月。
+## 延伸阅读
 
-电信自费宽带也需要使用购买套餐同学的校园卡账户登录后才可使用，登陆方式为Web认证。也有同学制作了第三方脚本以方便快速验证。
+- [eduroam](./eduroam/)
+- [VPN 开通](./apply-for-vpn/)
+- [VPN 使用](./use-vpn/)
+- [IPv6](./ipv6/)
+- [路由器选择](./choose-a-router/)
+- [远程桌面](./remote-desktop/)
 
-[此处(PDF)](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/service/network/CT_campus_broadband_plan.pdf)是一份电信为南科大同学提供的学生卡套餐的具体内容（含流量与宿舍宽带）。
-
-::: details 同学制作的电信自费网络登陆脚本
-
-``` bash
-loginurl="https://cas.sustech.edu.cn/cas/login"
-authip="219.134.142.194"
-# Insert your CAS info below:
-username="YOUR_USER_NAME_HERE"
-password="YOUR_PASSWORD_HERE"
-
-while [ true ]
-do
-	ret_code=`curl -I -s --connect-timeout 5 http://www.baidu.com -w %{http_code} | tail -n1`
-
-	if [ $ret_code -ne 200 ] ; then
-		echo "Attempting to log in the enet system"
-		rm -f /tmp/cascookie
-
-		# You may need to modify the following regex for different distros.
-		routerip=$(ifconfig | grep -A 1 "^eth0.2" | grep -P -o "(?<=inet addr:).*(?=  Bcast)")
-		eneturl="http://125.88.59.131:10001/sz/sz112/index.jsp?wlanuserip=$routerip&wlanacip=$authip"
-		execution=$(curl --silent --cookie-jar /tmp/cascookies -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0" -L "$eneturl"  | grep -o 'execution.*/><input type' | grep -o '[^"]\{50,\}')
-
-		curl --silent --output /dev/null --cookie /tmp/cascookies --cookie-jar /tmp/cascookies -H "Content-Type: application/x-www-form-urlencoded" -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:71.0) Gecko/20100101 Firefox/71.0" -L -X POST "$loginurl" --data "username=$username&password=$password&execution=$execution&_eventId=submit&geolocation="
-	else
-		echo "Connected to Internet, recheck a second later"
-	fi
-	sleep 1s
-done
-```
-
-[NewbieOrange/SUSTech-EnetLogin](https://github.com/NewbieOrange/SUSTech-EnetLogin)
-
-:::
-
-
-
-
-## 信息中心
-
-信息中心老师的联系方式如下：
-
-|  岗位名称  |  在岗人员名单  | 联系方式 |
-| :--------: | :------------: | :------: |
-|    主任    |     杨海琨     | 88010799 |
-|   副主任   |     孙乔羽     | 88010798 |
-|  运维管理  |     管立生     | 88010776 |
-|  综合保障  |  刘敬、张炳坤  | 88010780 |
-| 信息化管理 |     郑善辉     | 88010779 |
-| 招生信息化 | 詹涵舒、韩少亮 | 88010789 |
-| 教学信息化 |     宋伟中     | 88010788 |
-| 综合信息化 |     朱朝阳     | 88010775 |
-|  科技管理  |     尹荣荣     | 88010787 |
-|  项目管理  |      陈毅      | 88010726 |
-
-[网络信息中心（页面即将停用）](http://116.7.234.209/wlzx)
-
-- 南科大信息中心沟通群：**434226835**
-
-## 我可以请求信息中心做什么？
-
-- 重置CAS密码
-- 重置邮箱密码
-- [申请回校VPN](./apply-for-vpn)
-- [给打印机加纸](/service/unifound)
-- 调整往某个网段的路由
-
-
-
-**关于学校提供的更多信息服务，请见[服务](/service)一节**
-
-## 选择合适的电子产品
-
-- 电脑
-- [平板](./choose-a-pad)
-- [路由器](./choose-a-router)
-
-## 校内网络使用技巧
-- [远程桌面](./remote-desktop)
-
-## 同学自行运营的千兆网络加速服务<Badge text="广告" type="tip"/>
-
-::: tip
-
-你是否在为湖畔无法使用有线网络，或是校园网游戏丢包而苦恼？现在订阅SUSTC IX，即可以低至30元每月的价格畅享高达1Gbps的电信宽带，性价比远超湖畔电信并保证家庭宽带级别的低丢包率，任何宿舍区域均可订购，可一对一提供安装及技术支持。详情请咨询：qq **2353508907** 或邮件 [mai.sakurajima.qwq@gmail.com](mailto:mai.sakurajima.qwq@gmail.com?subject=SUSTC%20IX咨询)
-:::
+旧稿中的固定内网网段、出口带宽、宿舍端口能力、电信套餐、人员名单、QQ 群和第三方付费网络广告没有得到 2026 年公开一手资料确认，已不再作为现行信息保留。
