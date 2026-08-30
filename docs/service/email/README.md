@@ -1,103 +1,45 @@
 # 电子邮件服务
 
-学校使用企业邮箱作为邮件系统，并为每位同学分配形如**12010100@mail.sustech.edu.cn**的邮箱。电子邮件可以通过网页或客户端收取。
+## 官方入口
 
-### 申请别名
+南方科技大学邮箱的规范入口是[学校邮箱门户](https://mail.sustech.edu.cn/)。请从该页面登录、查看帮助、修改密码或获取当前客户端配置，不要通过搜索广告、群文件或第三方代办页面输入邮箱凭据。
 
-一般来说，教职员的邮箱后缀为 **@sustech.edu.cn**，同学的邮箱后缀为 **@mail.sustech.edu.cn**，每位同学还可以申请一个带有姓名拼音和入学年份的邮箱别名（如在2020年入学的张三，将可以申请别名为 **zhangs2020@mail.sustech.edu.cn** 的邮箱。若需申请姓名+入学年份的别名邮箱，向信息中心发主题问“申请邮箱别名”的邮件，即可申请。
+学生和教职工的邮箱域、别名及账号规则可能因身份和入学年份不同。以学校实际分配的地址为准，不要根据学号或姓名猜测他人的邮箱。
 
-### 容量不足怎么办
+## 网页收发
 
-- [解决邮箱容量不足的问题](./send-receive-email-by-proxy.md)
+优先使用[学校邮箱门户](https://mail.sustech.edu.cn/)提供的网页邮箱或 CAS 入口。首次绑定、密码重置、邮箱容量和别名申请等流程会调整，应按照门户当前提示办理；无法处理时联系网络信息中心。
 
-## 通过网页收发邮件
+旧稿中的 QQ 客户端“小信封”、QQ 提醒绑定和直接进入企业邮箱的流程已缺少当前官方确认，不再作为现行方式推荐。
 
-访问 QQ 企业邮箱登录页[https://exmail.qq.com/login](https://exmail.qq.com/login)，输入邮箱和密码登入。也可通过[https://mail.sustech.edu.cn/](https://mail.sustech.edu.cn/)上方的[CAS登录邮箱](https://mail.sustech.edu.cn/sso?lang=zh)链接登入，首次登入需要输入密码绑定CAS账户和邮箱。
+## 邮件客户端
 
-### 通过 QQ 电脑客户端进入企业邮网页
+需要在手机、平板或电脑上的邮件应用中添加学校邮箱时：
 
-登录 QQ 企业邮箱网页版后，可在“设置” --> “提醒服务” --> “QQ 提醒”中绑定 QQ 号码，绑定后可以通过网页邮箱上方工具栏中的“QQ 邮箱 / 企业邮箱”选项切换邮箱。
-在“设置” --> “提醒服务” --> “QQ 提醒”中选择“点击 QQ 面板的小信封直接进入企业邮箱”选项并保存后，可以直接通过 QQ 电脑客户端进入网页版企业邮箱。
+1. 先在学校邮箱门户确认当前是否允许 IMAP、SMTP、POP 或 Exchange，以及是否需要单独的客户端授权码。
+2. 只使用门户当前帮助中给出的服务器、端口和加密方式；不要照抄本站旧版参数。
+3. 若系统支持客户端授权码，使用授权码而不是 CAS 密码；不要把密码或授权码发给他人、写进公开脚本或截图。
+4. 启用设备锁屏、系统更新和远程擦除；设备遗失后立即撤销会话或授权码并修改密码。
 
-## 在移动设备上收发邮件
+以下厂商文档可用于了解设备本身的添加步骤，但南科大的服务器参数仍以学校邮箱门户为准：
 
-### 参数
+- [Apple：添加电子邮件账户](https://support.apple.com/zh-cn/102619)
+- [Microsoft：向 Outlook 添加电子邮件账户](https://support.microsoft.com/zh-cn/office/%E5%90%91-outlook-%E6%B7%BB%E5%8A%A0%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E5%B8%90%E6%88%B7-6e27792a-9267-4aa4-8bb6-c84ef146101b)
 
-假如一位同学的邮箱是**12010100@mail.sustech.edu.cn**，密码是**sustech-manual** 。
+## 容量、转发与第三方代收
 
-|          项目          | 值                             | 其他参数           |
-| :--------------------: | ------------------------------ | ------------------ |
-|         用户名         | `12010100@mail.sustech.edu.cn` |                    |
-|          密码          | `sustech-manual`               |                    |
-| 邮件服务器（Exchange） | ex.exmail.qq.com               |                    |
-|   发件服务器（SMTP）   | smtp.exmail.qq.com             | 使用SSL，端口号465 |
-|   收件服务器（POP3）   | pop.exmail.qq.com              | 使用SSL，端口号995 |
-|   收件服务器（IMAP）   | imap.exmail.qq.com             | 使用SSL，端口号993 |
+- 容量不足时，先清理大附件、已删除邮件和不再需要的订阅，再通过学校邮箱门户或网络信息中心确认扩容与归档方式。
+- 不把学校账号密码交给个人 QQ 邮箱或其他第三方“代收”功能。旧版 QQ“关联邮箱账号”方法已经下线，详见[旧代理收发方式说明](./send-receive-email-by-proxy.md)。
+- 自动转发可能造成个人信息、课程材料或研究数据流出学校系统；启用前应确认学校政策、收件方安全性和数据合规要求。
 
-### 微信
+## 查找教师邮箱
 
-关注“腾讯企业邮箱”公众号，并按提示操作。
+在学校官网[全部教师列表](https://www.sustech.edu.cn/zh/colleges/)打开教师当前个人主页，只使用页面明确公开的邮箱。不要把个人主页 URL 路径当成邮箱前缀，也不要把旧 `sustc.edu.cn` 地址机械替换成 `sustech.edu.cn`。更多说明见[教师联系方式](/contact/professor-emails/)。
 
-### 苹果自带邮件应用（Mail.app）
+## 安全提醒
 
-建议使用Exchange方式收件。
+- 学校或网络信息中心不会通过邮件索要你的明文密码、短信验证码或客户端授权码。
+- 核对发件域名和链接后再登录；证书异常、域名拼写相似或“立即验证否则停用”等催促都应提高警惕。
+- 怀疑账号泄露时，在可信设备上立即修改密码、撤销客户端授权，并联系网络信息中心。
 
-- [向 iPhone、iPad 或 iPod touch 添加电子邮件帐户](https://support.apple.com/zh-cn/HT201320)
-
-### QQ邮箱客户端
-
-按照应用提示操作即可。
-
-### Outlook客户端
-
-建议使用Exchange方式收件。
-
-- [在 Outlook for Android 应用中设置电子邮件](https://support.microsoft.com/zh-cn/office/%E5%9C%A8-outlook-for-android-%E5%BA%94%E7%94%A8%E4%B8%AD%E8%AE%BE%E7%BD%AE%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6-886db551-8dfa-4fd5-b835-f8e532091872?ui=zh-cn&rs=zh-cn&ad=cn)
-
-### 安卓手机通用教程
-
-建议使用Exchange方式收件。
-
-- [如何在Android系统中使用腾讯企业邮箱Exchange同步服务？](https://service.exmail.qq.com/cgi-bin/help?subtype=1&&id=20019&&no=1001530)
-
-## 在计算机上收发邮件
-
-### Windows自带的邮件应用
-
-建议使用Exchange方式收件。
-
-- [在 Windows 10 邮件应用中设置电子邮件](https://support.microsoft.com/zh-cn/office/%e5%9c%a8-windows-10-%e9%82%ae%e4%bb%b6%e5%ba%94%e7%94%a8%e4%b8%ad%e8%ae%be%e7%bd%ae%e7%94%b5%e5%ad%90%e9%82%ae%e4%bb%b6-7ff79e8b-439b-4b47-8ff9-3f9a33166c60?ui=zh-cn&rs=zh-cn&ad=cn)
-
-### MacOS自带的邮件应用
-
-建议使用IMAP方式收件。
-
-- [在 Mac 上的“邮件”中添加或移除电子邮件帐户](https://support.apple.com/zh-cn/guide/mail/mail35803/mac)
-
-- [在 Mac 上的“邮件”中更改服务器设置](https://support.apple.com/zh-cn/guide/mail/cpmlprefacctadv/mac)
-
-### Outlook桌面版
-
-#### MacOS
-
-由于QQ邮箱不支持完整版的Exchange（只支持Exchange Activesync）因此Outlook Mac桌面版不能以Exchange模式添加账户，只能使用IMAP或POP模式添加账户。
-
-#### Windows
-
-推荐使用Exchange Activesync模式添加。
-
-- [向 Outlook 添加电子邮件帐户](https://support.microsoft.com/zh-cn/office/%E5%90%91-outlook-%E6%B7%BB%E5%8A%A0%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E5%B8%90%E6%88%B7-6e27792a-9267-4aa4-8bb6-c84ef146101b)
-
-## 我想给老师发邮件，但不知道老师的邮箱该怎么办？
-
-1. 在[https://faculty.sustech.edu.cn/](https://faculty.sustech.edu.cn/)寻找教师的个人主页**（页面可能会加载大量图片并消耗流量，请考虑直接从搜索引擎直接进入教师的个人主页）**
-2. 复制教师主页的网址 `https://faculty.sustech.edu.cn/{faculty_name}/`，如姚新老师的主页 `https://faculty.sustech.edu.cn/xiny/` 。
-3. 网址的url的path部分`{faculty_name}`（如`xiny`）即为相应老师的邮箱前缀，加上`@sustech.edu.cn`即为老师的邮箱地址（如`xiny@sustech.edu.cn`）。
-
-
-
-## 更多阅读/参考
-
-- [Email 使用指南/浅见](https://qianjian.space/2017/09/email-guide/)
-- [如何设置IMAP、POP3/SMTP及其SSL加密方式？/腾讯企业邮箱](https://service.exmail.qq.com/cgi-bin/help?subtype=1&id=28&no=1000585)
-
+网络信息中心：**0755-88010777 / its@sustech.edu.cn**，来源见学校[联系电话目录](https://www.sustech.edu.cn/zh/contact_us.html)。
