@@ -5,9 +5,21 @@ navbar: false
 
 # 讲座信息
 
-> 以下内容根据公开信息整理，并经大模型处理生成，可能存在疏漏或误差，请以实际信息为准。
+> 以下内容根据公开信息整理，收录可能不完整；时间、地点及临时调整请以[南方科技大学活动预告](https://www.sustech.edu.cn/zh/events.html)和主办单位通知为准。
 
 <TalksTodayNav />
+
+## 2026-08-21 周五
+
+- 15:00 - [Francis Nimmo 教授：Rethinking the Moon](2026-08-21T15-00-00_Francis_Nimmo.md)
+
+## 2026-08-20 周四
+
+- 10:30 - [黄韶辉教授：荧光相关光谱（FCS）](2026-08-20T10-30-00_黄韶辉.md)
+
+## 2026-08-18 周二
+
+- 10:30 - [Arne Gennerich 教授：Load-dependent assembly of multi-dynein complexes enhances force generation](2026-08-18T10-30-00_Arne_Gennerich.md)
 
 ## 2026-07-30 周四
 
