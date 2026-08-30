@@ -17,7 +17,7 @@
 
 ![校园地图](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/facility/campus-map.png)
 
-上图是南科大的校园平面图。在校园内，建筑大都处于校园西侧。
+上图是本站保存的校园平面图；查看学校当前公开地图，请使用官网[校园地图](https://www.sustech.edu.cn/zh/contact_us.html#maps)。校园建设和楼宇用途可能变化，现场标识与学校通知优先。
 
 ![致新书院绘制的卡通版地图](https://mirrors.sustech.edu.cn/site/sustech-online/img/campus-map/campus-map-cartoon-version.png)
 
@@ -27,7 +27,7 @@
 
 ![一期校园](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/underhill.jpg)
 
-上图中，左上角为国际会议中心，左下角为正在建设中的理学院；中下位置为行政楼和琳恩图书馆，中上方从左到右为第四科研楼到第一科研楼；正中间从左到右是第二教学楼，检测中心和第一教学楼；右侧为南科大中心。
+上图拍摄于二期建设阶段：左上角为国际会议中心，左下角为当时正在建设的理学院；中下位置为行政楼和琳恩图书馆，中上方从左到右为第四科研楼到第一科研楼；正中间从左到右是第二教学楼、检测中心和第一教学楼；右侧为南科大中心。学校官网[学校概况](https://sustech.edu.cn/zh/about.html)已将理学院等二期建筑列为投入使用项目。
 
 ### 理学院
 
@@ -69,7 +69,7 @@
 
 一教的北侧有一个[赛百味](https://amap.com/place/B0FFK1Q96N)，一般在课间会排队。
 
-在一教的楼顶可以看到整个山下，和建设中的公共教学楼和理学院。
+从一教楼顶可看到山下区域。该段原配图拍摄时公共教学楼和理学院仍在建设，相关二期建筑现已投入使用。
 
 #### 检测中心
 
@@ -84,31 +84,24 @@
 
 ~~ 第二教学楼主要教室都是**机房**（2019年换的电脑是i7-8700K+1080Ti)，一般会用于上电子系，计算机系的实验课和一些电脑测评/考试。~~ 二教还有**一间多功能教室**，现在一般用于乐器排练和美术课程。
 
-#### 第三教学楼
+#### 智华楼（原第三教学楼）
 
-![第三教学楼与商学院，前景是大草坪](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/teach_building_3_and_school_of_business.jpeg)
+![智华楼与商学院，前景是大草坪](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/teach_building_3_and_school_of_business.jpeg)
 
-第三教学楼位于南科大中心与理学院和琳恩图书馆遥遥相望，毗邻商学院大楼。为5层建筑，其中一楼、二楼为阶梯教室以及混合教学教室，三楼为授课型教室，四楼为研讨型教室，五楼为教学机房，共56间教室，教室使用总面积为5800平。
+学校官网 2026 年的[公开活动页面](https://www.sustech.edu.cn/zh/events/9949.html)已使用“智华楼（原第三教学楼）”这一名称。该楼位于南科大中心，面向理学院和琳恩图书馆，毗邻商学院大楼；共 5 层、56 间教室，教室使用总面积 5800 平方米。一、二楼主要为阶梯教室及混合教学教室，三楼为授课型教室，四楼为研讨型教室，五楼为教学机房。
 
-- [教工部提供的教室全景](https://guide-cr.tao.sustech.edu.cn/)
+- [南科大新闻网：第三教学楼正式投入使用](https://newshub.sustech.edu.cn/html/202208/42555.html)
+- [教学工作部提供的教室全景](https://guide-cr.tao.sustech.edu.cn/)
 
->实测学校对第三教学楼设备不限速（Fair Use@Up to 1000Mbps）不同于其他建筑对科研教学网段限速50Mbps。
+::: tip 使用提示
 
-::: tip 5楼教学机房电脑配置
-
-- 501, 502, 503, 505, 506, 508: i7 10700K + 32G + 1TB SSD + 4TB HDD + RTX 4000
-- 504: i7 7700K + 16G + 256G SSD + 2TB HDD + P4000
-- 507: i7 7700K + 16G + 1T SSD + 4TB HDD + P4000
-- 509: i7 7700K + 16G + 512G SSD + 2TB HDD + GTX1080
-- 510: i7 7700K + 16G + 512G SSD + 2TB HDD + P4000
-
-由于每个机房安装的软件都不一样，所以可以根据课程安排来选择机房。
-
+具体教室用途、教学机房软硬件配置和网络策略可能随课程与运维安排调整，请以教务系统、电子班牌和现场通知为准。
 :::
 
-::: warning
-如果重新启动计算机，所有数据都将丢失。如果没有U盘，又需要传输文件，可使用 [LANDrop](https://www.appinn.com/landrop-files-transfer-tools/)，[校内 Send 文件分享](https://send.cra.moe/) 等工具。如果您需要保存机房数据，安装软件或其他需求联系song.wz@sustech.edu.cn
-:::
+#### 商学院
+
+商学院位于智华楼旁。[教学工作部公开介绍](https://learning.sustech.edu.cn/jczlcxj/2023/2159.html)显示，商学院二楼建有 6 间不同功能的智慧教室；学院动态和教学项目信息可查看[南方科技大学商学院官网](https://business.sustech.edu.cn/)。
+
 
 
 #### 第一科研楼
@@ -127,7 +120,7 @@
 
 #### 第四科研楼（台州楼）
 
-主要是实验室和教授办公室。为什么叫台州楼呢？这栋楼里面有一个[“南方科技大学台州研究院”](http://zj.ifeng.com/a/20190118/7173526_0.shtml)，然后校长的籍贯也是台州，也可能有点关系。
+主要为实验室和教师办公室。学校校园地图及[总务服务手册](https://gao.sustech.edu.cn/uploads/202402/23102308_96430.pdf)均使用“第四科研楼（台州楼）”或“台州楼”这一名称；旧稿关于名称来源的个人推测没有可靠依据，已删除。
 
 #### 南科大中心（学生食堂）
 
@@ -136,7 +129,7 @@
 
 ##### 学生餐厅
 
-学校的第一个食堂，由南科大运营，旧食堂一楼是打菜，南科大中心食堂一楼有一些特色菜（如潮汕粉面，小炒，石锅饭，日料等。
+学校较早投入使用的学生食堂之一。档口、菜品和营业时间会调整，旧稿列出的具体商户不再作为当前信息；用餐前请查看[校内餐饮](/life/catering/)及现场公告。
 
 详细内容请见[餐饮/学生餐厅（一期）](/life/catering/#学生餐厅（一期）)。
 
@@ -287,7 +280,7 @@
 
 ### 慧园
 
-许多院系的实验室和办公区域设置于创园。
+许多院系的实验室和办公区域设置于慧园；例如南科大新闻网 2025 年的[实验室安全报道](https://newshub.sustech.edu.cn/html/202506/46525.html)提到慧园 5 栋化学实验室。
 
 ### 欣园
 
@@ -302,31 +295,28 @@
 
 ![校园东南区域](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/southwest.jpg)
 
-在上图中，左侧是田径场和润扬体育馆，中间是教师公寓，右侧是学术交流中心与人文社会科学学院。
+在上图中，左侧是田径场和润杨体育馆，中间是教师公寓，右侧是学术交流中心与人文社会科学学院。
 
 #### 教师公寓与专家公寓
 
 [![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node520,220,10,70,0)
 
 
-八栋建筑中，有六栋为教师公寓，两栋为专家公寓。
+这一带主要分布教师公寓和专家公寓。教师公寓主要供教职人员居住，楼内配套是否对访客开放、具体营业情况以现场公告为准。
 
-教师公寓主要供教职人员居住，一楼设有一间教工餐厅和传言只有faculty才能进的 Faculty Club。森林印务也设置于此。
+学校国际合作部的住宿信息和校友会返校指南均列有专家公寓，但房间有限，适用对象、房型、价格与房态应实时确认。公开页面注明需提前预订，可致电前台 **0755-86664284** 咨询；家长或访客是否可订、入住证件、付款和退改规则以当次答复为准。
 
-专家公寓对外开放，以宾馆的形式运营，一楼有一间西餐厅，一间中餐厅和一间报告厅。
-
-> 家长要来学校，住宿的首选当然是专家公寓。就在校内，房间内饰朴素干净，价钱也很亲民，比校外的酒店会便宜100左右。要提醒的是专家公寓是不接受电话预定的，必须要亲自去前台预定。尤其是校园开放日的那几天，房间会非常紧张，最好是提前3到5天预定好。
-
-- [专家公寓](https://sustc.wiki/专家公寓)
+- [国际合作部：南方科技大学校外住宿信息参考](https://global.sustech.edu.cn/news/detail/nid-154)
+- [南方科技大学校友会：返校指南](https://aa.sustech.edu.cn/service/backschool.html?lang=zh-cn)
 
 #### 棒球场
 
 [![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node520,300,10,90,0)
 
 
-位于专家公寓南侧，使用率不是很高。每年会举办一次[“海峡两岸学生棒球联赛”](https://newshub.sustech.edu.cn/zh/html/201912/30570.html)。
+位于专家公寓南侧。学校新闻曾报道这里于 2019 年举办[海峡两岸学生棒球联赛](https://newshub.sustech.edu.cn/zh/html/201912/30570.html)；现有公开来源不足以证明该赛事此后每年固定举办，场地安排请以体育中心当期通知为准。
 
-#### 办公楼（新行政楼）与人文社科学院
+#### 办公楼与人文社会科学学院
 
 [![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node458,0,10,120,0)
 
@@ -357,7 +347,7 @@
 
 ![步行公园](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/hill.jpg)
 
-上图的左侧为长岭陂水库，中间为步行公园，右侧为润扬体育馆，远处的轨道为长岭陂地铁站。
+上图的左侧为长岭陂水库，中间为步行公园，右侧为润杨体育馆，远处的轨道为长岭陂地铁站。
 
 在后山（步行公园）上可以望见长岭陂水库，智园，长岭陂地铁站和正在建设中的医学院。
 

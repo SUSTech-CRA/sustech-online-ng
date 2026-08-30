@@ -1,16 +1,17 @@
-# eduroam（学术网路漫游）
+# eduroam（学术网络漫游）
 
 eduroam(education roaming) 是专为科研和教育机构开发的安全的环球跨域无线漫游认证服务，目前已覆盖全球八十余个国家和地区的超过6000家科研机构和教育机构。加入 Eduroam 联盟的机构成员可使用本机构提供的合法账号，在全球已加入 Eduroam 联盟的机构内实现无线网络访问的无障碍漫游。
 
-## 注册
+## 注册与配置
 
-[http://eduroam.user.sustech.edu.cn](http://eduroam.user.sustech.edu.cn)
+[南科大 eduroam 用户服务](https://eduroam.user.sustech.edu.cn/)
 
-## 配置
+南科大官方页面当前说明系统已升级，新账号域使用 `sustech.edu.cn` 或 `mail.sustech.edu.cn`，注册时通过 CAS 绑定邮箱。学生和教职工的具体账号格式、密码及设备配置方式，请以该页面的实时指引为准。
 
-* 用户名（身份）：`xxxx@sustech.edu.cn` (教职工) / `your_studentID@mail.sustech.edu.cn` (学生)
-* 密码：eduroam系统登录密码（非CAS登录密码）
-* 加密类型：802.1x / EAP协议
-* EAP方法：`PEAP`
-* 阶段2身份验证：`MSCHAPv2`
-* CA证书：不验证
+::: danger 不要关闭证书验证
+
+旧稿曾建议把 CA 证书设为“不验证”，这会增加连接伪造热点并泄露账号密码的风险。请使用官方页面提供的配置或描述文件；若设备提示证书异常或无法按官方方式连接，应停止输入密码并联系网络信息中心。
+
+:::
+
+网络信息中心支持电话：**0755-88010777**，邮箱：**its@sustech.edu.cn**。联系方式可在学校[联系电话目录](https://www.sustech.edu.cn/zh/contact_us.html)复核。

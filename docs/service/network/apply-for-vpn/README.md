@@ -1,20 +1,16 @@
-# 申请回校VPN
+# 校园 VPN
 
-1. 下载申请表
+VPN 用于从校外访问校内网络资源；实际开放对象、审批要求和可访问范围以网络信息中心当前策略为准。
 
-- [南方科技大学 SSL VPN 用户开通申请表（链接）](http://zzjg.sustech.edu.cn/list.html?app_alias=oits&sort_alias=4110559ccf52ea13bcd44b6e816843b2&template_type_id=3&title=%E4%B8%8B%E8%BD%BD%E4%B8%93%E5%8C%BA)
+## 开通与使用
 
-  ![例子](./apply.png)
+1. 打开[网上服务大厅](https://ehall.sustech.edu.cn/)，搜索“SSL VPN业务开通”，按登录后页面的当前要求办理。
+2. 开通后访问[南方科技大学 VPN 系统](https://vpn.sustech.edu.cn/)，按照系统当前提供的客户端和登录说明使用。
+3. 本站的[校园 VPN 使用说明](/service/network/use-vpn/)只保留公开可核实的入口与安全提醒。
 
-示例
+::: tip 公开信息边界
 
-2. 填写申请表
+网上服务大厅的公开服务索引可以确认“SSL VPN业务开通”事项存在，但未公开申请字段、适用人员和审批链。本页因此不再沿用旧版“下载纸质表格—导师或辅导员签字—邮件提交”的固定流程。
+:::
 
-3. 提交申请表给生活导师或辅导员签字。
-
-4. 将表格发送至 [its@sustech.edu.cn](mailto:its@sustech.edu.cn) 申请。
-
-
-*提示：此VPN的用途仅限回校访问数据库，无法作为其他用途。*
-
-查看如何[使用 SSL VPN 客户端说明](/service/network/use-vpn/)。
+如需帮助，可联系[网络信息中心](https://www.sustech.edu.cn/zh/contact_us.html)：0755-88010777，its@sustech.edu.cn。

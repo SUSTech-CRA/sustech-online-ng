@@ -16,7 +16,7 @@
 
 - [下载课程大纲PDF](https://mirrors.sustech.edu.cn/courses/syllabus/) （按照课程代码编码）
 
-- 教工部提供的查看渠道：<https://course-tao.sustech.edu.cn/kcxxweb/KcxxwebChinesePC> （需CAS登陆）
+- 教学工作部提供的课程信息查询渠道：<https://course-tao.sustech.edu.cn/kcxxweb/KcxxwebChinesePC>
 
 - 课程资料：从 QQ 群等互联网来源获取并整理的课程资料。请登陆[NCES](https://ncesnext.com/)，并点击课程介绍下方的“课件”按钮进入（仅限校内访问）。
 
@@ -33,14 +33,20 @@
 ### 毕业生质量报告
 
 * [南方科技大学 2019 年度本科毕业生就业质量报告](https://www.sustech.edu.cn/uploads/files/2021/01/06113735_69394.pdf)
-* [南方科技大学 2020 年度本科毕业生就业质量报告](http://career.sustech.edu.cn/detail/news?id=588518)
-* [南方科技大学 2021 届毕业生就业质量年度报告](http://career.sustech.edu.cn/detail/news?id=664725)
-* [南方科技大学 2022 届毕业生就业质量年度报告](http://career.sustech.edu.cn/detail/news?id=880924)
+* [南方科技大学 2020 年度本科毕业生就业质量报告](https://career.sustech.edu.cn/detail/news?id=588518)
+* [南方科技大学 2021 届毕业生就业质量年度报告](https://career.sustech.edu.cn/detail/news?id=664725)
+* [南方科技大学 2022 届毕业生就业质量年度报告](https://career.sustech.edu.cn/detail/news?id=880924)
 * [南方科技大学 2023 届毕业生就业质量年度报告](https://career.sustech.edu.cn/detail/news?id=1039558)
 * [南方科技大学 2024 届毕业生就业质量年度报告](https://career.sustech.edu.cn/detail/news?id=1647576)
 
 
 ### GPA换算表（本科）
+
+::: warning 以正式成绩单和本人适用制度为准
+
+下表用于理解本站往期资料，不代替本人入学年级适用的学生手册、培养方案或学校出具的正式成绩单。申请院校要求换算 GPA 时，应遵循对方规则，不自行把参考百分制区间写成学校官方换算证明。
+
+:::
 
 | 等级       | A+       | A       | A-      | B+      | B       | B-      | C+      | C       | C-      | D+      | D       | D-      |   F   |
 | ---------- | -------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | :---: |
@@ -62,7 +68,9 @@
 - [向境外院校发送成绩单与证书](./send-transcripts-to-other-universites)
 - [向境外院校发送的成绩单，课程，奖助学金证明模版（by LuckyChen3141）](https://github.com/LuckyChen3141/SUSTech-Proof-Kit/)
 
-## 学生手册
+## 学生手册（历史归档）
+
+本站公开归档目前只到 2022 年，不能作为当前学籍、奖惩或学位规则的唯一依据。现行要求请以本人适用版本、网上服务大厅和教学工作部通知为准。
 
 - [2022本科](https://mirrors.sustech.edu.cn/site/sustech-online/documents/manual/南方科技大学学生手册2022-本科.pdf)
 - [2021本科](https://mirrors.sustech.edu.cn/site/sustech-online/documents/manual/南方科技大学学生手册2021-本科.pdf)
@@ -70,6 +78,12 @@
 - [2019本科](https://mirrors.sustech.edu.cn/site/sustech-online/documents/manual/南方科技大学学生手册2019-本科.pdf)
 
 ## 培养方案（本科）
+
+- [2025级本科人才培养方案（PDF）](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/2025级本科人才培养方案.pdf)
+  - [Curriculum for International Students (2025, PDF)](https://mirrors.sustech.edu.cn/courses/curriculum_for_international_students/2025.pdf)
+
+- [2024级本科人才培养方案](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/2024级本科人才培养方案/)
+  - [Curriculum for International Students (2024)](https://mirrors.sustech.edu.cn/courses/curriculum_for_international_students/2024/)
 
 - [2023级本科人才培养方案](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/2023级本科人才培养方案/)
   - [Curriculum for International Students (2023)](https://mirrors.sustech.edu.cn/courses/curriculum_for_international_students/2023/)
@@ -86,7 +100,7 @@
 - [2019级](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/2019级本科人才培养方案/)
 - [2018级(第二学年结束时进入专业)](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/2018级本科生培养方案（适用于第二学年结束时，申请进入专业）/)
 - [2018级(第一学年结束时进入专业)](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/2018级本科生培养方案（适用于第一学年结束时，申请进入专业）/)
-- [培养方案总览/南方科技大学教工部](http://tao.sustech.edu.cn/page/id-184.html)
+- [本科人才培养方案目录/南科大开源镜像站](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/)
 
 ## 📗教材与图书借还
 
@@ -96,7 +110,7 @@
 
 ### 计算机科学与工程系
 
-- [创新实践项目汇总](./cse/innovative-project.md)
+- [计算机科学与工程系官网](https://cse.sustech.edu.cn/)
 - [计算机安全/渗透测试公开教学与学术队伍](https://blog.compassc.tf)
 - 计算机系毕业去向
   - [2023届](https://mp.weixin.qq.com/s/vt9o_9wmnwYVY8lu8cLKFA)
@@ -104,7 +118,7 @@
   - [2021届](https://mp.weixin.qq.com/s/W0MBffPhLiSrpUVp97iFsA)
   - [2020届](https://www.zhihu.com/question/377583285/answer/1247497149)
 
-### 人文中心
+### 人文科学中心
 - [袁长庚老师所推荐的新生书单 2018年](./book-list-by-prof-yuan/2018)
 
 ### 语言中心

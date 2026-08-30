@@ -1,42 +1,26 @@
 # 如果你是新生...
 
-::: tip 提示
+::: tip 当前官方入口
 
-右键/长按链接在新窗口打开，以获得更好的阅读效果！
-
+新生报到时间、所需材料、军训安排和联系方式会按年度调整。请先查看[南方科技大学新生入学服务网](https://welcome.sustech.edu.cn/)，并以本人录取通知书和迎新网当年通知为准。该入口于 2026 年 8 月 31 日核对，当前提供入学指南、报到安排、新生军训和常见问题。
 :::
 
-::: warning 提示
-本文写于 2020年8月，部分内容可能已经过时。
+::: warning 内容边界
+
+本页保留适合长期参考的校园生活与学习导航，不再维护容易过期的新生群号、具体报到日期、缴费金额和个人联系方式。
 :::
 
 
 ## 到校之前，你可以
 
-### 加入新生群
+### 核对迎新通知与官方沟通渠道
 
-根据迎新网上的提示，加入新生群，在QQ群内向学长学姐提出你想问的问题。提问之前，别忘了先看看[《提问的智慧》](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md)。
-
-> 致仁书院2020新生咨询群：913306082
->
-> 树仁书院2020新生咨询群：1097888660
->
-> 致诚书院2020新生咨询群：1106061970
->
-> 树德书院2020新生咨询群：1033070328
->
-> 致新书院2020新生咨询群：1128902987
->
-> 树礼书院2020新生咨询群：807844572
->
-> 2020全国迎新群（官方）：834277170
->
-> 非官方的2020群：1102473263
+先阅读录取通知书和[官方迎新网](https://welcome.sustech.edu.cn/)的当年通知，再根据通知加入书院或学校提供的沟通渠道。群号和联系人可能每年变化，不要继续使用往届页面、转发截图或搜索结果中的旧号码。提问之前，也可以先看看[《提问的智慧》](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md)。
 
 
 ### 云游南科大的校园
 
-查看南科手册的[🏫建筑与设施部分](/facility/)，看看校园内都有哪些建筑，他们的功能都是什么。或是在[全景看校园](/facility/#全景看校园)，一窥航拍的南科大。*（由于疫情缘故，全景航拍都是2019暑假拍摄的，今年没有更新。全景里面的许多建筑都已经完工，在开学之后就可以使用啦！）*。
+查看南科手册的[🏫建筑与设施部分](/facility/)，了解校园建筑及其主要功能，或通过页面中的校园街景浏览校园。南科手册内的街景和图片有拍摄年份，实际环境可能已经变化；如需查看学校近期发布的校园照片，可以访问官网的[南科视界](https://www.sustech.edu.cn/zh/gallery.html)。
 
 ![湖畔全景](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/facility/campus-pano.jpg)
 
@@ -50,16 +34,16 @@
 
 培养方案和课程详述（syllabus）将会陪伴你大学四年，不妨在有空时翻阅一下，寻找你心水的专业与课程。
 
-- [🎓学在南科/课程](/study/by-shude-college/advice-on-study.md#入学考试的建议)
-- [2020级本科人才培养方案](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/2021级本科人才培养方案/)
-- [Curriculum for International Students (2020)](https://mirrors.sustech.edu.cn/courses/curriculum_for_international_students/)
+- [树德书院学习建议（2020，历史资料）](/study/by-shude-college/advice-on-study.md#入学考试的建议)
+- [本科人才培养方案目录](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/)（请按本人入学年级选择，不要套用其他年级方案）
+- [Curriculum for International Students](https://mirrors.sustech.edu.cn/courses/curriculum_for_international_students/)（请按本人入学年级选择）
 
-你也可以现行了解入学后的分级考试都会涉及哪些内容，并决定自己收否需要参加某些考试。
+如当年安排分级或选拔考试，科目、时间及参加要求以迎新网、教学工作部邮件和校内通知为准；往届攻略仅用于了解历史经验，不能据此推断当前安排。
 
 ### 读一读来自学长学姐的建议
 
-- [学习建议 by 树德书院](/study/by-shude-college/advice-on-study.md)
-- [学习制度与信息 by 树德书院](/study/by-shude-college/info-on-study.md)
+- [学习建议 by 树德书院（2020，历史资料）](/study/by-shude-college/advice-on-study.md)
+- [学习制度与信息 by 树德书院（2020，历史资料）](/study/by-shude-college/info-on-study.md)
 
 ### 或者是南科大网红老师推荐的书单？
 
@@ -103,7 +87,7 @@
 
 #### 看看其他的[实用技巧](/service/)
 
-#### 添加[黄页](/contact/)中提到的常用QQ群
+#### 从[学校官网](https://www.sustech.edu.cn/zh/students.html)、企业微信或[网上服务大厅](https://ehall.sustech.edu.cn/)核对正式通知与服务入口；不要使用往届页面中的静态群号
 
 ## 最后...
 

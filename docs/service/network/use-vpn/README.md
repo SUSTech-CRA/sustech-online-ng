@@ -1,14 +1,14 @@
-# 使用 SSL VPN 说明
+# 使用校园 VPN
 
-查看如何[申请回校 VPN](/service/network/apply-for-vpn/)。
+南科大官网当前列出的正式入口是[南方科技大学 VPN 系统](https://vpn.sustech.edu.cn/)。如尚未开通，请先查看[校园 VPN 开通说明](/service/network/apply-for-vpn/)。
 
-1. 下载客户端 <https://vpn.sustech.edu.cn/com/welcome.html> 或者 <https://vpn.sustech.edu.cn/com/installClient.html>
-   * Windows 电脑需用 IE 浏览器打开，并信任证书。
-   * Mac 电脑需用 Safari 浏览器打开，并信任证书。
-   * 如需使用 Chrome 浏览器访问，会提示“您的连接不是私密连接”，点击旁边空白区域，输入“thisisunsafe”。
-2. 打开客户端，选择账号登录，填写配置
-   - 服务器地址：https://vpn.sustech.edu.cn
-   - 用户名：8位学号
-   - 密码：VPN 系统密码（可能与 CAS 密码不同）
+## 使用步骤
 
-*提示：此VPN的用途仅限回校访问数据库，无法作为其他用途。*
+1. 从学校官网的[常用系统](https://www.sustech.edu.cn/zh/common-systems.html)进入 VPN 系统，或确认浏览器地址栏为 `https://vpn.sustech.edu.cn/`。
+2. 按 VPN 页面当前展示的客户端、操作系统和认证说明安装或登录。客户端版本、登录方式及账户规则可能调整，不再使用本站旧版固定参数。
+3. 连接后访问所需校内资源；实际可访问范围以网络信息中心当前策略为准。
+
+::: warning 安全提醒
+
+如果浏览器显示证书错误、“连接不是私密连接”或域名不一致，请停止操作，不要输入绕过口令，也不要继续提交账号密码。先核对网址、系统时间和网络环境；仍有问题时联系[网络信息中心](https://www.sustech.edu.cn/zh/contact_us.html)：0755-88010777，its@sustech.edu.cn。
+:::
