@@ -317,7 +317,7 @@
 [![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node520,300,10,90,0)
 
 
-位于专家公寓南侧，使用率不是很高。每年会举办一次[“海峡两岸学生棒球联赛”](https://newshub.sustech.edu.cn/zh/html/201912/30570.html)。
+位于专家公寓南侧。学校新闻曾报道这里于 2019 年举办[海峡两岸学生棒球联赛](https://newshub.sustech.edu.cn/zh/html/201912/30570.html)；现有公开来源不足以证明该赛事此后每年固定举办，场地安排请以体育中心当期通知为准。
 
 #### 办公楼与人文社会科学学院
 
