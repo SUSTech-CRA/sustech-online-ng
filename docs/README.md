@@ -117,13 +117,9 @@ div.emergency p a {
 
 你也可以阅读冯小漠整理的非正统历史故事[蓢村拾遗：南科大冷知识 2021](./if-you-are-a-freshman/preview)，以及本站为 2021 级学生制作的 [Quickstart of SUSTech](./if-you-are-a-freshman/2021.md)。这些内容用于了解校园经验，不是当前报到依据。
 
-::: tip 数说大一
+::: tip 数说大一（2022 年历史项目）
 
-- 你也可以阅读基于[南科大同学](https://luckychen.site/about-us/)大创项目的调查研究成果：
-
-  - [https://luckychen.site/](https://luckychen.site/) 帮助入学前、大一上、大一下阶段的你更好地适应大学的学习与生活，进而找到自己的发展方向。
-
-  - [https://luckychen.site/数说大一/](https://luckychen.site/数说大一/) 《数说大一》——基于392份问卷的统计结果告诉你大一专业选择会遇到的困难。
+“南科大同学”大创项目曾发布基于 392 份问卷的《数说大一》，用于呈现当时学生在专业选择等方面的经验。原第三方站点截至 2026 年 8 月 31 日公网访问不稳定，因此不再作为现行服务入口；问卷结果也不代表当前学生整体情况。当前报到、军训及入学安排请以[官方迎新网](https://welcome.sustech.edu.cn/)为准。
 
 :::
 
@@ -139,11 +135,11 @@ div.emergency p a {
 
 ## 校园地图
 
-由sustech.online团队制作的校园地图。地图底图采用南科大2022版最新规划图，并添加校园巴士线路，打印机，商店，收发室等实用信息。[（尝试新版交互式校园地图！可全屏，实时定位）](./transport/bustimer)
+由 sustech.online 团队维护的社区校园地图，以学校 2022 年规划图为底图，并补充校园巴士线路、打印机、商店和收发室等实用信息。当前下载版本为 **5.0**；建筑名称、道路和服务点可能继续调整，请同时核对[学校官网校园地图](https://www.sustech.edu.cn/zh/contact_us.html)及现场标识。[尝试交互式校园地图（支持全屏和定位）](./transport/bustimer)
 
-<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/pdfjs/web/viewer.html?file=https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v4-1.pdf" width="100%" height="600"></iframe>
+<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/pdfjs/web/viewer.html?file=https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/SUSTech-Campus-Map-v5-0.pdf" width="100%" height="600"></iframe>
 
-[点击这里](https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v4-1.pdf)下载矢量PDF版本，目前版本：**4.1**，2025年10月更新。
+[下载校园地图 5.0 矢量 PDF](https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/SUSTech-Campus-Map-v5-0.pdf)。
 
 ## 版权信息
 
