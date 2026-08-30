@@ -17,7 +17,7 @@
 
 ![校园地图](https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/facility/campus-map.png)
 
-上图是南科大的校园平面图。在校园内，建筑大都处于校园西侧。
+上图是本站保存的校园平面图；查看学校当前公开地图，请使用官网[校园地图](https://www.sustech.edu.cn/zh/contact_us.html#maps)。校园建设和楼宇用途可能变化，现场标识与学校通知优先。
 
 ![致新书院绘制的卡通版地图](https://mirrors.sustech.edu.cn/site/sustech-online/img/campus-map/campus-map-cartoon-version.png)
 
@@ -27,7 +27,7 @@
 
 ![一期校园](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/underhill.jpg)
 
-上图中，左上角为国际会议中心，左下角为正在建设中的理学院；中下位置为行政楼和琳恩图书馆，中上方从左到右为第四科研楼到第一科研楼；正中间从左到右是第二教学楼，检测中心和第一教学楼；右侧为南科大中心。
+上图拍摄于二期建设阶段：左上角为国际会议中心，左下角为当时正在建设的理学院；中下位置为行政楼和琳恩图书馆，中上方从左到右为第四科研楼到第一科研楼；正中间从左到右是第二教学楼、检测中心和第一教学楼；右侧为南科大中心。学校官网[学校概况](https://sustech.edu.cn/zh/about.html)已将理学院等二期建筑列为投入使用项目。
 
 ### 理学院
 
@@ -69,7 +69,7 @@
 
 一教的北侧有一个[赛百味](https://amap.com/place/B0FFK1Q96N)，一般在课间会排队。
 
-在一教的楼顶可以看到整个山下，和建设中的公共教学楼和理学院。
+从一教楼顶可看到山下区域。该段原配图拍摄时公共教学楼和理学院仍在建设，相关二期建筑现已投入使用。
 
 #### 检测中心
 
@@ -280,7 +280,7 @@
 
 ### 慧园
 
-许多院系的实验室和办公区域设置于创园。
+许多院系的实验室和办公区域设置于慧园；例如南科大新闻网 2025 年的[实验室安全报道](https://newshub.sustech.edu.cn/html/202506/46525.html)提到慧园 5 栋化学实验室。
 
 ### 欣园
 
@@ -295,7 +295,7 @@
 
 ![校园东南区域](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/southwest.jpg)
 
-在上图中，左侧是田径场和润扬体育馆，中间是教师公寓，右侧是学术交流中心与人文社会科学学院。
+在上图中，左侧是田径场和润杨体育馆，中间是教师公寓，右侧是学术交流中心与人文社会科学学院。
 
 #### 教师公寓与专家公寓
 
@@ -319,7 +319,7 @@
 
 位于专家公寓南侧，使用率不是很高。每年会举办一次[“海峡两岸学生棒球联赛”](https://newshub.sustech.edu.cn/zh/html/201912/30570.html)。
 
-#### 办公楼（新行政楼）与人文社科学院
+#### 办公楼与人文社会科学学院
 
 [![进入街景](./streetview.svg)](https://mirrors.sustech.edu.cn/site/sustech-pano/202204/#node458,0,10,120,0)
 
@@ -350,7 +350,7 @@
 
 ![步行公园](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/hill.jpg)
 
-上图的左侧为长岭陂水库，中间为步行公园，右侧为润扬体育馆，远处的轨道为长岭陂地铁站。
+上图的左侧为长岭陂水库，中间为步行公园，右侧为润杨体育馆，远处的轨道为长岭陂地铁站。
 
 在后山（步行公园）上可以望见长岭陂水库，智园，长岭陂地铁站和正在建设中的医学院。
 
