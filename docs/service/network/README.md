@@ -29,7 +29,7 @@ sidebar: auto
 
 ### eduroam
 
-优先按[南科大 eduroam 官方页面](https://eduroam.user.sustech.edu.cn/)的当前流程注册和配置。官方页面目前说明，学生账号使用 `学号@mail.sustech.edu.cn`，教职工账号使用 `账号@sustech.edu.cn`，注册时通过 CAS 绑定邮箱；具体身份格式、密码规则和安装描述文件以页面实时提示为准。
+优先按[南科大 eduroam 官方页面](https://eduroam.user.sustech.edu.cn/)的当前流程注册和配置。公开页面说明注册时需通过 CAS 绑定邮箱；具体用户名格式、密码规则和安装描述文件以登录后的实时提示为准。
 
 不要照抄本站旧稿中的“CA 证书不验证”或“Trust on first use”设置。证书验证是防止把校园账号和密码交给伪造热点的重要环节；如果设备无法按官方说明完成配置，请联系网络信息中心，而不是降低验证要求。
 
