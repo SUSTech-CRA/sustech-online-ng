@@ -34,16 +34,16 @@
 
 培养方案和课程详述（syllabus）将会陪伴你大学四年，不妨在有空时翻阅一下，寻找你心水的专业与课程。
 
-- [🎓学在南科/课程](/study/by-shude-college/advice-on-study.md#入学考试的建议)
+- [树德书院学习建议（2020，历史资料）](/study/by-shude-college/advice-on-study.md#入学考试的建议)
 - [本科人才培养方案目录](https://mirrors.sustech.edu.cn/courses/本科人才培养方案/)（请按本人入学年级选择，不要套用其他年级方案）
-- [Curriculum for International Students (2020，历史资料)](https://mirrors.sustech.edu.cn/courses/curriculum_for_international_students/)
+- [Curriculum for International Students](https://mirrors.sustech.edu.cn/courses/curriculum_for_international_students/)（请按本人入学年级选择）
 
-你也可以先行了解入学后的分级考试会涉及哪些内容，并决定自己是否需要参加某些考试。
+如当年安排分级或选拔考试，科目、时间及参加要求以迎新网、教学工作部邮件和校内通知为准；往届攻略仅用于了解历史经验，不能据此推断当前安排。
 
 ### 读一读来自学长学姐的建议
 
-- [学习建议 by 树德书院](/study/by-shude-college/advice-on-study.md)
-- [学习制度与信息 by 树德书院](/study/by-shude-college/info-on-study.md)
+- [学习建议 by 树德书院（2020，历史资料）](/study/by-shude-college/advice-on-study.md)
+- [学习制度与信息 by 树德书院（2020，历史资料）](/study/by-shude-college/info-on-study.md)
 
 ### 或者是南科大网红老师推荐的书单？
 
