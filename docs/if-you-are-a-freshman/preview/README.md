@@ -102,5 +102,3 @@
 馮小漠的公众号：
 
 <img src="https://open.weixin.qq.com/qr/code?username=studiogloire#.jpg" class="wx-qr medium-zoom-image">
-
-
