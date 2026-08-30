@@ -18,14 +18,17 @@
   - *（包括无线网络，有线网络与电信自费宽带）*
 - [eduroam（学术网路漫游）](./network/eduroam)
 - [校内 IPv6 设置教程](./network/ipv6)
-- [回校 VPN 申请](./network/apply-for-vpn)
-- [使用 SSL VPN 客户端说明](/service/network/use-vpn/)
+- [校园 VPN（开通与使用）](./network/apply-for-vpn)
+- [校园 VPN 使用说明](/service/network/use-vpn/)
 - [信息中心相关信息](./network/#信息中心)
 
-### Ehall
+### 网上服务大厅与常用系统
 
-1. [SUSTech ehall | 成绩查询](http://ehall.sustech.edu.cn/publicapp/sys/cjcxapp/index.do)
-2. [SUSTech ehall | 失物招领](http://ehall.sustech.edu.cn/publicapp/sys/pubswzlapp/index.do)
+- [网上服务大厅](https://ehall.sustech.edu.cn/)
+- [学生常用系统](https://www.sustech.edu.cn/zh/students.html)
+- [学校常用系统](https://www.sustech.edu.cn/zh/common-systems.html)
+- [成绩查询（TIS）](https://tis.sustech.edu.cn/)
+- 失物招领：登录网上服务大厅后搜索“失物招领”。
 
 ### 计算机研究协会（CRA）
 
