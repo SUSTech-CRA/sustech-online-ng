@@ -9,17 +9,11 @@
 
 ## 如何贡献 / 建议
 
-1. Pull request
-    1. Fork 后，进行修改。
-    2. 发起 Merge 请求。
+1. 在主仓库[新建 Issue](https://github.com/SUSTech-CRA/sustech-online-ng/issues/new)，说明需要修正或补充的页面，并附上可公开访问的来源链接。
+2. 如需直接修改：Fork 主仓库，在独立分支编辑并进行必要预览，然后向 `SUSTech-CRA/sustech-online-ng` 的 `master` 分支发起 Pull Request。
+3. 提交内容请区分学校官方信息、第三方服务和个人经验；容易变化的日期、电话、价格、群号及流程应注明核对日期和来源。
 
-2. 邮件提交
-    1. 发送邮件到 support__at__mail.sustech.online (\_\_at\_\_ 替换为 @)
-
-3. 代理提交
-    1. 进入[南科手册 QQ群](https://jq.qq.com/?_wv=1027&k=5D8EgDF): 905618908
-    2. 提交规范编写的Word，Markdown 文件给管理员。
-    3. 管理员整理上传。
+旧版页面列出的项目邮箱及 QQ 群邀请无法在公开渠道核验当前接收状态，已不再作为默认投稿入口。请勿在 Issue 或 Pull Request 中公开学号、手机号、身份证件、校园账号、成绩单或未公开研究数据。
 
 ## 贡献者
 
