@@ -58,6 +58,8 @@
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
     <li><a href="https://ehall.sustech.edu.cn/new/index.html" target="_blank" rel="noopener noreferrer">📝 服务大厅
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
+    <li><a href="https://www.sustech.edu.cn/zh/students.html" target="_blank" rel="noopener noreferrer">🧭 官方学生常用系统
+    <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
     <li><a href="https://sakai.sustech.edu.cn" target="_blank" rel="noopener noreferrer">📚 Sakai
     <svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a>, <a href="https://bb.sustech.edu.cn/" target="_blank" rel="noopener noreferrer">📚 Blackboard<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
     <li><a href="https://pms.sustech.edu.cn" target="_blank" rel="noopener noreferrer">🖨️ 联创打印<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a>, <a href="http://172.18.1.141/" target="_blank" rel="noopener noreferrer">（备用）<svg aria-hidden="true" x="0px" y="0px" width="15" height="15" class="icon outbound"><use href="#link-icon" /></svg></a></li>
@@ -111,7 +113,9 @@ div.emergency p a {
 
 ## 如果你是新生... <Badge text="For Freshman" type="tip"/>
 
-如果你是准大一的同学，可以先看看冯小漠为大家整理南科大的非正统历史故事[蓢村拾遗：南科大冷知识2021](./if-you-are-a-freshman/preview)。[点击这里](./if-you-are-a-freshman/2021.md)看看我们为 2021年的学生准备的 Quickstart of SUSTech，了解并开启你的大学生活！
+准新生请先访问[南方科技大学新生入学服务网](https://welcome.sustech.edu.cn/)，获取当年的入学指南、报到安排、军训通知和常见问题。报到日期、材料、群号和联系方式以录取通知书及官方迎新网为准。
+
+你也可以阅读冯小漠整理的非正统历史故事[蓢村拾遗：南科大冷知识 2021](./if-you-are-a-freshman/preview)，以及本站为 2021 级学生制作的 [Quickstart of SUSTech](./if-you-are-a-freshman/2021.md)。这些内容用于了解校园经验，不是当前报到依据。
 
 ::: tip 数说大一
 
@@ -123,9 +127,11 @@ div.emergency p a {
 
 :::
 
-- *致诚书院发布的 [2022致诚新生手册.pdf](https://mirrors.sustech.edu.cn/site/sustech-online/documents/college/zhicheng/2022新生攻略by致诚书院.pdf)及[致诚书院宣传手册](https://mirrors.sustech.edu.cn/site/sustech-online/documents/college/zhicheng/2022致诚宣传手册.pdf)*：包括书院简介，院系师资，书院品牌，特色空间，社团组织
-- *致仁书院发布的 [致仁书院新生攻略手册.pdf](https://mirrors.sustech.edu.cn/site/sustech-online/documents/college/zhiren/致仁书院新生攻略手册2022.pdf)*：包括入学指南，生活服务，快乐学习，班级事务
-- *学工部出品的2022本科新生入学指南可在此处下载：[2022级本科新生入学指南.pdf](https://mirrors.sustech.edu.cn/site/sustech-online/documents/freshman-handbook/2022.pdf)*
+以下为 2022 年历史资料，可用于了解往届校园生活，不应作为当前手续、日期或联系方式依据：
+
+- *致诚书院发布的 [2022 致诚新生手册.pdf](https://mirrors.sustech.edu.cn/site/sustech-online/documents/college/zhicheng/2022新生攻略by致诚书院.pdf)及[致诚书院宣传手册](https://mirrors.sustech.edu.cn/site/sustech-online/documents/college/zhicheng/2022致诚宣传手册.pdf)*
+- *致仁书院发布的 [2022 致仁书院新生攻略手册.pdf](https://mirrors.sustech.edu.cn/site/sustech-online/documents/college/zhiren/致仁书院新生攻略手册2022.pdf)*
+- *学工部发布的 [2022 级本科新生入学指南.pdf](https://mirrors.sustech.edu.cn/site/sustech-online/documents/freshman-handbook/2022.pdf)*
 
 ## 飞跃手册：申请与校招经验 <Badge text="秋季特别合作" type="tip"/>
 
