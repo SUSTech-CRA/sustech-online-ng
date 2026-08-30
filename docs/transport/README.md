@@ -172,7 +172,7 @@
 
 1. 乘地铁 ![](../assets/badge/szmc/5.svg) 往黄贝岭方向至深圳北站，转高铁。**（西九龙口岸/西九龍管制站）**
 2. 乘地铁 ![](../assets/badge/szmc/5.svg) 往黄贝岭方向至深圳北站，转 ![](../assets/badge/szmc/4.svg) 往福田口岸方向至福田口岸。**（福田口岸/落馬洲支線管制站）**
-3. 乘地铁 ![](../assets/badge/szmc/5.svg) 往赤湾方向至深圳北站，转 ![](../assets/badge/szmc/6.svg) 往科学馆方向至科学馆，转 ![](../assets/badge/szmc/1.svg) 往罗湖方向至罗湖。**（罗湖口岸/羅湖管制站）**
+3. 乘地铁 ![](../assets/badge/szmc/5.svg) 往黄贝岭方向至深圳北站，转 ![](../assets/badge/szmc/6.svg) 往科学馆方向至科学馆，转 ![](../assets/badge/szmc/1.svg) 往罗湖方向至罗湖。**（罗湖口岸/羅湖管制站）**
 4. 乘地铁 ![](../assets/badge/szmc/5.svg) 往赤湾方向至西丽站，转 ![](../assets/badge/szmc/7.svg) 往太安方向至皇岗口岸。**（皇岗口岸/落馬洲管制站）**
 5. 乘公交 81 路，转 M474 路或 地铁 ![](../assets/badge/szmc/13.svg) 往深圳湾口岸方向至深圳湾口岸。**（深圳湾口岸/深圳灣管制站）**
 6. 乘地铁 ![](../assets/badge/szmc/5.svg) 往赤湾方向至灵芝站，转 ![](../assets/badge/szmc/12.svg) 至太子湾站乘船。**（蛇口码头-港澳碼頭（中环）/海天客運碼頭（香港机场））**
@@ -184,7 +184,7 @@
 1. 乘地铁![](../assets/badge/szmc/5.svg) 往黄贝岭方向至深圳北站，转广深港高铁。
 2. 乘地铁![](../assets/badge/szmc/5.svg) 往黄贝岭方向至布吉站（深圳东站），转普速列车。
 3. 乘地铁![](../assets/badge/szmc/5.svg) 往赤湾方向至前海湾站，转 ![](../assets/badge/szmc/11.svg) 往碧头方向至机场北，转穗深城际铁路。
-4. 乘地铁![](../assets/badge/szmc/5.svg) 往赤湾方向至深圳北站，转 ![](../assets/badge/szmc/6.svg) 往科学馆方向至科学馆，转![](../assets/badge/szmc/1.svg)往罗湖方向至罗湖，转广深城际铁路。
+4. 乘地铁![](../assets/badge/szmc/5.svg) 往黄贝岭方向至深圳北站，转 ![](../assets/badge/szmc/6.svg) 往科学馆方向至科学馆，转![](../assets/badge/szmc/1.svg)往罗湖方向至罗湖，转广深城际铁路。
 5. 乘地铁![](../assets/badge/szmc/5.svg) 往赤湾方向至前海湾站，B口出站步行至前海湾地铁站总站（公交站），转 广州（南沙）-深圳（前海）跨市公交往方向蕉门公交总站方向至横沥或蕉门，转广州地铁。
 
 ## 注
