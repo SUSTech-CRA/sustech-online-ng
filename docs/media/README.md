@@ -115,7 +115,8 @@ img.wx-qr.medium-zoom-image{ min-width: 100px; max-width: 150px; }
 - 南科导航｜南科大网址导航 [https://suste.ch](https://suste.ch)
 - 南科一路｜在这里，读懂南科 [https://nanke.suste.ch](https://nanke.suste.ch)
 - 校友地图 [https://sustech-application.github.io/SUSTech-Alumni-Map/](https://sustech-application.github.io/SUSTech-Alumni-Map/)
-- SUSTech Flow | 公开评教网站 [https://sustechflow.top/](https://sustechflow.top/)
+- SUSTech Flow｜第三方公开评教历史项目（原站截至 2026 年 8 月 31 日公网访问异常，不作为现行服务入口）
+- 教学质量管理平台｜[学校官方入口](https://eval.sustech.edu.cn/)（需统一身份认证；其用途和公开评教社区不同）
 - 飞跃手册 [https://sustech-application.com](https://sustech-application.com?utm_source=online)
 
 *欲查看其他服务网站，请参见[服务](/service/)一节。*
