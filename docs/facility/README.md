@@ -84,31 +84,24 @@
 
 ~~ 第二教学楼主要教室都是**机房**（2019年换的电脑是i7-8700K+1080Ti)，一般会用于上电子系，计算机系的实验课和一些电脑测评/考试。~~ 二教还有**一间多功能教室**，现在一般用于乐器排练和美术课程。
 
-#### 第三教学楼
+#### 智华楼（原第三教学楼）
 
-![第三教学楼与商学院，前景是大草坪](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/teach_building_3_and_school_of_business.jpeg)
+![智华楼与商学院，前景是大草坪](https://mirrors.sustech.edu.cn/site/sustech-online/img/facility/buildings/teach_building_3_and_school_of_business.jpeg)
 
-第三教学楼位于南科大中心与理学院和琳恩图书馆遥遥相望，毗邻商学院大楼。为5层建筑，其中一楼、二楼为阶梯教室以及混合教学教室，三楼为授课型教室，四楼为研讨型教室，五楼为教学机房，共56间教室，教室使用总面积为5800平。
+学校 2026 年的公开活动页面已使用“智华楼（原第三教学楼）”这一名称。该楼位于南科大中心，面向理学院和琳恩图书馆，毗邻商学院大楼；共 5 层、56 间教室，教室使用总面积 5800 平方米。一、二楼主要为阶梯教室及混合教学教室，三楼为授课型教室，四楼为研讨型教室，五楼为教学机房。
 
-- [教工部提供的教室全景](https://guide-cr.tao.sustech.edu.cn/)
+- [南科大新闻网：第三教学楼正式投入使用](https://newshub.sustech.edu.cn/html/202208/42555.html)
+- [教学工作部提供的教室全景](https://guide-cr.tao.sustech.edu.cn/)
 
->实测学校对第三教学楼设备不限速（Fair Use@Up to 1000Mbps）不同于其他建筑对科研教学网段限速50Mbps。
+::: tip 使用提示
 
-::: tip 5楼教学机房电脑配置
-
-- 501, 502, 503, 505, 506, 508: i7 10700K + 32G + 1TB SSD + 4TB HDD + RTX 4000
-- 504: i7 7700K + 16G + 256G SSD + 2TB HDD + P4000
-- 507: i7 7700K + 16G + 1T SSD + 4TB HDD + P4000
-- 509: i7 7700K + 16G + 512G SSD + 2TB HDD + GTX1080
-- 510: i7 7700K + 16G + 512G SSD + 2TB HDD + P4000
-
-由于每个机房安装的软件都不一样，所以可以根据课程安排来选择机房。
-
+具体教室用途、教学机房软硬件配置和网络策略可能随课程与运维安排调整，请以教务系统、电子班牌和现场通知为准。
 :::
 
-::: warning
-如果重新启动计算机，所有数据都将丢失。如果没有U盘，又需要传输文件，可使用 [LANDrop](https://www.appinn.com/landrop-files-transfer-tools/)，[校内 Send 文件分享](https://send.cra.moe/) 等工具。如果您需要保存机房数据，安装软件或其他需求联系song.wz@sustech.edu.cn
-:::
+#### 商学院
+
+商学院位于智华楼旁。[教学工作部公开介绍](https://learning.sustech.edu.cn/jczlcxj/2023/2159.html)显示，商学院二楼建有 6 间不同功能的智慧教室；学院动态和教学项目信息可查看[南方科技大学商学院官网](https://business.sustech.edu.cn/)。
+
 
 
 #### 第一科研楼
