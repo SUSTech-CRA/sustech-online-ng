@@ -15,7 +15,7 @@
 3. 校医务室（校园诊所）联系电话为 **0755-88010120**，可用于校内医疗咨询或衔接；该电话不能替代 120，也不在本页承诺 24 小时接诊。
 4. 经过紧急处置后，可查看[就医指南](/service/medical-treatment/README.md)。
 
-以上电话和处理顺序依据学校[联系电话目录](https://www.sustech.edu.cn/zh/contact_us.html)及校方网站发布的[医疗信息](https://icsa.sustech.edu.cn/)整理。
+以上电话和处理顺序依据学校[联系电话目录](https://www.sustech.edu.cn/zh/contact_us.html)及[校方主办的 2026 年会议服务页所列医疗信息](https://icsa.sustech.edu.cn/)整理；后者是日期化来源，不是持续维护的医疗门户。
 
 ### AED 与急救箱历史地图
 
