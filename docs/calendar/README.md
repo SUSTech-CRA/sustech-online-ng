@@ -1,10 +1,16 @@
 # 📅校历
 
-[南科校历|南方科技大学](https://www.sustech.edu.cn/zh/academic-calendar.html)
+[南科校历｜南方科技大学](https://www.sustech.edu.cn/zh/academic-calendar.html)
 
-## 【当前学年】2025-2026 学年 春季学期
+::: tip 当前公开版本
 
-- [下载校历](https://sustech.edu.cn/uploads/images/2025/11/25155122_83600.jpg)
+南科大官网当前公开的是《南方科技大学校历（2026）》。课程、考试和假期安排如有临时调整，请以学校后续通知为准。
+:::
+
+## 2026 年校历
+
+- [下载官方 PDF](https://www.sustech.edu.cn/uploads/files/2025/11/25155108_33786.pdf)
+- [下载官方图片](https://sustech.edu.cn/uploads/images/2025/11/25155122_83600.jpg)
 
 <a data-fancybox title="" href="https://mirrors.sustech.edu.cn/git/sustech-online/sustech-online-ng/-/raw/master/docs/calendar/pic/2026-1.jpg">![](./pic/2026-1.jpg)</a>
 
