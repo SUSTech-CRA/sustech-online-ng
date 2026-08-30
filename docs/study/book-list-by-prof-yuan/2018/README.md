@@ -70,4 +70,4 @@
 
 **以上推荐与所谓“权威”无关，它只是一个长期以读写为生的普通教师的一份邀请。我很庆幸自己出生并成长于前数字时代，在我漫长而孤独的青春期，阅读让我延展了有限的生命。我希望自己曾见识的风景，也能让后来者领略。每一本书都有其品格和灵魂，每一本书与我们的相遇因而也就有万般幻化可能。你爱上某一本书的时刻，也就是你爱上接下来无数本书的时刻。祝愿大家从阅读中得欢喜宁静。**
 
-*Copyright: [袁长庚](http://faculty.sustech.edu.cn/yuancg/), All rights reserved.*
+*Copyright: [袁长庚](https://faculty.sustech.edu.cn/yuancg/), All rights reserved.*
