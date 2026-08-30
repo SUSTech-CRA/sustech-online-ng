@@ -16,7 +16,7 @@
 
 - [下载课程大纲PDF](https://mirrors.sustech.edu.cn/courses/syllabus/) （按照课程代码编码）
 
-- 教学工作部提供的查看渠道：<https://course-tao.sustech.edu.cn/kcxxweb/KcxxwebChinesePC> （需 CAS 登录）
+- 教学工作部提供的课程信息查询渠道：<https://course-tao.sustech.edu.cn/kcxxweb/KcxxwebChinesePC>
 
 - 课程资料：从 QQ 群等互联网来源获取并整理的课程资料。请登陆[NCES](https://ncesnext.com/)，并点击课程介绍下方的“课件”按钮进入（仅限校内访问）。
 
