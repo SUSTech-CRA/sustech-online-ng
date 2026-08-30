@@ -87,7 +87,7 @@
 
 #### 看看其他的[实用技巧](/service/)
 
-#### 添加[黄页](/contact/)中提到的常用QQ群
+#### 从[学校官网](https://www.sustech.edu.cn/zh/students.html)、企业微信或[网上服务大厅](https://ehall.sustech.edu.cn/)核对正式通知与服务入口；不要使用往届页面中的静态群号
 
 ## 最后...
 
