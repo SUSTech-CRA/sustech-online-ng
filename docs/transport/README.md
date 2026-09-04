@@ -3,7 +3,8 @@
 ## 🚌校园巴士
 
 <div id="button-div">
-<div class='bt-sub-new'><a href="./bustimer.html">🚌车辆位置查看🚌</a></div>
+<div class='bt-sub-new'><a href="./bustimer_v2.html">🚌新版实时到站与车辆位置🚌</a></div>
+<div class='bt-sub-new'><a href="./bustimer.html">旧版巴士页面</a></div>
 </div>
 
 ---

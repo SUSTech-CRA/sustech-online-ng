@@ -1,4 +1,6 @@
 # 🚌校园巴士时刻表 SUSTech Campus Bus Info
+
+## [**新版校巴页面测试中，点击前往**](./bustimer_v2)
 <BusAnnouncement />
 
 <ClientOnly>
@@ -9,6 +11,7 @@
 
 ![](https://mirrors.sustech.edu.cn/site/sustech-online/img/campus-map/sustech_bus_schedule_2025.11.24.svg)
 <hr>
+
 
 <style>
 .bt-sub-new {

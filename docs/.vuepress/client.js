@@ -13,6 +13,11 @@ import Canteen from './components/Canteen.vue'
 import AdSenseInline from './components/adsense-inline.vue'
 import AdSenseDisplayAD from './components/adsense-displayad.vue'
 import TalksTodayNav from './components/TalksTodayNav.vue'
+import { BusHomeV2 } from './components/bus-v2/index.mjs'
+import BusRouteV2 from './components/bus-v2/BusRouteV2.vue'
+import BusStopV2 from './components/bus-v2/BusStopV2.vue'
+import BusVehiclesV2 from './components/bus-v2/BusVehiclesV2.vue'
+import BusSchedulesV2 from './components/bus-v2/BusSchedulesV2.vue'
 
 export default defineClientConfig({
   enhance({ app }) {
@@ -28,10 +33,14 @@ export default defineClientConfig({
     app.component("AdSenseInline", AdSenseInline)
     app.component("AdSenseDisplayAD", AdSenseDisplayAD)
     app.component("TalksTodayNav", TalksTodayNav)
+    app.component("BusHomeV2", BusHomeV2)
+    app.component("BusRouteV2", BusRouteV2)
+    app.component("BusStopV2", BusStopV2)
+    app.component("BusVehiclesV2", BusVehiclesV2)
+    app.component("BusSchedulesV2", BusSchedulesV2)
 
     // 含有echart的组件，注意需要用non-ssr模式
     app.component("BusChartVue", BusChartVue)
     app.component("Canteen", Canteen)
   },
 })
-
