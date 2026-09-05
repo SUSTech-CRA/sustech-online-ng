@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { busApi } from './api.mjs'
 import { groupSchedules } from './bus-v2-helpers.mjs'
 import { busLanguage, busText, setBusLanguage } from './i18n.mjs'
@@ -19,13 +19,13 @@ import BusScheduleRowsV2 from './BusScheduleRowsV2.vue'
 
 let routesCache = null, routesRequest
 const loadRoutes = () => routesCache ? Promise.resolve(routesCache) : (routesRequest ||= busApi.routes().then((data) => routesCache = Array.isArray(data) ? data : []).finally(() => { routesRequest = undefined }))
-const language = busLanguage; const schedules = ref([]); const routes = ref([]); const loading = ref(true); const error = ref(''); const dayType = ref('WORKDAY'); const now = ref(new Date()); let timer
+const language = busLanguage; const schedules = ref([]); const routes = ref([]); const loading = ref(true); const error = ref(''); const dayType = ref('WORKDAY'); const now = ref(new Date())
 const text = (zh, en) => language.value === 'zh' ? zh : en
 const nowMinutes = computed(() => now.value.getHours() * 60 + now.value.getMinutes())
 const nowText = computed(() => now.value.toLocaleTimeString(language.value === 'zh' ? 'zh-CN' : 'en', { hour: '2-digit', minute: '2-digit', hour12: false }))
 const groups = computed(() => groupSchedules(schedules.value, nowMinutes.value, routes.value).map((item) => ({ ...item, color: item.route_color, routeName: item[language.value === 'zh' ? 'route_name_zh' : 'route_name_en'] || item.route_name_zh || item.route_name_en || item.route_id, directionName: item[language.value === 'zh' ? 'direction_name_zh' : 'direction_name_en'] || item.direction_name_zh || item.direction_name_en || item.route_direction_id })))
 async function load(requestedDayType) { loading.value = true; error.value = ''; try { const [data, routeData] = await Promise.all([busApi.schedules(requestedDayType ? `day_type=${requestedDayType}` : ''), loadRoutes()]); schedules.value = Array.isArray(data) ? data : []; routes.value = routeData; dayType.value = schedules.value[0]?.day_type || requestedDayType || (new Date().getDay() % 6 ? 'WORKDAY' : 'HOLIDAY') } catch (reason) { error.value = reason.message || String(reason) } finally { loading.value = false } }
-onMounted(() => { load(); timer = setInterval(() => { now.value = new Date() }, 30000) }); onBeforeUnmount(() => clearInterval(timer)); defineExpose({ load })
+onMounted(load); defineExpose({ load })
 </script>
 
 <style scoped lang="scss">

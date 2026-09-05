@@ -5,7 +5,7 @@
         <h1>{{ busLanguage === 'zh' ? '校园巴士' : 'Campus bus' }}</h1>
         <p>{{ busLanguage === 'zh' ? '实时到站与出行信息' : 'Live arrivals and travel information' }}</p>
       </div>
-      <button class="text-button" type="button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button>
+      <div><button class="text-button" type="button" :aria-label="busLanguage === 'zh' ? '立即刷新' : 'Refresh now'" @click="refresh">🔄{{ refreshRemaining }}s</button><button class="text-button" type="button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button></div>
     </header>
 
     <section class="panel search" :aria-label="busText('search')">
@@ -38,9 +38,18 @@
         </details>
       </section>
 
+      <section class="panel favorites">
+        <h3>{{ busText('favorites') }}</h3>
+        <div v-if="favoriteRoutes.length || favoriteStops.length" class="quick-links">
+          <button v-for="route in favoriteRoutes" :key="route.id" type="button" @click="openRoute(route.id)">🚌 {{ displayName(route, busLanguage) }}</button>
+          <button v-for="stop in favoriteStops" :key="stop.id" type="button" @click="openStop(stop.id)">⌖ {{ displayStopName(stop, busLanguage) }}</button>
+        </div>
+        <p v-else class="muted">{{ busText('noFavorites') }}</p>
+      </section>
+
       <section class="panel nearby">
         <div class="section-title">
-          <h3>{{ busText('nearby') }}</h3>
+          <div class="nearby-title"><h3>{{ busText('nearby') }}</h3><span v-if="locationUpdatedText" class="location-updated">{{ locationUpdatedText }}</span></div>
           <button type="button" :disabled="locationState === 'loading'" @click="locate">{{ busText(locationState === 'loading' ? 'locating' : 'locate') }}</button>
         </div>
         <p v-if="locationState === 'idle'" class="muted">{{ busText('noLocation') }}</p>
@@ -63,15 +72,6 @@
           </ul>
         </article>
         <button v-if="nearbyStops.length > 2" type="button" class="nearby-toggle" :aria-expanded="allNearbyStops" @click="allNearbyStops = !allNearbyStops">{{ allNearbyStops ? (busLanguage === 'zh' ? '收起' : 'Show less') : (busLanguage === 'zh' ? '展开' : 'Show all') }}</button>
-      </section>
-
-      <section class="panel favorites">
-        <h3>{{ busText('favorites') }}</h3>
-        <div v-if="favoriteRoutes.length || favoriteStops.length" class="quick-links">
-          <button v-for="route in favoriteRoutes" :key="route.id" type="button" @click="openRoute(route.id)">🚌 {{ displayName(route, busLanguage) }}</button>
-          <button v-for="stop in favoriteStops" :key="stop.id" type="button" @click="openStop(stop.id)">⌖ {{ displayStopName(stop, busLanguage) }}</button>
-        </div>
-        <p v-else class="muted">{{ busText('noFavorites') }}</p>
       </section>
 
       <nav class="feature-links" :aria-label="busLanguage === 'zh' ? '巴士功能' : 'Bus features'">
@@ -110,9 +110,12 @@ const locationState = ref('idle')
 const locationErrorKey = ref('')
 const nearbyStops = ref([])
 const allNearbyStops = ref(false)
+const refreshRemaining = ref(30)
+const locationUpdatedAt = ref(0)
 let nearbyCandidates = []
 let refreshTimer
 let locationRequest = 0
+const LOCATION_CACHE_KEY = 'sustech-bus-v2-location'
 
 const searchResults = computed(() => [
   ...routes.value.filter((route) => matchesSearch(route, query.value, busLanguage.value)).map((item) => ({ kind: 'route', item })),
@@ -121,6 +124,15 @@ const searchResults = computed(() => [
 const favoriteRoutes = computed(() => routes.value.filter((route) => favoriteRouteIds.value.includes(route.id)))
 const favoriteStops = computed(() => stops.value.filter((stop) => favoriteStopIds.value.includes(stop.id)))
 const visibleNearbyStops = computed(() => nearbyStops.value.slice(0, allNearbyStops.value ? 5 : 2))
+const locationUpdatedText = computed(() => {
+  const updated = new Date(locationUpdatedAt.value)
+  if (!Number.isFinite(updated.getTime())) return ''
+  const now = new Date()
+  const time = updated.toLocaleTimeString(busLanguage.value === 'zh' ? 'zh-CN' : 'en', { hour: '2-digit', minute: '2-digit', hour12: false })
+  const date = `${String(updated.getMonth() + 1).padStart(2, '0')}-${String(updated.getDate()).padStart(2, '0')}`
+  const value = updated.toDateString() === now.toDateString() ? time : date
+  return busLanguage.value === 'zh' ? `位置更新于 ${value}` : `Location updated ${value}`
+})
 
 function go(href, id) {
   if (typeof window !== 'undefined') window.location.assign(`${href}${encodeURIComponent(id)}`)
@@ -165,6 +177,34 @@ async function loadArrivals(stopList) {
   return results
 }
 
+async function refresh() {
+  refreshRemaining.value = 30
+  await load()
+  if (nearbyCandidates.length) await loadArrivals(nearbyCandidates)
+}
+
+function saveLocation(coords, updatedAt) {
+  const value = { latitude: +coords.latitude, longitude: +coords.longitude, updatedAt }
+  try { localStorage.setItem(LOCATION_CACHE_KEY, JSON.stringify(value)) } catch { /* storage is unavailable */ }
+}
+
+async function useLocation(coords, updatedAt) {
+  nearbyCandidates = stops.value.filter((stop) => Number.isFinite(stop.latitude) && Number.isFinite(stop.longitude)).map((stop) => ({
+    ...stop, distance: haversineMeters(coords.latitude, coords.longitude, stop.latitude, stop.longitude),
+  })).sort((left, right) => left.distance - right.distance).slice(0, 6)
+  nearbyStops.value = nearbyCandidates
+  locationUpdatedAt.value = updatedAt
+  locationState.value = 'ready'
+  await loadArrivals(nearbyCandidates)
+}
+
+function useCachedLocation() {
+  try {
+    const cached = JSON.parse(localStorage.getItem(LOCATION_CACHE_KEY) || 'null')
+    if (Number.isFinite(cached?.latitude) && Number.isFinite(cached?.longitude) && Number.isFinite(cached?.updatedAt)) useLocation(cached, cached.updatedAt)
+  } catch { /* ignore an invalid cache */ }
+}
+
 function locate() {
   const geolocation = typeof window === 'undefined' ? null : window.navigator.geolocation
   if (!geolocation) { locationState.value = 'failed'; locationErrorKey.value = 'locationUnavailable'; return }
@@ -173,19 +213,16 @@ function locate() {
   locationErrorKey.value = ''
   const request = ++locationRequest
   let remaining = 2, hasLocation = false, highLocated = false, update = Promise.resolve()
-  const located = ({ coords }, highAccuracy) => {
+  const located = (position, highAccuracy) => {
     remaining--
     if (request !== locationRequest || (!highAccuracy && highLocated)) return
     hasLocation = true
     if (highAccuracy) highLocated = true
     update = update.then(async () => {
       if (request !== locationRequest) return
-      nearbyCandidates = stops.value.filter((stop) => Number.isFinite(stop.latitude) && Number.isFinite(stop.longitude)).map((stop) => ({
-        ...stop, distance: haversineMeters(coords.latitude, coords.longitude, stop.latitude, stop.longitude),
-      })).sort((left, right) => left.distance - right.distance).slice(0, 6)
-      nearbyStops.value = nearbyCandidates
-      locationState.value = 'ready'
-      await loadArrivals(nearbyCandidates)
+      const updatedAt = Number(position.timestamp) || Date.now()
+      saveLocation(position.coords, updatedAt)
+      await useLocation(position.coords, updatedAt)
     })
   }
   const failed = (reason) => {
@@ -209,9 +246,9 @@ async function load() {
   } catch (reason) { error.value = reason.message || String(reason) } finally { loading.value = false }
 }
 
-onMounted(() => { loadFavorites(); load(); refreshTimer = setInterval(() => { if (nearbyCandidates.length) loadArrivals(nearbyCandidates) }, 30000) })
+onMounted(async () => { loadFavorites(); await load(); useCachedLocation(); refreshTimer = setInterval(() => { if (--refreshRemaining.value < 1) refresh() }, 1000) })
 onBeforeUnmount(() => clearInterval(refreshTimer))
-defineExpose({ load, locate, openRoute, openStop, favoriteRouteIds, favoriteStopIds })
+defineExpose({ load, locate, refresh, openRoute, openStop, favoriteRouteIds, favoriteStopIds })
 </script>
 
 <style scoped lang="scss">
@@ -223,6 +260,7 @@ defineExpose({ load, locate, openRoute, openStop, favoriteRouteIds, favoriteStop
 .notices details[open] > summary > span::after { content: ' ▾'; }
 .bus-home { max-width: 900px; margin: 0 auto; color: var(--bus-v2-text); }
 .bus-home__header, .section-title, .nearby-stop__head { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+.nearby-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem; } .location-updated { color: var(--bus-v2-muted); font-size: .875rem; font-weight: 400; white-space: nowrap; }
 .bus-home__header { margin: .5rem 0 .75rem; } .bus-home__header h1, .panel h3 { margin: 0; padding-top: 0; } .bus-home__header h1 { font-size: 1.4rem; line-height: 1.25; } .bus-home__header p, .muted { color: var(--bus-v2-muted); }
 .panel h3 { font-size: 1rem; line-height: 1.3; }
 .panel { margin: 1rem 0; padding: 1rem; border: 1px solid var(--bus-v2-border); border-radius: .6rem; background: var(--bus-v2-bg); }
@@ -233,6 +271,7 @@ defineExpose({ load, locate, openRoute, openStop, favoriteRouteIds, favoriteStop
 .spinner { width: 1em; height: 1em; border: 2px solid var(--bus-v2-border); border-top-color: var(--bus-v2-link); border-radius: 50%; animation: spin .8s linear infinite; } @keyframes spin { to { transform: rotate(360deg); } }
 details + details { border-top: 1px solid var(--bus-v2-border); } summary { display: flex; justify-content: space-between; padding: .65rem 0; cursor: pointer; font-weight: 600; } .markdown { margin: 1rem 0 0; padding-bottom: .25rem; } .markdown :deep(p) { margin: 1rem 0 0; } .markdown :deep(:first-child) { margin-top: 0; } .markdown :deep(:last-child) { margin-bottom: 0; } .markdown :deep(code) { padding: .1em .3em; background: var(--bus-v2-bg-alt); border-radius: .2em; }
 .section-title button, .status button, .text-button { padding: .4rem .65rem; border: 1px solid var(--bus-v2-border); border-radius: .35rem; background: transparent; color: inherit; } .text-button { border: 0; color: var(--bus-v2-link); }
+.nearby .section-title button { border-color: var(--bus-v2-link-soft); background: var(--bus-v2-link-soft); color: var(--bus-v2-link); font-weight: 600; }
 .nearby-stop { padding: .75rem 0; border-top: 1px solid var(--bus-v2-border); } .nearby-stop__head { align-items: baseline; } .link-title { padding: 0; border: 0; background: transparent; color: var(--bus-v2-link); font-weight: 700; text-align: left; }
 .nearby-toggle { padding: .4rem .65rem; border: 1px solid var(--bus-v2-border); border-radius: .35rem; background: transparent; color: inherit; font: inherit; }
 .arrival-list { margin: .45rem 0 0; padding: 0; list-style: none; } .arrival-list li { display: grid; grid-template-columns: .35rem minmax(0, 1fr) auto; gap: .4rem; align-items: center; padding: .3rem 0; } .arrival-list i { width: .3rem; height: 1.2rem; border-radius: 2px; } .arrival-link { color: var(--bus-v2-link); text-decoration: none; } .arrival-link:hover, .arrival-link:focus-visible { text-decoration: underline; } .arrival-list .muted { display: block; }

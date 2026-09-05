@@ -226,7 +226,8 @@ async function initialise() {
   }
 }
 
-watch(() => [props.routes, props.vehicles, props.routeId, props.language], refresh, { deep: true, flush: 'post' })
+watch(() => [props.routes, props.stops, props.routeId, props.language], refresh, { deep: true, flush: 'post' })
+watch(() => props.vehicles, refreshVehicleMarkers, { deep: true, flush: 'post' })
 watch(() => props.styleUrl, reloadStyle)
 onMounted(initialise)
 onBeforeUnmount(() => {
@@ -240,7 +241,7 @@ onBeforeUnmount(() => {
   mapEventsBound = false
   releaseProtocol()
 })
-defineExpose({ refresh })
+defineExpose({ refresh, refreshVehicleMarkers })
 </script>
 
 <style>
@@ -252,9 +253,9 @@ defineExpose({ refresh })
 .bus-map__canvas { width: 100%; height: 28rem; }
 .bus-map__message { position: absolute; top: .75rem; left: .75rem; z-index: 1; margin: 0; padding: .45rem .65rem; border-radius: .35rem; background: rgba(255, 255, 255, .9); color: #526172; }
 .bus-map__detail { position: absolute; z-index: 2; right: .75rem; bottom: 1.75rem; max-width: calc(100% - 1.5rem); }
-.bus-map :deep(.bus-map__vehicle) { width: 2rem; height: 2rem; border: 2px solid #fff; border-radius: 50%; padding: 0; background-color: var(--route-color); background-position: center; background-repeat: no-repeat; background-size: contain; cursor: pointer; box-shadow: 0 1px 4px rgba(0, 0, 0, .35); }
-.bus-map :deep(.bus-map__vehicle.status-delayed) { background-color: #f7a600; box-shadow: 0 0 0 3px var(--route-color), 0 1px 4px rgba(0, 0, 0, .35); }
-.bus-map :deep(.bus-map__vehicle.status-offline) { background-color: #9aa4b2; box-shadow: 0 0 0 3px var(--route-color), 0 1px 4px rgba(0, 0, 0, .35); }
+.bus-map :deep(.bus-map__vehicle) { width: 2rem; height: 2rem; border: 2px solid var(--route-color); border-radius: 50%; padding: 0; background-color: var(--route-color); background-position: center; background-repeat: no-repeat; background-size: contain; cursor: pointer; box-shadow: 0 0 0 2px var(--route-color), 0 1px 4px rgba(0, 0, 0, .35); }
+.bus-map :deep(.bus-map__vehicle.status-delayed) { background-color: #f7a600; }
+.bus-map :deep(.bus-map__vehicle.status-offline) { background-color: #9aa4b2; }
 .bus-map :deep(.bus-map__interaction-lock), .bus-map :deep(.bus-map__interaction-allow) { background-image: none; font-size: 1rem; }
 .bus-map :deep(.bus-map__interaction-lock)::before { content: '🔒'; }
 .bus-map :deep(.bus-map__interaction-allow)::before { content: '🖐'; }

@@ -1,6 +1,6 @@
 <template>
   <main class="bus-vehicles" :lang="language === 'zh' ? 'zh-CN' : 'en'">
-    <header><div><h1>{{ text('所有车辆实时位置', 'All live vehicles') }}</h1><p>{{ text('线路轨迹和正在运营的车辆', 'Routes and vehicles currently in service') }}</p></div><button type="button" @click="setBusLanguage(language === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button></header>
+    <header><div><h1>{{ text('所有车辆实时位置', 'All live vehicles') }}</h1><p>{{ text('线路轨迹和正在运营的车辆', 'Routes and vehicles currently in service') }}</p></div><div><button type="button" :aria-label="text('立即刷新', 'Refresh now')" @click="refresh">🔄{{ refreshRemaining }}s</button><button type="button" @click="setBusLanguage(language === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button></div></header>
     <section v-if="loading" class="state">{{ busText('loading') }}</section>
     <section v-else-if="error" class="state error" role="alert"><strong>{{ busText('loadFailed') }}</strong><span>{{ error }}</span><button type="button" @click="load">{{ busText('retry') }}</button></section>
     <template v-else>
@@ -20,7 +20,7 @@ import { displayName, formatLocalDateTime } from './core.mjs'
 import { busLanguage, busText, setBusLanguage } from './i18n.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
 
-const language = busLanguage; const routes = ref([]); const stops = ref([]); const vehicles = ref([]); const allNotices = ref([]); const loading = ref(true); const error = ref('')
+const language = busLanguage; const routes = ref([]); const stops = ref([]); const vehicles = ref([]); const allNotices = ref([]); const loading = ref(true); const error = ref(''); const refreshRemaining = ref(30)
 let refreshTimer
 const text = (zh, en) => language.value === 'zh' ? zh : en
 const routeIds = computed(() => new Set(vehicles.value.map((vehicle) => vehicle.route_id)))
@@ -34,7 +34,8 @@ const lastUpdated = computed(() => {
 })
 async function load() { loading.value = true; error.value = ''; try { const [routeData, stopData, vehicleData, noticeData] = await Promise.all([busApi.routes(), busApi.stops(), busApi.vehicles(), busApi.notices()]); routes.value = Array.isArray(routeData) ? routeData : []; stops.value = Array.isArray(stopData) ? stopData : []; vehicles.value = Array.isArray(vehicleData) ? vehicleData : []; allNotices.value = Array.isArray(noticeData) ? noticeData : [] } catch (reason) { error.value = reason.message || String(reason) } finally { loading.value = false } }
 async function refreshVehicles() { try { const data = await busApi.vehicles(); vehicles.value = Array.isArray(data) ? data : [] } catch { /* retain the last usable positions */ } }
-onMounted(() => { load(); refreshTimer = setInterval(refreshVehicles, 30000) }); onBeforeUnmount(() => clearInterval(refreshTimer)); defineExpose({ load, refreshVehicles })
+async function refresh() { refreshRemaining.value = 30; try { const [vehicleData, noticeData] = await Promise.all([busApi.vehicles(), busApi.notices()]); vehicles.value = Array.isArray(vehicleData) ? vehicleData : []; allNotices.value = Array.isArray(noticeData) ? noticeData : [] } catch { /* retain the last usable data */ } }
+onMounted(() => { load(); refreshTimer = setInterval(() => { if (--refreshRemaining.value < 1) refresh() }, 1000) }); onBeforeUnmount(() => clearInterval(refreshTimer)); defineExpose({ load, refresh, refreshVehicles })
 </script>
 
 <style scoped lang="scss">

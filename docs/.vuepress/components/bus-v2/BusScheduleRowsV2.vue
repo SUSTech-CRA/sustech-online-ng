@@ -22,7 +22,7 @@
 import { ref } from 'vue'
 
 const props = defineProps({ groups: { type: Array, default: () => [] }, language: { type: String, default: 'zh' } })
-const activeOnly = ref(false)
+const activeOnly = ref(true)
 const text = (zh, en) => props.language === 'zh' ? zh : en
 const serviceLabel = (group) => [group.serviceType && group.serviceType !== 'NORMAL' ? group.serviceType : '', group.vehicleTypes?.join(' / ')].filter(Boolean).join(' · ') || text('常规服务', 'Normal service')
 const visibleTimes = (times) => activeOnly.value ? times.filter((item) => item.status !== 'past') : times

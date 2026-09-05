@@ -2,7 +2,7 @@
   <main class="bus-stop-detail" :lang="busLanguage === 'zh' ? 'zh-CN' : 'en'">
     <header class="detail-head">
       <div><p class="eyebrow">{{ label('stop') }}</p><h1 v-if="stop">{{ stopName }}</h1><h1 v-else>{{ label('stop') }}</h1><p v-if="stop?.group_id" class="muted">{{ label('platform', { name: displayName(stop, busLanguage) }) }}</p></div>
-      <div class="head-actions"><a class="plain-button" href="/transport/bustimer_v2.html">{{ label('home') }}</a><button type="button" class="plain-button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button><button v-if="stop" type="button" class="plain-button" :aria-pressed="favorite" @click="toggleFavorite('stop', stop.id)">{{ favorite ? label('saved') : label('save') }}</button></div>
+      <div class="head-actions"><a class="plain-button" href="/transport/bustimer_v2.html" :aria-label="label('home')" :title="label('home')">🏠</a><button type="button" class="plain-button" :aria-label="busLanguage === 'zh' ? '立即刷新' : 'Refresh now'" @click="refresh">🔄{{ refreshRemaining }}s</button><button type="button" class="plain-button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button><button v-if="stop" type="button" class="plain-button" :aria-pressed="favorite" @click="toggleFavorite('stop', stop.id)">{{ favorite ? label('saved') : label('save') }}</button></div>
     </header>
     <section v-if="loading" class="panel status"><span class="spinner" aria-hidden="true" /> {{ busText('loading') }}</section>
     <section v-else-if="error" class="panel status error" role="alert"><strong>{{ busText('loadFailed') }}</strong><span>{{ error }}</span><button type="button" @click="load">{{ busText('retry') }}</button></section>
@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { busApi, publicApi } from './api.mjs'
 import { displayName, displayStopName, formatLocalDateTime, unavailableReasonTextKey } from './core.mjs'
 import { isFavorite, loadFavorites, toggleFavorite } from './favorites.mjs'
@@ -24,7 +24,8 @@ import { busLanguage, busText, setBusLanguage } from './i18n.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
 
 const props = defineProps({ id: { type: String, default: '' }, routeHref: { type: String, default: '/transport/bustimer_v2_route.html?id=' }, stopHref: { type: String, default: '/transport/bustimer_v2_stop.html?id=' } })
-const stop = ref(null), platforms = ref([]), notices = ref([]), loading = ref(true), error = ref(''), allArrivals = ref(false), arrivalState = ref({ loading: false, error: false, items: [] }), platformArrivals = ref({})
+const stop = ref(null), platforms = ref([]), notices = ref([]), loading = ref(true), error = ref(''), allArrivals = ref(false), arrivalState = ref({ loading: false, error: false, items: [] }), platformArrivals = ref({}), refreshRemaining = ref(30)
+let refreshTimer
 const id = computed(() => props.id || (typeof window === 'undefined' ? '' : new URLSearchParams(window.location.search).get('id') || ''))
 const favorite = computed(() => stop.value && isFavorite('stop', stop.value.id))
 const stopName = computed(() => displayStopName(stop.value, busLanguage.value))
@@ -47,10 +48,12 @@ function openPlatform(value) { if (typeof window !== 'undefined') window.locatio
 function openRoute(routeId, directionId) { if (typeof window !== 'undefined') window.location.assign(`${props.routeHref}${encodeURIComponent(routeId)}&direction=${encodeURIComponent(directionId)}`) }
 async function loadArrivals() { if (!stop.value) return; arrivalState.value = { loading: true, error: false, items: [] }; try { const result = await busApi.arrivals(stop.value.id); arrivalState.value = { loading: false, error: false, items: result.arrivals || [] } } catch { arrivalState.value = { loading: false, error: true, items: [] } } }
 async function loadPlatformArrivals() { await Promise.all(otherPlatforms.value.map(async (item) => { platformArrivals.value = { ...platformArrivals.value, [item.id]: { loading: true, items: [] } }; try { const result = await busApi.arrivals(item.id); platformArrivals.value = { ...platformArrivals.value, [item.id]: { loading: false, items: result.arrivals || [] } } } catch { platformArrivals.value = { ...platformArrivals.value, [item.id]: { loading: false, error: true, items: [] } } } })) }
+async function refresh() { refreshRemaining.value = 30; await load() }
 async function load() { loading.value = true; error.value = ''; allArrivals.value = false; platformArrivals.value = {}; try { if (!id.value) throw new Error('Missing stop id'); const [stopData, stopsData, noticeData] = await Promise.all([publicApi(`/stops/${encodeURIComponent(id.value)}`), busApi.stops(), busApi.notices()]); stop.value = stopData; platforms.value = (Array.isArray(stopsData) ? stopsData : []).filter((item) => stopData.group_id ? item.group_id === stopData.group_id : item.id === stopData.id); if (!platforms.value.some((item) => item.id === stopData.id)) platforms.value.unshift(stopData); notices.value = Array.isArray(noticeData) ? noticeData : []; await loadArrivals(); await loadPlatformArrivals() } catch (reason) { error.value = reason.message || String(reason) } finally { loading.value = false } }
-onMounted(() => { loadFavorites(); load() })
+onMounted(() => { loadFavorites(); load(); refreshTimer = setInterval(() => { if (--refreshRemaining.value < 1) refresh() }, 1000) })
+onBeforeUnmount(() => clearInterval(refreshTimer))
 watch(id, (value, old) => { if (value && value !== old) load() })
-defineExpose({ load, openRoute, openPlatform })
+defineExpose({ load, refresh, openRoute, openPlatform })
 </script>
 
 <style scoped lang="scss">
