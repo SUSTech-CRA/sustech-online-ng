@@ -1,0 +1,1 @@
+var e=`/assets/CC-BY-SA_icon-5Xmumph6.svg`;export{e as t};
