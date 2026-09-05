@@ -6,6 +6,7 @@
       <template v-if="vehicle.service_type"><dt>{{ language === 'zh' ? '服务类型' : 'Service' }}</dt><dd>{{ vehicle.service_type }}</dd></template>
       <dt>{{ language === 'zh' ? '车型' : 'Vehicle' }}</dt><dd>{{ vehicle.vehicle_type || '—' }}</dd>
       <dt>{{ language === 'zh' ? '数据状态' : 'Data' }}</dt><dd :class="`status-${vehicle.data_status || 'offline'}`">{{ statusText }}</dd>
+      <template v-if="locationText"><dt>{{ language === 'zh' ? '运行位置' : 'Position' }}</dt><dd>{{ locationText }}</dd></template>
       <dt>{{ language === 'zh' ? '更新时间' : 'Updated' }}</dt><dd>{{ updatedText }}</dd>
     </dl>
   </article>
@@ -13,15 +14,16 @@
 
 <script setup>
 import { computed } from 'vue'
-import { displayName } from './core.mjs'
+import { displayName, vehicleLocationText } from './core.mjs'
 
-const props = defineProps({ vehicle: Object, routes: { type: Array, default: () => [] }, language: { type: String, default: 'zh' }, closable: Boolean })
+const props = defineProps({ vehicle: Object, routes: { type: Array, default: () => [] }, stops: { type: Array, default: () => [] }, language: { type: String, default: 'zh' }, closable: Boolean })
 defineEmits(['close'])
 const route = computed(() => props.routes.find((item) => item.id === props.vehicle?.route_id))
 const direction = computed(() => route.value?.directions?.find((item) => item.id === props.vehicle?.route_direction_id))
 const name = computed(() => displayName(props.vehicle, props.language) || props.vehicle?.id || '')
 const routeName = computed(() => displayName(route.value, props.language) || props.vehicle?.route_id || '')
 const directionName = computed(() => displayName(direction.value, props.language))
+const locationText = computed(() => vehicleLocationText(props.vehicle, route.value, props.stops, props.language))
 const statusText = computed(() => ({ normal: props.language === 'zh' ? '正常' : 'Normal', delayed: props.language === 'zh' ? '延迟' : 'Delayed', offline: props.language === 'zh' ? '离线' : 'Offline' }[props.vehicle?.data_status] || (props.language === 'zh' ? '不可用' : 'Unavailable')))
 const updatedText = computed(() => {
   const value = props.vehicle?.source_updated_at || props.vehicle?.received_at

@@ -30,4 +30,9 @@ onMounted(() => { load(); timer = setInterval(() => { now.value = new Date() }, 
 
 <style scoped lang="scss">
 .bus-schedules { max-width: 1100px; margin: 0 auto; color: var(--c-text, #243043); }.page-head { display: flex; justify-content: space-between; gap: 1rem; }.page-head h1 { margin: 0; padding-top: 0; font-size: 1.4rem; line-height: 1.25; }.bus-schedules p { margin-top: 0; }.page-head p, .muted, .note { color: #667085; }.bus-schedules button { padding: .42rem .75rem; border: 1px solid #a9c2dc; background: transparent; color: inherit; font: inherit; cursor: pointer; }.page-head button { border-radius: .35rem; }.day-select { display: flex; margin: 1rem 0; }.day-select button { flex: 1; }.day-select button:first-child { border-radius: .4rem 0 0 .4rem; }.day-select button:last-child { border-radius: 0 .4rem .4rem 0; }.day-select .active { border-color: #1765ac; background: #1765ac; color: #fff; }.toolbar { display: flex; justify-content: flex-end; margin-bottom: 1rem; font-size: .86rem; }.toolbar time { font-family: ui-monospace, monospace; }.state { display: flex; align-items: center; gap: .5rem; padding: 1rem; border: 1px solid #d9e2ec; border-radius: .55rem; }.error { color: #b42318; }.note { margin-top: 1rem; font-size: .85rem; } @media (max-width: 600px) { .page-head { flex-direction: column; }.toolbar { justify-content: flex-start; } }
+.bus-schedules { color: var(--bus-v2-text); }
+.bus-schedules .page-head p, .bus-schedules .muted, .bus-schedules .note { color: var(--bus-v2-muted); }
+.bus-schedules button, .bus-schedules .state { border-color: var(--bus-v2-border); }
+.bus-schedules .day-select .active { border-color: var(--bus-v2-link); background: var(--bus-v2-link); color: var(--vp-c-accent-text); }
+.bus-schedules .state { background: var(--bus-v2-bg); }
 </style>

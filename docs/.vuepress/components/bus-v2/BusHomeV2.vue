@@ -44,7 +44,7 @@
           <button type="button" :disabled="locationState === 'loading'" @click="locate">{{ busText(locationState === 'loading' ? 'locating' : 'locate') }}</button>
         </div>
         <p v-if="locationState === 'idle'" class="muted">{{ busText('noLocation') }}</p>
-        <p v-else-if="locationState === 'denied' || locationState === 'failed'" class="muted">{{ locationError || busText('locationDenied') }}</p>
+        <p v-else-if="locationState === 'denied' || locationState === 'failed'" class="muted">{{ busText(locationErrorKey || 'locationFailed') }}</p>
         <p v-else-if="locationState === 'ready' && !nearbyStops.length" class="muted">{{ busText('empty') }}</p>
         <article v-for="stop in visibleNearbyStops" :key="stop.id" class="nearby-stop">
           <div class="nearby-stop__head">
@@ -107,11 +107,12 @@ const notices = ref([])
 const query = ref('')
 const arrivals = ref({})
 const locationState = ref('idle')
-const locationError = ref('')
+const locationErrorKey = ref('')
 const nearbyStops = ref([])
 const allNearbyStops = ref(false)
 let nearbyCandidates = []
 let refreshTimer
+let locationRequest = 0
 
 const searchResults = computed(() => [
   ...routes.value.filter((route) => matchesSearch(route, query.value, busLanguage.value)).map((item) => ({ kind: 'route', item })),
@@ -135,7 +136,10 @@ const noticeTime = (notice) => formatLocalDateTime(notice.starts_at)
 const arrivalName = (arrival) => `${arrival[busLanguage.value === 'en' ? 'route_name_en' : 'route_name_zh'] || arrival.route_name_zh || arrival.route_name_en || ''} · ${arrival[busLanguage.value === 'en' ? 'direction_name_en' : 'direction_name_zh'] || arrival.direction_name_zh || arrival.direction_name_en || ''}`
 
 function arrivalText(arrival) {
-  if (arrival.source === 'real_time') return busLanguage.value === 'zh' ? `${arrival.eta_minutes} 分钟` : `${arrival.eta_minutes} min`
+  if (arrival.source === 'real_time') {
+    const meters = Number(arrival.distance ?? arrival.distance_to_stop ?? arrival.distance_to_next_stop ?? arrival.distance_meters)
+    return [busLanguage.value === 'zh' ? `${arrival.eta_minutes} 分钟` : `${arrival.eta_minutes} min`, Number.isFinite(meters) && `${Math.round(meters)}m`].filter(Boolean).join(' ')
+  }
   if (arrival.source === 'planned') {
     const time = new Date(arrival.planned_arrival_at).toLocaleTimeString(busLanguage.value === 'zh' ? 'zh-CN' : 'en', { hour: '2-digit', minute: '2-digit', hour12: false })
     return busLanguage.value === 'zh' ? `预计 ${time}` : `Scheduled ${time}`
@@ -162,20 +166,36 @@ async function loadArrivals(stopList) {
 }
 
 function locate() {
-  if (!navigator.geolocation) { locationState.value = 'failed'; locationError.value = busText('locationUnavailable'); return }
+  const geolocation = typeof window === 'undefined' ? null : window.navigator.geolocation
+  if (!geolocation) { locationState.value = 'failed'; locationErrorKey.value = 'locationUnavailable'; return }
   allNearbyStops.value = false
   locationState.value = 'loading'
-  navigator.geolocation.getCurrentPosition(async ({ coords }) => {
-    nearbyCandidates = stops.value.filter((stop) => Number.isFinite(stop.latitude) && Number.isFinite(stop.longitude)).map((stop) => ({
-      ...stop, distance: haversineMeters(coords.latitude, coords.longitude, stop.latitude, stop.longitude),
-    })).sort((left, right) => left.distance - right.distance).slice(0, 6)
-    nearbyStops.value = nearbyCandidates
-    locationState.value = 'ready'
-    await loadArrivals(nearbyCandidates)
-  }, (reason) => {
+  locationErrorKey.value = ''
+  const request = ++locationRequest
+  let remaining = 2, hasLocation = false, highLocated = false, update = Promise.resolve()
+  const located = ({ coords }, highAccuracy) => {
+    remaining--
+    if (request !== locationRequest || (!highAccuracy && highLocated)) return
+    hasLocation = true
+    if (highAccuracy) highLocated = true
+    update = update.then(async () => {
+      if (request !== locationRequest) return
+      nearbyCandidates = stops.value.filter((stop) => Number.isFinite(stop.latitude) && Number.isFinite(stop.longitude)).map((stop) => ({
+        ...stop, distance: haversineMeters(coords.latitude, coords.longitude, stop.latitude, stop.longitude),
+      })).sort((left, right) => left.distance - right.distance).slice(0, 6)
+      nearbyStops.value = nearbyCandidates
+      locationState.value = 'ready'
+      await loadArrivals(nearbyCandidates)
+    })
+  }
+  const failed = (reason) => {
+    remaining--
+    if (request !== locationRequest || hasLocation || remaining) return
     locationState.value = reason.code === 1 ? 'denied' : 'failed'
-    locationError.value = reason.message || busText('locationDenied')
-  }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 60000 })
+    locationErrorKey.value = reason.code === 1 ? 'locationDenied' : reason.code === 3 ? 'locationTimeout' : 'locationFailed'
+  }
+  geolocation.getCurrentPosition((position) => located(position, true), failed, { enableHighAccuracy: true, timeout: 20000, maximumAge: 0 })
+  geolocation.getCurrentPosition((position) => located(position, false), failed, { enableHighAccuracy: false, timeout: 10000, maximumAge: 60000 })
 }
 
 async function load() {
@@ -199,25 +219,25 @@ defineExpose({ load, locate, openRoute, openStop, favoriteRouteIds, favoriteStop
 .notices > details > .markdown { margin-top: 0; }
 .notices summary { list-style: none; }
 .notices summary::-webkit-details-marker { display: none; }
-.notices summary > span::after { content: ' ▸'; color: #687386; }
+.notices summary > span::after { content: ' ▸'; color: var(--bus-v2-muted); }
 .notices details[open] > summary > span::after { content: ' ▾'; }
-.bus-home { max-width: 900px; margin: 0 auto; color: var(--c-text, #243043); }
+.bus-home { max-width: 900px; margin: 0 auto; color: var(--bus-v2-text); }
 .bus-home__header, .section-title, .nearby-stop__head { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
-.bus-home__header { margin: .5rem 0 .75rem; } .bus-home__header h1, .panel h3 { margin: 0; padding-top: 0; } .bus-home__header h1 { font-size: 1.4rem; line-height: 1.25; } .bus-home__header p, .muted { color: #687386; }
+.bus-home__header { margin: .5rem 0 .75rem; } .bus-home__header h1, .panel h3 { margin: 0; padding-top: 0; } .bus-home__header h1 { font-size: 1.4rem; line-height: 1.25; } .bus-home__header p, .muted { color: var(--bus-v2-muted); }
 .panel h3 { font-size: 1rem; line-height: 1.3; }
-.panel { margin: 1rem 0; padding: 1rem; border: 1px solid var(--c-border, #dce2ea); border-radius: .6rem; background: var(--c-bg-soft, #fff); }
+.panel { margin: 1rem 0; padding: 1rem; border: 1px solid var(--bus-v2-border); border-radius: .6rem; background: var(--bus-v2-bg); }
 .search { position: relative; padding: 0; } .search input { box-sizing: border-box; width: 100%; padding: .85rem 1rem; border: 0; border-radius: .6rem; font: inherit; background: transparent; color: inherit; }
-.search-results { position: absolute; z-index: 2; top: calc(100% + .25rem); width: 100%; overflow: hidden; border: 1px solid #dce2ea; border-radius: .5rem; background: #fff; box-shadow: 0 .5rem 1rem rgba(0,0,0,.12); }
-.search-results button, .quick-links button { display: block; width: 100%; padding: .65rem 1rem; border: 0; text-align: left; background: transparent; color: inherit; cursor: pointer; } .search-results button:hover, .quick-links button:hover { background: #f3f7fc; }
-.search-results small, summary small { margin-right: .5rem; color: #64748b; } .status { display: flex; align-items: center; gap: .5rem; } .error { color: #a32727; } button { font: inherit; cursor: pointer; } button:disabled { cursor: wait; opacity: .6; }
-.spinner { width: 1em; height: 1em; border: 2px solid #b7c9dd; border-top-color: #2672bc; border-radius: 50%; animation: spin .8s linear infinite; } @keyframes spin { to { transform: rotate(360deg); } }
-details + details { border-top: 1px solid #e7edf4; } summary { display: flex; justify-content: space-between; padding: .65rem 0; cursor: pointer; font-weight: 600; } .markdown { margin: 1rem 0 0; padding-bottom: .25rem; } .markdown :deep(p) { margin: 1rem 0 0; } .markdown :deep(:first-child) { margin-top: 0; } .markdown :deep(:last-child) { margin-bottom: 0; } .markdown :deep(code) { padding: .1em .3em; background: #edf2f7; border-radius: .2em; }
-.section-title button, .status button, .text-button { padding: .4rem .65rem; border: 1px solid #a9c2dc; border-radius: .35rem; background: transparent; color: inherit; } .text-button { border: 0; color: #2166a8; }
-.nearby-stop { padding: .75rem 0; border-top: 1px solid #e7edf4; } .nearby-stop__head { align-items: baseline; } .link-title { padding: 0; border: 0; background: transparent; color: #1765ac; font-weight: 700; text-align: left; }
-.nearby-toggle { padding: .4rem .65rem; border: 1px solid #a9c2dc; border-radius: .35rem; background: transparent; color: inherit; font: inherit; }
-.arrival-list { margin: .45rem 0 0; padding: 0; list-style: none; } .arrival-list li { display: grid; grid-template-columns: .35rem minmax(0, 1fr) auto; gap: .4rem; align-items: center; padding: .3rem 0; } .arrival-list i { width: .3rem; height: 1.2rem; border-radius: 2px; } .arrival-link { color: #1765ac; text-decoration: none; } .arrival-link:hover, .arrival-link:focus-visible { text-decoration: underline; } .arrival-list .muted { display: block; }
-.quick-links { display: flex; flex-wrap: wrap; gap: .5rem; } .quick-links button { width: auto; border: 1px solid #d6e1ec; border-radius: .35rem; }
-.feature-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; } .feature-links a { display: flex; min-height: 4rem; align-items: center; justify-content: center; padding: 0 .75rem; border-radius: .6rem; background: #eaf3fc; color: #165c9d; text-align: center; text-decoration: none; font-weight: 600; }
+.search-results { position: absolute; z-index: 2; top: calc(100% + .25rem); width: 100%; overflow: hidden; border: 1px solid var(--bus-v2-border); border-radius: .5rem; background: var(--bus-v2-bg); box-shadow: 0 .5rem 1rem var(--vp-c-shadow); }
+.search-results button, .quick-links button { display: block; width: 100%; padding: .65rem 1rem; border: 0; text-align: left; background: transparent; color: inherit; cursor: pointer; } .search-results button:hover, .quick-links button:hover { background: var(--bus-v2-control); }
+.search-results small, summary small { margin-right: .5rem; color: var(--bus-v2-muted); } .status { display: flex; align-items: center; gap: .5rem; } .error { color: #b42318; } button { font: inherit; cursor: pointer; } button:disabled { cursor: wait; opacity: .6; }
+.spinner { width: 1em; height: 1em; border: 2px solid var(--bus-v2-border); border-top-color: var(--bus-v2-link); border-radius: 50%; animation: spin .8s linear infinite; } @keyframes spin { to { transform: rotate(360deg); } }
+details + details { border-top: 1px solid var(--bus-v2-border); } summary { display: flex; justify-content: space-between; padding: .65rem 0; cursor: pointer; font-weight: 600; } .markdown { margin: 1rem 0 0; padding-bottom: .25rem; } .markdown :deep(p) { margin: 1rem 0 0; } .markdown :deep(:first-child) { margin-top: 0; } .markdown :deep(:last-child) { margin-bottom: 0; } .markdown :deep(code) { padding: .1em .3em; background: var(--bus-v2-bg-alt); border-radius: .2em; }
+.section-title button, .status button, .text-button { padding: .4rem .65rem; border: 1px solid var(--bus-v2-border); border-radius: .35rem; background: transparent; color: inherit; } .text-button { border: 0; color: var(--bus-v2-link); }
+.nearby-stop { padding: .75rem 0; border-top: 1px solid var(--bus-v2-border); } .nearby-stop__head { align-items: baseline; } .link-title { padding: 0; border: 0; background: transparent; color: var(--bus-v2-link); font-weight: 700; text-align: left; }
+.nearby-toggle { padding: .4rem .65rem; border: 1px solid var(--bus-v2-border); border-radius: .35rem; background: transparent; color: inherit; font: inherit; }
+.arrival-list { margin: .45rem 0 0; padding: 0; list-style: none; } .arrival-list li { display: grid; grid-template-columns: .35rem minmax(0, 1fr) auto; gap: .4rem; align-items: center; padding: .3rem 0; } .arrival-list i { width: .3rem; height: 1.2rem; border-radius: 2px; } .arrival-link { color: var(--bus-v2-link); text-decoration: none; } .arrival-link:hover, .arrival-link:focus-visible { text-decoration: underline; } .arrival-list .muted { display: block; }
+.quick-links { display: flex; flex-wrap: wrap; gap: .5rem; } .quick-links button { width: auto; border: 1px solid var(--bus-v2-border); border-radius: .35rem; }
+.feature-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; } .feature-links a { display: flex; min-height: 4rem; align-items: center; justify-content: center; padding: 0 .75rem; border-radius: .6rem; background: var(--bus-v2-link-soft); color: var(--bus-v2-link); text-align: center; text-decoration: none; font-weight: 600; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
 @media (max-width: 560px) { .panel { margin: .75rem 0; } .feature-links { grid-template-columns: 1fr; } }
 </style>

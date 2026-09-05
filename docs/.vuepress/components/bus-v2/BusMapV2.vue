@@ -3,7 +3,7 @@
     <div ref="mapElement" class="bus-map__canvas" :aria-label="language === 'zh' ? '车辆地图' : 'Vehicle map'" />
     <p v-if="mapError" class="bus-map__message" role="alert">{{ mapError }}</p>
     <p v-else-if="loading" class="bus-map__message">{{ language === 'zh' ? '正在加载地图…' : 'Loading map…' }}</p>
-    <BusVehicleDetailV2 v-if="selectedVehicle" class="bus-map__detail" :vehicle="selectedVehicle" :routes="routes" :language="language" closable @close="selectedVehicle = null" />
+    <BusVehicleDetailV2 v-if="selectedVehicle" class="bus-map__detail" :vehicle="selectedVehicle" :routes="routes" :stops="stops" :language="language" closable @close="selectedVehicle = null" />
   </section>
 </template>
 
@@ -22,6 +22,7 @@ let protocol
 const props = defineProps({
   routes: { type: Array, default: () => [] },
   vehicles: { type: Array, default: () => [] },
+  stops: { type: Array, default: () => [] },
   routeId: { type: String, default: '' },
   language: { type: String, default: 'zh' },
   // An explicit style remains supported for deployments that host their own PMTiles style.
@@ -46,7 +47,8 @@ let mapEventsBound = false
 const activeRoutes = () => props.routes.filter((route) => !props.routeId || route.id === props.routeId)
 const activeVehicles = () => props.vehicles.filter((vehicle) => (!props.routeId || vehicle.route_id === props.routeId) && Number.isFinite(+vehicle.longitude) && Number.isFinite(+vehicle.latitude))
 const routeFor = (id) => props.routes.find((route) => route.id === id)
-const styleUrl = () => props.styleUrl || ((document.documentElement.getAttribute('data-theme') === 'dark' || mediaQuery?.matches) ? DARK_STYLE : LIGHT_STYLE)
+const darkTheme = () => document.documentElement.getAttribute('data-theme') === 'dark' || mediaQuery?.matches
+const styleUrl = () => props.styleUrl || (darkTheme() ? DARK_STYLE : LIGHT_STYLE)
 const sourceData = (features) => ({ type: 'FeatureCollection', features })
 
 function routeFeatures() {
@@ -64,7 +66,7 @@ function stopFeatures() {
     const latitude = +stop.latitude
     if (!Number.isFinite(longitude) || !Number.isFinite(latitude)) return
     const key = `${longitude.toFixed(6)},${latitude.toFixed(6)}`
-    const name = displayStopName(stop, props.language) || stop.id
+    const name = displayStopName({ ...props.stops.find((item) => item.id === stop.id), ...stop }, props.language) || stop.id
     const existing = stops.get(key)
     if (existing) {
       if (name && !existing.properties.names.includes(name)) existing.properties.names.push(name)
@@ -129,12 +131,12 @@ function addLayers() {
   if (!map.getSource('bus-v2-stops')) map.addSource('bus-v2-stops', { type: 'geojson', data: sourceData(stopFeatures()) })
   if (!map.getLayer('bus-v2-stops')) map.addLayer({
     id: 'bus-v2-stops', type: 'circle', source: 'bus-v2-stops',
-    paint: { 'circle-radius': 4, 'circle-color': ['get', 'color'], 'circle-stroke-width': 1.5, 'circle-stroke-color': '#fff' },
+    paint: { 'circle-radius': 4, 'circle-color': ['get', 'color'], 'circle-stroke-width': 1.5, 'circle-stroke-color': darkTheme() ? '#202127' : '#fff' },
   })
   if (!map.getLayer('bus-v2-stop-labels')) map.addLayer({
     id: 'bus-v2-stop-labels', type: 'symbol', source: 'bus-v2-stops', minzoom: 16.5,
     layout: { 'text-field': ['get', 'name'], 'text-size': 12, 'text-offset': [0, 1], 'text-anchor': 'top' },
-    paint: { 'text-color': '#333', 'text-halo-color': '#fff', 'text-halo-width': 2 },
+    paint: { 'text-color': darkTheme() ? '#ebebf5' : '#333', 'text-halo-color': darkTheme() ? '#202127' : '#fff', 'text-halo-width': 2 },
   })
   if (!mapEventsBound) {
     map.on('click', 'bus-v2-stops', showStopPopup)
@@ -191,7 +193,7 @@ function releaseProtocol() {
 function reloadStyle() {
   if (!map || !loaded) return
   activePopup?.remove()
-  map.once('style.load', () => { if (map) { addLayers(); refresh() } })
+  map.once('style.load', () => requestAnimationFrame(() => { if (map?.isStyleLoaded()) { addLayers(); refresh() } }))
   map.setStyle(styleUrl())
 }
 

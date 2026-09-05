@@ -65,3 +65,19 @@ export function haversineMeters(latitude1, longitude1, latitude2, longitude2) {
 export function formatDistance(meters) {
   return meters < 1000 ? `${Math.round(meters)} m` : `${(meters / 1000).toFixed(1)} km`
 }
+
+export function vehicleLocationText(vehicle, route, stops = [], language = 'zh') {
+  const direction = route?.directions?.find((item) => item.id === vehicle?.route_direction_id)
+  const position = vehicle?.current_position || {}
+  const nextIndex = direction?.stops?.findIndex((stop) => stop.id === position.next_stop_id || stop.sequence === Number(position.next_stop_num)) ?? -1
+  const nextStop = direction?.stops?.[nextIndex] || direction?.stops?.find((stop) => stop.sequence === vehicle?.route_sequence)
+  const stopName = (stop) => displayStopName({ ...stops.find((item) => item.id === stop?.id), ...stop }, language) || stop?.id || ''
+  if (!nextStop) return ''
+  const nextName = stopName(nextStop)
+  if (position.type === 'between_stops') {
+    const previousName = stopName(direction.stops[nextIndex - 1])
+    const distance = Number(position.distance_to_next_stop)
+    return [previousName && `${previousName} - ${nextName}`, Number.isFinite(distance) && `${Math.round(distance)}m`].filter(Boolean).join(' ')
+  }
+  return language === 'zh' ? `${nextName} 进站` : `At ${nextName}`
+}

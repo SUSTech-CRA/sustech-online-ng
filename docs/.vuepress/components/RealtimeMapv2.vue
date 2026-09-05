@@ -69,7 +69,7 @@ export default {
       },
 
       // --- Data Placeholders ---
-      geojson_NKDH1: [],
+      geojson_RC61: [],
       predictionRoutes: {},
       sevPredictionHistory: {},
 
@@ -215,11 +215,11 @@ export default {
 
     async loadGeoJSONLines() {
       try {
-        const [NKDH1Res] = await Promise.all([
+        const [RC61Res] = await Promise.all([
           axios.get('https://bus.sustcra.com/static/lines/NKDH1_clockwise.json')
         ]);
-        // console.log('NKDH1:', NKDH1Res.data);
-        this.geojson_NKDH1 = NKDH1Res.data;
+        // console.log('RC61:', RC61Res.data);
+        this.geojson_RC61 = RC61Res.data;
       } catch (error) {
         console.error("Failed to fetch GeoJSON lines:", error);
       }
@@ -357,8 +357,8 @@ export default {
 
     setupMapLayers() {
       // 添加线路图层
-      this.addRouteLayer('line1', this.geojson_NKDH1, '#747474');
-      console.log("NKDH1 route layer added.");
+      this.addRouteLayer('line1', this.geojson_RC61, '#747474');
+      console.log("RC61 route layer added.");
 
       // 添加站点、建筑和校门图层
       // station 语义缩放

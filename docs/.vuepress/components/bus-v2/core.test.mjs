@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { displayName, displayStopName, haversineMeters, isTerminalArrival, matchesSearch, resolveBusApiBase, sortArrivalsByEstimatedTime, unavailableReasonTextKey } from './core.mjs'
+import { displayName, displayStopName, haversineMeters, isTerminalArrival, matchesSearch, resolveBusApiBase, sortArrivalsByEstimatedTime, unavailableReasonTextKey, vehicleLocationText } from './core.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
 
 test('API base uses fixed development and production addresses', () => {
@@ -45,4 +45,11 @@ test('distance and Markdown helpers are safe', () => {
   const html = renderNoticeMarkdown('**safe** <script>alert(1)</script>')
   assert.match(html, /<strong>safe<\/strong>/)
   assert.doesNotMatch(html, /<script>/)
+})
+
+test('vehicle locations show route intervals and stops', () => {
+  const route = { directions: [{ id: 'outbound', stops: [{ id: 'a', sequence: 1, name_zh: '1' }, { id: 'b', sequence: 2, name_zh: '1' }] }] }
+  const stops = [{ id: 'a', group_name_zh: '欣园' }, { id: 'b', group_name_zh: '慧园' }]
+  assert.equal(vehicleLocationText({ route_direction_id: 'outbound', current_position: { type: 'between_stops', next_stop_id: 'b', distance_to_next_stop: 238 } }, route, stops), '欣园 1 - 慧园 1 238m')
+  assert.equal(vehicleLocationText({ route_direction_id: 'outbound', current_position: { type: 'at_stop', next_stop_id: 'a' } }, route, stops), '欣园 1 进站')
 })

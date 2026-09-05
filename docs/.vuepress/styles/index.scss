@@ -1,4 +1,15 @@
 /* 哀悼用黑白遮罩 */
+.bus-home, .bus-detail, .bus-stop-detail, .bus-vehicles, .bus-schedules, .bus-map, .vehicle-detail, .schedule-list {
+    --bus-v2-text: var(--vp-c-text);
+    --bus-v2-muted: var(--vp-c-text-mute);
+    --bus-v2-border: var(--vp-c-border);
+    --bus-v2-bg: var(--vp-c-bg-elv);
+    --bus-v2-bg-alt: var(--vp-c-bg-alt);
+    --bus-v2-control: var(--vp-c-control-hover);
+    --bus-v2-link: var(--vp-c-accent);
+    --bus-v2-link-soft: var(--vp-c-accent-soft);
+}
+
 .home-gray {
     filter: grayscale(100%);
     -webkit-filter: grayscale(100%);
@@ -7,3 +18,16 @@
     -o-filter: grayscale(100%);
     filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
 }
+
+[data-theme='dark'] .bus-home, [data-theme='dark'] .bus-detail, [data-theme='dark'] .bus-stop-detail, [data-theme='dark'] .bus-vehicles, [data-theme='dark'] .bus-schedules, [data-theme='dark'] .vehicle-detail { color: var(--bus-v2-text); }
+[data-theme='dark'] .bus-home .panel, [data-theme='dark'] .bus-detail .panel, [data-theme='dark'] .bus-stop-detail .panel, [data-theme='dark'] .bus-vehicles .state, [data-theme='dark'] .bus-vehicles .notices, [data-theme='dark'] .bus-map, [data-theme='dark'] .vehicle-detail, [data-theme='dark'] .schedule-list { border-color: var(--bus-v2-border); background: var(--bus-v2-bg); }
+[data-theme='dark'] .bus-home .muted, [data-theme='dark'] .bus-detail .muted, [data-theme='dark'] .bus-stop-detail .muted, [data-theme='dark'] .bus-vehicles .muted, [data-theme='dark'] .bus-schedules .muted, [data-theme='dark'] .bus-schedules .note, [data-theme='dark'] .vehicle-detail dt { color: var(--bus-v2-muted); }
+[data-theme='dark'] .bus-home .search-results, [data-theme='dark'] .bus-home .quick-links button, [data-theme='dark'] .bus-home .nearby-toggle, [data-theme='dark'] .bus-detail .plain-button, [data-theme='dark'] .bus-detail .direction-tabs button, [data-theme='dark'] .bus-stop-detail .plain-button, [data-theme='dark'] .bus-stop-detail .platforms button, [data-theme='dark'] .bus-vehicles button, [data-theme='dark'] .bus-schedules button, [data-theme='dark'] .schedule-list, [data-theme='dark'] .bus-map { border-color: var(--bus-v2-border); }
+[data-theme='dark'] .bus-home details + details, [data-theme='dark'] .bus-home .nearby-stop, [data-theme='dark'] .bus-detail details + details, [data-theme='dark'] .bus-detail .arrival-list li, [data-theme='dark'] .bus-stop-detail details + details, [data-theme='dark'] .bus-stop-detail .arrival-list li, [data-theme='dark'] .bus-stop-detail .direction-list li, [data-theme='dark'] .bus-stop-detail .mini-arrivals li, [data-theme='dark'] .bus-vehicles .notices details + details, [data-theme='dark'] .schedule-row { border-color: var(--bus-v2-border); }
+[data-theme='dark'] .bus-home .search-results, [data-theme='dark'] .bus-home .search-results button:hover, [data-theme='dark'] .bus-home .quick-links button:hover, [data-theme='dark'] .bus-home .markdown code, [data-theme='dark'] .bus-detail .direction-tabs .active, [data-theme='dark'] .bus-stop-detail .platforms .active, [data-theme='dark'] .route-info, [data-theme='dark'] .bus-map__message { background: var(--bus-v2-bg-alt); }
+[data-theme='dark'] .bus-home .text-button, [data-theme='dark'] .bus-home .link-title, [data-theme='dark'] .bus-home .arrival-link, [data-theme='dark'] .bus-home .feature-links a, [data-theme='dark'] .bus-detail .all-link, [data-theme='dark'] .bus-stop-detail .arrival-list button, [data-theme='dark'] .bus-stop-detail .direction-list button { color: var(--bus-v2-link); }
+[data-theme='dark'] .bus-detail .stop-line i { background: var(--bus-v2-bg); }
+[data-theme='dark'] .bus-map__message { color: var(--bus-v2-text); }
+[data-theme='dark'] .bus-map .bus-map__vehicle { border-color: var(--bus-v2-bg); }
+[data-theme='dark'] .bus-home__header p, [data-theme='dark'] .bus-detail .eyebrow, [data-theme='dark'] .bus-detail .arrival-list small, [data-theme='dark'] .bus-detail .notices summary time, [data-theme='dark'] .bus-stop-detail .eyebrow, [data-theme='dark'] .bus-stop-detail .notices summary time, [data-theme='dark'] .bus-stop-detail .arrival-list small, [data-theme='dark'] .bus-stop-detail .direction-list span, [data-theme='dark'] .bus-stop-detail .direction-list small, [data-theme='dark'] .bus-stop-detail .mini-arrivals li, [data-theme='dark'] .bus-vehicles header p, [data-theme='dark'] .bus-vehicles .notices small, [data-theme='dark'] .bus-vehicles .map-head time, [data-theme='dark'] .bus-schedules .page-head p, [data-theme='dark'] .route-info small { color: var(--bus-v2-muted); }
+[data-theme='dark'] .bus-home .notices summary > span::after, [data-theme='dark'] .bus-detail .notices summary > span::after, [data-theme='dark'] .bus-stop-detail .notices summary > span::after, [data-theme='dark'] .bus-vehicles .notices summary > span::after { color: var(--bus-v2-muted); }

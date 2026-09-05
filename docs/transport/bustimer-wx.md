@@ -3,6 +3,9 @@ sidebar: false
 navbar: false
 ---
 # 🚌校园巴士时刻表 SUSTech Campus Bus Info
+
+## [**新版校巴页面测试中，点击前往**](./bustimer_v2.html)
+
 <BusAnnouncement />
 
 <ClientOnly>
