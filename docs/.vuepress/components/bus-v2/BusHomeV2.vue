@@ -3,7 +3,7 @@
     <header class="bus-home__header">
       <div>
         <h1>{{ busLanguage === 'zh' ? '校园巴士' : 'Campus bus' }}</h1>
-        <p>{{ busLanguage === 'zh' ? '实时到站与出行信息' : 'Live arrivals and travel information' }}</p>
+        <p>{{ busLanguage === 'zh' ? '实时到站与出行信息。所有到站时间均为预测，仅供参考。' : 'Live arrivals and travel information. All arrival times are estimates and for reference only.' }}</p>
       </div>
       <div><button class="text-button" type="button" :aria-label="busLanguage === 'zh' ? '立即刷新' : 'Refresh now'" @click="refresh">🔄{{ refreshRemaining }}s</button><button class="text-button" type="button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button></div>
     </header>
@@ -40,11 +40,16 @@
 
       <section class="panel favorites">
         <h3>{{ busText('favorites') }}</h3>
-        <div v-if="favoriteRoutes.length || favoriteStops.length" class="quick-links">
+        <div v-if="favoriteRoutes.length" class="quick-links">
           <button v-for="route in favoriteRoutes" :key="route.id" type="button" @click="openRoute(route.id)">🚌 {{ displayName(route, busLanguage) }}</button>
-          <button v-for="stop in favoriteStops" :key="stop.id" type="button" @click="openStop(stop.id)">⌖ {{ displayStopName(stop, busLanguage) }}</button>
         </div>
-        <p v-else class="muted">{{ busText('noFavorites') }}</p>
+        <article v-for="stop in favoriteStopCards" :key="stop.id" class="nearby-stop">
+          <div class="nearby-stop__head"><button type="button" class="link-title" @click="openStop(stop.id)">{{ displayStopName(stop, busLanguage) }}</button><span v-if="stop.distance != null">{{ formatDistance(stop.distance) }}</span></div>
+          <p v-if="favoriteArrivals[stop.id]?.loading" class="muted">{{ busText('loading') }}</p>
+          <p v-else-if="favoriteArrivals[stop.id]?.error" class="muted">{{ busText('unavailable') }}</p>
+          <ul v-else class="arrival-list"><li v-for="arrival in favoriteArrivals[stop.id]?.items" :key="`${arrival.route_direction_id}-${arrival.source}-${arrival.trip_id || arrival.planned_arrival_at || ''}`"><i :style="{ background: arrival.route_color || '#2878c8' }" /><a class="arrival-link" :href="routeDirectionHref(arrival)">{{ arrivalName(arrival) }}</a><strong>{{ arrivalText(arrival) }}</strong></li><li v-if="!favoriteArrivals[stop.id]?.items?.length" class="muted">{{ busText('empty') }}</li></ul>
+        </article>
+        <p v-if="!favoriteRoutes.length && !favoriteStops.length" class="muted">{{ busText('noFavorites') }}</p>
       </section>
 
       <section class="panel nearby">
@@ -106,9 +111,11 @@ const stops = ref([])
 const notices = ref([])
 const query = ref('')
 const arrivals = ref({})
+const favoriteArrivals = ref({})
 const locationState = ref('idle')
 const locationErrorKey = ref('')
 const nearbyStops = ref([])
+const location = ref(null)
 const allNearbyStops = ref(false)
 const refreshRemaining = ref(30)
 const locationUpdatedAt = ref(0)
@@ -123,6 +130,7 @@ const searchResults = computed(() => [
 ].slice(0, 8))
 const favoriteRoutes = computed(() => routes.value.filter((route) => favoriteRouteIds.value.includes(route.id)))
 const favoriteStops = computed(() => stops.value.filter((stop) => favoriteStopIds.value.includes(stop.id)))
+const favoriteStopCards = computed(() => favoriteStops.value.map((stop) => location.value ? { ...stop, distance: haversineMeters(location.value.latitude, location.value.longitude, stop.latitude, stop.longitude) } : stop))
 const visibleNearbyStops = computed(() => nearbyStops.value.slice(0, allNearbyStops.value ? 5 : 2))
 const locationUpdatedText = computed(() => {
   const updated = new Date(locationUpdatedAt.value)
@@ -159,21 +167,21 @@ function arrivalText(arrival) {
   return busText(unavailableReasonTextKey(arrival.unavailable_reason))
 }
 
-async function loadArrivals(stopList) {
+async function loadArrivals(stopList, target = arrivals) {
   const results = await Promise.all(stopList.map(async (stop) => {
-    arrivals.value = { ...arrivals.value, [stop.id]: { loading: true, items: [] } }
+    target.value = { ...target.value, [stop.id]: { loading: true, items: [] } }
     try {
       const result = await busApi.arrivals(stop.id)
       const rawItems = result.arrivals || []
       const items = sortArrivalsByEstimatedTime(rawItems.filter((arrival) => !isTerminalArrival(arrival, stop.id, routes.value)))
-      arrivals.value = { ...arrivals.value, [stop.id]: { loading: false, items } }
+      target.value = { ...target.value, [stop.id]: { loading: false, items } }
       return { stop, hidden: rawItems.length > 0 && !items.length }
     } catch {
-      arrivals.value = { ...arrivals.value, [stop.id]: { loading: false, error: true, items: [] } }
+      target.value = { ...target.value, [stop.id]: { loading: false, error: true, items: [] } }
       return { stop, hidden: false }
     }
   }))
-  nearbyStops.value = results.filter(({ hidden }) => !hidden).map(({ stop }) => stop)
+  if (target === arrivals) nearbyStops.value = results.filter(({ hidden }) => !hidden).map(({ stop }) => stop)
   return results
 }
 
@@ -189,7 +197,8 @@ function saveLocation(coords, updatedAt) {
 }
 
 async function useLocation(coords, updatedAt) {
-  nearbyCandidates = stops.value.filter((stop) => Number.isFinite(stop.latitude) && Number.isFinite(stop.longitude)).map((stop) => ({
+  location.value = { latitude: +coords.latitude, longitude: +coords.longitude }
+  nearbyCandidates = stops.value.filter((stop) => !favoriteStopIds.value.includes(stop.id) && Number.isFinite(stop.latitude) && Number.isFinite(stop.longitude)).map((stop) => ({
     ...stop, distance: haversineMeters(coords.latitude, coords.longitude, stop.latitude, stop.longitude),
   })).sort((left, right) => left.distance - right.distance).slice(0, 6)
   nearbyStops.value = nearbyCandidates
@@ -243,6 +252,7 @@ async function load() {
     routes.value = Array.isArray(routeData) ? routeData : []
     stops.value = Array.isArray(stopData) ? stopData : []
     notices.value = (Array.isArray(noticeData) ? noticeData : []).sort((left, right) => right.priority - left.priority)
+    await loadArrivals(favoriteStops.value, favoriteArrivals)
   } catch (reason) { error.value = reason.message || String(reason) } finally { loading.value = false }
 }
 

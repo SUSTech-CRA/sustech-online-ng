@@ -3,12 +3,12 @@
     <div ref="mapElement" class="bus-map__canvas" :aria-label="language === 'zh' ? '车辆地图' : 'Vehicle map'" />
     <p v-if="mapError" class="bus-map__message" role="alert">{{ mapError }}</p>
     <p v-else-if="loading" class="bus-map__message">{{ language === 'zh' ? '正在加载地图…' : 'Loading map…' }}</p>
-    <BusVehicleDetailV2 v-if="selectedVehicle" class="bus-map__detail" :vehicle="selectedVehicle" :routes="routes" :stops="stops" :language="language" closable @close="selectedVehicle = null" />
+    <div class="bus-map__legend"><span><i class="bus" />{{ language === 'zh' ? '巴士' : 'Bus' }}</span><span><i class="shuttle" />{{ language === 'zh' ? '电瓶车' : 'EV Shuttle' }}</span></div>
   </section>
 </template>
 
 <script setup>
-import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { createApp, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import BusVehicleDetailV2 from './BusVehicleDetailV2.vue'
 import { parseGeometry } from './bus-v2-helpers.mjs'
 import { displayName, displayStopName } from './core.mjs'
@@ -39,6 +39,8 @@ let mediaQuery
 let themeChangeHandler
 let themeObserver
 let activePopup
+let vehicleDetailMarker
+let vehicleDetailApp
 let loaded = false
 let protocolInUse = false
 let vehicleMarkers = []
@@ -81,15 +83,42 @@ function stopFeatures() {
   return [...stops.values()].map((feature) => ({ ...feature, properties: { ...feature.properties, name: feature.properties.names.join(' / ') } }))
 }
 
+function fitToStops() {
+  const coordinates = stopFeatures().map((feature) => feature.geometry.coordinates)
+  if (!coordinates.length) return
+  const bounds = coordinates.reduce((current, coordinate) => current.extend(coordinate), new maplibregl.LngLatBounds(coordinates[0], coordinates[0]))
+  map.fitBounds(bounds, { padding: 48, maxZoom: 14.5, duration: 0 })
+}
+
 function clearVehicleMarkers() {
   vehicleMarkers.forEach((marker) => marker.remove())
   vehicleMarkers = []
 }
 
+function closeVehiclePopup() {
+  vehicleDetailApp?.unmount()
+  vehicleDetailApp = null
+  vehicleDetailMarker?.remove()
+  vehicleDetailMarker = null
+  selectedVehicle.value = null
+}
+
+function showVehiclePopup(vehicle) {
+  activePopup?.remove()
+  closeVehiclePopup()
+  selectedVehicle.value = vehicle
+  const content = document.createElement('div')
+  content.addEventListener('click', (event) => event.stopPropagation())
+  vehicleDetailApp = createApp(BusVehicleDetailV2, { vehicle, routes: props.routes, stops: props.stops, language: props.language, closable: true, onClose: closeVehiclePopup })
+  vehicleDetailApp.mount(content)
+  vehicleDetailMarker = new maplibregl.Marker({ element: content, anchor: 'bottom', offset: [0, -18] }).setLngLat([+vehicle.longitude, +vehicle.latitude]).addTo(map)
+}
+
 function refreshVehicleMarkers() {
   clearVehicleMarkers()
   const visibleVehicles = activeVehicles()
-  if (selectedVehicle.value) selectedVehicle.value = visibleVehicles.find((vehicle) => vehicle.id === selectedVehicle.value.id) || null
+  const selected = selectedVehicle.value && visibleVehicles.find((vehicle) => vehicle.id === selectedVehicle.value.id)
+  if (!selected && selectedVehicle.value) closeVehiclePopup()
   vehicleMarkers = visibleVehicles.map((vehicle) => {
     const element = document.createElement('button')
     const route = routeFor(vehicle.route_id)
@@ -99,9 +128,10 @@ function refreshVehicleMarkers() {
     element.title = displayName(vehicle, props.language) || vehicle.id
     element.setAttribute('aria-label', element.title)
     element.style.setProperty('--route-color', route?.color || '#2878c8')
-    element.addEventListener('click', () => { selectedVehicle.value = vehicle })
+    element.addEventListener('click', (event) => { event.stopPropagation(); showVehiclePopup(vehicle) })
     return new maplibregl.Marker({ element, anchor: 'center' }).setLngLat([+vehicle.longitude, +vehicle.latitude]).addTo(map)
   })
+  if (selected) showVehiclePopup(selected)
 }
 
 function refresh() {
@@ -114,6 +144,7 @@ function refresh() {
 function showStopPopup(event) {
   const feature = event.features?.[0]
   if (!feature) return
+  closeVehiclePopup()
   activePopup?.remove()
   const content = document.createElement('strong')
   content.textContent = feature.properties.name || (props.language === 'zh' ? '站点' : 'Stop')
@@ -203,7 +234,7 @@ async function initialise() {
     maplibregl = (await import('maplibre-gl')).default
     mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
     await acquireProtocol()
-    map = new maplibregl.Map({ container: mapElement.value, style: styleUrl(), center: CAMPUS_CENTER, zoom: 14.5, minZoom: 13, attributionControl: true })
+    map = new maplibregl.Map({ container: mapElement.value, style: styleUrl(), center: CAMPUS_CENTER, zoom: 14, minZoom: 12, attributionControl: true })
     map.addControl(new maplibregl.NavigationControl(), 'top-left')
     map.addControl(new maplibregl.FullscreenControl(), 'top-left')
     map.addControl(createInteractionLockControl(), 'top-left')
@@ -212,7 +243,7 @@ async function initialise() {
     mediaQuery.addEventListener('change', themeChangeHandler)
     themeObserver = new MutationObserver(themeChangeHandler)
     themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
-    map.on('load', () => { loaded = true; addLayers(); refresh(); loading.value = false })
+    map.on('load', () => { loaded = true; addLayers(); fitToStops(); refresh(); loading.value = false })
     map.on('error', (event) => {
       if (!loaded && event.error) {
         mapError.value = `${props.language === 'zh' ? '地图不可用：' : 'Map unavailable: '}${event.error.message}`
@@ -232,6 +263,7 @@ watch(() => props.styleUrl, reloadStyle)
 onMounted(initialise)
 onBeforeUnmount(() => {
   clearVehicleMarkers()
+  closeVehiclePopup()
   activePopup?.remove()
   mediaQuery?.removeEventListener('change', themeChangeHandler)
   themeObserver?.disconnect()
@@ -252,7 +284,7 @@ defineExpose({ refresh, refreshVehicleMarkers })
 .bus-map { position: relative; min-height: 22rem; overflow: hidden; border: 1px solid #d9e2ec; border-radius: .6rem; background: #eef4f8; }
 .bus-map__canvas { width: 100%; height: 28rem; }
 .bus-map__message { position: absolute; top: .75rem; left: .75rem; z-index: 1; margin: 0; padding: .45rem .65rem; border-radius: .35rem; background: rgba(255, 255, 255, .9); color: #526172; }
-.bus-map__detail { position: absolute; z-index: 2; right: .75rem; bottom: 1.75rem; max-width: calc(100% - 1.5rem); }
+.bus-map__legend { position: absolute; z-index: 1; bottom: 1.75rem; left: .75rem; display: flex; flex-wrap: wrap; gap: .6rem; padding: .4rem .55rem; border-radius: .35rem; background: color-mix(in srgb, var(--bus-v2-bg, #fff) 90%, transparent); color: var(--bus-v2-text, #243043); font-size: .82rem; }.bus-map__legend span { display: inline-flex; align-items: center; gap: .25rem; white-space: nowrap; }.bus-map__legend i { width: 1rem; height: 1rem; border: 1px solid var(--bus-v2-link, #2878c8); border-radius: 50%; background: var(--bus-v2-link, #2878c8) url('/bus.png') center / contain no-repeat; }.bus-map__legend i.shuttle { background-image: url('/sev.png'); }
 .bus-map :deep(.bus-map__vehicle) { width: 2rem; height: 2rem; border: 2px solid var(--route-color); border-radius: 50%; padding: 0; background-color: var(--route-color); background-position: center; background-repeat: no-repeat; background-size: contain; cursor: pointer; box-shadow: 0 0 0 2px var(--route-color), 0 1px 4px rgba(0, 0, 0, .35); }
 .bus-map :deep(.bus-map__vehicle.status-delayed) { background-color: #f7a600; }
 .bus-map :deep(.bus-map__vehicle.status-offline) { background-color: #9aa4b2; }
