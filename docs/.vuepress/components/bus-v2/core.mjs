@@ -44,8 +44,23 @@ export function sortArrivalsByEstimatedTime(items, nowMs = Date.now()) {
   })
 }
 
+export function closestArrivalsByRoute(items, nowMs = Date.now()) {
+  const closest = new Map()
+  for (const arrival of sortArrivalsByEstimatedTime(items, nowMs)) {
+    const key = arrival.route_id || arrival.route_direction_id || Symbol()
+    if (!closest.has(key)) closest.set(key, arrival)
+  }
+  return [...closest.values()]
+}
+
 export function unavailableReasonTextKey(reason) {
   return ({ LAST_SERVICE_PASSED: 'lastServicePassed', NOT_OPERATING: 'notOperating' })[String(reason || '').toUpperCase()] || 'unavailable'
+}
+
+export function realtimeArrivalText(arrival, language = 'zh') {
+  const minutes = Number(arrival?.eta_minutes)
+  if (arrival?.eta_minutes != null && minutes === 0) return language === 'zh' ? '车辆进站' : 'Arriving'
+  return language === 'zh' ? `${arrival?.eta_minutes} 分钟` : `${arrival?.eta_minutes} min`
 }
 
 export function matchesSearch(item, query, language = 'zh') {

@@ -23,5 +23,5 @@ export const busApi = {
   notices: () => publicApi('/notices'),
   arrivals: (stopId, dayType) => publicApi(`/arrivals/${encodeURIComponent(stopId)}${dayType ? `?day_type=${encodeURIComponent(dayType)}` : ''}`),
   schedules: (params = '') => publicApi(`/schedules${params ? `?${params}` : ''}`),
-  vehicles: () => publicApi('/vehicles'),
+  vehicles: (all = false) => publicApi(all ? '/vehicles/all' : '/vehicles'),
 }

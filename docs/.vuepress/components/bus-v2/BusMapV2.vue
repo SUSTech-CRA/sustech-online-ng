@@ -3,13 +3,14 @@
     <div ref="mapElement" class="bus-map__canvas" :aria-label="language === 'zh' ? '车辆地图' : 'Vehicle map'" />
     <p v-if="mapError" class="bus-map__message" role="alert">{{ mapError }}</p>
     <p v-else-if="loading" class="bus-map__message">{{ language === 'zh' ? '正在加载地图…' : 'Loading map…' }}</p>
-    <div class="bus-map__legend"><span><i class="bus" />{{ language === 'zh' ? '巴士' : 'Bus' }}</span><span><i class="shuttle" />{{ language === 'zh' ? '电瓶车' : 'EV Shuttle' }}</span></div>
+    <BusVehicleLegendV2 class="bus-map__legend" :language="language" />
   </section>
 </template>
 
 <script setup>
 import { createApp, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import BusVehicleDetailV2 from './BusVehicleDetailV2.vue'
+import BusVehicleLegendV2 from './BusVehicleLegendV2.vue'
 import { parseGeometry } from './bus-v2-helpers.mjs'
 import { displayName, displayStopName } from './core.mjs'
 
@@ -25,6 +26,7 @@ const props = defineProps({
   stops: { type: Array, default: () => [] },
   routeId: { type: String, default: '' },
   language: { type: String, default: 'zh' },
+  neutral: Boolean,
   // An explicit style remains supported for deployments that host their own PMTiles style.
   styleUrl: { type: String, default: '' },
 })
@@ -50,13 +52,15 @@ const activeRoutes = () => props.routes.filter((route) => !props.routeId || rout
 const activeVehicles = () => props.vehicles.filter((vehicle) => (!props.routeId || vehicle.route_id === props.routeId) && Number.isFinite(+vehicle.longitude) && Number.isFinite(+vehicle.latitude))
 const routeFor = (id) => props.routes.find((route) => route.id === id)
 const darkTheme = () => document.documentElement.getAttribute('data-theme') === 'dark' || mediaQuery?.matches
+const neutralRouteColor = () => darkTheme() ? '#aaa' : '#666'
+const neutralStopColor = () => darkTheme() ? '#ccc' : '#444'
 const styleUrl = () => props.styleUrl || (darkTheme() ? DARK_STYLE : LIGHT_STYLE)
 const sourceData = (features) => ({ type: 'FeatureCollection', features })
 
 function routeFeatures() {
   return activeRoutes().flatMap((route) => (route.directions || []).map((direction) => ({
     type: 'Feature',
-    properties: { color: route.color || '#2878c8' },
+    properties: { color: props.neutral ? neutralRouteColor() : route.color || '#2878c8' },
     geometry: { type: 'LineString', coordinates: parseGeometry(direction.geometry_json) },
   })).filter((feature) => feature.geometry.coordinates.length > 1))
 }
@@ -76,7 +80,7 @@ function stopFeatures() {
     }
     stops.set(key, {
       type: 'Feature',
-      properties: { names: name ? [name] : [], color: route.color || '#2878c8' },
+      properties: { names: name ? [name] : [], color: props.neutral ? neutralStopColor() : route.color || '#2878c8' },
       geometry: { type: 'Point', coordinates: [longitude, latitude] },
     })
   })))
@@ -224,8 +228,14 @@ function releaseProtocol() {
 function reloadStyle() {
   if (!map || !loaded) return
   activePopup?.remove()
-  map.once('style.load', () => requestAnimationFrame(() => { if (map?.isStyleLoaded()) { addLayers(); refresh() } }))
-  map.setStyle(styleUrl())
+  map.once('idle', restoreOverlays)
+  map.setStyle(styleUrl(), { diff: false })
+}
+
+function restoreOverlays() {
+  if (!map?.isStyleLoaded()) return
+  addLayers()
+  refresh()
 }
 
 async function initialise() {
@@ -239,6 +249,7 @@ async function initialise() {
     map.addControl(new maplibregl.FullscreenControl(), 'top-left')
     map.addControl(createInteractionLockControl(), 'top-left')
     map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: true }, trackUserLocation: true, showUserHeading: true }), 'top-right')
+    map.on('style.load', restoreOverlays)
     themeChangeHandler = () => { if (!props.styleUrl) reloadStyle() }
     mediaQuery.addEventListener('change', themeChangeHandler)
     themeObserver = new MutationObserver(themeChangeHandler)
@@ -284,8 +295,8 @@ defineExpose({ refresh, refreshVehicleMarkers })
 .bus-map { position: relative; min-height: 22rem; overflow: hidden; border: 1px solid #d9e2ec; border-radius: .6rem; background: #eef4f8; }
 .bus-map__canvas { width: 100%; height: 28rem; }
 .bus-map__message { position: absolute; top: .75rem; left: .75rem; z-index: 1; margin: 0; padding: .45rem .65rem; border-radius: .35rem; background: rgba(255, 255, 255, .9); color: #526172; }
-.bus-map__legend { position: absolute; z-index: 1; bottom: 1.75rem; left: .75rem; display: flex; flex-wrap: wrap; gap: .6rem; padding: .4rem .55rem; border-radius: .35rem; background: color-mix(in srgb, var(--bus-v2-bg, #fff) 90%, transparent); color: var(--bus-v2-text, #243043); font-size: .82rem; }.bus-map__legend span { display: inline-flex; align-items: center; gap: .25rem; white-space: nowrap; }.bus-map__legend i { width: 1rem; height: 1rem; border: 1px solid var(--bus-v2-link, #2878c8); border-radius: 50%; background: var(--bus-v2-link, #2878c8) url('/bus.png') center / contain no-repeat; }.bus-map__legend i.shuttle { background-image: url('/sev.png'); }
-.bus-map :deep(.bus-map__vehicle) { width: 2rem; height: 2rem; border: 2px solid var(--route-color); border-radius: 50%; padding: 0; background-color: var(--route-color); background-position: center; background-repeat: no-repeat; background-size: contain; cursor: pointer; box-shadow: 0 0 0 2px var(--route-color), 0 1px 4px rgba(0, 0, 0, .35); }
+.bus-map__legend { position: absolute; z-index: 1; bottom: 1.75rem; left: .75rem; margin: 0; padding: .4rem .55rem; border-radius: .35rem; background: color-mix(in srgb, var(--bus-v2-bg, #fff) 90%, transparent); }
+.bus-map :deep(.bus-map__vehicle) { width: 1.4rem; height: 1.4rem; border: 2px solid var(--route-color); border-radius: 50%; padding: 0; background-color: var(--route-color); background-position: center; background-repeat: no-repeat; background-size: contain; cursor: pointer; box-shadow: 0 0 0 2px var(--route-color), 0 1px 4px rgba(0, 0, 0, .35); }
 .bus-map :deep(.bus-map__vehicle.status-delayed) { background-color: #f7a600; }
 .bus-map :deep(.bus-map__vehicle.status-offline) { background-color: #9aa4b2; }
 .bus-map :deep(.bus-map__interaction-lock), .bus-map :deep(.bus-map__interaction-allow) { background-image: none; font-size: 1rem; }

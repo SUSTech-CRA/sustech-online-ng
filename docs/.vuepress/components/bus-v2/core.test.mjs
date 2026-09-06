@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { displayName, displayStopName, haversineMeters, isTerminalArrival, matchesSearch, resolveBusApiBase, sortArrivalsByEstimatedTime, unavailableReasonTextKey, vehicleLocationText } from './core.mjs'
+import { closestArrivalsByRoute, displayName, displayStopName, haversineMeters, isTerminalArrival, matchesSearch, realtimeArrivalText, resolveBusApiBase, sortArrivalsByEstimatedTime, unavailableReasonTextKey, vehicleLocationText } from './core.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
 
 test('API base uses fixed development and production addresses', () => {
@@ -33,11 +33,23 @@ test('nearby arrivals sort by their expected arrival time', () => {
   assert.deepEqual(sortArrivalsByEstimatedTime(items, now).map(({ id }) => id), ['three', 'planned', 'eight', 'unavailable'])
 })
 
+test('keeps only the nearest arrival for each route', () => {
+  const now = Date.parse('2025-01-01T08:00:00Z')
+  const items = [{ id: 'later', route_id: 'r1', source: 'real_time', eta_minutes: 8 }, { id: 'next', route_id: 'r1', source: 'real_time', eta_minutes: 2 }, { id: 'r2', route_id: 'r2', source: 'planned', planned_arrival_at: '2025-01-01T08:05:00Z' }]
+  assert.deepEqual(closestArrivalsByRoute(items, now).map(({ id }) => id), ['next', 'r2'])
+})
+
 test('unavailable arrival reasons use specific text keys with a safe fallback', () => {
   assert.equal(unavailableReasonTextKey('LAST_SERVICE_PASSED'), 'lastServicePassed')
   assert.equal(unavailableReasonTextKey('NOT_OPERATING'), 'notOperating')
   assert.equal(unavailableReasonTextKey('UNKNOWN'), 'unavailable')
   assert.equal(unavailableReasonTextKey(), 'unavailable')
+})
+
+test('real-time arrivals at zero minutes show that the vehicle is arriving', () => {
+  assert.equal(realtimeArrivalText({ eta_minutes: 0 }), '车辆进站')
+  assert.equal(realtimeArrivalText({ eta_minutes: '0' }, 'en'), 'Arriving')
+  assert.equal(realtimeArrivalText({ eta_minutes: 3 }), '3 分钟')
 })
 
 test('distance and Markdown helpers are safe', () => {
