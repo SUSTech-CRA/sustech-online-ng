@@ -7,7 +7,7 @@
         <h1 v-else>{{ label('route') }}</h1>
       </div>
       <div class="head-actions">
-        <a class="plain-button" href="/transport/bustimer_v2.html" :aria-label="label('home')" :title="label('home')">🏠</a>
+        <a class="plain-button" href="/transport/bustimer.html" :aria-label="label('home')" :title="label('home')">🏠</a>
         <button type="button" class="plain-button" :aria-label="busLanguage === 'zh' ? '立即刷新' : 'Refresh now'" @click="refresh">🔄{{ refreshRemaining }}s</button>
         <button type="button" class="plain-button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button>
         <button v-if="route" type="button" class="plain-button" :aria-pressed="favorite" @click="toggleFavorite('route', route.id)">

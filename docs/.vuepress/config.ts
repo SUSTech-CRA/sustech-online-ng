@@ -253,12 +253,12 @@ export default defineUserConfig({
                     // SidebarItem
                     {
                         text: '🚌新版巴士时刻表',
-                        link: '/transport/bustimer_v2.md',
+                        link: '/transport/bustimer.md',
                         children: [],
                     },
                     {
                         text: '旧版巴士页面',
-                        link: '/transport/bustimer.md',
+                        link: '/transport/bustimer_v1.md',
                         children: [],
                     },
                     {
