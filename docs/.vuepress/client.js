@@ -17,9 +17,14 @@ import { BusHomeV2 } from './components/bus-v2/index.mjs'
 import BusRouteV2 from './components/bus-v2/BusRouteV2.vue'
 import BusStopV2 from './components/bus-v2/BusStopV2.vue'
 import BusSchedulesV2 from './components/bus-v2/BusSchedulesV2.vue'
+import { setWorkerUrl } from 'maplibre-gl'
+import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'
 
 export default defineClientConfig({
   enhance({ app }) {
+    // MapLibre 6 的独立 Worker 需要由 Vite 打包并显式指定地址。
+    setWorkerUrl(maplibreWorkerUrl)
+
     app.component("BusTable", BusTable)
     app.component("BusTable_img", BusTable_img)
     app.component("BusAnnouncement", BusAnnouncement)
