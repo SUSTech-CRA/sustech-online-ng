@@ -48,13 +48,13 @@ export default {
 
       // 配置表，每条线路单独定义方向映射 & 颜色
       routeConfig: {
-        NKDH1: {
+        RC61: {
           name: 'L1',
           directions: { '0': '顺时针🔁CW', '1': '' },
           icon: 'https://bus.sustcra.com/static/icon/bus-icon-NKDH1.png',
           color: '#4ca963'
         },
-        NKDH2: {
+        RC62: {
           name: 'L2',
           directions: { '0': '逆时针🔄CCW', '1': '' },
           icon: 'https://bus.sustcra.com/static/icon/bus-icon-NKDH2.png',
@@ -69,7 +69,7 @@ export default {
       },
 
       // --- Data Placeholders ---
-      geojson_NKDH1: [],
+      geojson_RC61: [],
       predictionRoutes: {},
       sevPredictionHistory: {},
 
@@ -215,11 +215,11 @@ export default {
 
     async loadGeoJSONLines() {
       try {
-        const [NKDH1Res] = await Promise.all([
+        const [RC61Res] = await Promise.all([
           axios.get('https://bus.sustcra.com/static/lines/NKDH1_clockwise.json')
         ]);
-        // console.log('NKDH1:', NKDH1Res.data);
-        this.geojson_NKDH1 = NKDH1Res.data;
+        // console.log('RC61:', RC61Res.data);
+        this.geojson_RC61 = RC61Res.data;
       } catch (error) {
         console.error("Failed to fetch GeoJSON lines:", error);
       }
@@ -244,7 +244,7 @@ export default {
             key: 'sev-cw',
             routeName: 'CW',
             directionLabel: '顺时针 CW',
-            color: this.routeConfig.NKDH1.color,
+            color: this.routeConfig.RC61.color,
             lineGeoJSON: cwLineRes.data,
             stopGeoJSON: latestStationGeoJSON,
           },
@@ -252,7 +252,7 @@ export default {
             key: 'sev-ccw',
             routeName: 'CCW',
             directionLabel: '逆时针 CCW',
-            color: this.routeConfig.NKDH2.color,
+            color: this.routeConfig.RC62.color,
             lineGeoJSON: ccwLineRes.data,
             stopGeoJSON: latestStationGeoJSON,
           },
@@ -357,8 +357,8 @@ export default {
 
     setupMapLayers() {
       // 添加线路图层
-      this.addRouteLayer('line1', this.geojson_NKDH1, '#747474');
-      console.log("NKDH1 route layer added.");
+      this.addRouteLayer('line1', this.geojson_RC61, '#747474');
+      console.log("RC61 route layer added.");
 
       // 添加站点、建筑和校门图层
       // station 语义缩放
@@ -651,7 +651,9 @@ export default {
         //also fetch sev locations https://bus.sustcra.com/api/v2/monitor_sev_osm/
         const response_sev = await axios.get(`https://bus.sustcra.com/api/v2/monitor_sev_osm/`);
 
-        this.busLocations = response.data;
+        this.busLocations = response.data.filter(
+            (bus) => bus.route_code === 'RC61' || bus.route_code === 'RC62'
+        );
         this.sevLocations = response_sev.data;
 
         // merge busLocations and sevLocations

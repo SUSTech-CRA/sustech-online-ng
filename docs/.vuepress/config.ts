@@ -257,6 +257,11 @@ export default defineUserConfig({
                         children: [],
                     },
                     {
+                        text: '旧版巴士页面',
+                        link: '/transport/bustimer_v1.md',
+                        children: [],
+                    },
+                    {
                         text: '周围交通',
                         link: '/transport/',
                         children: [],

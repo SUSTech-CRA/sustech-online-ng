@@ -302,15 +302,10 @@ export default {
           .then((response) => {
             const res = response.data;
             const busData = res
-              .filter((f) => (f.is_operating == 1))
+              .filter((f) => f.is_operating == 1 && (f.route_code === "RC61" || f.route_code === "RC62"))
               .map((f) => {
                 //哪条线路
-                let thisRoute = 0;
-                if (f.route_code == "XYBS2") {
-                  thisRoute = 1;
-                } else if (f.route_code == "XYBS1") {
-                  thisRoute = 0;
-                }
+                const thisRoute = f.route_code === "RC62" ? 1 : 0;
 
                 //线上最近点
                 const mcp = point([f.lng, f.lat]);

@@ -138,11 +138,13 @@ export default {
   methods: {
     async fetch_bus() {
       const realtime_location_api_data = await axios.get(`https://bus.sustcra.com/api/v2/monitor_osm/`)
-      this.bus_location_data_api = realtime_location_api_data.data;
+      this.bus_location_data_api = realtime_location_api_data.data.filter(
+          (bus) => bus.route_code === 'RC61' || bus.route_code === 'RC62'
+      );
       const d = new Date();
       console.log("bus location data fetched at " + parseInt(d.getTime() / 1000,));
       //console log the diff of report time and display time
-      if (typeof this.bus_location_data_api[0].time_mt != "undefined") {
+      if (this.bus_location_data_api.length > 0 && typeof this.bus_location_data_api[0].time_mt != "undefined") {
         this.time_difference = parseInt(d.getTime() / 1000 - this.bus_location_data_api[0].time_mt);
         // log current time and report time
         console.log("The clock drift is " + this.time_difference + " seconds");
@@ -223,7 +225,7 @@ export default {
         if ((new Date().getTime() / 1000) - busData.time_mt < 150) {
           const busLocation = [busData.lng, busData.lat];
           let busHeadingAngle = 0;
-          const isRoute1 = busData.route_code.slice(-1) === '1';
+          const isRoute1 = busData.route_code === 'RC61';
           busData.route_geojson = isRoute1 ? this.geojson_line_1 : this.geojson_line_2;
           const closestSegment = this.findNearestSegment(busLocation, busData.route_geojson);
           busHeadingAngle = this.calculateBusAngle(
@@ -256,17 +258,18 @@ export default {
 
     createPopup(busData) {
       let routeDirText;
-      const routeCodeLastDigit = busData.route_code.slice(-1); // 检查是XYBS1还是XYBS2
-      if (routeCodeLastDigit === '1') {
+      const isRoute1 = busData.route_code === 'RC61';
+      if (isRoute1) {
         //log car plate and route dir
         // console.log("Car plate: " + busData.id.slice(2,) + " Route dir: " + busData.route_dir);
         routeDirText = parseInt(busData.route_dir) === 0 ? '欣园 Joy Highland' : '工学院 COE';
-      } else if (routeCodeLastDigit === '2') {
+      } else if (busData.route_code === 'RC62') {
         routeDirText = parseInt(busData.route_dir) === 0 ? '欣园 Joy Highland' : '科研楼 Research BLDG.';
       } else {
         routeDirText = '未知'; // Fallback text in case neither condition is true
       }
-      const LineColour = busData.route_code.slice(-1) === '1' ? '#f7911d': '#29abe2';
+      const lineNumber = isRoute1 ? '1' : '2';
+      const LineColour = isRoute1 ? '#f7911d': '#29abe2';
       const htmlContent = `
       <div style="margin-top: 0; font-size: 14px; margin: 0; color: #333; font-weight: bold;">
         粤B${busData.id.slice(2,)}
@@ -275,7 +278,7 @@ export default {
         ${busData.speed} km/h
       </p>
       <p style="margin: 0px 0; line-height: 1.4;">
-        <span style="display: inline-block; background-color: ${LineColour}; color: white; padding: 2px 6px; border-radius: 3px; font-weight: bold;">Line ${busData.route_code.slice(-1)} 号线</span>
+        <span style="display: inline-block; background-color: ${LineColour}; color: white; padding: 2px 6px; border-radius: 3px; font-weight: bold;">Line ${lineNumber} 号线</span>
       </p>
       <p style="font-size: 12px; margin: 0px 0; color: #666;">
         To往: <b>${routeDirText}</b>
