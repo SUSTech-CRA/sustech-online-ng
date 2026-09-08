@@ -26,12 +26,12 @@
     "docs:clean": "rm -rf docs/.vuepress/.cache docs/.vuepress/.temp docs/.vuepress/dist"
   },
   "dependencies": {
-    "@turf/turf": "^7.3.5",
+    "@turf/turf": "^7.4.0",
     "axios": "^1.17.0",
     "download": "^8.0.0",
     "echarts": "^5.6.0",
-    "maplibre-gl": "^5.19.0",
-    "pmtiles": "^4.4.1",
+    "maplibre-gl": "^6.8.0",
+    "pmtiles": "^4.5.0",
     "vue": "^3.5.38"
   }
 }
