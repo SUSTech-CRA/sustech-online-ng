@@ -81,20 +81,45 @@ export function formatDistance(meters) {
   return meters < 1000 ? `${Math.round(meters)} m` : `${(meters / 1000).toFixed(1)} km`
 }
 
-export function lineBearingAt(coordinates, longitude, latitude) {
-  if (!Array.isArray(coordinates) || !Number.isFinite(longitude) || !Number.isFinite(latitude) || coordinates.length < 2) return 0
+function lineProjection(coordinates, longitude, latitude, startProgress = 0, endProgress = Infinity) {
+  if (!Array.isArray(coordinates) || !Number.isFinite(longitude) || !Number.isFinite(latitude) || coordinates.length < 2) return null
   const scale = Math.cos(latitude * Math.PI / 180)
-  let nearest
+  let routeProgress = 0, nearest
   for (let index = 1; index < coordinates.length; index++) {
     const start = coordinates[index - 1], end = coordinates[index]
     if (![start, end].every((point) => Number.isFinite(+point?.[0]) && Number.isFinite(+point?.[1]))) continue
     const dx = (+end[0] - +start[0]) * scale, dy = +end[1] - +start[1], length = dx ** 2 + dy ** 2
     if (!length) continue
-    const progress = Math.max(0, Math.min(1, (((longitude - +start[0]) * scale) * dx + (latitude - +start[1]) * dy) / length))
-    const distance = ((longitude - (+start[0] + (+end[0] - +start[0]) * progress)) * scale) ** 2 + (latitude - (+start[1] + (+end[1] - +start[1]) * progress)) ** 2
-    if (!nearest || distance < nearest.distance) nearest = { distance, dx, dy }
+    const fraction = Math.max(0, Math.min(1, (((longitude - +start[0]) * scale) * dx + (latitude - +start[1]) * dy) / length))
+    const segmentLength = haversineMeters(+start[1], +start[0], +end[1], +end[0])
+    const candidateProgress = routeProgress + segmentLength * fraction
+    if (candidateProgress >= startProgress && candidateProgress <= endProgress && routeProgress + segmentLength > startProgress && routeProgress < endProgress) {
+      const distance = ((longitude - (+start[0] + (+end[0] - +start[0]) * fraction)) * scale) ** 2 + (latitude - (+start[1] + (+end[1] - +start[1]) * fraction)) ** 2
+      if (!nearest || distance < nearest.distance) nearest = { distance, dx, dy, progress: candidateProgress }
+    }
+    routeProgress += segmentLength
   }
+  return nearest
+}
+
+export function lineBearingAt(coordinates, longitude, latitude, startProgress = 0, endProgress = Infinity) {
+  const nearest = lineProjection(coordinates, longitude, latitude, startProgress, endProgress)
   return nearest ? Math.atan2(nearest.dx, nearest.dy) * 180 / Math.PI : 0
+}
+
+export function vehicleBearingAt(coordinates, stops, vehicle) {
+  const position = vehicle?.current_position
+  const fallback = () => lineBearingAt(coordinates, +vehicle?.longitude, +vehicle?.latitude)
+  if (!position || !Array.isArray(stops) || stops.length < 2) return fallback()
+  const nextNumber = Number(position.next_stop_num)
+  const nextIndex = stops.findIndex((stop) => stop.id === position.next_stop_id || Number.isFinite(nextNumber) && Number(stop.sequence) === nextNumber)
+  if (nextIndex < 0) return fallback()
+  const leftIndex = position.type === 'between_stops' ? nextIndex - 1 : Math.min(nextIndex, stops.length - 2)
+  if (leftIndex < 0) return fallback()
+  const progress = stops.map((stop) => lineProjection(coordinates, +stop.longitude, +stop.latitude)?.progress ?? 0)
+  const total = coordinates.slice(1).reduce((sum, point, index) => sum + haversineMeters(+coordinates[index][1], +coordinates[index][0], +point[1], +point[0]), 0)
+  for (let index = 1; index < progress.length; index++) if (progress[index] < progress[index - 1]) progress[index] = index === progress.length - 1 ? total : progress[index - 1]
+  return lineBearingAt(coordinates, +vehicle.longitude, +vehicle.latitude, progress[leftIndex], progress[leftIndex + 1])
 }
 
 export function vehicleLocationText(vehicle, route, stops = [], language = 'zh') {

@@ -12,7 +12,7 @@ import { createApp, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import BusVehicleDetailV2 from './BusVehicleDetailV2.vue'
 import BusVehicleLegendV2 from './BusVehicleLegendV2.vue'
 import { parseGeometry } from './bus-v2-helpers.mjs'
-import { displayName, displayStopName, lineBearingAt } from './core.mjs'
+import { displayName, displayStopName, vehicleBearingAt } from './core.mjs'
 
 const LIGHT_STYLE = 'https://bus.sustcra.com/static/protomaps/pmtiles-style/pmtiles-light.json'
 const DARK_STYLE = 'https://bus.sustcra.com/static/protomaps/pmtiles-style/pmtiles-dark.json'
@@ -58,7 +58,7 @@ const sourceData = (features) => ({ type: 'FeatureCollection', features })
 
 function vehicleBearing(vehicle) {
   const direction = routeFor(vehicle.route_id)?.directions?.find((item) => item.id === vehicle.route_direction_id)
-  return lineBearingAt(parseGeometry(direction?.geometry_json), +vehicle.longitude, +vehicle.latitude)
+  return vehicleBearingAt(parseGeometry(direction?.geometry_json), direction?.stops, vehicle)
 }
 
 function routeFeatures() {
