@@ -12,7 +12,7 @@ import { createApp, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import BusVehicleDetailV2 from './BusVehicleDetailV2.vue'
 import BusVehicleLegendV2 from './BusVehicleLegendV2.vue'
 import { parseGeometry } from './bus-v2-helpers.mjs'
-import { displayName, displayStopName } from './core.mjs'
+import { displayName, displayStopName, lineBearingAt } from './core.mjs'
 
 const LIGHT_STYLE = 'https://bus.sustcra.com/static/protomaps/pmtiles-style/pmtiles-light.json'
 const DARK_STYLE = 'https://bus.sustcra.com/static/protomaps/pmtiles-style/pmtiles-dark.json'
@@ -37,7 +37,6 @@ const loading = ref(true)
 const mapError = ref('')
 let map
 let maplibregl
-let mediaQuery
 let themeChangeHandler
 let themeObserver
 let activePopup
@@ -45,17 +44,22 @@ let vehicleDetailMarker
 let vehicleDetailApp
 let loaded = false
 let protocolInUse = false
-let vehicleMarkers = []
+let vehicleMarkers = new Map()
 let mapEventsBound = false
 
 const activeRoutes = () => props.routes.filter((route) => !props.routeId || route.id === props.routeId)
 const activeVehicles = () => props.vehicles.filter((vehicle) => (!props.routeId || vehicle.route_id === props.routeId) && Number.isFinite(+vehicle.longitude) && Number.isFinite(+vehicle.latitude))
 const routeFor = (id) => props.routes.find((route) => route.id === id)
-const darkTheme = () => document.documentElement.getAttribute('data-theme') === 'dark' || mediaQuery?.matches
+const darkTheme = () => document.documentElement.getAttribute('data-theme') === 'dark'
 const neutralRouteColor = () => darkTheme() ? '#aaa' : '#666'
 const neutralStopColor = () => darkTheme() ? '#ccc' : '#444'
 const styleUrl = () => props.styleUrl || (darkTheme() ? DARK_STYLE : LIGHT_STYLE)
 const sourceData = (features) => ({ type: 'FeatureCollection', features })
+
+function vehicleBearing(vehicle) {
+  const direction = routeFor(vehicle.route_id)?.directions?.find((item) => item.id === vehicle.route_direction_id)
+  return lineBearingAt(parseGeometry(direction?.geometry_json), +vehicle.longitude, +vehicle.latitude)
+}
 
 function routeFeatures() {
   return activeRoutes().flatMap((route) => (route.directions || []).map((direction) => ({
@@ -95,8 +99,12 @@ function fitToStops() {
 }
 
 function clearVehicleMarkers() {
-  vehicleMarkers.forEach((marker) => marker.remove())
-  vehicleMarkers = []
+  vehicleMarkers.forEach((record) => { cancelAnimationFrame(record.frame); record.marker.remove() })
+  vehicleMarkers = new Map()
+}
+
+function settleVehicleMarkers() {
+  vehicleMarkers.forEach((record) => { cancelAnimationFrame(record.frame); record.element.style.transition = 'none'; record.element.style.transform = '' })
 }
 
 function closeVehiclePopup() {
@@ -118,23 +126,58 @@ function showVehiclePopup(vehicle) {
   vehicleDetailMarker = new maplibregl.Marker({ element: content, anchor: 'bottom', offset: [0, -18] }).setLngLat([+vehicle.longitude, +vehicle.latitude]).addTo(map)
 }
 
+function updateVehicleMarker(record, vehicle) {
+  record.vehicle = vehicle
+  const route = routeFor(vehicle.route_id)
+  record.element.className = `bus-map__vehicle status-${vehicle.data_status || 'offline'}`
+  record.element.title = displayName(vehicle, props.language) || vehicle.id
+  record.element.setAttribute('aria-label', record.element.title)
+  record.element.style.setProperty('--route-color', route?.color || '#2878c8')
+  record.element.style.setProperty('--bearing', `${vehicleBearing(vehicle)}deg`)
+}
+
+function moveVehicleMarker(record, longitude, latitude) {
+  cancelAnimationFrame(record.frame)
+  const start = record.marker.getLngLat()
+  const target = [+longitude, +latitude]
+  if (start.lng === target[0] && start.lat === target[1]) return
+  const startPoint = map.project(start), targetPoint = map.project(target)
+  record.marker.setLngLat(target)
+  record.element.style.transition = 'none'
+  record.element.style.transform = `translate(${startPoint.x - targetPoint.x}px, ${startPoint.y - targetPoint.y}px)`
+  record.frame = requestAnimationFrame(() => { record.element.style.transition = 'transform 1s linear'; record.element.style.transform = '' })
+}
+
+function createVehicleMarker(vehicle) {
+  const record = { vehicle, marker: null, frame: 0, element: null }
+  const markerElement = document.createElement('div')
+  const element = document.createElement('button')
+  const arrow = document.createElement('span')
+  const image = document.createElement('img')
+  arrow.className = 'bus-map__vehicle-arrow'
+  markerElement.className = 'bus-map__vehicle-marker'
+  image.src = String(vehicle.vehicle_type).toUpperCase() === 'SHUTTLE' ? '/sev.png' : '/bus.png'
+  image.alt = ''
+  element.type = 'button'
+  element.append(arrow, image)
+  markerElement.append(element)
+  element.addEventListener('click', (event) => { event.stopPropagation(); showVehiclePopup(record.vehicle) })
+  record.element = element
+  updateVehicleMarker(record, vehicle)
+  record.marker = new maplibregl.Marker({ element: markerElement, anchor: 'center' }).setLngLat([+vehicle.longitude, +vehicle.latitude]).addTo(map)
+  return record
+}
+
 function refreshVehicleMarkers() {
-  clearVehicleMarkers()
-  const visibleVehicles = activeVehicles()
+  const visibleVehicles = activeVehicles(), visibleIds = new Set(visibleVehicles.map((vehicle) => vehicle.id))
+  vehicleMarkers.forEach((record, id) => { if (!visibleIds.has(id)) { cancelAnimationFrame(record.frame); record.marker.remove(); vehicleMarkers.delete(id) } })
+  visibleVehicles.forEach((vehicle) => {
+    const record = vehicleMarkers.get(vehicle.id)
+    if (!record) vehicleMarkers.set(vehicle.id, createVehicleMarker(vehicle))
+    else { updateVehicleMarker(record, vehicle); moveVehicleMarker(record, vehicle.longitude, vehicle.latitude) }
+  })
   const selected = selectedVehicle.value && visibleVehicles.find((vehicle) => vehicle.id === selectedVehicle.value.id)
   if (!selected && selectedVehicle.value) closeVehiclePopup()
-  vehicleMarkers = visibleVehicles.map((vehicle) => {
-    const element = document.createElement('button')
-    const route = routeFor(vehicle.route_id)
-    element.type = 'button'
-    element.className = `bus-map__vehicle status-${vehicle.data_status || 'offline'}`
-    element.style.backgroundImage = `url(${String(vehicle.vehicle_type).toUpperCase() === 'SHUTTLE' ? '/sev.png' : '/bus.png'})`
-    element.title = displayName(vehicle, props.language) || vehicle.id
-    element.setAttribute('aria-label', element.title)
-    element.style.setProperty('--route-color', route?.color || '#2878c8')
-    element.addEventListener('click', (event) => { event.stopPropagation(); showVehiclePopup(vehicle) })
-    return new maplibregl.Marker({ element, anchor: 'center' }).setLngLat([+vehicle.longitude, +vehicle.latitude]).addTo(map)
-  })
   if (selected) showVehiclePopup(selected)
 }
 
@@ -175,6 +218,7 @@ function addLayers() {
   })
   if (!mapEventsBound) {
     map.on('click', 'bus-v2-stops', showStopPopup)
+    map.on('click', (event) => { if (!map.queryRenderedFeatures(event.point, { layers: ['bus-v2-stops'] }).length) closeVehiclePopup() })
     map.on('mouseenter', 'bus-v2-stops', () => { map.getCanvas().style.cursor = 'pointer' })
     map.on('mouseleave', 'bus-v2-stops', () => { map.getCanvas().style.cursor = '' })
     mapEventsBound = true
@@ -242,7 +286,6 @@ async function initialise() {
   if (typeof window === 'undefined' || !mapElement.value) return
   try {
     maplibregl = (await import('maplibre-gl')).default
-    mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
     await acquireProtocol()
     map = new maplibregl.Map({ container: mapElement.value, style: styleUrl(), center: CAMPUS_CENTER, zoom: 14, minZoom: 12, attributionControl: true })
     map.addControl(new maplibregl.NavigationControl(), 'top-left')
@@ -251,10 +294,10 @@ async function initialise() {
     map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: true }, trackUserLocation: true, showUserHeading: true }), 'top-right')
     map.on('style.load', restoreOverlays)
     themeChangeHandler = () => { if (!props.styleUrl) reloadStyle() }
-    mediaQuery.addEventListener('change', themeChangeHandler)
     themeObserver = new MutationObserver(themeChangeHandler)
     themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
-    map.on('load', () => { loaded = true; addLayers(); fitToStops(); refresh(); loading.value = false })
+    map.on('movestart', settleVehicleMarkers)
+    map.on('load', () => { loaded = true; addLayers(); fitToStops(); refresh(); requestAnimationFrame(() => mapElement.value?.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show')); loading.value = false })
     map.on('error', (event) => {
       if (!loaded && event.error) {
         mapError.value = `${props.language === 'zh' ? '地图不可用：' : 'Map unavailable: '}${event.error.message}`
@@ -276,7 +319,6 @@ onBeforeUnmount(() => {
   clearVehicleMarkers()
   closeVehiclePopup()
   activePopup?.remove()
-  mediaQuery?.removeEventListener('change', themeChangeHandler)
   themeObserver?.disconnect()
   if (map) map.remove()
   map = null
@@ -295,10 +337,13 @@ defineExpose({ refresh, refreshVehicleMarkers })
 .bus-map { position: relative; min-height: 22rem; overflow: hidden; border: 1px solid #d9e2ec; border-radius: .6rem; background: #eef4f8; }
 .bus-map__canvas { width: 100%; height: 28rem; }
 .bus-map__message { position: absolute; top: .75rem; left: .75rem; z-index: 1; margin: 0; padding: .45rem .65rem; border-radius: .35rem; background: rgba(255, 255, 255, .9); color: #526172; }
-.bus-map__legend { position: absolute; z-index: 1; bottom: 1.75rem; left: .75rem; margin: 0; padding: .4rem .55rem; border-radius: .35rem; background: color-mix(in srgb, var(--bus-v2-bg, #fff) 90%, transparent); }
-.bus-map :deep(.bus-map__vehicle) { width: 1.4rem; height: 1.4rem; border: 2px solid var(--route-color); border-radius: 50%; padding: 0; background-color: var(--route-color); background-position: center; background-repeat: no-repeat; background-size: contain; cursor: pointer; box-shadow: 0 0 0 2px var(--route-color), 0 1px 4px rgba(0, 0, 0, .35); }
-.bus-map :deep(.bus-map__vehicle.status-delayed) { background-color: #f7a600; }
-.bus-map :deep(.bus-map__vehicle.status-offline) { background-color: #9aa4b2; }
+.bus-map__legend { position: absolute; z-index: 1; bottom: .75rem; left: .75rem; margin: 0; padding: .4rem .55rem; border-radius: .35rem; background: color-mix(in srgb, var(--bus-v2-bg, #fff) 90%, transparent); }
+.bus-map :deep(.bus-map__vehicle-marker) { display: block; width: 1.6rem; min-width: 1.6rem; max-width: 1.6rem; height: 1.6rem; min-height: 1.6rem; max-height: 1.6rem; line-height: 0; }
+.bus-map :deep(.bus-map__vehicle) { box-sizing: border-box; display: block; position: relative; width: 1.6rem; min-width: 1.6rem; max-width: 1.6rem; height: 1.6rem; min-height: 1.6rem; max-height: 1.6rem; aspect-ratio: 1; border: 2px solid #fff; border-radius: 50%; padding: 1px; background: var(--route-color); cursor: pointer; }
+.bus-map :deep(.bus-map__vehicle img) { position: absolute; inset: 0; width: 80%; height: 80%; margin: auto; object-fit: contain; }
+.bus-map :deep(.bus-map__vehicle-arrow) { position: absolute; z-index: 2; inset: 0; pointer-events: none; transform: rotate(var(--bearing)); }
+.bus-map :deep(.bus-map__vehicle-arrow)::before { content: ''; position: absolute; top: -.57rem; left: 50%; transform: translateX(-50%); border-right: .44rem solid transparent; border-bottom: .62rem solid #fff; border-left: .44rem solid transparent; }
+.bus-map :deep(.bus-map__vehicle-arrow)::after { content: ''; position: absolute; top: -.45rem; left: 50%; transform: translateX(-50%); border-right: .32rem solid transparent; border-bottom: .5rem solid var(--route-color); border-left: .32rem solid transparent; }
 .bus-map :deep(.bus-map__interaction-lock), .bus-map :deep(.bus-map__interaction-allow) { background-image: none; font-size: 1rem; }
 .bus-map :deep(.bus-map__interaction-lock)::before { content: '🔒'; }
 .bus-map :deep(.bus-map__interaction-allow)::before { content: '🖐'; }

@@ -81,6 +81,22 @@ export function formatDistance(meters) {
   return meters < 1000 ? `${Math.round(meters)} m` : `${(meters / 1000).toFixed(1)} km`
 }
 
+export function lineBearingAt(coordinates, longitude, latitude) {
+  if (!Array.isArray(coordinates) || !Number.isFinite(longitude) || !Number.isFinite(latitude) || coordinates.length < 2) return 0
+  const scale = Math.cos(latitude * Math.PI / 180)
+  let nearest
+  for (let index = 1; index < coordinates.length; index++) {
+    const start = coordinates[index - 1], end = coordinates[index]
+    if (![start, end].every((point) => Number.isFinite(+point?.[0]) && Number.isFinite(+point?.[1]))) continue
+    const dx = (+end[0] - +start[0]) * scale, dy = +end[1] - +start[1], length = dx ** 2 + dy ** 2
+    if (!length) continue
+    const progress = Math.max(0, Math.min(1, (((longitude - +start[0]) * scale) * dx + (latitude - +start[1]) * dy) / length))
+    const distance = ((longitude - (+start[0] + (+end[0] - +start[0]) * progress)) * scale) ** 2 + (latitude - (+start[1] + (+end[1] - +start[1]) * progress)) ** 2
+    if (!nearest || distance < nearest.distance) nearest = { distance, dx, dy }
+  }
+  return nearest ? Math.atan2(nearest.dx, nearest.dy) * 180 / Math.PI : 0
+}
+
 export function vehicleLocationText(vehicle, route, stops = [], language = 'zh') {
   const direction = route?.directions?.find((item) => item.id === vehicle?.route_direction_id)
   const position = vehicle?.current_position || {}

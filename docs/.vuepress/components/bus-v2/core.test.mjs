@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { closestArrivalsByRoute, displayName, displayStopName, haversineMeters, isTerminalArrival, matchesSearch, realtimeArrivalText, resolveBusApiBase, sortArrivalsByEstimatedTime, unavailableReasonTextKey, vehicleLocationText } from './core.mjs'
+import { closestArrivalsByRoute, displayName, displayStopName, haversineMeters, isTerminalArrival, lineBearingAt, matchesSearch, realtimeArrivalText, resolveBusApiBase, sortArrivalsByEstimatedTime, unavailableReasonTextKey, vehicleLocationText } from './core.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
 
 test('API base uses fixed development and production addresses', () => {
@@ -57,6 +57,11 @@ test('distance and Markdown helpers are safe', () => {
   const html = renderNoticeMarkdown('**safe** <script>alert(1)</script>')
   assert.match(html, /<strong>safe<\/strong>/)
   assert.doesNotMatch(html, /<script>/)
+})
+
+test('line bearing follows the nearest route segment', () => {
+  assert.ok(Math.abs(lineBearingAt([[0, 0], [0, 1]], 0, .5)) < .001)
+  assert.ok(Math.abs(lineBearingAt([[0, 0], [1, 0]], .5, 0) - 90) < .001)
 })
 
 test('vehicle locations show route intervals and stops', () => {

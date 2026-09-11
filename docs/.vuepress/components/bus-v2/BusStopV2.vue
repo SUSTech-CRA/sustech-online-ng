@@ -9,7 +9,7 @@
     <template v-else-if="stop">
       <section v-if="platforms.length > 1" class="panel platforms"><h3>{{ label('platforms') }}</h3><div><button v-for="item in platforms" :key="item.id" type="button" :class="{ active: item.id === stop.id }" @click="openPlatform(item.id)">{{ displayName(item, busLanguage) || item.id }}</button></div></section>
       <section class="panel notices"><h3>{{ busText('announcements') }}</h3><p v-if="!stopNotices.length" class="muted">{{ busText('empty') }}</p><details v-for="notice in stopNotices" :key="notice.id"><summary><span>{{ noticeTitle(notice) }}</span><time v-if="noticeTime(notice)" :datetime="notice.starts_at">{{ noticeTime(notice) }}</time></summary><div class="markdown" v-html="renderNoticeMarkdown(notice.body_markdown)" /></details></section>
-      <section class="panel arrivals" aria-live="polite"><div class="section-head"><h3>{{ label('arrivals') }}</h3><button v-if="hasMoreArrivals(arrivalState)" type="button" class="plain-button" :aria-expanded="allArrivals" @click="allArrivals = !allArrivals">{{ allArrivals ? label('collapse') : label('allArrivals') }}</button></div><BusStopArrivalsV2 :state="arrivalState" :collapsed="!allArrivals" :route-href="routeHref" /></section>
+      <section class="panel arrivals" aria-live="polite"><div class="section-head"><h3>{{ label('arrivals') }}</h3><button v-if="hasMoreArrivals(arrivalState)" type="button" class="plain-button" :aria-expanded="allArrivals" @click="allArrivals = !allArrivals">{{ allArrivals ? label('collapse') : label('allArrivals') }}</button></div><BusVehicleLegendV2 :language="busLanguage" /><BusStopArrivalsV2 :state="arrivalState" :collapsed="!allArrivals" :route-href="routeHref" /></section>
       <section v-if="otherPlatforms.length" class="platform-services"><article v-for="item in otherPlatforms" :key="item.id" class="panel"><div class="section-head"><h3>{{ label('platform', { name: displayName(item, busLanguage) || item.id }) }}</h3><div class="platform-actions"><button v-if="hasMoreArrivals(platformArrivals[item.id])" type="button" class="plain-button" :aria-expanded="expandedPlatforms[item.id]" @click="togglePlatformArrivals(item.id)">{{ expandedPlatforms[item.id] ? label('collapse') : label('allArrivals') }}</button><button type="button" class="plain-button" @click="openPlatform(item.id)">{{ label('open') }}</button></div></div><BusStopArrivalsV2 :state="platformArrivals[item.id]" :collapsed="!expandedPlatforms[item.id]" :route-href="routeHref" /></article></section>
     </template>
   </main>
@@ -23,6 +23,7 @@ import { isFavorite, loadFavorites, toggleFavorite } from './favorites.mjs'
 import { busLanguage, busText, setBusLanguage } from './i18n.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
 import BusStopArrivalsV2 from './BusStopArrivalsV2.vue'
+import BusVehicleLegendV2 from './BusVehicleLegendV2.vue'
 
 const props = defineProps({ id: { type: String, default: '' }, routeHref: { type: String, default: '/transport/bustimer_v2_route.html?id=' }, stopHref: { type: String, default: '/transport/bustimer_v2_stop.html?id=' } })
 const stop = ref(null), platforms = ref([]), notices = ref([]), loading = ref(true), error = ref(''), allArrivals = ref(false), arrivalState = ref({ loading: false, error: false, items: [] }), platformArrivals = ref({}), expandedPlatforms = ref({}), refreshRemaining = ref(30)
