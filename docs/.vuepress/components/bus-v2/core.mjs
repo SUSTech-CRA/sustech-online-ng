@@ -107,25 +107,33 @@ export function lineBearingAt(coordinates, longitude, latitude, startProgress = 
   return nearest ? Math.atan2(nearest.dx, nearest.dy) * 180 / Math.PI : 0
 }
 
+function positionStopIndex(stops, position) {
+  const nextNumber = Number(position?.next_stop_num)
+  const sequenceIndex = Number.isFinite(nextNumber) ? stops.findIndex((stop) => Number(stop.sequence) === nextNumber) : -1
+  return sequenceIndex >= 0 ? sequenceIndex : stops.findIndex((stop) => stop.id === position?.next_stop_id)
+}
+
 export function vehicleBearingAt(coordinates, stops, vehicle) {
   const position = vehicle?.current_position
   const fallback = () => lineBearingAt(coordinates, +vehicle?.longitude, +vehicle?.latitude)
   if (!position || !Array.isArray(stops) || stops.length < 2) return fallback()
-  const nextNumber = Number(position.next_stop_num)
-  const nextIndex = stops.findIndex((stop) => stop.id === position.next_stop_id || Number.isFinite(nextNumber) && Number(stop.sequence) === nextNumber)
+  const nextIndex = positionStopIndex(stops, position)
   if (nextIndex < 0) return fallback()
   const leftIndex = position.type === 'between_stops' ? nextIndex - 1 : Math.min(nextIndex, stops.length - 2)
   if (leftIndex < 0) return fallback()
-  const progress = stops.map((stop) => lineProjection(coordinates, +stop.longitude, +stop.latitude)?.progress ?? 0)
   const total = coordinates.slice(1).reduce((sum, point, index) => sum + haversineMeters(+coordinates[index][1], +coordinates[index][0], +point[1], +point[0]), 0)
-  for (let index = 1; index < progress.length; index++) if (progress[index] < progress[index - 1]) progress[index] = index === progress.length - 1 ? total : progress[index - 1]
-  return lineBearingAt(coordinates, +vehicle.longitude, +vehicle.latitude, progress[leftIndex], progress[leftIndex + 1])
+  const progress = []
+  for (const stop of stops) progress.push(lineProjection(coordinates, +stop.longitude, +stop.latitude, progress.at(-1) ?? 0, total)?.progress ?? progress.at(-1) ?? 0)
+  const nearest = lineProjection(coordinates, +vehicle.longitude, +vehicle.latitude, progress[leftIndex], progress[leftIndex + 1])
+  if (nearest) return Math.atan2(nearest.dx, nearest.dy) * 180 / Math.PI
+  const heading = Number(vehicle.heading)
+  return vehicle.heading != null && Number.isFinite(heading) ? heading : fallback()
 }
 
 export function vehicleLocationText(vehicle, route, stops = [], language = 'zh') {
   const direction = route?.directions?.find((item) => item.id === vehicle?.route_direction_id)
   const position = vehicle?.current_position || {}
-  const nextIndex = direction?.stops?.findIndex((stop) => stop.id === position.next_stop_id || stop.sequence === Number(position.next_stop_num)) ?? -1
+  const nextIndex = direction?.stops ? positionStopIndex(direction.stops, position) : -1
   const nextStop = direction?.stops?.[nextIndex] || direction?.stops?.find((stop) => stop.sequence === vehicle?.route_sequence)
   const stopName = (stop) => displayStopName({ ...stops.find((item) => item.id === stop?.id), ...stop }, language) || stop?.id || ''
   if (!nextStop) return ''

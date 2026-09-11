@@ -74,6 +74,13 @@ test('vehicle bearing stays inside the backend-reported stop interval', () => {
   assert.ok(Math.abs(vehicleBearingAt(coordinates, stops, atStop) + 90) < .001)
 })
 
+test('vehicle bearing distinguishes repeated stops on a fully overlapping return path', () => {
+  const coordinates = [[0, 0], [1, 0], [2, 0], [3, 0], [2, 0], [1, 0], [0, 0]]
+  const stops = coordinates.map(([longitude, latitude], index) => ({ id: ['a', 'b', 'c', 'd', 'c', 'b', 'a'][index], sequence: index + 1, longitude, latitude }))
+  const vehicle = { longitude: .5, latitude: 0, current_position: { type: 'between_stops', next_stop_id: 'a', next_stop_num: 7 } }
+  assert.ok(Math.abs(vehicleBearingAt(coordinates, stops, vehicle) + 90) < .001)
+})
+
 test('vehicle locations show route intervals and stops', () => {
   const route = { directions: [{ id: 'outbound', stops: [{ id: 'a', sequence: 1, name_zh: '1' }, { id: 'b', sequence: 2, name_zh: '1' }] }] }
   const stops = [{ id: 'a', group_name_zh: '欣园' }, { id: 'b', group_name_zh: '慧园' }]
