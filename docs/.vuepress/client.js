@@ -18,9 +18,14 @@ import BusRouteV2 from './components/bus-v2/BusRouteV2.vue'
 import BusStopV2 from './components/bus-v2/BusStopV2.vue'
 import BusSchedulesV2 from './components/bus-v2/BusSchedulesV2.vue'
 import { busPageForPath, reportBusVisit } from './components/bus-v2/analytics.mjs'
+import { setWorkerUrl } from 'maplibre-gl'
+import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'
 
 export default defineClientConfig({
   enhance({ app, router }) {
+    // MapLibre 6 的独立 Worker 需要由 Vite 打包并显式指定地址。
+    setWorkerUrl(maplibreWorkerUrl)
+
     router.afterEach((to) => {
       const page = busPageForPath(to.path)
       if (page) reportBusVisit(page)

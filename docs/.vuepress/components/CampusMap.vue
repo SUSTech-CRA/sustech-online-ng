@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import maplibre from 'maplibre-gl';
+import * as maplibre from 'maplibre-gl';
 import axios from "axios";
 import * as turf from '@turf/turf';
 

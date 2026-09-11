@@ -285,7 +285,7 @@ function restoreOverlays() {
 async function initialise() {
   if (typeof window === 'undefined' || !mapElement.value) return
   try {
-    maplibregl = (await import('maplibre-gl')).default
+    maplibregl = await import('maplibre-gl')
     await acquireProtocol()
     map = new maplibregl.Map({ container: mapElement.value, style: styleUrl(), center: CAMPUS_CENTER, zoom: 14, minZoom: 12, attributionControl: true })
     map.addControl(new maplibregl.NavigationControl(), 'top-left')

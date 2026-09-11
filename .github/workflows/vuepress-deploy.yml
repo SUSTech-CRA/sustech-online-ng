@@ -40,23 +40,22 @@ jobs:
     name: Build site
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
       with:
         fetch-depth: 0
 
-    - uses: szenius/set-timezone@v2.0
-      with:
-        timezoneLinux: "Asia/Shanghai"
+    - name: Set timezone
+      run: sudo timedatectl set-timezone Asia/Shanghai
 
     - name: Check Time
       run: date
 
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@v7
       name: Install Node.js
       with:
         node-version-file: '.nvmrc'
 
-    - uses: pnpm/action-setup@v4
+    - uses: pnpm/action-setup@v6
       name: Install pnpm
       with:
         version: 10
@@ -77,7 +76,7 @@ jobs:
         pnpm docs:build
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: 'sustech-online-build'
         path: './docs/.vuepress/dist/'
@@ -88,7 +87,7 @@ jobs:
     needs: build
     if: github.repository_owner == 'SUSTech-CRA' && github.ref == 'refs/heads/master'
     steps:
-    - uses: actions/download-artifact@v4
+    - uses: actions/download-artifact@v8
       with:
         name: sustech-online-build
         path: "./docs/.vuepress/dist/"
@@ -98,7 +97,7 @@ jobs:
       working-directory: "./docs/.vuepress/dist/"
 
     - name: Deploy to GitHub page
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs/.vuepress/dist/
