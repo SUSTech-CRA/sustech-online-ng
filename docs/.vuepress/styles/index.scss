@@ -10,6 +10,13 @@
     --bus-v2-link-soft: var(--vp-c-accent-soft);
 }
 
+.notices details.bus-notice--important {
+    margin-inline: -.5rem;
+    padding-inline: .5rem;
+    border-radius: .4rem;
+    background: color-mix(in srgb, #ffd43b 28%, var(--bus-v2-bg));
+}
+
 .home-gray {
     filter: grayscale(100%);
     -webkit-filter: grayscale(100%);

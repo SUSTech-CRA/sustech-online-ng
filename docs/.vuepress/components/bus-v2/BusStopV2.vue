@@ -2,13 +2,13 @@
   <main class="bus-stop-detail" :lang="busLanguage === 'zh' ? 'zh-CN' : 'en'">
     <header class="detail-head">
       <div><p class="eyebrow">{{ label('stop') }}</p><h1 v-if="stop">{{ stopName }}</h1><h1 v-else>{{ label('stop') }}</h1><p v-if="stop?.group_id" class="muted">{{ label('platform', { name: displayName(stop, busLanguage) }) }}</p></div>
-      <div class="head-actions"><a class="plain-button" href="/transport/bustimer_v2.html" :aria-label="label('home')" :title="label('home')">🏠</a><button type="button" class="plain-button" :aria-label="busLanguage === 'zh' ? '立即刷新' : 'Refresh now'" @click="refresh">🔄{{ refreshRemaining }}s</button><button type="button" class="plain-button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button><button v-if="stop" type="button" class="plain-button" :aria-pressed="favorite" @click="toggleFavorite('stop', stop.id)">{{ favorite ? label('saved') : label('save') }}</button></div>
+      <div class="head-actions"><a class="plain-button" href="/transport/bustimer.html" :aria-label="label('home')" :title="label('home')">🏠</a><button type="button" class="plain-button" :aria-label="busLanguage === 'zh' ? '立即刷新' : 'Refresh now'" @click="refresh">🔄{{ refreshRemaining }}s</button><button type="button" class="plain-button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button><button v-if="stop" type="button" class="plain-button" :aria-pressed="favorite" @click="toggleFavorite('stop', stop.id)">{{ favorite ? label('saved') : label('save') }}</button></div>
     </header>
     <section v-if="loading" class="panel status"><span class="spinner" aria-hidden="true" /> {{ busText('loading') }}</section>
     <section v-else-if="error" class="panel status error" role="alert"><strong>{{ busText('loadFailed') }}</strong><span>{{ error }}</span><button type="button" @click="load">{{ busText('retry') }}</button></section>
     <template v-else-if="stop">
       <section v-if="platforms.length > 1" class="panel platforms"><h3>{{ label('platforms') }}</h3><div><button v-for="item in platforms" :key="item.id" type="button" :class="{ active: item.id === stop.id }" @click="openPlatform(item.id)">{{ displayName(item, busLanguage) || item.id }}</button></div></section>
-      <section class="panel notices"><h3>{{ busText('announcements') }}</h3><p v-if="!stopNotices.length" class="muted">{{ busText('empty') }}</p><details v-for="notice in stopNotices" :key="notice.id"><summary><span>{{ noticeTitle(notice) }}</span><time v-if="noticeTime(notice)" :datetime="notice.starts_at">{{ noticeTime(notice) }}</time></summary><div class="markdown" v-html="renderNoticeMarkdown(notice.body_markdown)" /></details></section>
+      <section class="panel notices"><h3>{{ busText('announcements') }}</h3><p v-if="!stopNotices.length" class="muted">{{ busText('empty') }}</p><details v-for="notice in stopNotices" :key="notice.id" :class="{ 'bus-notice--important': isImportantNotice(notice) }" :open="isNoticeOpen(notice)" @toggle="rememberNoticeOpen(notice, $event)"><summary><span>{{ noticeTitle(notice) }}</span><time v-if="noticeTime(notice)" :datetime="notice.starts_at">{{ noticeTime(notice) }}</time></summary><div class="markdown" v-html="renderNoticeMarkdown(notice.body_markdown)" /></details></section>
       <section class="panel arrivals" aria-live="polite"><div class="section-head"><h3>{{ label('arrivals') }}</h3><button v-if="hasMoreArrivals(arrivalState)" type="button" class="plain-button" :aria-expanded="allArrivals" @click="allArrivals = !allArrivals">{{ allArrivals ? label('collapse') : label('allArrivals') }}</button></div><BusVehicleLegendV2 :language="busLanguage" /><BusStopArrivalsV2 :state="arrivalState" :collapsed="!allArrivals" :route-href="routeHref" /></section>
       <section v-if="otherPlatforms.length" class="platform-services"><article v-for="item in otherPlatforms" :key="item.id" class="panel"><div class="section-head"><h3>{{ label('platform', { name: displayName(item, busLanguage) || item.id }) }}</h3><div class="platform-actions"><button v-if="hasMoreArrivals(platformArrivals[item.id])" type="button" class="plain-button" :aria-expanded="expandedPlatforms[item.id]" @click="togglePlatformArrivals(item.id)">{{ expandedPlatforms[item.id] ? label('collapse') : label('allArrivals') }}</button><button type="button" class="plain-button" @click="openPlatform(item.id)">{{ label('open') }}</button></div></div><BusStopArrivalsV2 :state="platformArrivals[item.id]" :collapsed="!expandedPlatforms[item.id]" :route-href="routeHref" /></article></section>
     </template>
@@ -22,11 +22,13 @@ import { closestArrivalsByRoute, displayName, displayStopName, formatLocalDateTi
 import { isFavorite, loadFavorites, toggleFavorite } from './favorites.mjs'
 import { busLanguage, busText, setBusLanguage } from './i18n.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
+import { isImportantNotice, loadNoticeOpenStates, noticeIsOpen, saveNoticeOpenState } from './notice-state.mjs'
 import BusStopArrivalsV2 from './BusStopArrivalsV2.vue'
 import BusVehicleLegendV2 from './BusVehicleLegendV2.vue'
 
 const props = defineProps({ id: { type: String, default: '' }, routeHref: { type: String, default: '/transport/bustimer_v2_route.html?id=' }, stopHref: { type: String, default: '/transport/bustimer_v2_stop.html?id=' } })
 const stop = ref(null), platforms = ref([]), notices = ref([]), loading = ref(true), error = ref(''), allArrivals = ref(false), arrivalState = ref({ loading: false, error: false, items: [] }), platformArrivals = ref({}), expandedPlatforms = ref({}), refreshRemaining = ref(30)
+const noticeOpenStates = ref(loadNoticeOpenStates())
 let refreshTimer
 const id = computed(() => props.id || (typeof window === 'undefined' ? '' : new URLSearchParams(window.location.search).get('id') || ''))
 const favorite = computed(() => stop.value && isFavorite('stop', stop.value.id))
@@ -37,6 +39,8 @@ const labels = { zh: { stop: '站点', home: '返回首页', saved: '已收藏',
 const label = (key, values = {}) => (labels[busLanguage.value][key] || key).replace(/\{(\w+)\}/g, (_, name) => values[name] ?? '')
 const noticeTitle = (notice) => notice[busLanguage.value === 'en' ? 'title_en' : 'title_zh'] || notice.title_zh || notice.title_en
 const noticeTime = (notice) => formatLocalDateTime(notice.starts_at)
+const isNoticeOpen = (notice) => noticeIsOpen(noticeOpenStates.value, notice.id)
+const rememberNoticeOpen = (notice, event) => saveNoticeOpenState(noticeOpenStates.value, notice.id, event.target.open)
 const hasMoreArrivals = (state) => (state?.items?.length || 0) > closestArrivalsByRoute(state?.items || []).length
 function togglePlatformArrivals(platformId) { expandedPlatforms.value = { ...expandedPlatforms.value, [platformId]: !expandedPlatforms.value[platformId] } }
 function openPlatform(value) { if (typeof window !== 'undefined') window.location.assign(`${props.stopHref}${encodeURIComponent(value)}`) }

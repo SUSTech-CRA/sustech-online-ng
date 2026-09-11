@@ -17,9 +17,14 @@ import { BusHomeV2 } from './components/bus-v2/index.mjs'
 import BusRouteV2 from './components/bus-v2/BusRouteV2.vue'
 import BusStopV2 from './components/bus-v2/BusStopV2.vue'
 import BusSchedulesV2 from './components/bus-v2/BusSchedulesV2.vue'
+import { busPageForPath, reportBusVisit } from './components/bus-v2/analytics.mjs'
 
 export default defineClientConfig({
-  enhance({ app }) {
+  enhance({ app, router }) {
+    router.afterEach((to) => {
+      const page = busPageForPath(to.path)
+      if (page) reportBusVisit(page)
+    })
     app.component("BusTable", BusTable)
     app.component("BusTable_img", BusTable_img)
     app.component("BusAnnouncement", BusAnnouncement)
