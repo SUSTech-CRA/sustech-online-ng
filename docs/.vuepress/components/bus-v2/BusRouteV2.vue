@@ -42,7 +42,7 @@
       <section class="panel notices">
         <h3>{{ busText('announcements') }}</h3>
         <p v-if="!routeNotices.length" class="muted">{{ busText('empty') }}</p>
-        <details v-for="notice in routeNotices" :key="notice.id"><summary><span>{{ noticeTitle(notice) }}</span><time v-if="noticeTime(notice)" :datetime="notice.starts_at">{{ noticeTime(notice) }}</time></summary><div class="markdown" v-html="renderNoticeMarkdown(notice.body_markdown)" /></details>
+        <details v-for="notice in routeNotices" :key="notice.id" :class="{ 'bus-notice--important': isImportantNotice(notice) }" :open="isNoticeOpen(notice)" @toggle="rememberNoticeOpen(notice, $event)"><summary><span>{{ noticeTitle(notice) }}</span><time v-if="noticeTime(notice)" :datetime="notice.starts_at">{{ noticeTime(notice) }}</time></summary><div class="markdown" v-html="renderNoticeMarkdown(notice.body_markdown)" /></details>
       </section>
 
       <section v-if="selectedStop" class="panel arrivals" aria-live="polite">
@@ -59,7 +59,7 @@
         <p v-if="!currentDirection?.stops?.length" class="muted">{{ busText('empty') }}</p>
         <ol v-else>
           <li v-for="stop in currentDirection.stops" :key="stop.id" :class="{ selected: stop.id === selectedStopId }">
-            <div class="stop-line"><i aria-hidden="true" /><div v-if="atStop(stop).length || betweenStop(stop).length" class="vehicle-markers"><button v-if="atStop(stop).length" type="button" class="vehicle-marker at" :aria-expanded="expandedVehicleKey === `at-${stop.id}`" @click="toggleVehicles(`at-${stop.id}`)"><i aria-hidden="true" class="vehicle-icon" :class="{ shuttle: String(atStop(stop)[0]?.vehicle_type).toUpperCase() === 'SHUTTLE' }" /><em v-if="hasSpecialService(atStop(stop))">S</em><b v-if="atStop(stop).length > 1">{{ atStop(stop).length }}</b></button><button v-if="betweenStop(stop).length" type="button" class="vehicle-marker between" :aria-expanded="expandedVehicleKey === `between-${stop.id}`" @click="toggleVehicles(`between-${stop.id}`)"><i aria-hidden="true" class="vehicle-icon" :class="{ shuttle: String(betweenStop(stop)[0]?.vehicle_type).toUpperCase() === 'SHUTTLE' }" /><em v-if="hasSpecialService(betweenStop(stop))">S</em><b v-if="betweenStop(stop).length > 1">{{ betweenStop(stop).length }}</b></button></div></div>
+            <div class="stop-line"><i aria-hidden="true" /><div v-if="atStop(stop).length || betweenStop(stop).length" class="vehicle-markers"><button v-if="atStop(stop).length" type="button" class="vehicle-marker at" :aria-expanded="expandedVehicleKey === `at-${stop.id}`" @click="toggleVehicles(`at-${stop.id}`)"><b v-if="atStop(stop).length > 1">{{ atStop(stop).length }}</b><i aria-hidden="true" class="vehicle-icon" :class="{ shuttle: String(atStop(stop)[0]?.vehicle_type).toUpperCase() === 'SHUTTLE' }" /><em v-if="hasSpecialService(atStop(stop))">S</em></button><button v-if="betweenStop(stop).length" type="button" class="vehicle-marker between" :aria-expanded="expandedVehicleKey === `between-${stop.id}`" @click="toggleVehicles(`between-${stop.id}`)"><b v-if="betweenStop(stop).length > 1">{{ betweenStop(stop).length }}</b><i aria-hidden="true" class="vehicle-icon" :class="{ shuttle: String(betweenStop(stop)[0]?.vehicle_type).toUpperCase() === 'SHUTTLE' }" /><em v-if="hasSpecialService(betweenStop(stop))">S</em></button></div></div>
             <div class="stop-main"><a :href="`${stopHref}${encodeURIComponent(stop.id)}`" @click.prevent="selectStop(stop.id)"><strong>{{ routeStopName(stop) }}</strong></a></div>
             <div v-if="expandedVehicleKey === `at-${stop.id}` || expandedVehicleKey === `between-${stop.id}`" class="vehicle-details">
               <BusVehicleDetailV2 v-for="vehicle in expandedVehicleKey === `at-${stop.id}` ? atStop(stop) : betweenStop(stop)" :key="vehicle.id" :vehicle="vehicle" :routes="[route]" :stops="stops" :language="busLanguage" />
@@ -85,6 +85,7 @@ import { groupSchedules } from './bus-v2-helpers.mjs'
 import { isFavorite, loadFavorites, toggleFavorite } from './favorites.mjs'
 import { busLanguage, busText, setBusLanguage } from './i18n.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
+import { isImportantNotice, loadNoticeOpenStates, noticeIsOpen, saveNoticeOpenState } from './notice-state.mjs'
 import BusMapV2 from './BusMapV2.vue'
 import BusScheduleRowsV2 from './BusScheduleRowsV2.vue'
 import BusVehicleDetailV2 from './BusVehicleDetailV2.vue'
@@ -93,6 +94,7 @@ import BusVehicleLegendV2 from './BusVehicleLegendV2.vue'
 const props = defineProps({ id: { type: String, default: '' }, direction: { type: String, default: '' }, stopHref: { type: String, default: '/transport/bustimer_v2_stop.html?id=' } })
 const route = ref(null), loading = ref(true), error = ref(''), directionId = ref(''), selectedStopId = ref('')
 const notices = ref([]), vehicles = ref([]), stops = ref([]), schedules = ref([]), showSchedules = ref(false), scheduleLoading = ref(false), scheduleError = ref(false)
+const noticeOpenStates = ref(loadNoticeOpenStates())
 const arrivalState = ref({ loading: false, error: false, items: [] }), allArrivals = ref(false), expandedVehicleKey = ref(''), now = ref(new Date())
 const refreshRemaining = ref(30)
 let refreshTimer, arrivalRequest = 0
@@ -114,6 +116,8 @@ const labels = { zh: { route: '线路', home: '返回首页', saved: '已收藏'
 const label = (key, values = {}) => (labels[busLanguage.value][key] || key).replace(/\{(\w+)\}/g, (_, name) => values[name] ?? '')
 const noticeTitle = (notice) => notice[busLanguage.value === 'en' ? 'title_en' : 'title_zh'] || notice.title_zh || notice.title_en
 const noticeTime = (notice) => formatLocalDateTime(notice.starts_at)
+const isNoticeOpen = (notice) => noticeIsOpen(noticeOpenStates.value, notice.id)
+const rememberNoticeOpen = (notice, event) => saveNoticeOpenState(noticeOpenStates.value, notice.id, event.target.open)
 const statusText = (value) => value === 'SUSPENDED' ? label('suspended') : label('normal')
 const arrivalKey = (item) => `${item.route_direction_id}-${item.trip_id || item.planned_arrival_at || item.updated_at || item.eta_minutes}`
 function time(value) { return value ? new Date(value).toLocaleTimeString(busLanguage.value === 'zh' ? 'zh-CN' : 'en', { hour: '2-digit', minute: '2-digit', hour12: false }) : '' }
@@ -153,6 +157,8 @@ defineExpose({ load, refresh, selectDirection, selectStop })
 .route-stops .vehicle-marker.at { top: 1rem; }
 .route-stops .vehicle-marker.between { top: -0.1rem; background: color-mix(in srgb, #f7a600 18%, var(--bus-v2-bg)); }
 .route-stops .vehicle-marker { gap: .1rem; padding: 0; background: transparent; }
+.route-stops .vehicle-marker { display: flex; align-items: center; }
+.route-stops .vehicle-marker b { margin: 0 .15rem 0 0; }
 .route-stops .vehicle-marker.between { background: transparent; }
 .route-stops .vehicle-icon { z-index: auto; display: block; width: 1.5rem; height: 1.5rem; margin: 0; border-radius: 50%; background: #fff url('/bus.png') center / calc(100% - 2px) no-repeat; }
 .route-stops .vehicle-icon.shuttle { background-image: url('/sev.png'); }

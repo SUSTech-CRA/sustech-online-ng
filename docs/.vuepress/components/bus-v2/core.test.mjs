@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { closestArrivalsByRoute, displayName, displayStopName, haversineMeters, isTerminalArrival, matchesSearch, realtimeArrivalText, resolveBusApiBase, sortArrivalsByEstimatedTime, unavailableReasonTextKey, vehicleLocationText } from './core.mjs'
+import { closestArrivalsByRoute, displayName, displayStopName, haversineMeters, isTerminalArrival, lineBearingAt, matchesSearch, realtimeArrivalText, resolveBusApiBase, sortArrivalsByEstimatedTime, unavailableReasonTextKey, vehicleBearingAt, vehicleLocationText } from './core.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
 
 test('API base uses fixed development and production addresses', () => {
@@ -57,6 +57,28 @@ test('distance and Markdown helpers are safe', () => {
   const html = renderNoticeMarkdown('**safe** <script>alert(1)</script>')
   assert.match(html, /<strong>safe<\/strong>/)
   assert.doesNotMatch(html, /<script>/)
+})
+
+test('line bearing follows the nearest route segment', () => {
+  assert.ok(Math.abs(lineBearingAt([[0, 0], [0, 1]], 0, .5)) < .001)
+  assert.ok(Math.abs(lineBearingAt([[0, 0], [1, 0]], .5, 0) - 90) < .001)
+})
+
+test('vehicle bearing stays inside the backend-reported stop interval', () => {
+  const coordinates = [[0, 0], [2, 0], [2, .001], [0, .001]]
+  const stops = [{ id: 'a', sequence: 1, longitude: 0, latitude: 0 }, { id: 'b', sequence: 2, longitude: 2, latitude: .001 }, { id: 'c', sequence: 3, longitude: 0, latitude: .001 }]
+  const between = { longitude: 1, latitude: .001, current_position: { type: 'between_stops', next_stop_id: 'b', next_stop_num: 2 } }
+  const atStop = { longitude: 2, latitude: .001, current_position: { type: 'at_stop', next_stop_id: 'b', next_stop_num: 2 } }
+  assert.ok(Math.abs(lineBearingAt(coordinates, 1, .001) + 90) < .001)
+  assert.ok(Math.abs(vehicleBearingAt(coordinates, stops, between) - 90) < .001)
+  assert.ok(Math.abs(vehicleBearingAt(coordinates, stops, atStop) + 90) < .001)
+})
+
+test('vehicle bearing distinguishes repeated stops on a fully overlapping return path', () => {
+  const coordinates = [[0, 0], [1, 0], [2, 0], [3, 0], [2, 0], [1, 0], [0, 0]]
+  const stops = coordinates.map(([longitude, latitude], index) => ({ id: ['a', 'b', 'c', 'd', 'c', 'b', 'a'][index], sequence: index + 1, longitude, latitude }))
+  const vehicle = { longitude: .5, latitude: 0, current_position: { type: 'between_stops', next_stop_id: 'a', next_stop_num: 7 } }
+  assert.ok(Math.abs(vehicleBearingAt(coordinates, stops, vehicle) + 90) < .001)
 })
 
 test('vehicle locations show route intervals and stops', () => {

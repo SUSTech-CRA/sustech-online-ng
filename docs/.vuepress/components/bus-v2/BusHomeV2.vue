@@ -30,7 +30,7 @@
       <section class="panel notices">
         <h3>{{ busText('announcements') }}</h3>
         <p v-if="!notices.length" class="muted">{{ busText('empty') }}</p>
-        <details v-for="notice in notices" :key="notice.id" :open="noticeScope(notice) === 'global'">
+        <details v-for="notice in notices" :key="notice.id" :class="{ 'bus-notice--important': isImportantNotice(notice) }" :open="isNoticeOpen(notice, noticeScope(notice) === 'global')" @toggle="rememberNoticeOpen(notice, $event)">
           <summary>
             <span>{{ noticeTitle(notice) }}</span>
             <small>{{ busText(noticeScope(notice)) }}<template v-if="noticeTime(notice)"> · <time :datetime="notice.starts_at">{{ noticeTime(notice) }}</time></template></small>
@@ -102,6 +102,7 @@ import { displayName, displayStopName, formatDistance, formatLocalDateTime, have
 import { favoriteRouteIds, favoriteStopIds, loadFavorites } from './favorites.mjs'
 import { busLanguage, busText, setBusLanguage } from './i18n.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
+import { isImportantNotice, loadNoticeOpenStates, noticeIsOpen, saveNoticeOpenState } from './notice-state.mjs'
 import BusVehicleLegendV2 from './BusVehicleLegendV2.vue'
 import BusVehiclesV2 from './BusVehiclesV2.vue'
 
@@ -117,6 +118,7 @@ const error = ref('')
 const routes = ref([])
 const stops = ref([])
 const notices = ref([])
+const noticeOpenStates = ref(loadNoticeOpenStates())
 const vehicles = ref([])
 const vehiclesLoading = ref(true)
 const vehiclesError = ref(false)
@@ -167,6 +169,8 @@ const openFirstResult = () => { if (searchResults.value[0]) openResult(searchRes
 const noticeScope = (notice) => notice.route_id ? 'route' : notice.stop_id ? 'stop' : 'global'
 const noticeTitle = (notice) => notice[busLanguage.value === 'en' ? 'title_en' : 'title_zh'] || notice.title_zh || notice.title_en
 const noticeTime = (notice) => formatLocalDateTime(notice.starts_at)
+const isNoticeOpen = (notice, defaultOpen = false) => noticeIsOpen(noticeOpenStates.value, notice.id, defaultOpen)
+const rememberNoticeOpen = (notice, event) => saveNoticeOpenState(noticeOpenStates.value, notice.id, event.target.open)
 const arrivalName = (arrival) => `${arrival[busLanguage.value === 'en' ? 'route_name_en' : 'route_name_zh'] || arrival.route_name_zh || arrival.route_name_en || ''} · ${arrival[busLanguage.value === 'en' ? 'direction_name_en' : 'direction_name_zh'] || arrival.direction_name_zh || arrival.direction_name_en || ''}`
 const vehicleIcon = (arrival) => String(arrival.vehicle_type).toUpperCase() === 'SHUTTLE' ? '/sev.png' : '/bus.png'
 const vehicleLabel = (arrival) => String(arrival.vehicle_type).toUpperCase() === 'SHUTTLE' ? (busLanguage.value === 'zh' ? '电瓶车' : 'EV Shuttle') : (busLanguage.value === 'zh' ? '巴士' : 'Bus')
