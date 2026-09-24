@@ -8,6 +8,8 @@
    * 如需使用 Chrome 浏览器访问，会提示“您的连接不是私密连接”，点击旁边空白区域，输入“thisisunsafe”。
 2. 打开客户端，选择账号登录，填写配置
    - 服务器地址：https://vpn.sustech.edu.cn
+   - 若该域名无法访问，可改用备用地址：<https://116.7.234.50> 或 <https://110.65.147.50>。
+   - 参阅 [VPN 使用说明（PDF）](https://github.com/user-attachments/files/32612177/VPN.pdf)。
    - 用户名：8位学号
    - 密码：VPN 系统密码（可能与 CAS 密码不同）
 
