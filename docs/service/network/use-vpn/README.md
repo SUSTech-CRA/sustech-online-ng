@@ -9,6 +9,7 @@
 2. 打开客户端，选择账号登录，填写配置
    - 服务器地址：https://vpn.sustech.edu.cn
    - 若该域名无法访问，可改用备用地址：<https://116.7.234.50> 或 <https://110.65.147.50>。
+   - 官方入口：[南方科技大学官网「常用系统」中的 VPN 系统](https://www.sustech.edu.cn/zh/common-systems.html)。
    - 用户名：8位学号
    - 密码：VPN 系统密码（可能与 CAS 密码不同）
 
