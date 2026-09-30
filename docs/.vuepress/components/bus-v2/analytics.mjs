@@ -4,11 +4,11 @@ export const BUS_VISITOR_ID_KEY = 'bus_eta_visitor_id'
 
 const PAGE_BY_PATH = {
   '/transport/bustimer.html': 'home',
+  '/transport/bustimer_v1.html': 'bustimer_v1',
   '/transport/bustimer-wx.html': 'home',
   '/transport/bustimer_v2_route.html': 'route_detail',
   '/transport/bustimer_v2_stop.html': 'stop_detail',
   '/transport/bustimer_v2_vehicles.html': 'vehicles',
-  '/transport/bustimer_v2_schedules.html': 'schedules',
   '/transport/bustimer_v2_files.html': 'map_files',
 }
 const UUID_V4 = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i

@@ -16,7 +16,7 @@ import TalksTodayNav from './components/TalksTodayNav.vue'
 import { BusHomeV2 } from './components/bus-v2/index.mjs'
 import BusRouteV2 from './components/bus-v2/BusRouteV2.vue'
 import BusStopV2 from './components/bus-v2/BusStopV2.vue'
-import BusSchedulesV2 from './components/bus-v2/BusSchedulesV2.vue'
+import BusRefreshButton from './components/bus-v2/BusRefreshButton.vue'
 import { busPageForPath, reportBusVisit } from './components/bus-v2/analytics.mjs'
 import { setWorkerUrl } from 'maplibre-gl'
 import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'
@@ -45,7 +45,7 @@ export default defineClientConfig({
     app.component("BusHomeV2", BusHomeV2)
     app.component("BusRouteV2", BusRouteV2)
     app.component("BusStopV2", BusStopV2)
-    app.component("BusSchedulesV2", BusSchedulesV2)
+    app.component("BusRefreshButton", BusRefreshButton)
 
     // 含有echart的组件，注意需要用non-ssr模式
     app.component("BusChartVue", BusChartVue)

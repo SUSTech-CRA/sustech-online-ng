@@ -1,8 +1,8 @@
 <template>
-  <p v-if="props.state?.loading" class="muted">{{ busText('loading') }}</p>
-  <p v-else-if="props.state?.error" class="muted">{{ busText('unavailable') }}</p>
+  <p v-if="props.state?.loading && !props.state?.items?.length" class="muted">{{ busText('loading') }}</p>
+  <p v-else-if="props.state?.error && !props.state?.items?.length" class="muted">{{ busText('unavailable') }}</p>
   <p v-else-if="!items.length" class="muted">{{ busText('empty') }}</p>
-  <ul v-else class="arrival-list"><li v-for="arrival in items" :key="arrivalKey(arrival)"><i :style="{ background: arrival.route_color || '#2878c8' }" /><a :href="routeDirectionHref(arrival)"><strong>{{ routeName(arrival) }}</strong><small>{{ directionName(arrival) }}</small></a><span>{{ arrivalText(arrival) }}<small v-if="arrivalMeta(arrival)">{{ arrivalMeta(arrival) }}</small></span><img v-if="showVehicleIcon(arrival)" :src="vehicleIcon(arrival)" :alt="vehicleLabel(arrival)"></li></ul>
+  <ul v-else class="arrival-list"><li v-for="(arrival, index) in items" :key="index"><i :style="{ background: arrival.route_color || '#2878c8' }" /><a :href="routeDirectionHref(arrival)"><strong>{{ routeName(arrival) }}</strong><small>{{ directionName(arrival) }}</small></a><span>{{ arrivalText(arrival) }}<small v-if="arrivalMeta(arrival)">{{ arrivalMeta(arrival) }}</small></span><img v-if="showVehicleIcon(arrival)" :src="vehicleIcon(arrival)" :alt="vehicleLabel(arrival)"></li></ul>
 </template>
 
 <script setup>

@@ -4,8 +4,11 @@ export const busApiBase = () => resolveBusApiBase(import.meta.env.PROD)
 
 export async function publicApi(path, options = {}) {
   const base = busApiBase()
-  const response = await fetch(`${base}${path.startsWith('/') ? path : `/${path}`}`, {
+  const separator = path.includes('?') ? '&' : '?'
+  const url = `${base}${path.startsWith('/') ? path : `/${path}`}${separator}_=${Date.now()}`
+  const response = await fetch(url, {
     ...options,
+    cache: 'no-store',
     credentials: 'omit',
     headers: { Accept: 'application/json', ...options.headers },
   })

@@ -12,18 +12,25 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import BusMapV2 from './BusMapV2.vue'
 import { busLanguage, busText } from './i18n.mjs'
 
 const props = defineProps({ routes: { type: Array, default: () => [] }, stops: { type: Array, default: () => [] }, vehicles: { type: Array, default: () => [] }, loading: Boolean, error: Boolean, showAllVehicles: Boolean })
 const emit = defineEmits(['update:showAllVehicles'])
 const language = busLanguage
+const now = ref(Date.now())
+let clock
 const text = (zh, en) => language.value === 'zh' ? zh : en
 const lastUpdated = computed(() => {
   const times = props.vehicles.map((vehicle) => vehicle.source_updated_at || vehicle.received_at).filter(Boolean).map(Date.parse).filter(Number.isFinite)
-  return times.length ? new Date(Math.max(...times)).toLocaleString(language.value === 'zh' ? 'zh-CN' : 'en', { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' }) : ''
+  if (!times.length) return ''
+  const latest = Math.max(...times), age = Math.max(0, Math.floor((now.value - latest) / 1000))
+  if (age <= 120) return language.value === 'zh' ? `${age}s前` : `${age}s ago`
+  return new Date(latest).toLocaleString(language.value === 'zh' ? 'zh-CN' : 'en', { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' })
 })
+onMounted(() => { clock = setInterval(() => { now.value = Date.now() }, 1000) })
+onBeforeUnmount(() => clearInterval(clock))
 </script>
 
 <style scoped lang="scss">

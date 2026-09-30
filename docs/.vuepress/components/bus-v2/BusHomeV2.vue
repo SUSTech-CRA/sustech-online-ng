@@ -1,11 +1,12 @@
 <template>
   <main class="bus-home" :lang="busLanguage === 'zh' ? 'zh-CN' : 'en'">
+    <BusRefreshButton :remaining="refreshRemaining" :label="busLanguage === 'zh' ? '立即刷新' : 'Refresh now'" @refresh="refresh" />
     <header class="bus-home__header">
       <div>
         <h1>{{ busLanguage === 'zh' ? '校园巴士' : 'Campus bus' }}</h1>
         <p>{{ busLanguage === 'zh' ? '实时到站与出行信息。所有到站时间均为预测，仅供参考。' : 'Live arrivals and travel information. All arrival times are estimates and for reference only.' }}</p>
       </div>
-      <div><button class="text-button" type="button" :aria-label="busLanguage === 'zh' ? '立即刷新' : 'Refresh now'" @click="refresh">🔄{{ refreshRemaining }}s</button><button class="text-button" type="button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button></div>
+      <div><button class="text-button" type="button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button></div>
     </header>
 
     <section class="panel search" :aria-label="busText('search')">
@@ -47,9 +48,9 @@
         <BusVehicleLegendV2 v-if="favoriteStopCards.length" :language="busLanguage" />
         <article v-for="stop in favoriteStopCards" :key="stop.id" class="nearby-stop">
           <div class="nearby-stop__head"><button type="button" class="link-title" @click="openStop(stop.id)">{{ displayStopName(stop, busLanguage) }}</button><span v-if="stop.distance != null">{{ formatDistance(stop.distance) }}</span></div>
-          <p v-if="favoriteArrivals[stop.id]?.loading" class="muted">{{ busText('loading') }}</p>
-          <p v-else-if="favoriteArrivals[stop.id]?.error" class="muted">{{ busText('unavailable') }}</p>
-          <ul v-else class="arrival-list"><li v-for="arrival in favoriteArrivals[stop.id]?.items" :key="`${arrival.route_direction_id}-${arrival.source}-${arrival.trip_id || arrival.planned_arrival_at || ''}`"><i :style="{ background: arrival.route_color || '#2878c8' }" /><a class="arrival-link" :href="routeDirectionHref(arrival)">{{ arrivalName(arrival) }}</a><span>{{ arrivalText(arrival) }}</span><img v-if="showVehicleIcon(arrival)" class="arrival-vehicle" :src="vehicleIcon(arrival)" :alt="vehicleLabel(arrival)"></li><li v-if="!favoriteArrivals[stop.id]?.items?.length" class="muted">{{ busText('empty') }}</li></ul>
+          <p v-if="favoriteArrivals[stop.id]?.loading && !favoriteArrivals[stop.id]?.items?.length" class="muted">{{ busText('loading') }}</p>
+          <p v-else-if="favoriteArrivals[stop.id]?.error && !favoriteArrivals[stop.id]?.items?.length" class="muted">{{ busText('unavailable') }}</p>
+          <ul v-else class="arrival-list"><li v-for="(arrival, index) in favoriteArrivals[stop.id]?.items" :key="index"><i :style="{ background: arrival.route_color || '#2878c8' }" /><a class="arrival-link" :href="routeDirectionHref(arrival)">{{ arrivalName(arrival) }}</a><span>{{ arrivalText(arrival) }}</span><img v-if="showVehicleIcon(arrival)" class="arrival-vehicle" :src="vehicleIcon(arrival)" :alt="vehicleLabel(arrival)"></li><li v-if="!favoriteArrivals[stop.id]?.items?.length" class="muted">{{ busText('empty') }}</li></ul>
         </article>
         <p v-if="!favoriteRoutes.length && !favoriteStops.length" class="muted">{{ busText('noFavorites') }}</p>
       </section>
@@ -68,10 +69,10 @@
             <button type="button" class="link-title" @click="openStop(stop.id)">{{ displayStopName(stop, busLanguage) }}</button>
             <span>{{ formatDistance(stop.distance) }}</span>
           </div>
-          <p v-if="arrivals[stop.id]?.loading" class="muted">{{ busText('loading') }}</p>
-          <p v-else-if="arrivals[stop.id]?.error" class="muted">{{ busText('unavailable') }}</p>
+          <p v-if="arrivals[stop.id]?.loading && !arrivals[stop.id]?.items?.length" class="muted">{{ busText('loading') }}</p>
+          <p v-else-if="arrivals[stop.id]?.error && !arrivals[stop.id]?.items?.length" class="muted">{{ busText('unavailable') }}</p>
           <ul v-else class="arrival-list">
-            <li v-for="arrival in arrivals[stop.id]?.items" :key="`${arrival.route_direction_id}-${arrival.source}-${arrival.trip_id || arrival.planned_arrival_at || ''}`">
+            <li v-for="(arrival, index) in arrivals[stop.id]?.items" :key="index">
               <i :style="{ background: arrival.route_color || '#2878c8' }" />
               <a class="arrival-link" :href="routeDirectionHref(arrival)">{{ arrivalName(arrival) }}</a>
               <span>{{ arrivalText(arrival) }}</span>
@@ -87,10 +88,9 @@
         <BusVehiclesV2 :routes="routes" :stops="stops" :vehicles="vehicles" :loading="vehiclesLoading" :error="vehiclesError" :show-all-vehicles="showAllVehicles" @update:show-all-vehicles="setShowAllVehicles" />
       </section>
 
-      <nav class="feature-links" :aria-label="busLanguage === 'zh' ? '巴士功能' : 'Bus features'">
-        <a :href="schedulesHref"><span>{{ busText('schedules') }}</span></a>
-        <a :href="filesHref"><span>{{ busText('files') }}</span></a>
-      </nav>
+      <section id="schedules" class="panel schedules-card"><BusSchedulesV2 /></section>
+
+      <nav class="feature-links" :aria-label="busLanguage === 'zh' ? '巴士功能' : 'Bus features'"><a :href="filesHref"><span>{{ busText('files') }}</span></a></nav>
     </template>
   </main>
 </template>
@@ -105,11 +105,12 @@ import { renderNoticeMarkdown } from './markdown.mjs'
 import { isImportantNotice, loadNoticeOpenStates, noticeIsOpen, saveNoticeOpenState } from './notice-state.mjs'
 import BusVehicleLegendV2 from './BusVehicleLegendV2.vue'
 import BusVehiclesV2 from './BusVehiclesV2.vue'
+import BusSchedulesV2 from './BusSchedulesV2.vue'
+import BusRefreshButton from './BusRefreshButton.vue'
 
 const props = defineProps({
   routeHref: { type: String, default: '/transport/bustimer_v2_route.html?id=' },
   stopHref: { type: String, default: '/transport/bustimer_v2_stop.html?id=' },
-  schedulesHref: { type: String, default: '/transport/bustimer_v2_schedules.html' },
   filesHref: { type: String, default: '/transport/bustimer_v2_files.html' },
 })
 
@@ -131,7 +132,7 @@ const locationErrorKey = ref('')
 const nearbyStops = ref([])
 const location = ref(null)
 const allNearbyStops = ref(false)
-const refreshRemaining = ref(30)
+const refreshRemaining = ref(10)
 const locationUpdatedAt = ref(0)
 let nearbyCandidates = []
 let refreshTimer
@@ -190,7 +191,7 @@ function arrivalText(arrival) {
 
 async function loadArrivals(stopList, target = arrivals) {
   const results = await Promise.all(stopList.map(async (stop) => {
-    target.value = { ...target.value, [stop.id]: { loading: true, items: [] } }
+    target.value = { ...target.value, [stop.id]: { ...target.value[stop.id], loading: true, items: target.value[stop.id]?.items || [] } }
     try {
       const result = await busApi.arrivals(stop.id)
       const rawItems = result.arrivals || []
@@ -198,7 +199,7 @@ async function loadArrivals(stopList, target = arrivals) {
       target.value = { ...target.value, [stop.id]: { loading: false, items } }
       return { stop, hidden: rawItems.length > 0 && !items.length }
     } catch {
-      target.value = { ...target.value, [stop.id]: { loading: false, error: true, items: [] } }
+      target.value = { ...target.value, [stop.id]: { loading: false, error: true, items: target.value[stop.id]?.items || [] } }
       return { stop, hidden: false }
     }
   }))
@@ -208,7 +209,7 @@ async function loadArrivals(stopList, target = arrivals) {
 
 async function refresh() {
   const position = typeof window === 'undefined' ? null : [window.scrollX, window.scrollY]
-  refreshRemaining.value = 30
+  refreshRemaining.value = 10
   await load(true)
   if (nearbyCandidates.length) await loadArrivals(nearbyCandidates)
   if (position) window.scrollTo(position[0], position[1])

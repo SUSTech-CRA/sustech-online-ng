@@ -7,25 +7,35 @@
   </div>
   <div class="schedule-list">
     <article v-for="group in groups" :key="group.key" class="schedule-row">
-      <div class="route-info" :style="{ borderColor: group.color || '#2878c8' }">
+      <div class="route-info" :style="{ borderColor: group.color || '#2878c8' }" :class="{ collapsible: portrait }" :role="portrait ? 'button' : undefined" :tabindex="portrait ? 0 : undefined" @click="toggleRoute(group.key)" @keydown.enter.prevent="toggleRoute(group.key)" @keydown.space.prevent="toggleRoute(group.key)">
         <strong>{{ group.routeName }}</strong><span>{{ group.directionName }}</span><small>{{ serviceLabel(group) }}</small>
       </div>
       <div class="times">
-        <span v-for="item in visibleTimes(group.times)" :key="`${item.time}-${item.vehicleType}`" :class="['time', item.status, item.vehicleType?.toLowerCase()]">{{ item.time }}</span>
-        <span v-if="!visibleTimes(group.times).length" class="muted">{{ text('无运行中或待发车班次', 'No running or upcoming trips') }}</span>
+        <span v-for="(item, index) in displayedTimes(group)" :key="index" :class="['time', item.status, item.vehicleType?.toLowerCase()]">{{ item.time }}</span>
+        <span v-if="!displayedTimes(group).length" class="muted">{{ text('无运行中或待发车班次', 'No running or upcoming trips') }}</span>
+        <button v-if="isCollapsed(group.key) && visibleTimes(group.times).length > 1" class="ellipsis" type="button" :aria-label="text('展开线路时刻表', 'Expand route schedule')" @click="toggleRoute(group.key)">······</button>
       </div>
     </article>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 const props = defineProps({ groups: { type: Array, default: () => [] }, language: { type: String, default: 'zh' } })
 const activeOnly = ref(true)
+const collapsedRoutes = ref(new Set())
+const portrait = ref(false)
+let orientationQuery
 const text = (zh, en) => props.language === 'zh' ? zh : en
 const serviceLabel = (group) => [group.serviceType && group.serviceType !== 'NORMAL' ? group.serviceType : '', group.vehicleTypes?.join(' / ')].filter(Boolean).join(' · ') || text('常规服务', 'Normal service')
 const visibleTimes = (times) => activeOnly.value ? times.filter((item) => item.status !== 'past') : times
+const isCollapsed = (groupKey) => portrait.value && collapsedRoutes.value.has(groupKey)
+const displayedTimes = (group) => isCollapsed(group.key) ? visibleTimes(group.times).slice(0, 1) : visibleTimes(group.times)
+function toggleRoute(groupKey) { if (!portrait.value) return; const next = new Set(collapsedRoutes.value); next.has(groupKey) ? next.delete(groupKey) : next.add(groupKey); collapsedRoutes.value = next }
+function updatePortrait() { portrait.value = orientationQuery?.matches ?? false }
+onMounted(() => { orientationQuery = window.matchMedia('(orientation: portrait)'); updatePortrait(); orientationQuery.addEventListener?.('change', updatePortrait); window.addEventListener('resize', updatePortrait) })
+onBeforeUnmount(() => { orientationQuery?.removeEventListener?.('change', updatePortrait); window.removeEventListener('resize', updatePortrait) })
 </script>
 
 <style scoped lang="scss">
@@ -34,5 +44,7 @@ const visibleTimes = (times) => activeOnly.value ? times.filter((item) => item.s
 .schedule-list { border-color: var(--bus-v2-border); background: var(--bus-v2-bg); color: var(--bus-v2-text); }
 .schedule-row { border-color: var(--bus-v2-border); }
 .route-info { background: var(--bus-v2-bg-alt); }
+.route-info.collapsible { cursor: pointer; }
+.ellipsis { border: 0; padding: .13rem .38rem; background: transparent; color: var(--bus-v2-muted); font: inherit; letter-spacing: .15em; cursor: pointer; }
 .route-info small, .muted { color: var(--bus-v2-muted); }
 </style>

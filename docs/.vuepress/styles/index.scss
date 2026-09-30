@@ -1,4 +1,7 @@
 /* 哀悼用黑白遮罩 */
+.bus-home-link { display: inline-block; border: 1px solid var(--vp-c-border); border-radius: .35rem; padding: .4rem .65rem; background: transparent; color: var(--vp-c-text); font: inherit; text-decoration: none; }
+.bus-home-link:hover { text-decoration: none; }
+
 .bus-home, .bus-detail, .bus-stop-detail, .bus-vehicles, .bus-schedules, .bus-map, .vehicle-detail, .schedule-list {
     --bus-v2-text: var(--vp-c-text);
     --bus-v2-muted: var(--vp-c-text-mute);

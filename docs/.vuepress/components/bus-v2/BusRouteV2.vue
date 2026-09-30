@@ -1,5 +1,6 @@
 <template>
   <main class="bus-detail" :lang="busLanguage === 'zh' ? 'zh-CN' : 'en'">
+    <BusRefreshButton :remaining="refreshRemaining" :label="busLanguage === 'zh' ? '立即刷新' : 'Refresh now'" @refresh="refresh" />
     <div class="detail-head">
       <div>
         <p class="eyebrow">{{ label('route') }}</p>
@@ -8,7 +9,6 @@
       </div>
       <div class="head-actions">
         <a class="plain-button" href="/transport/bustimer.html" :aria-label="label('home')" :title="label('home')">🏠</a>
-        <button type="button" class="plain-button" :aria-label="busLanguage === 'zh' ? '立即刷新' : 'Refresh now'" @click="refresh">🔄{{ refreshRemaining }}s</button>
         <button type="button" class="plain-button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button>
         <button v-if="route" type="button" class="plain-button" :aria-pressed="favorite" @click="toggleFavorite('route', route.id)">
           {{ favorite ? label('saved') : label('save') }}
@@ -36,7 +36,7 @@
         <p v-else-if="scheduleError" class="muted">{{ busText('unavailable') }}</p>
         <p v-else-if="!scheduleGroups.length" class="muted">{{ busText('empty') }}</p>
         <BusScheduleRowsV2 v-else :groups="scheduleGroups" :language="busLanguage" />
-        <a class="all-link" href="/transport/bustimer_v2_schedules.html">{{ label('allSchedules') }}</a>
+        <a class="all-link" href="/transport/bustimer.html#schedules">{{ label('allSchedules') }}</a>
       </section>
 
       <section class="panel notices">
@@ -47,10 +47,10 @@
 
       <section v-if="selectedStop" class="panel arrivals" aria-live="polite">
         <div class="section-head"><div class="selected-stop-title"><p class="eyebrow">{{ label('selectedStop') }}</p><h3><a :href="`${stopHref}${encodeURIComponent(selectedStop.id)}`">{{ routeStopName(selectedStop) }}</a></h3></div><button v-if="selectedArrivals.length > 2" type="button" class="plain-button" :aria-expanded="allArrivals" @click="allArrivals = !allArrivals">{{ allArrivals ? label('collapse') : label('allArrivals') }}</button></div>
-        <p v-if="arrivalState.loading" class="muted">{{ busText('loading') }}</p>
-        <p v-else-if="arrivalState.error" class="muted">{{ busText('unavailable') }}</p>
+        <p v-if="arrivalState.loading && !arrivalState.items.length" class="muted">{{ busText('loading') }}</p>
+        <p v-else-if="arrivalState.error && !arrivalState.items.length" class="muted">{{ busText('unavailable') }}</p>
         <p v-else-if="!selectedArrivals.length" class="muted">{{ busText('empty') }}</p>
-        <ul v-else class="arrival-list"><li v-for="arrival in visibleArrivals" :key="arrivalKey(arrival)"><span>{{ arrivalText(arrival) }}</span><small v-if="arrivalMeta(arrival) || (arrival.service_type && arrivalSource(arrival) !== 'unavailable')">{{ arrivalMeta(arrival) }}<template v-if="arrival.service_type && arrivalSource(arrival) !== 'unavailable'">{{ arrivalMeta(arrival) ? ' · ' : '' }}{{ arrival.service_type }}</template></small></li></ul>
+        <ul v-else class="arrival-list"><li v-for="(arrival, index) in visibleArrivals" :key="index"><span>{{ arrivalText(arrival) }}</span><small v-if="arrivalMeta(arrival) || (arrival.service_type && arrivalSource(arrival) !== 'unavailable')">{{ arrivalMeta(arrival) }}<template v-if="arrival.service_type && arrivalSource(arrival) !== 'unavailable'">{{ arrivalMeta(arrival) ? ' · ' : '' }}{{ arrival.service_type }}</template></small></li></ul>
       </section>
 
       <section class="panel route-stops" :style="{ '--route-color': route.color || '#2878c8' }">
@@ -90,13 +90,14 @@ import BusMapV2 from './BusMapV2.vue'
 import BusScheduleRowsV2 from './BusScheduleRowsV2.vue'
 import BusVehicleDetailV2 from './BusVehicleDetailV2.vue'
 import BusVehicleLegendV2 from './BusVehicleLegendV2.vue'
+import BusRefreshButton from './BusRefreshButton.vue'
 
 const props = defineProps({ id: { type: String, default: '' }, direction: { type: String, default: '' }, stopHref: { type: String, default: '/transport/bustimer_v2_stop.html?id=' } })
 const route = ref(null), loading = ref(true), error = ref(''), directionId = ref(''), selectedStopId = ref('')
 const notices = ref([]), vehicles = ref([]), stops = ref([]), schedules = ref([]), showSchedules = ref(false), scheduleLoading = ref(false), scheduleError = ref(false)
 const noticeOpenStates = ref(loadNoticeOpenStates())
 const arrivalState = ref({ loading: false, error: false, items: [] }), allArrivals = ref(false), expandedVehicleKey = ref(''), now = ref(new Date())
-const refreshRemaining = ref(30)
+const refreshRemaining = ref(10)
 let refreshTimer, arrivalRequest = 0
 const id = computed(() => props.id || (typeof window === 'undefined' ? '' : new URLSearchParams(window.location.search).get('id') || ''))
 const requestedDirection = computed(() => props.direction || (typeof window === 'undefined' ? '' : new URLSearchParams(window.location.search).get('direction') || ''))
@@ -131,12 +132,12 @@ const atStop = (stop) => directionVehicles.value.filter((vehicle) => vehicle.cur
 const betweenStop = (stop) => directionVehicles.value.filter((vehicle) => vehicle.current_position?.type === 'between_stops' && stopFor(vehicle) === stop.id)
 const hasSpecialService = (items) => items.some((vehicle) => vehicle.service_type && vehicle.service_type !== 'NORMAL')
 function toggleVehicles(key) { expandedVehicleKey.value = expandedVehicleKey.value === key ? '' : key }
-function selectDirection(value) { directionId.value = value; selectedStopId.value = currentDirection.value?.stops?.[0]?.id || ''; allArrivals.value = false; expandedVehicleKey.value = ''; loadArrivals() }
-function selectStop(value) { selectedStopId.value = value; allArrivals.value = false; refresh() }
-async function loadArrivals() { const stopId = selectedStopId.value, selectedDirection = directionId.value, request = ++arrivalRequest; if (!stopId || !selectedDirection) { arrivalState.value = { loading: false, error: false, items: [] }; return } arrivalState.value = { loading: true, error: false, items: [] }; try { const result = await busApi.arrivals(stopId); if (request === arrivalRequest && selectedStopId.value === stopId && directionId.value === selectedDirection) arrivalState.value = { loading: false, error: false, items: result.arrivals || [] } } catch { if (request === arrivalRequest && selectedStopId.value === stopId && directionId.value === selectedDirection) arrivalState.value = { loading: false, error: true, items: [] } } }
-async function refresh() { const routeId = route.value?.id; refreshRemaining.value = 30; now.value = new Date(); if (!routeId) return; try { const [noticeData, vehicleData] = await Promise.all([busApi.notices(), busApi.vehicles()]); notices.value = Array.isArray(noticeData) ? noticeData : []; vehicles.value = (Array.isArray(vehicleData) ? vehicleData : []).filter((vehicle) => vehicle.route_id === routeId) } catch { /* retain the last usable data */ } await loadArrivals() }
+function selectDirection(value) { directionId.value = value; selectedStopId.value = currentDirection.value?.stops?.[0]?.id || ''; allArrivals.value = false; expandedVehicleKey.value = ''; loadArrivals(true) }
+function selectStop(value) { selectedStopId.value = value; allArrivals.value = false; refresh(true) }
+async function loadArrivals(clear = false) { const stopId = selectedStopId.value, selectedDirection = directionId.value, request = ++arrivalRequest; if (!stopId || !selectedDirection) { arrivalState.value = { loading: false, error: false, items: [] }; return } const items = clear ? [] : arrivalState.value.items; arrivalState.value = { loading: true, error: false, items }; try { const result = await busApi.arrivals(stopId); if (request === arrivalRequest && selectedStopId.value === stopId && directionId.value === selectedDirection) arrivalState.value = { loading: false, error: false, items: result.arrivals || [] } } catch { if (request === arrivalRequest && selectedStopId.value === stopId && directionId.value === selectedDirection) arrivalState.value = { loading: false, error: true, items } } }
+async function refresh(clear = false) { const routeId = route.value?.id; refreshRemaining.value = 10; now.value = new Date(); if (!routeId) return; const arrivalLoad = loadArrivals(clear); try { const [noticeData, vehicleData] = await Promise.all([busApi.notices(), busApi.vehicles()]); notices.value = Array.isArray(noticeData) ? noticeData : []; vehicles.value = (Array.isArray(vehicleData) ? vehicleData : []).filter((vehicle) => vehicle.route_id === routeId) } catch { /* retain the last usable data */ } await arrivalLoad }
 async function toggleSchedules() { showSchedules.value = !showSchedules.value; if (!showSchedules.value || schedules.value.length || scheduleLoading.value) return; scheduleLoading.value = true; scheduleError.value = false; try { const result = await busApi.schedules(); schedules.value = Array.isArray(result) ? result : [] } catch { scheduleError.value = true } finally { scheduleLoading.value = false } }
-async function load() { arrivalRequest++; loading.value = true; error.value = ''; try { if (!id.value) throw new Error('Missing route id'); const [routeData, noticeData, vehicleData, stopData] = await Promise.all([publicApi(`/routes/${encodeURIComponent(id.value)}`), busApi.notices(), busApi.vehicles(), busApi.stops()]); route.value = routeData; notices.value = Array.isArray(noticeData) ? noticeData : []; vehicles.value = (Array.isArray(vehicleData) ? vehicleData : []).filter((vehicle) => vehicle.route_id === routeData.id); stops.value = Array.isArray(stopData) ? stopData : []; directionId.value = routeData.directions?.some((item) => item.id === requestedDirection.value) ? requestedDirection.value : routeData.directions?.[0]?.id || ''; selectedStopId.value = currentDirection.value?.stops?.[0]?.id || ''; await loadArrivals() } catch (reason) { error.value = reason.message || String(reason) } finally { loading.value = false } }
+async function load() { arrivalRequest++; loading.value = true; error.value = ''; try { if (!id.value) throw new Error('Missing route id'); const [routeData, noticeData, vehicleData, stopData] = await Promise.all([publicApi(`/routes/${encodeURIComponent(id.value)}`), busApi.notices(), busApi.vehicles(), busApi.stops()]); route.value = routeData; notices.value = Array.isArray(noticeData) ? noticeData : []; vehicles.value = (Array.isArray(vehicleData) ? vehicleData : []).filter((vehicle) => vehicle.route_id === routeData.id); stops.value = Array.isArray(stopData) ? stopData : []; directionId.value = routeData.directions?.some((item) => item.id === requestedDirection.value) ? requestedDirection.value : routeData.directions?.[0]?.id || ''; selectedStopId.value = currentDirection.value?.stops?.[0]?.id || ''; await loadArrivals(true) } catch (reason) { error.value = reason.message || String(reason) } finally { loading.value = false } }
 onMounted(() => { loadFavorites(); load(); refreshTimer = setInterval(() => { if (--refreshRemaining.value < 1) refresh() }, 1000) })
 onBeforeUnmount(() => clearInterval(refreshTimer))
 watch(id, (value, old) => { if (value && value !== old) load() })

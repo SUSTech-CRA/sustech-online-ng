@@ -22,13 +22,13 @@ test('visitor id is generated once, persisted, and reused', () => {
 test('bus routes map only to the allowed page values', () => {
   assert.deepEqual([
     '/transport/bustimer.html',
+    '/transport/bustimer_v1.html',
     '/transport/bustimer_v2_route.html',
     '/transport/bustimer_v2_stop.html',
     '/transport/bustimer_v2_vehicles.html',
-    '/transport/bustimer_v2_schedules.html',
     '/transport/bustimer_v2_files.html',
-  ].map(busPageForPath), ['home', 'route_detail', 'stop_detail', 'vehicles', 'schedules', 'map_files'])
-  assert.equal(busPageForPath('/transport/bustimer_v1.html'), undefined)
+  ].map(busPageForPath), ['home', 'bustimer_v1', 'route_detail', 'stop_detail', 'vehicles', 'map_files'])
+  assert.equal(busPageForPath('/transport/bustimer_v2_schedules.html'), undefined)
 })
 
 test('visit request is anonymous and failures are swallowed', async () => {

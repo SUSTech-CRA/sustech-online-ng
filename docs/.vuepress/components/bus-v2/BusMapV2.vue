@@ -4,6 +4,7 @@
     <p v-if="mapError" class="bus-map__message" role="alert">{{ mapError }}</p>
     <p v-else-if="loading" class="bus-map__message">{{ language === 'zh' ? '正在加载地图…' : 'Loading map…' }}</p>
     <BusVehicleLegendV2 class="bus-map__legend" :language="language" />
+    <label class="bus-map__overlap"><input v-model="avoidOverlap" type="checkbox" @change="refreshVehicleMarkers" /> {{ language === 'zh' ? '避免重叠' : 'Avoid overlap' }}</label>
   </section>
 </template>
 
@@ -17,6 +18,7 @@ import { displayName, displayStopName, vehicleBearingAt } from './core.mjs'
 const LIGHT_STYLE = 'https://bus.sustcra.com/static/protomaps/pmtiles-style/pmtiles-light.json'
 const DARK_STYLE = 'https://bus.sustcra.com/static/protomaps/pmtiles-style/pmtiles-dark.json'
 const CAMPUS_CENTER = [113.99373, 22.60308]
+const CACHE_BUST = Date.now()
 let protocolUsers = 0
 let protocol
 
@@ -35,6 +37,7 @@ const mapElement = ref(null)
 const selectedVehicle = ref(null)
 const loading = ref(true)
 const mapError = ref('')
+const avoidOverlap = ref(true)
 let map
 let maplibregl
 let themeChangeHandler
@@ -53,7 +56,7 @@ const routeFor = (id) => props.routes.find((route) => route.id === id)
 const darkTheme = () => document.documentElement.getAttribute('data-theme') === 'dark'
 const neutralRouteColor = () => darkTheme() ? '#aaa' : '#666'
 const neutralStopColor = () => darkTheme() ? '#ccc' : '#444'
-const styleUrl = () => props.styleUrl || (darkTheme() ? DARK_STYLE : LIGHT_STYLE)
+const styleUrl = () => `${props.styleUrl || (darkTheme() ? DARK_STYLE : LIGHT_STYLE)}?v=${CACHE_BUST}`
 const sourceData = (features) => ({ type: 'FeatureCollection', features })
 
 function vehicleBearing(vehicle) {
@@ -133,7 +136,10 @@ function updateVehicleMarker(record, vehicle) {
   record.element.title = displayName(vehicle, props.language) || vehicle.id
   record.element.setAttribute('aria-label', record.element.title)
   record.element.style.setProperty('--route-color', route?.color || '#2878c8')
-  record.element.style.setProperty('--bearing', `${vehicleBearing(vehicle)}deg`)
+  const bearing = vehicleBearing(vehicle)
+  record.element.style.setProperty('--bearing', `${bearing}deg`)
+  const rightBearing = (bearing + 90) * Math.PI / 180
+  record.marker?.setOffset(avoidOverlap.value ? [Math.sin(rightBearing) * 10, -Math.cos(rightBearing) * 10] : [0, 0])
 }
 
 function moveVehicleMarker(record, longitude, latitude) {
@@ -165,6 +171,7 @@ function createVehicleMarker(vehicle) {
   record.element = element
   updateVehicleMarker(record, vehicle)
   record.marker = new maplibregl.Marker({ element: markerElement, anchor: 'center' }).setLngLat([+vehicle.longitude, +vehicle.latitude]).addTo(map)
+  updateVehicleMarker(record, vehicle)
   return record
 }
 
@@ -230,7 +237,7 @@ function createInteractionLockControl() {
     onAdd(currentMap) {
       const container = document.createElement('div')
       const button = document.createElement('button')
-      let enabled = false
+      let enabled = true
       container.className = 'maplibregl-ctrl maplibregl-ctrl-group'
       const update = () => {
         ;['dragPan', 'boxZoom', 'doubleClickZoom', 'touchZoomRotate', 'scrollZoom'].forEach((key) => currentMap[key]?.[enabled ? 'enable' : 'disable']())
@@ -338,6 +345,7 @@ defineExpose({ refresh, refreshVehicleMarkers })
 .bus-map__canvas { width: 100%; height: 28rem; }
 .bus-map__message { position: absolute; top: .75rem; left: .75rem; z-index: 1; margin: 0; padding: .45rem .65rem; border-radius: .35rem; background: rgba(255, 255, 255, .9); color: #526172; }
 .bus-map__legend { position: absolute; z-index: 1; bottom: .75rem; left: .75rem; margin: 0; padding: .4rem .55rem; border-radius: .35rem; background: color-mix(in srgb, var(--bus-v2-bg, #fff) 90%, transparent); }
+.bus-map__overlap { position: absolute; z-index: 1; top: .75rem; left: 3rem; padding: .35rem .5rem; border-radius: .35rem; background: color-mix(in srgb, var(--bus-v2-bg, #fff) 90%, transparent); color: var(--bus-v2-text, #333); font-size: .8rem; }
 .bus-map :deep(.bus-map__vehicle-marker) { display: block; width: 1.6rem; min-width: 1.6rem; max-width: 1.6rem; height: 1.6rem; min-height: 1.6rem; max-height: 1.6rem; line-height: 0; }
 .bus-map :deep(.bus-map__vehicle) { box-sizing: border-box; display: block; position: relative; width: 1.6rem; min-width: 1.6rem; max-width: 1.6rem; height: 1.6rem; min-height: 1.6rem; max-height: 1.6rem; aspect-ratio: 1; border: 2px solid #fff; border-radius: 50%; padding: 1px; background: var(--route-color); cursor: pointer; }
 .bus-map :deep(.bus-map__vehicle img) { position: absolute; inset: 0; width: 80%; height: 80%; margin: auto; object-fit: contain; }

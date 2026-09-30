@@ -1,5 +1,7 @@
 # 🚌校园巴士时刻表 SUSTech Campus Bus Info
 
+<a class="bus-home-link" href="./bustimer.html" aria-label="返回首页" title="返回首页">🏠</a>
+
 <BusAnnouncement />
 
 <ClientOnly>
