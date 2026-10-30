@@ -13,6 +13,10 @@ navbar: false
 
 - 16:20 - [《2026年秋季图书馆信息素养系列讲座 第4期》杨曼琪 学科馆员：EndNote 快速入门培训](2026-10-21T16-20-00_杨曼琪.md)
 
+## 2026-10-16 周五
+
+- 16:20 - [《Frontier Seminars in Computer Science and Technology》Joseph Sifakis 教授：工业人工智能](2026-10-16T16-20-00_Joseph_Sifakis.md)
+
 ## 2026-10-15 周四
 
 - 12:30 - [《EAP Workshop 第1期》LI Zhuo：写作中的批判性AI素养：我、我自己和AI](2026-10-15T12-30-00_LI_Zhuo.md)
