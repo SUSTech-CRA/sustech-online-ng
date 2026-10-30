@@ -1,10 +1,10 @@
-﻿# 《格拉布斯大讲堂 第47讲》Katsuhiko Tomooka 教授：格拉布斯大讲堂：对映体富集手性分子制备的新方法：DYASIN
+﻿# 《格拉布斯大讲堂 第47讲》户冢克彦 教授：富对映体手性分子制备的新方法：DYASIN
 
 > 以下内容根据公开信息整理，并经大模型处理生成，可能存在疏漏或误差，请以实际信息为准。
 
 
-* 题目: 格拉布斯大讲堂：对映体富集手性分子制备的新方法：DYASIN
-* 主讲人：Katsuhiko Tomooka 教授 @ Kyushu University
+* 题目: 富对映体手性分子制备的新方法：DYASIN
+* 主讲人：户冢克彦 教授 @ Kyushu University
 * 时间：2026年10月20日 16:00
 * 地点：Room C1038, College of Science
 
