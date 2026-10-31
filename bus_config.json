@@ -1,0 +1,248 @@
+{
+    "workday": [
+        {
+            "id": "line1",
+            "title": "1 路 / Line 1",
+            "routes": [
+                {
+                    "name": "1路 内环",
+                    "description": "顺时针 / Clockwise\n欣园 → 欣园 Joy Highland Loop)",
+                    "type": "loop",
+                    "color": "#00ab5b",
+                    "sources": [
+                        {
+                            "url": "/bus_times/one_down.json",
+                            "type": "bus"
+                        },
+                        {
+                            "url": "/bus_times/one_shuttle_down.json",
+                            "type": "shuttle"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "line2",
+            "title": "2 路 / Line 2",
+            "routes": [
+                {
+                    "name": "2路 外环",
+                    "description": "逆时针 / Counter-Clockwise\n(欣园 → 欣园 Joy Highland Loop)",
+                    "type": "loop",
+                    "color": "#F0608F",
+                    "sources": [
+                        {
+                            "url": "/bus_times/two_up.json",
+                            "type": "bus"
+                        },
+                        {
+                            "url": "/bus_times/two_shuttle_up.json",
+                            "type": "shuttle"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "short_down",
+            "title": "区间快速 下行\nShort-turn Rapid Service Downhill",
+            "routes": [
+                {
+                    "name": "区间快速下行 A",
+                    "description": "荔园西 → 科研楼\nLychee Hills W → Research Bldgs.",
+                    "type": "point-to-point",
+                    "color": "#444",
+                    "sources": [
+                        {
+                            "url": "/bus_times/short_down_a.json",
+                            "type": "bus"
+                        }
+                    ]
+                },
+                {
+                    "name": "区间快速下行 B",
+                    "description": "荔园西 → 一号门\nLychee Hills W → Gate 1",
+                    "type": "point-to-point",
+                    "color": "#444",
+                    "sources": [
+                        {
+                            "url": "/bus_times/short_down_b.json",
+                            "type": "bus"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "short_up",
+            "title": "区间快速 上行\nShort-turn Rapid Service Uphill",
+            "routes": [
+                {
+                    "name": "区间快速上行 A",
+                    "description": "科研楼 → 欣园\nResearch Bldgs. → Joy Highland",
+                    "type": "point-to-point",
+                    "color": "#444",
+                    "sources": [
+                        {
+                            "url": "/bus_times/short_up_a.json",
+                            "type": "bus"
+                        },
+                        {
+                            "url": "/bus_times/short_shuttle_up_a.json",
+                            "type": "shuttle"
+                        }
+                    ]
+                },
+                {
+                    "name": "区间快速上行 B",
+                    "description": "二号门 → 欣园\nGate 2 → Joy Highland",
+                    "type": "point-to-point",
+                    "color": "#444",
+                    "sources": [
+                        {
+                            "url": "/bus_times/short_up_b.json",
+                            "type": "bus"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ipark",
+            "title": "南山智园线\nNanshan iPark Line",
+            "routes": [
+                {
+                    "name": "南山智园离校线",
+                    "description": "欣园 - 慧园 - 荔园西 - 学生宿舍 - 二号门 - 一号门 - 南山智园C1\nJoy Highland → Nanshan iPark C1",
+                    "type": "point-to-point",
+                    "color": "#444",
+                    "sources": [
+                        {
+                            "url": "/bus_times/ipark_out.json",
+                            "type": "bus"
+                        }
+                    ]
+                },
+                {
+                    "name": "南山智园进校线",
+                    "description": "南山智园C1 - 二号门 - 学生宿舍 - 荔园南 - 慧园 - 欣园\nNanshan iPark C1 → Joy Highland",
+                    "type": "point-to-point",
+                    "color": "#444",
+                    "sources": [
+                        {
+                            "url": "/bus_times/ipark_in.json",
+                            "type": "bus"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "sofun",
+            "title": "集悦城线\nSoFunLand Line",
+            "routes": [
+                {
+                    "name": "集悦城进校线",
+                    "description": "集悦城 → 六号门\nSoFunLand → Gate 6",
+                    "type": "point-to-point",
+                    "color": "#444",
+                    "sources": [
+                        {
+                            "url": "/bus_times/sofun_in_workday.json",
+                            "type": "bus"
+                        }
+                    ]
+                },
+                {
+                    "name": "集悦城离校线",
+                    "description": "六号门 → 集悦城\nGate 6 → SoFunLand",
+                    "type": "point-to-point",
+                    "color": "#444",
+                    "sources": [
+                        {
+                            "url": "/bus_times/sofun_out_workday.json",
+                            "type": "bus"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "holiday": [
+        {
+            "id": "line1",
+            "title": "1 路 / Line 1",
+            "routes": [
+                {
+                    "name": "1路 内环",
+                    "description": "顺时针 / Clockwise\n(欣园 → 欣园 Joy Highland Loop)",
+                    "type": "loop",
+                    "color": "#009966",
+                    "sources": [
+                        {
+                            "url": "/bus_times/one_down_holiday.json",
+                            "type": "bus"
+                        },
+                        {
+                            "url": "/bus_times/one_shuttle_down_holiday.json",
+                            "type": "shuttle"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "line2",
+            "title": "2 路 / Line 2",
+            "routes": [
+                {
+                    "name": "2路 外环",
+                    "description": "逆时针 / Counter-Clockwise\n(欣园 → 欣园 Joy Highland Loop)",
+                    "type": "loop",
+                    "color": "#F0608F",
+                    "sources": [
+                        {
+                            "url": "/bus_times/two_up_holiday.json",
+                            "type": "bus"
+                        },
+                        {
+                            "url": "/bus_times/two_shuttle_up_holiday.json",
+                            "type": "shuttle"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "sofun",
+            "title": "集悦城线\nSoFunLand Line",
+            "routes": [
+                {
+                    "name": "集悦城进校线",
+                    "description": "集悦城 → 六号门\nSoFunLand → Gate 6",
+                    "type": "point-to-point",
+                    "color": "#444",
+                    "sources": [
+                        {
+                            "url": "/bus_times/sofun_in_holiday.json",
+                            "type": "bus"
+                        }
+                    ]
+                },
+                {
+                    "name": "集悦城离校线",
+                    "description": "六号门 → 集悦城\nGate 6 → SoFunLand",
+                    "type": "point-to-point",
+                    "color": "#444",
+                    "sources": [
+                        {
+                            "url": "/bus_times/sofun_out_holiday.json",
+                            "type": "bus"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
