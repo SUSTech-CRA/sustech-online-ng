@@ -11,7 +11,7 @@
         <strong>{{ group.routeName }}</strong><span>{{ group.directionName }}</span><small>{{ serviceLabel(group) }}</small>
       </div>
       <div class="times">
-        <span v-for="(item, index) in displayedTimes(group)" :key="index" :class="['time', item.status, item.vehicleType?.toLowerCase()]">{{ item.time }}</span>
+        <span v-for="(item, index) in displayedTimes(group)" :key="index" :class="['time', item.status, item.vehicleType?.toLowerCase(), { changed: item.change === 'CANCELLED' || item.change === 'EXTRA' }]" :title="item.note || undefined"><del v-if="item.change === 'CANCELLED'">{{ item.time }}</del><template v-else>{{ item.time }}</template><small v-if="changeLabel(item)"> {{ changeLabel(item) }}</small></span>
         <span v-if="!displayedTimes(group).length" class="muted">{{ text('无运行中或待发车班次', 'No running or upcoming trips') }}</span>
         <button v-if="isCollapsed(group.key) && visibleTimes(group.times).length > 1" class="ellipsis" type="button" :aria-label="text('展开线路时刻表', 'Expand route schedule')" @click="toggleRoute(group.key)">······</button>
       </div>
@@ -28,6 +28,7 @@ const collapsedRoutes = ref(new Set())
 const portrait = ref(false)
 let orientationQuery
 const text = (zh, en) => props.language === 'zh' ? zh : en
+const changeLabel = (item) => ({ EXTRA: text('加班', 'Extra'), CANCELLED: text('停运', 'Cancelled') })[item.change] || ''
 const serviceLabel = (group) => [group.serviceType && group.serviceType !== 'NORMAL' ? group.serviceType : '', group.vehicleTypes?.join(' / ')].filter(Boolean).join(' · ') || text('常规服务', 'Normal service')
 const visibleTimes = (times) => activeOnly.value ? times.filter((item) => item.status !== 'past') : times
 const isCollapsed = (groupKey) => portrait.value && collapsedRoutes.value.has(groupKey)
@@ -47,4 +48,8 @@ onBeforeUnmount(() => { orientationQuery?.removeEventListener?.('change', update
 .route-info.collapsible { cursor: pointer; }
 .ellipsis { border: 0; padding: .13rem .38rem; background: transparent; color: var(--bus-v2-muted); font: inherit; letter-spacing: .15em; cursor: pointer; }
 .route-info small, .muted { color: var(--bus-v2-muted); }
+.time.changed { border: 1px dashed currentColor; }
+.time.cancelled { color: var(--bus-v2-muted); }
+.time small { font-family: inherit; font-size: .8em; }
+.time del { opacity: .7; }
 </style>

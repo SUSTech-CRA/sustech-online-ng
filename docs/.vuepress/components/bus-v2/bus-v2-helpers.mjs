@@ -23,6 +23,7 @@ export function classifyDepartures(times, nowMinutes, runMinutes = 0) {
   return (times || []).map((value) => {
     const item = typeof value === 'string' ? { time: value } : value
     const departure = minutesOf(item?.time)
+    if (item.change === 'CANCELLED') return { ...item, minutes: departure, status: departure < nowMinutes ? 'past' : 'cancelled' }
     let status = 'past'
     if (departure >= nowMinutes) {
       status = hasNext ? 'future' : 'next'
@@ -41,7 +42,7 @@ export function groupSchedules(schedules, nowMinutes, routes = []) {
     if (!groups.has(key)) groups.set(key, group)
     const vehicleType = item.vehicle_type || 'BUS'
     if (!group.vehicleTypes.includes(vehicleType)) group.vehicleTypes.push(vehicleType)
-    group.departures.push(...(item.departure_times || []).map((time) => ({ time, vehicleType })))
+    group.departures.push(...(item.departures || (item.departure_times || []).map((time) => ({ time }))).map((departure) => ({ ...departure, vehicleType })))
   }
   return [...groups.values()].map((group) => {
     const route = routes.find((item) => item.id === group.route_id)

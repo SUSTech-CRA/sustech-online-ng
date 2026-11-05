@@ -20,6 +20,11 @@
     background: color-mix(in srgb, #ffd43b 28%, var(--bus-v2-bg));
 }
 
+.notices .markdown img {
+    max-width: 100%;
+    height: auto;
+}
+
 .home-gray {
     filter: grayscale(100%);
     -webkit-filter: grayscale(100%);

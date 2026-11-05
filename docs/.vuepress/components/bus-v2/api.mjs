@@ -1,14 +1,14 @@
 import { resolveBusApiBase } from './core.mjs'
 
-export const busApiBase = () => resolveBusApiBase(import.meta.env.PROD)
+export const busApiBase = () => resolveBusApiBase(import.meta.env?.PROD)
 
 export async function publicApi(path, options = {}) {
   const base = busApiBase()
-  const separator = path.includes('?') ? '&' : '?'
-  const url = `${base}${path.startsWith('/') ? path : `/${path}`}${separator}_=${Date.now()}`
+  const url = `${base}${path.startsWith('/') ? path : `/${path}`}`
+  const reference = /^\/(routes|stops)(\/|$)/.test(new URL(url).pathname)
   const response = await fetch(url, {
     ...options,
-    cache: 'no-store',
+    cache: reference ? 'default' : 'no-store',
     credentials: 'omit',
     headers: { Accept: 'application/json', ...options.headers },
   })

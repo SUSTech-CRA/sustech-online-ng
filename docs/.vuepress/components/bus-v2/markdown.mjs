@@ -1,16 +1,25 @@
+import { Marked } from 'marked'
+
 const escapeHtml = (value) => String(value || '').replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character])
-
-function inlineMarkdown(value) {
-  let html = escapeHtml(value)
-  html = html.replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*([^*]+)\*/g, '<em>$1</em>')
-  return html.replace(/\[([^\]]+)]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+const safeUrl = (value) => {
+  try { return ['http:', 'https:'].includes(new URL(value, 'https://notice.invalid/').protocol) } catch { return false }
 }
+const noticeMarkdown = new Marked({
+  breaks: true,
+  renderer: {
+    html({ text }) { return escapeHtml(text) },
+    link({ href, title, tokens }) {
+      const content = this.parser.parseInline(tokens)
+      if (!safeUrl(href)) return content
+      return `<a href="${escapeHtml(href)}"${title ? ` title="${escapeHtml(title)}"` : ''} target="_blank" rel="noopener noreferrer">${content}</a>`
+    },
+    image({ href, title, text }) {
+      if (!safeUrl(href)) return escapeHtml(text)
+      return `<img src="${escapeHtml(href)}" alt="${escapeHtml(text)}"${title ? ` title="${escapeHtml(title)}"` : ''} loading="lazy">`
+    },
+  },
+})
 
-/** Deliberately small Markdown subset: text, paragraphs, headings, emphasis, code and http(s) links. */
 export function renderNoticeMarkdown(markdown) {
-  return String(markdown || '').replace(/\r/g, '').split(/\n{2,}/).filter(Boolean).map((block) => {
-    const heading = block.match(/^(#{1,3})\s+(.+)$/)
-    if (heading) return `<h${heading[1].length}>${inlineMarkdown(heading[2])}</h${heading[1].length}>`
-    return `<p>${inlineMarkdown(block).replace(/\n/g, '<br>')}</p>`
-  }).join('')
+  return noticeMarkdown.parse(String(markdown || ''))
 }
