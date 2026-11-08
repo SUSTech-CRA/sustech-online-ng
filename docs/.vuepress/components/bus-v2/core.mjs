@@ -3,6 +3,14 @@ const PROD_API_BASE = 'https://buseta.sustcra.com'
 
 export const resolveBusApiBase = (production = false) => production ? PROD_API_BASE : DEV_API_BASE
 
+export const isCampusRoute = (routeId) => ['line1', 'line2', 'k1', 'k2'].includes(routeId)
+export const vehicleRouteLabel = (routeId) => ({ line1: '1', line2: '2', k1: 'K1', k1a: 'K1', k2: 'K2', k2a: 'K2' })[String(routeId || '').toLowerCase()] || ''
+export const vehicleTextColor = (vehicleType) => String(vehicleType).toUpperCase() === 'SHUTTLE' ? '#7e22ce' : '#00451e'
+export function serviceTypeLabel(serviceType, language = 'zh') {
+  const labels = { NORMAL: ['常规服务', 'Normal service'], SHORT_TURN: ['区间车', 'Short turn'], EXPRESS: ['快线', 'Express'] }
+  return labels[serviceType]?.[language === 'en' ? 1 : 0] || serviceType || ''
+}
+
 export function displayName(item, language = 'zh') {
   const suffix = language === 'en' ? 'en' : 'zh'
   return item?.[`name_${suffix}`] || item?.[`display_name_${suffix}`] || item?.name_zh || item?.name_en || item?.display_name_zh || item?.display_name_en || ''
@@ -113,6 +121,41 @@ function positionStopIndex(stops, position) {
   return sequenceIndex >= 0 ? sequenceIndex : stops.findIndex((stop) => stop.id === position?.next_stop_id)
 }
 
+export function orderedStopProgress(coordinates, stops) {
+  const segments = []
+  let progress = 0
+  for (let index = 1; index < coordinates.length; index++) {
+    const left = coordinates[index - 1], right = coordinates[index]
+    const length = haversineMeters(+left[1], +left[0], +right[1], +right[0])
+    if (Number.isFinite(length) && length) segments.push({ left, right, length, progress })
+    if (Number.isFinite(length)) progress += length
+  }
+  const layers = []
+  for (const stop of stops) {
+    const longitude = +stop.longitude, latitude = +stop.latitude, scale = Math.cos(latitude * Math.PI / 180)
+    const previous = layers.at(-1) || [], candidates = []
+    let cursor = 0, best = -1
+    for (const { left, right, length, progress } of segments) {
+      const dx = (+right[0] - +left[0]) * scale, dy = +right[1] - +left[1]
+      const fraction = Math.max(0, Math.min(1, (((longitude - +left[0]) * scale) * dx + (latitude - +left[1]) * dy) / (dx * dx + dy * dy)))
+      const candidate = progress + fraction * length
+      while (cursor < previous.length && previous[cursor].progress <= candidate) {
+        if (best < 0 || previous[cursor].cost < previous[best].cost) best = cursor
+        cursor++
+      }
+      if (previous.length && best < 0) continue
+      const distance = haversineMeters(latitude, longitude, +left[1] + fraction * dy, +left[0] + fraction * (+right[0] - +left[0]))
+      // Match the whole stop order so a closer return leg cannot steal an outbound stop.
+      candidates.push({ progress: candidate, cost: distance ** 2 + (previous[best]?.cost || 0), parent: best })
+    }
+    if (!candidates.length) return stops.map(() => 0)
+    layers.push(candidates)
+  }
+  if (!layers.length) return []
+  let index = layers.at(-1).reduce((best, item, index, layer) => item.cost < layer[best].cost ? index : best, 0)
+  return layers.reverse().map((layer) => { const candidate = layer[index]; index = candidate.parent; return candidate.progress }).reverse()
+}
+
 export function vehicleBearingAt(coordinates, stops, vehicle) {
   const position = vehicle?.current_position
   const fallback = () => lineBearingAt(coordinates, +vehicle?.longitude, +vehicle?.latitude)
@@ -121,9 +164,7 @@ export function vehicleBearingAt(coordinates, stops, vehicle) {
   if (nextIndex < 0) return fallback()
   const leftIndex = position.type === 'between_stops' ? nextIndex - 1 : Math.min(nextIndex, stops.length - 2)
   if (leftIndex < 0) return fallback()
-  const total = coordinates.slice(1).reduce((sum, point, index) => sum + haversineMeters(+coordinates[index][1], +coordinates[index][0], +point[1], +point[0]), 0)
-  const progress = []
-  for (const stop of stops) progress.push(lineProjection(coordinates, +stop.longitude, +stop.latitude, progress.at(-1) ?? 0, total)?.progress ?? progress.at(-1) ?? 0)
+  const progress = orderedStopProgress(coordinates, stops)
   const nearest = lineProjection(coordinates, +vehicle.longitude, +vehicle.latitude, progress[leftIndex], progress[leftIndex + 1])
   if (nearest) return Math.atan2(nearest.dx, nearest.dy) * 180 / Math.PI
   const heading = Number(vehicle.heading)

@@ -13,7 +13,7 @@ export function minutesOf(time) {
 export function scheduleRunMinutes(route, directionId, actualStartStopId, actualEndStopId) {
   const stops = route?.directions?.find((direction) => direction.id === directionId)?.stops || []
   const start = stops.find((stop) => stop.id === actualStartStopId) || stops[0]
-  const end = stops.find((stop) => stop.id === actualEndStopId) || stops[stops.length - 1]
+  const end = stops.findLast((stop) => stop.id === actualEndStopId) || stops[stops.length - 1]
   const startMinutes = Number(start?.cumulative_minutes), endMinutes = Number(end?.cumulative_minutes)
   return Number.isFinite(startMinutes) && Number.isFinite(endMinutes) ? Math.abs(endMinutes - startMinutes) * 1.2 : 0
 }

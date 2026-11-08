@@ -8,7 +8,6 @@
 * [内容有问题？功能提建议？手册招维护！](/about)
 
 
-
 <!-- ## 快捷入口 -->
 <!-- * [官网链接](https://www.sustech.edu.cn/)
 * [图书馆](https://lib.sustech.edu.cn/)
@@ -130,14 +129,6 @@ div.emergency p a {
 ## 飞跃手册：申请与校招经验 <Badge text="秋季特别合作" type="tip"/>
 
 [南科大飞跃手册](https://sustech-application.com?utm_source=online)共有五部分，分别为英语学习，海外交流，选校经验，申请注意事项和个人申请总结，力求为 “如何在南方科技大学为申请国内、海外高校和入职优秀企业做出更全面的准备“ 这一问题作出解答。需要特别指出的是，**飞跃手册具有一定的时效性**，比如一些热门专业每年的申请形式都会发生极大变化，再比如当我们谈及“xx专业19fall是史上最难申请的一年”，这有可能意味着20fall会更难申请，所以参考往年飞跃手册时请注意。
-
-## 校园地图
-
-由sustech.online团队制作的校园地图。地图底图采用南科大2022版最新规划图，并添加校园巴士线路，打印机，商店，收发室等实用信息。[（尝试新版交互式校园地图！可全屏，实时定位）](./transport/bustimer)
-
-<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/pdfjs/web/viewer.html?file=https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v4-1.pdf" width="100%" height="600"></iframe>
-
-[点击这里](https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/%E5%8D%97%E6%96%B9%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%9B%BE-v4-1.pdf)下载矢量PDF版本，目前版本：**4.1**，2025年10月更新。
 
 ## 版权信息
 

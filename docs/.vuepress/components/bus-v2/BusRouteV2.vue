@@ -50,7 +50,7 @@
         <p v-if="arrivalState.loading && !arrivalState.items.length" class="muted">{{ busText('loading') }}</p>
         <p v-else-if="arrivalState.error && !arrivalState.items.length" class="muted">{{ busText('unavailable') }}</p>
         <p v-else-if="!selectedArrivals.length" class="muted">{{ busText('empty') }}</p>
-        <ul v-else class="arrival-list"><li v-for="(arrival, index) in visibleArrivals" :key="index"><span>{{ arrivalText(arrival) }}</span><small v-if="arrivalMeta(arrival) || (arrival.service_type && arrivalSource(arrival) !== 'unavailable')">{{ arrivalMeta(arrival) }}<template v-if="arrival.service_type && arrivalSource(arrival) !== 'unavailable'">{{ arrivalMeta(arrival) ? ' · ' : '' }}{{ arrival.service_type }}</template></small></li></ul>
+        <ul v-else class="arrival-list"><li v-for="(arrival, index) in visibleArrivals" :key="index"><span>{{ arrivalText(arrival) }}</span><small v-if="arrivalMeta(arrival) || (arrival.service_type && arrivalSource(arrival) !== 'unavailable')">{{ arrivalMeta(arrival) }}<template v-if="arrival.service_type && arrivalSource(arrival) !== 'unavailable'">{{ arrivalMeta(arrival) ? ' · ' : '' }}{{ serviceTypeLabel(arrival.service_type, busLanguage) }}</template></small></li></ul>
       </section>
 
       <section class="panel route-stops" :style="{ '--route-color': route.color || '#2878c8' }">
@@ -80,7 +80,7 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { busApi, publicApi } from './api.mjs'
-import { displayName, displayStopName, formatLocalDateTime, realtimeArrivalText, unavailableReasonTextKey } from './core.mjs'
+import { displayName, displayStopName, formatLocalDateTime, realtimeArrivalText, serviceTypeLabel, unavailableReasonTextKey } from './core.mjs'
 import { groupSchedules } from './bus-v2-helpers.mjs'
 import { isFavorite, loadFavorites, toggleFavorite } from './favorites.mjs'
 import { busLanguage, busText, setBusLanguage } from './i18n.mjs'

@@ -3,7 +3,7 @@
     <div ref="mapElement" class="bus-map__canvas" :aria-label="language === 'zh' ? '车辆地图' : 'Vehicle map'" />
     <p v-if="mapError" class="bus-map__message" role="alert">{{ mapError }}</p>
     <p v-else-if="loading" class="bus-map__message">{{ language === 'zh' ? '正在加载地图…' : 'Loading map…' }}</p>
-    <BusVehicleLegendV2 class="bus-map__legend" :language="language" />
+    <BusVehicleLegendV2 class="bus-map__legend" :language="language" text-markers />
     <label class="bus-map__overlap"><input v-model="avoidOverlap" type="checkbox" @change="refreshVehicleMarkers" /> {{ language === 'zh' ? '避免重叠' : 'Avoid overlap' }}</label>
   </section>
 </template>
@@ -13,7 +13,7 @@ import { createApp, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import BusVehicleDetailV2 from './BusVehicleDetailV2.vue'
 import BusVehicleLegendV2 from './BusVehicleLegendV2.vue'
 import { parseGeometry } from './bus-v2-helpers.mjs'
-import { displayName, displayStopName, vehicleBearingAt } from './core.mjs'
+import { displayName, displayStopName, isCampusRoute, vehicleBearingAt, vehicleRouteLabel, vehicleTextColor } from './core.mjs'
 
 const LIGHT_STYLE = 'https://bus.sustcra.com/static/protomaps/pmtiles-style/pmtiles-light.json'
 const DARK_STYLE = 'https://bus.sustcra.com/static/protomaps/pmtiles-style/pmtiles-dark.json'
@@ -49,9 +49,10 @@ let loaded = false
 let protocolInUse = false
 let vehicleMarkers = new Map()
 let mapEventsBound = false
+const landmarkIcons = new Map()
 
-const activeRoutes = () => props.routes.filter((route) => !props.routeId || route.id === props.routeId)
-const activeVehicles = () => props.vehicles.filter((vehicle) => (!props.routeId || vehicle.route_id === props.routeId) && Number.isFinite(+vehicle.longitude) && Number.isFinite(+vehicle.latitude))
+const activeRoutes = () => props.routes.filter((route) => isCampusRoute(route.id) && (!props.routeId || route.id === props.routeId))
+const activeVehicles = () => props.vehicles.filter((vehicle) => isCampusRoute(vehicle.route_id) && (!props.routeId || vehicle.route_id === props.routeId) && Number.isFinite(+vehicle.longitude) && Number.isFinite(+vehicle.latitude))
 const routeFor = (id) => props.routes.find((route) => route.id === id)
 const darkTheme = () => document.documentElement.getAttribute('data-theme') === 'dark'
 const neutralRouteColor = () => darkTheme() ? '#aaa' : '#666'
@@ -134,7 +135,11 @@ function updateVehicleMarker(record, vehicle) {
   const route = routeFor(vehicle.route_id)
   record.element.className = `bus-map__vehicle status-${vehicle.data_status || 'offline'}`
   record.element.title = displayName(vehicle, props.language) || vehicle.id
-  record.element.setAttribute('aria-label', record.element.title)
+  const label = vehicleRouteLabel(vehicle.route_id)
+  record.element.setAttribute('aria-label', `${label} · ${record.element.title}`)
+  record.label.textContent = label
+  record.label.classList.toggle('bus-map__vehicle-label--compact', label.length > 1)
+  record.label.style.color = vehicleTextColor(vehicle.vehicle_type)
   record.element.style.setProperty('--route-color', route?.color || '#2878c8')
   const bearing = vehicleBearing(vehicle)
   record.element.style.setProperty('--bearing', `${bearing}deg`)
@@ -159,16 +164,17 @@ function createVehicleMarker(vehicle) {
   const markerElement = document.createElement('div')
   const element = document.createElement('button')
   const arrow = document.createElement('span')
-  const image = document.createElement('img')
+  const label = document.createElement('span')
   arrow.className = 'bus-map__vehicle-arrow'
   markerElement.className = 'bus-map__vehicle-marker'
-  image.src = String(vehicle.vehicle_type).toUpperCase() === 'SHUTTLE' ? '/sev.png' : '/bus.png'
-  image.alt = ''
+  label.className = 'bus-map__vehicle-label'
+  label.setAttribute('aria-hidden', 'true')
   element.type = 'button'
-  element.append(arrow, image)
+  element.append(arrow, label)
   markerElement.append(element)
   element.addEventListener('click', (event) => { event.stopPropagation(); showVehiclePopup(record.vehicle) })
   record.element = element
+  record.label = label
   updateVehicleMarker(record, vehicle)
   record.marker = new maplibregl.Marker({ element: markerElement, anchor: 'center' }).setLngLat([+vehicle.longitude, +vehicle.latitude]).addTo(map)
   updateVehicleMarker(record, vehicle)
@@ -207,6 +213,20 @@ function showStopPopup(event) {
 
 function addLayers() {
   if (!map || !map.isStyleLoaded()) return
+  for (const [kind, iconSize, textOffset, textSize] of [['bldg', 0.02, 0.3, 11], ['gate', 0.05, 0.6, 10]]) {
+    const id = `bus-v2-${kind}`
+    if (!landmarkIcons.has(kind)) continue
+    if (!map.hasImage(id)) map.addImage(id, landmarkIcons.get(kind))
+    if (!map.getSource(id)) map.addSource(id, { type: 'geojson', data: `https://bus.sustcra.com/geojson/sustech_${kind}.json` })
+    if (!map.getLayer(id)) map.addLayer({
+      id, type: 'symbol', source: id,
+      layout: {
+        'icon-image': id, 'icon-size': iconSize, 'icon-allow-overlap': true,
+        'text-field': ['get', 'name'], 'text-size': textSize, 'text-offset': [0, textOffset], 'text-anchor': 'top',
+      },
+      paint: { 'text-color': darkTheme() ? '#ebebf5' : '#333', 'text-halo-color': darkTheme() ? '#202127' : '#fff', 'text-halo-width': 1 },
+    }, map.getLayer('bus-v2-routes') ? 'bus-v2-routes' : undefined)
+  }
   if (!map.getSource('bus-v2-routes')) map.addSource('bus-v2-routes', { type: 'geojson', data: sourceData(routeFeatures()) })
   if (!map.getLayer('bus-v2-routes')) map.addLayer({
     id: 'bus-v2-routes', type: 'line', source: 'bus-v2-routes',
@@ -311,6 +331,13 @@ async function initialise() {
         loading.value = false
       }
     })
+    for (const kind of ['bldg', 'gate']) {
+      map.loadImage(`https://bus.sustcra.com/${kind}_icon.png`).then((image) => {
+        landmarkIcons.set(kind, image.data)
+        if (map?.isStyleLoaded()) restoreOverlays()
+        else map?.once('idle', restoreOverlays)
+      }).catch((error) => console.error(`Failed to load ${kind} map icon:`, error))
+    }
   } catch (error) {
     mapError.value = `${props.language === 'zh' ? '地图不可用：' : 'Map unavailable: '}${error.message || error}`
     loading.value = false
@@ -348,7 +375,8 @@ defineExpose({ refresh, refreshVehicleMarkers })
 .bus-map__overlap { position: absolute; z-index: 1; top: .75rem; left: 3rem; padding: .35rem .5rem; border-radius: .35rem; background: color-mix(in srgb, var(--bus-v2-bg, #fff) 90%, transparent); color: var(--bus-v2-text, #333); font-size: .8rem; }
 .bus-map :deep(.bus-map__vehicle-marker) { display: block; width: 1.6rem; min-width: 1.6rem; max-width: 1.6rem; height: 1.6rem; min-height: 1.6rem; max-height: 1.6rem; line-height: 0; }
 .bus-map :deep(.bus-map__vehicle) { box-sizing: border-box; display: block; position: relative; width: 1.6rem; min-width: 1.6rem; max-width: 1.6rem; height: 1.6rem; min-height: 1.6rem; max-height: 1.6rem; aspect-ratio: 1; border: 2px solid #fff; border-radius: 50%; padding: 1px; background: var(--route-color); cursor: pointer; }
-.bus-map :deep(.bus-map__vehicle img) { position: absolute; inset: 0; width: 80%; height: 80%; margin: auto; object-fit: contain; }
+.bus-map :deep(.bus-map__vehicle-label) { position: absolute; inset: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #fff; font: 700 .9rem/1 "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", sans-serif; }
+.bus-map :deep(.bus-map__vehicle-label--compact) { font-size: .65rem; }
 .bus-map :deep(.bus-map__vehicle-arrow) { position: absolute; z-index: 2; inset: 0; pointer-events: none; transform: rotate(var(--bearing)); }
 .bus-map :deep(.bus-map__vehicle-arrow)::before { content: ''; position: absolute; top: -.57rem; left: 50%; transform: translateX(-50%); border-right: .44rem solid transparent; border-bottom: .62rem solid #fff; border-left: .44rem solid transparent; }
 .bus-map :deep(.bus-map__vehicle-arrow)::after { content: ''; position: absolute; top: -.45rem; left: 50%; transform: translateX(-50%); border-right: .32rem solid transparent; border-bottom: .5rem solid var(--route-color); border-left: .32rem solid transparent; }

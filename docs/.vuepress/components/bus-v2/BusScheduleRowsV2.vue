@@ -21,15 +21,17 @@
 
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { serviceTypeLabel, vehicleTextColor } from './core.mjs'
 
 const props = defineProps({ groups: { type: Array, default: () => [] }, language: { type: String, default: 'zh' } })
 const activeOnly = ref(true)
 const collapsedRoutes = ref(new Set())
 const portrait = ref(false)
+const busColor = vehicleTextColor('BUS'), shuttleColor = vehicleTextColor('SHUTTLE')
 let orientationQuery
 const text = (zh, en) => props.language === 'zh' ? zh : en
 const changeLabel = (item) => ({ EXTRA: text('加班', 'Extra'), CANCELLED: text('停运', 'Cancelled') })[item.change] || ''
-const serviceLabel = (group) => [group.serviceType && group.serviceType !== 'NORMAL' ? group.serviceType : '', group.vehicleTypes?.join(' / ')].filter(Boolean).join(' · ') || text('常规服务', 'Normal service')
+const serviceLabel = (group) => [group.serviceType && group.serviceType !== 'NORMAL' ? serviceTypeLabel(group.serviceType, props.language) : '', group.vehicleTypes?.map((type) => type === 'SHUTTLE' ? text('电瓶车', 'EV Shuttle') : type === 'BUS' ? text('巴士', 'Bus') : type).join(' / ')].filter(Boolean).join(' · ') || text('常规服务', 'Normal service')
 const visibleTimes = (times) => activeOnly.value ? times.filter((item) => item.status !== 'past') : times
 const isCollapsed = (groupKey) => portrait.value && collapsedRoutes.value.has(groupKey)
 const displayedTimes = (group) => isCollapsed(group.key) ? visibleTimes(group.times).slice(0, 1) : visibleTimes(group.times)
@@ -40,7 +42,7 @@ onBeforeUnmount(() => { orientationQuery?.removeEventListener?.('change', update
 </script>
 
 <style scoped lang="scss">
-.schedule-toolbar { display: flex; flex-wrap: wrap; gap: .55rem 1rem; align-items: center; justify-content: space-between; margin-bottom: .7rem; font-size: .84rem; }.schedule-legend { display: flex; flex-wrap: wrap; gap: .55rem 1rem; align-items: center; }.schedule-legend > span { display: inline-flex; align-items: center; gap: .3rem; }.schedule-filter { cursor: pointer; white-space: nowrap; }.swatch { width: .72rem; height: .72rem; border-radius: 50%; }.swatch.bus { background: #ed6c00; }.swatch.shuttle { background: #00bcd4; }.schedule-list { overflow: hidden; border: 1px solid #d9e2ec; border-radius: .6rem; container-type: inline-size; }.schedule-row { display: flex; flex-wrap: wrap; border-bottom: 1px solid #e7edf4; }.schedule-row:last-child { border: 0; }.route-info { box-sizing: border-box; display: flex; min-width: 8rem; flex: 1 1 9rem; flex-direction: column; justify-content: center; gap: .2rem; padding: .75rem; border-left: .4rem solid; background: var(--c-bg-soft, #f8fafc); }.route-info small, .muted { color: #667085; }.times { box-sizing: border-box; display: flex; min-width: 8rem; flex: 999 1 8rem; flex-wrap: wrap; align-content: flex-start; gap: .45rem; padding: .75rem; }.time { --vehicle-color: #ed6c00; padding: .13rem .38rem; border-radius: .25rem; color: var(--vehicle-color); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }.time.shuttle { --vehicle-color: #00bcd4; }.time.running { border: 1px solid var(--vehicle-color); background: color-mix(in srgb, var(--vehicle-color) 10%, transparent); }.time.next { background: var(--vehicle-color); color: #fff; font-weight: 700; }.time.past { opacity: .35; }
+.schedule-toolbar { display: flex; flex-wrap: wrap; gap: .55rem 1rem; align-items: center; justify-content: space-between; margin-bottom: .7rem; font-size: .84rem; }.schedule-legend { display: flex; flex-wrap: wrap; gap: .55rem 1rem; align-items: center; }.schedule-legend > span { display: inline-flex; align-items: center; gap: .3rem; }.schedule-filter { cursor: pointer; white-space: nowrap; }.swatch { width: .72rem; height: .72rem; border-radius: 50%; }.swatch.bus { background: v-bind(busColor); }.swatch.shuttle { background: v-bind(shuttleColor); }.schedule-list { overflow: hidden; border: 1px solid #d9e2ec; border-radius: .6rem; container-type: inline-size; }.schedule-row { display: flex; flex-wrap: wrap; border-bottom: 1px solid #e7edf4; }.schedule-row:last-child { border: 0; }.route-info { box-sizing: border-box; display: flex; min-width: 8rem; flex: 1 1 9rem; flex-direction: column; justify-content: center; gap: .2rem; padding: .75rem; border-left: .4rem solid; background: var(--c-bg-soft, #f8fafc); }.route-info small, .muted { color: #667085; }.times { box-sizing: border-box; display: flex; min-width: 8rem; flex: 999 1 8rem; flex-wrap: wrap; align-content: flex-start; gap: .45rem; padding: .75rem; }.time { --vehicle-color: v-bind(busColor); padding: .13rem .38rem; border-radius: .25rem; color: var(--vehicle-color); background: color-mix(in srgb, var(--vehicle-color) 6%, #fff); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }.time.shuttle { --vehicle-color: v-bind(shuttleColor); }.time.running { border: 1px solid var(--vehicle-color); background: color-mix(in srgb, var(--vehicle-color) 10%, #fff); }.time.next { background: var(--vehicle-color); color: #fff; font-weight: 700; }.time.past { opacity: .35; }
 @container (max-width: 24rem) { .schedule-row { flex-direction: column; }.route-info { width: 100%; min-width: 0; flex: none; flex-direction: row; flex-wrap: wrap; align-items: baseline; justify-content: flex-start; border-left: 0; border-top: .35rem solid; padding: .5rem; }.times { width: 100%; min-width: 0; flex: none; } }
 .schedule-list { border-color: var(--bus-v2-border); background: var(--bus-v2-bg); color: var(--bus-v2-text); }
 .schedule-row { border-color: var(--bus-v2-border); }
@@ -49,7 +51,7 @@ onBeforeUnmount(() => { orientationQuery?.removeEventListener?.('change', update
 .ellipsis { border: 0; padding: .13rem .38rem; background: transparent; color: var(--bus-v2-muted); font: inherit; letter-spacing: .15em; cursor: pointer; }
 .route-info small, .muted { color: var(--bus-v2-muted); }
 .time.changed { border: 1px dashed currentColor; }
-.time.cancelled { color: var(--bus-v2-muted); }
+.time.cancelled { background: transparent; color: var(--bus-v2-muted); }
 .time small { font-family: inherit; font-size: .8em; }
 .time del { opacity: .7; }
 </style>

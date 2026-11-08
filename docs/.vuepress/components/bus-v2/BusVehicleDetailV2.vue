@@ -3,7 +3,7 @@
     <div class="vehicle-detail__head"><strong>{{ name }}</strong><button v-if="closable" type="button" :aria-label="language === 'zh' ? '关闭' : 'Close'" @click="$emit('close')">×</button></div>
     <p><i />{{ routeName }} <span v-if="directionName">· {{ directionName }}</span></p>
     <dl>
-      <template v-if="vehicle.service_type"><dt>{{ language === 'zh' ? '服务类型' : 'Service' }}</dt><dd>{{ vehicle.service_type }}</dd></template>
+      <template v-if="vehicle.service_type"><dt>{{ language === 'zh' ? '服务类型' : 'Service' }}</dt><dd>{{ serviceTypeLabel(vehicle.service_type, language) }}</dd></template>
       <dt>{{ language === 'zh' ? '车型' : 'Vehicle' }}</dt><dd>{{ vehicle.vehicle_type || '—' }}</dd>
       <template v-if="locationText"><dt>{{ language === 'zh' ? '运行位置' : 'Position' }}</dt><dd>{{ locationText }}</dd></template>
       <dt>{{ language === 'zh' ? '更新时间' : 'Updated' }}</dt><dd>{{ updatedText }}</dd>
@@ -13,7 +13,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { displayName, vehicleLocationText } from './core.mjs'
+import { displayName, serviceTypeLabel, vehicleLocationText } from './core.mjs'
 
 const props = defineProps({ vehicle: Object, routes: { type: Array, default: () => [] }, stops: { type: Array, default: () => [] }, language: { type: String, default: 'zh' }, closable: Boolean })
 defineEmits(['close'])

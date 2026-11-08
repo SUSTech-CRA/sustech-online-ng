@@ -10,6 +10,16 @@ assert.equal(scheduleRunMinutes(route, 'cw'), 30)
 assert.deepEqual(classifyDepartures(['08:00'], 8 * 60 + 30, scheduleRunMinutes(route, 'cw')).map(({ status }) => status), ['running'])
 assert.deepEqual(classifyDepartures(['08:00'], 8 * 60 + 31, scheduleRunMinutes(route, 'cw')).map(({ status }) => status), ['past'])
 assert.equal(scheduleRunMinutes(route, 'cw', 'B', 'C'), 18)
+const k1 = { id: 'k1', directions: [
+  { id: 'k1_loop', stops: [{ id: 'joy', cumulative_minutes: 0 }, { id: 'research', cumulative_minutes: 12 }, { id: 'joy', cumulative_minutes: 25 }] },
+  { id: 'k1a', stops: [{ id: 'research', cumulative_minutes: 0 }, { id: 'coe_s', cumulative_minutes: 2 }, { id: 'joy', cumulative_minutes: 8 }] },
+] }
+assert.equal(scheduleRunMinutes(k1, 'k1_loop', 'joy', 'joy'), 30)
+const shortTurn = groupSchedules([{ route_id: 'k1', route_direction_id: 'k1a', direction_name_zh: 'K1A 科研楼 → 欣园', service_type: 'SHORT_TURN', actual_start_stop_id: 'research', actual_end_stop_id: 'joy', departure_times: ['12:17'] }], 12 * 60 + 20, [k1])[0]
+assert.equal(shortTurn.direction_name_zh, 'K1A 科研楼 → 欣园')
+assert.equal(shortTurn.actual_start_stop_id, 'research')
+assert.equal(shortTurn.actual_end_stop_id, 'joy')
+assert.equal(shortTurn.times[0].status, 'running')
 const groups = groupSchedules([
   { route_id: '1', route_direction_id: 'cw', service_type: 'NORMAL', vehicle_type: 'SHUTTLE', departure_times: ['08:30'] },
   { route_id: '1', route_direction_id: 'cw', service_type: 'NORMAL', vehicle_type: 'BUS', departure_times: ['08:00', '09:00'] }

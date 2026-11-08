@@ -2,10 +2,21 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import { closestArrivalsByRoute, displayName, displayStopName, haversineMeters, isTerminalArrival, lineBearingAt, matchesSearch, realtimeArrivalText, resolveBusApiBase, sortArrivalsByEstimatedTime, unavailableReasonTextKey, vehicleBearingAt, vehicleLocationText } from './core.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
+import { isCampusRoute, orderedStopProgress, serviceTypeLabel, vehicleRouteLabel, vehicleTextColor } from './core.mjs'
 
 test('API base uses fixed development and production addresses', () => {
   assert.equal(resolveBusApiBase(), 'http://127.0.0.1:8000')
   assert.equal(resolveBusApiBase(true), 'https://buseta.sustcra.com')
+})
+
+test('realtime vehicles use campus parents and compact route text with icon colors', () => {
+  for (const id of ['line1', 'line2', 'k1', 'k2']) assert.equal(isCampusRoute(id), true)
+  for (const id of ['ipark', 'sofun', 'k1a', 'K1A', '', undefined]) assert.equal(isCampusRoute(id), false)
+  assert.deepEqual(['line1', 'line2', 'k1', 'K1A', 'k2', 'K2A', 'unknown'].map(vehicleRouteLabel), ['1', '2', 'K1', 'K1', 'K2', 'K2', ''])
+  assert.equal(vehicleTextColor('BUS'), '#00451e')
+  assert.equal(vehicleTextColor('shuttle'), '#7e22ce')
+  assert.equal(serviceTypeLabel('SHORT_TURN'), '区间车')
+  assert.equal(serviceTypeLabel('EXPRESS', 'en'), 'Express')
 })
 
 test('search covers Chinese and English names', () => {
@@ -79,6 +90,17 @@ test('vehicle bearing distinguishes repeated stops on a fully overlapping return
   const stops = coordinates.map(([longitude, latitude], index) => ({ id: ['a', 'b', 'c', 'd', 'c', 'b', 'a'][index], sequence: index + 1, longitude, latitude }))
   const vehicle = { longitude: .5, latitude: 0, current_position: { type: 'between_stops', next_stop_id: 'a', next_stop_num: 7 } }
   assert.ok(Math.abs(vehicleBearingAt(coordinates, stops, vehicle) + 90) < .001)
+})
+
+test('ordered stop matching cannot put a slightly closer outbound platform on the return leg', () => {
+  const coordinates = [[0, 0], [.01, 0], [.02, 0], [.02, .0001], [.01, .0001], [0, .0001]]
+  const stops = [[0, 0], [.005, .00006], [.015, 0], [.02, .0001], [.005, .0001], [0, .0001]].map(([longitude, latitude], index) => ({ id: String(index), sequence: index + 1, longitude, latitude }))
+  const progress = orderedStopProgress(coordinates, stops)
+  assert.ok(progress[1] < 600)
+  assert.ok(progress[4] > 3800)
+  const vehicle = { longitude: .004, latitude: .0001, current_position: { type: 'between_stops', next_stop_id: '1', next_stop_num: 2 } }
+  assert.ok(Math.abs(vehicleBearingAt(coordinates, stops, vehicle) - 90) < .001)
+  assert.deepEqual(orderedStopProgress([[0, 0], [0, 0]], stops), stops.map(() => 0))
 })
 
 test('vehicle locations show route intervals and stops', () => {

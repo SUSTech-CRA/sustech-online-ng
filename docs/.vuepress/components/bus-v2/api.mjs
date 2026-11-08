@@ -1,4 +1,4 @@
-import { resolveBusApiBase } from './core.mjs'
+import { isCampusRoute, resolveBusApiBase } from './core.mjs'
 
 export const busApiBase = () => resolveBusApiBase(import.meta.env?.PROD)
 
@@ -17,11 +17,12 @@ export async function publicApi(path, options = {}) {
     try { message = (await response.json()).error || message } catch { /* response is not JSON */ }
     throw new Error(message || `Request failed (${response.status})`)
   }
-  return response.json()
+  const data = await response.json()
+  return /^\/vehicles(?:\/all)?$/.test(new URL(url).pathname) && Array.isArray(data) ? data.filter((vehicle) => isCampusRoute(vehicle.route_id)) : data
 }
 
 export const busApi = {
-  routes: () => publicApi('/routes'),
+  routes: async () => (await publicApi('/routes')).filter((route) => isCampusRoute(route.id)),
   stops: () => publicApi('/stops'),
   notices: () => publicApi('/notices'),
   arrivals: (stopId, dayType) => publicApi(`/arrivals/${encodeURIComponent(stopId)}${dayType ? `?day_type=${encodeURIComponent(dayType)}` : ''}`),

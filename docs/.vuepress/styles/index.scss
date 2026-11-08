@@ -46,3 +46,8 @@
 [data-theme='dark'] .bus-map .bus-map__vehicle { border-color: var(--bus-v2-bg); }
 [data-theme='dark'] .bus-home__header p, [data-theme='dark'] .bus-detail .eyebrow, [data-theme='dark'] .bus-detail .arrival-list small, [data-theme='dark'] .bus-detail .notices summary time, [data-theme='dark'] .bus-stop-detail .eyebrow, [data-theme='dark'] .bus-stop-detail .notices summary time, [data-theme='dark'] .bus-stop-detail .arrival-list small, [data-theme='dark'] .bus-stop-detail .direction-list span, [data-theme='dark'] .bus-stop-detail .direction-list small, [data-theme='dark'] .bus-stop-detail .mini-arrivals li, [data-theme='dark'] .bus-vehicles header p, [data-theme='dark'] .bus-vehicles .notices small, [data-theme='dark'] .bus-vehicles .map-head time, [data-theme='dark'] .bus-schedules .page-head p, [data-theme='dark'] .route-info small { color: var(--bus-v2-muted); }
 [data-theme='dark'] .bus-home .notices summary > span::after, [data-theme='dark'] .bus-detail .notices summary > span::after, [data-theme='dark'] .bus-stop-detail .notices summary > span::after, [data-theme='dark'] .bus-vehicles .notices summary > span::after { color: var(--bus-v2-muted); }
+[data-theme='dark'] :is(.schedule-list, .schedule-legend) .time:is(.next, .future) { --vehicle-color: #bbf7d0; background: var(--bus-v2-bg); color: var(--vehicle-color); }
+[data-theme='dark'] :is(.schedule-list, .schedule-legend) .time.shuttle:is(.next, .future) { --vehicle-color: #c084fc; }
+[data-theme='dark'] :is(.schedule-list, .schedule-legend) .time.next { background: var(--vehicle-color); color: var(--bus-v2-bg); }
+[data-theme='dark'] .schedule-legend .swatch.bus { background: #bbf7d0; }
+[data-theme='dark'] .schedule-legend .swatch.shuttle { background: #c084fc; }

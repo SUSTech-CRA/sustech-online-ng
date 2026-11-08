@@ -19,18 +19,6 @@
 
 </style>
 
-### 校园巴士线路图及时刻表
-
-[点击这里](https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/SUSTech-Campus-Map-v5-0.pdf)下载地图矢量PDF版本，目前版本：**5.0**，2025年11月更新。
-
-<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/SUSTech-Campus-Map-v5-0.pdf" width="100%" height="600"></iframe>
-
-[点击这里](https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/sustech_bus_schedule_2025.11.24.pdf)下载时刻表矢量PDF版本，目前版本：2025.11.24
-
-<iframe src="https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/sustech_bus_schedule_2025.11.24.pdf" width="100%" height="600"></iframe>
-
-
-
 ## 来往南方科技大学的交通
 注：目前因校园三期项目建设，三号门与四号门均不具备人行通过条件。
 

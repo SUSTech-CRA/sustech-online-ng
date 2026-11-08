@@ -1,6 +1,10 @@
 # 🚌校园巴士时刻表 SUSTech Campus Bus Info
 
-<a class="bus-home-link" href="./bustimer.html" aria-label="返回首页" title="返回首页">🏠</a>
+## 页面内容已过时
+
+**在 2026.11.09 的校巴调整后，本页面内容已过时，并将于不久后移除。请到[新版校巴页面](./bustimer.html)查看校巴信息。**
+
+**以下展示的是 2025.11.24 至 2026.11.09 之间的信息。**
 
 <BusAnnouncement />
 
