@@ -50,7 +50,7 @@
           <div class="nearby-stop__head"><button type="button" class="link-title" @click="openStop(stop.id)">{{ displayStopName(stop, busLanguage) }}</button><span v-if="stop.distance != null">{{ formatDistance(stop.distance) }}</span></div>
           <p v-if="favoriteArrivals[stop.id]?.loading && !favoriteArrivals[stop.id]?.items?.length" class="muted">{{ busText('loading') }}</p>
           <p v-else-if="favoriteArrivals[stop.id]?.error && !favoriteArrivals[stop.id]?.items?.length" class="muted">{{ busText('unavailable') }}</p>
-          <ul v-else class="arrival-list"><li v-for="(arrival, index) in favoriteArrivals[stop.id]?.items" :key="index"><i :style="{ background: arrival.route_color || '#2878c8' }" /><a class="arrival-link" :href="routeDirectionHref(arrival)">{{ arrivalName(arrival) }}</a><span>{{ arrivalText(arrival) }}</span><img v-if="showVehicleIcon(arrival)" class="arrival-vehicle" :src="vehicleIcon(arrival)" :alt="vehicleLabel(arrival)"></li><li v-if="!favoriteArrivals[stop.id]?.items?.length" class="muted">{{ busText('empty') }}</li></ul>
+          <ul v-else class="arrival-list"><li v-for="(arrival, index) in favoriteArrivals[stop.id]?.items" :key="index"><i :style="{ background: arrival.route_color || '#2878c8' }" /><a class="arrival-link" :href="routeDirectionHref(arrival)">{{ arrivalName(arrival) }}</a><span>{{ arrivalText(arrival) }}</span><BusVehicleIconV2 v-if="showVehicleIcon(arrival)" :type="arrival.vehicle_type" role="img" :aria-label="vehicleLabel(arrival)" /></li><li v-if="!favoriteArrivals[stop.id]?.items?.length" class="muted">{{ busText('empty') }}</li></ul>
         </article>
         <p v-if="!favoriteRoutes.length && !favoriteStops.length" class="muted">{{ busText('noFavorites') }}</p>
       </section>
@@ -76,7 +76,7 @@
               <i :style="{ background: arrival.route_color || '#2878c8' }" />
               <a class="arrival-link" :href="routeDirectionHref(arrival)">{{ arrivalName(arrival) }}</a>
               <span>{{ arrivalText(arrival) }}</span>
-              <img v-if="showVehicleIcon(arrival)" class="arrival-vehicle" :src="vehicleIcon(arrival)" :alt="vehicleLabel(arrival)">
+              <BusVehicleIconV2 v-if="showVehicleIcon(arrival)" :type="arrival.vehicle_type" role="img" :aria-label="vehicleLabel(arrival)" />
             </li>
             <li v-if="!arrivals[stop.id]?.items?.length" class="muted">{{ busText('empty') }}</li>
           </ul>
@@ -96,6 +96,7 @@
 </template>
 
 <script setup>
+import BusVehicleIconV2 from './BusVehicleIconV2.vue'
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { busApi } from './api.mjs'
 import { displayName, displayStopName, formatDistance, formatLocalDateTime, haversineMeters, isTerminalArrival, matchesSearch, realtimeArrivalText, sortArrivalsByEstimatedTime, unavailableReasonTextKey } from './core.mjs'
@@ -173,7 +174,6 @@ const noticeTime = (notice) => formatLocalDateTime(notice.starts_at)
 const isNoticeOpen = (notice, defaultOpen = false) => noticeIsOpen(noticeOpenStates.value, notice.id, defaultOpen)
 const rememberNoticeOpen = (notice, event) => saveNoticeOpenState(noticeOpenStates.value, notice.id, event.target.open)
 const arrivalName = (arrival) => `${arrival[busLanguage.value === 'en' ? 'route_name_en' : 'route_name_zh'] || arrival.route_name_zh || arrival.route_name_en || ''} · ${arrival[busLanguage.value === 'en' ? 'direction_name_en' : 'direction_name_zh'] || arrival.direction_name_zh || arrival.direction_name_en || ''}`
-const vehicleIcon = (arrival) => String(arrival.vehicle_type).toUpperCase() === 'SHUTTLE' ? '/sev.png' : '/bus.png'
 const vehicleLabel = (arrival) => String(arrival.vehicle_type).toUpperCase() === 'SHUTTLE' ? (busLanguage.value === 'zh' ? '电瓶车' : 'EV Shuttle') : (busLanguage.value === 'zh' ? '巴士' : 'Bus')
 const showVehicleIcon = (arrival) => !['LAST_SERVICE_PASSED', 'NOT_OPERATING'].includes(String(arrival.unavailable_reason).toUpperCase())
 
@@ -323,7 +323,7 @@ details + details { border-top: 1px solid var(--bus-v2-border); } summary { disp
 .nearby .section-title button { border-color: var(--bus-v2-link-soft); background: var(--bus-v2-link-soft); color: var(--bus-v2-link); font-weight: 600; }
 .nearby-stop { padding: .75rem 0; border-top: 1px solid var(--bus-v2-border); } .nearby-stop__head { align-items: baseline; } .link-title { padding: 0; border: 0; background: transparent; color: var(--bus-v2-link); font-weight: 700; text-align: left; }
 .nearby-toggle { padding: .4rem .65rem; border: 1px solid var(--bus-v2-border); border-radius: .35rem; background: transparent; color: inherit; font: inherit; }
-.arrival-list { margin: .45rem 0 0; padding: 0; list-style: none; } .arrival-list li { display: grid; grid-template-columns: .35rem minmax(0, 1fr) auto 1rem; gap: .4rem; align-items: center; padding: .3rem 0; } .arrival-list i { width: .3rem; height: 1.2rem; border-radius: 2px; } .arrival-vehicle { box-sizing: border-box; width: 1rem; height: 1rem; padding: 1px; border-radius: 50%; background: #fff; } .arrival-link { color: var(--bus-v2-link); text-decoration: none; } .arrival-link:hover, .arrival-link:focus-visible { text-decoration: underline; } .arrival-list .muted { display: block; }
+.arrival-list { margin: .45rem 0 0; padding: 0; list-style: none; } .arrival-list li { display: grid; grid-template-columns: .35rem minmax(0, 1fr) auto 1rem; gap: .4rem; align-items: center; padding: .3rem 0; } .arrival-list i { width: .3rem; height: 1.2rem; border-radius: 2px; } .arrival-link { color: var(--bus-v2-link); text-decoration: none; } .arrival-link:hover, .arrival-link:focus-visible { text-decoration: underline; } .arrival-list .muted { display: block; }
 .quick-links { display: flex; flex-wrap: wrap; gap: .5rem; } .quick-links button { width: auto; border: 1px solid var(--bus-v2-border); border-radius: .35rem; }
 .feature-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; } .feature-links a { display: flex; min-height: 4rem; align-items: center; justify-content: center; padding: 0 .75rem; border-radius: .6rem; background: var(--bus-v2-link-soft); color: var(--bus-v2-link); text-align: center; text-decoration: none; font-weight: 600; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
