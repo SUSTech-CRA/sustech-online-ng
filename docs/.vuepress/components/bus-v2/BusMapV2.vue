@@ -139,6 +139,7 @@ function updateVehicleMarker(record, vehicle) {
   record.element.setAttribute('aria-label', `${label} · ${record.element.title}`)
   record.label.textContent = label
   record.label.classList.toggle('bus-map__vehicle-label--compact', label.length > 1)
+  record.label.classList.toggle('bus-map__vehicle-label--shuttle', String(vehicle.vehicle_type).toUpperCase() === 'SHUTTLE')
   record.label.style.color = vehicleTextColor(vehicle.vehicle_type)
   record.element.style.setProperty('--route-color', route?.color || '#2878c8')
   const bearing = vehicleBearing(vehicle)
@@ -374,9 +375,10 @@ defineExpose({ refresh, refreshVehicleMarkers })
 .bus-map__legend { position: absolute; z-index: 1; bottom: .75rem; left: .75rem; margin: 0; padding: .4rem .55rem; border-radius: .35rem; background: color-mix(in srgb, var(--bus-v2-bg, #fff) 90%, transparent); }
 .bus-map__overlap { position: absolute; z-index: 1; top: .75rem; left: 3rem; padding: .35rem .5rem; border-radius: .35rem; background: color-mix(in srgb, var(--bus-v2-bg, #fff) 90%, transparent); color: var(--bus-v2-text, #333); font-size: .8rem; }
 .bus-map :deep(.bus-map__vehicle-marker) { display: block; width: 1.6rem; min-width: 1.6rem; max-width: 1.6rem; height: 1.6rem; min-height: 1.6rem; max-height: 1.6rem; line-height: 0; }
-.bus-map :deep(.bus-map__vehicle) { box-sizing: border-box; display: block; position: relative; width: 1.6rem; min-width: 1.6rem; max-width: 1.6rem; height: 1.6rem; min-height: 1.6rem; max-height: 1.6rem; aspect-ratio: 1; border: 2px solid #fff; border-radius: 50%; padding: 1px; background: var(--route-color); cursor: pointer; }
-.bus-map :deep(.bus-map__vehicle-label) { position: absolute; inset: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #fff; font: 700 .9rem/1 "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", sans-serif; }
+.bus-map :deep(.bus-map__vehicle) { box-sizing: border-box; display: block; position: relative; width: 1.6rem; min-width: 1.6rem; max-width: 1.6rem; height: 1.6rem; min-height: 1.6rem; max-height: 1.6rem; aspect-ratio: 1; border: 2px solid #fff; border-radius: 50%; padding: 1px; background: var(--route-color); box-shadow: 0 1px 4px #0005; cursor: pointer; }
+.bus-map :deep(.bus-map__vehicle-label) { position: absolute; inset: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--bus-v2-bus-fill); font: 700 .9rem/1 "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", sans-serif; }
 .bus-map :deep(.bus-map__vehicle-label--compact) { font-size: .65rem; }
+.bus-map :deep(.bus-map__vehicle-label--shuttle) { background: var(--bus-v2-shuttle-fill); }
 .bus-map :deep(.bus-map__vehicle-arrow) { position: absolute; z-index: 2; inset: 0; pointer-events: none; transform: rotate(var(--bearing)); }
 .bus-map :deep(.bus-map__vehicle-arrow)::before { content: ''; position: absolute; top: -.57rem; left: 50%; transform: translateX(-50%); border-right: .44rem solid transparent; border-bottom: .62rem solid #fff; border-left: .44rem solid transparent; }
 .bus-map :deep(.bus-map__vehicle-arrow)::after { content: ''; position: absolute; top: -.45rem; left: 50%; transform: translateX(-50%); border-right: .32rem solid transparent; border-bottom: .5rem solid var(--route-color); border-left: .32rem solid transparent; }

@@ -21,13 +21,12 @@
 
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { serviceTypeLabel, vehicleTextColor } from './core.mjs'
+import { serviceTypeLabel } from './core.mjs'
 
 const props = defineProps({ groups: { type: Array, default: () => [] }, language: { type: String, default: 'zh' } })
 const activeOnly = ref(true)
 const collapsedRoutes = ref(new Set())
 const portrait = ref(false)
-const busColor = vehicleTextColor('BUS'), shuttleColor = vehicleTextColor('SHUTTLE')
 let orientationQuery
 const text = (zh, en) => props.language === 'zh' ? zh : en
 const changeLabel = (item) => ({ EXTRA: text('加班', 'Extra'), CANCELLED: text('停运', 'Cancelled') })[item.change] || ''
@@ -42,9 +41,9 @@ onBeforeUnmount(() => { orientationQuery?.removeEventListener?.('change', update
 </script>
 
 <style scoped lang="scss">
-.schedule-toolbar { display: flex; flex-wrap: wrap; gap: .55rem 1rem; align-items: center; justify-content: space-between; margin-bottom: .7rem; font-size: .84rem; }.schedule-legend { display: flex; flex-wrap: wrap; gap: .55rem 1rem; align-items: center; }.schedule-legend > span { display: inline-flex; align-items: center; gap: .3rem; }.schedule-filter { cursor: pointer; white-space: nowrap; }.swatch { width: .72rem; height: .72rem; border-radius: 50%; }.swatch.bus { background: v-bind(busColor); }.swatch.shuttle { background: v-bind(shuttleColor); }.schedule-list { overflow: hidden; border: 1px solid #d9e2ec; border-radius: .6rem; container-type: inline-size; }.schedule-row { display: flex; flex-wrap: wrap; border-bottom: 1px solid #e7edf4; }.schedule-row:last-child { border: 0; }.route-info { box-sizing: border-box; display: flex; min-width: 8rem; flex: 1 1 9rem; flex-direction: column; justify-content: center; gap: .2rem; padding: .75rem; border-left: .4rem solid; background: var(--c-bg-soft, #f8fafc); }.route-info small, .muted { color: #667085; }.times { box-sizing: border-box; display: flex; min-width: 8rem; flex: 999 1 8rem; flex-wrap: wrap; align-content: flex-start; gap: .45rem; padding: .75rem; }.time { --vehicle-color: v-bind(busColor); padding: .13rem .38rem; border-radius: .25rem; color: var(--vehicle-color); background: color-mix(in srgb, var(--vehicle-color) 6%, #fff); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }.time.shuttle { --vehicle-color: v-bind(shuttleColor); }.time.running { border: 1px solid var(--vehicle-color); background: color-mix(in srgb, var(--vehicle-color) 10%, #fff); }.time.next { background: var(--vehicle-color); color: #fff; font-weight: 700; }.time.past { opacity: .35; }
+.schedule-toolbar { display: flex; flex-wrap: wrap; gap: .55rem 1rem; align-items: center; justify-content: space-between; margin-bottom: .7rem; font-size: .84rem; }.schedule-legend { display: flex; flex-wrap: wrap; gap: .55rem 1rem; align-items: center; }.schedule-legend > span { display: inline-flex; align-items: center; gap: .3rem; }.schedule-filter { cursor: pointer; white-space: nowrap; }.swatch { width: .72rem; height: .72rem; border-radius: 50%; }.swatch.bus { background: var(--bus-v2-bus-fill); border: 1px solid var(--bus-v2-bus-text); }.swatch.shuttle { background: var(--bus-v2-shuttle-fill); border: 1px solid var(--bus-v2-shuttle-text); }.schedule-list { overflow: hidden; border: 1px solid #d9e2ec; border-radius: .6rem; container-type: inline-size; }.schedule-row { display: flex; flex-wrap: wrap; border-bottom: 1px solid #e7edf4; }.schedule-row:last-child { border: 0; }.route-info { box-sizing: border-box; display: flex; min-width: 8rem; flex: 1 1 9rem; flex-direction: column; justify-content: center; gap: .2rem; padding: .75rem; border-left: .4rem solid; background: var(--c-bg-soft, #f8fafc); }.route-info small, .muted { color: #667085; }.times { box-sizing: border-box; display: flex; min-width: 8rem; flex: 999 1 8rem; flex-wrap: wrap; align-content: flex-start; gap: .45rem; padding: .75rem; }.time { --vehicle-color: var(--bus-v2-bus-text); --vehicle-soft: var(--bus-v2-bus-soft); --vehicle-fill: var(--bus-v2-bus-fill); --vehicle-ink: #754600; padding: .13rem .38rem; border-radius: .25rem; color: var(--vehicle-color); background: var(--vehicle-soft); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }.time.shuttle { --vehicle-color: var(--bus-v2-shuttle-text); --vehicle-soft: var(--bus-v2-shuttle-soft); --vehicle-fill: var(--bus-v2-shuttle-fill); --vehicle-ink: #193e29; }.time.running { border: 1px solid var(--vehicle-color); background: var(--vehicle-soft); }.time.next { background: var(--vehicle-fill); color: var(--vehicle-ink); font-weight: 700; }.time.past { opacity: .35; }
 @container (max-width: 24rem) { .schedule-row { flex-direction: column; }.route-info { width: 100%; min-width: 0; flex: none; flex-direction: row; flex-wrap: wrap; align-items: baseline; justify-content: flex-start; border-left: 0; border-top: .35rem solid; padding: .5rem; }.times { width: 100%; min-width: 0; flex: none; } }
-.schedule-list { border-color: var(--bus-v2-border); background: var(--bus-v2-bg); color: var(--bus-v2-text); }
+.schedule-list { --bus-v2-bg: var(--bus-v2-schedule-bg); border-color: var(--bus-v2-border); background: var(--bus-v2-bg); color: var(--bus-v2-text); }
 .schedule-row { border-color: var(--bus-v2-border); }
 .route-info { background: var(--bus-v2-bg-alt); }
 .route-info.collapsible { cursor: pointer; }

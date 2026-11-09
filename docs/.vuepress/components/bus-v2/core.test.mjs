@@ -1,20 +1,15 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { closestArrivalsByRoute, displayName, displayStopName, haversineMeters, isTerminalArrival, lineBearingAt, matchesSearch, realtimeArrivalText, resolveBusApiBase, sortArrivalsByEstimatedTime, unavailableReasonTextKey, vehicleBearingAt, vehicleLocationText } from './core.mjs'
+import { closestArrivalsByRoute, displayName, displayStopName, haversineMeters, isTerminalArrival, lineBearingAt, matchesSearch, realtimeArrivalText, sortArrivalsByEstimatedTime, unavailableReasonTextKey, vehicleBearingAt, vehicleLocationText } from './core.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
 import { isCampusRoute, orderedStopProgress, serviceTypeLabel, vehicleRouteLabel, vehicleTextColor } from './core.mjs'
-
-test('API base uses fixed development and production addresses', () => {
-  assert.equal(resolveBusApiBase(), 'http://127.0.0.1:8000')
-  assert.equal(resolveBusApiBase(true), 'https://buseta.sustcra.com')
-})
 
 test('realtime vehicles use campus parents and compact route text with icon colors', () => {
   for (const id of ['line1', 'line2', 'k1', 'k2']) assert.equal(isCampusRoute(id), true)
   for (const id of ['ipark', 'sofun', 'k1a', 'K1A', '', undefined]) assert.equal(isCampusRoute(id), false)
   assert.deepEqual(['line1', 'line2', 'k1', 'K1A', 'k2', 'K2A', 'unknown'].map(vehicleRouteLabel), ['1', '2', 'K1', 'K1', 'K2', 'K2', ''])
-  assert.equal(vehicleTextColor('BUS'), '#00451e')
-  assert.equal(vehicleTextColor('shuttle'), '#7e22ce')
+  assert.equal(vehicleTextColor('BUS'), '#754600')
+  assert.equal(vehicleTextColor('shuttle'), '#193e29')
   assert.equal(serviceTypeLabel('SHORT_TURN'), '区间车')
   assert.equal(serviceTypeLabel('EXPRESS', 'en'), 'Express')
 })

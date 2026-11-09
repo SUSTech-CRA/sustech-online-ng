@@ -1,11 +1,11 @@
-const DEV_API_BASE = 'http://127.0.0.1:8000'
+const DEV_API_BASE = 'https://buseta.sustcra.com'
 const PROD_API_BASE = 'https://buseta.sustcra.com'
 
 export const resolveBusApiBase = (production = false) => production ? PROD_API_BASE : DEV_API_BASE
 
 export const isCampusRoute = (routeId) => ['line1', 'line2', 'k1', 'k2'].includes(routeId)
 export const vehicleRouteLabel = (routeId) => ({ line1: '1', line2: '2', k1: 'K1', k1a: 'K1', k2: 'K2', k2a: 'K2' })[String(routeId || '').toLowerCase()] || ''
-export const vehicleTextColor = (vehicleType) => String(vehicleType).toUpperCase() === 'SHUTTLE' ? '#7e22ce' : '#00451e'
+export const vehicleTextColor = (vehicleType) => String(vehicleType).toUpperCase() === 'SHUTTLE' ? '#193e29' : '#754600'
 export function serviceTypeLabel(serviceType, language = 'zh') {
   const labels = { NORMAL: ['常规服务', 'Normal service'], SHORT_TURN: ['区间车', 'Short turn'], EXPRESS: ['快线', 'Express'] }
   return labels[serviceType]?.[language === 'en' ? 1 : 0] || serviceType || ''
