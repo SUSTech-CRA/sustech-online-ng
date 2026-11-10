@@ -8,7 +8,7 @@
 <script setup>
 import BusVehicleIconV2 from './BusVehicleIconV2.vue'
 import { computed } from 'vue'
-import { closestArrivalsByRoute, realtimeArrivalText, unavailableReasonTextKey } from './core.mjs'
+import { formatBusTime, closestArrivalsByRoute, realtimeArrivalText, unavailableReasonTextKey } from './core.mjs'
 import { busLanguage, busText } from './i18n.mjs'
 
 const props = defineProps({ state: { type: Object, default: () => ({}) }, collapsed: Boolean, routeHref: { type: String, default: '/transport/bustimer_v2_route.html?id=' } })
@@ -17,12 +17,12 @@ const routeName = (item) => item[busLanguage.value === 'en' ? 'route_name_en' : 
 const directionName = (item) => item[busLanguage.value === 'en' ? 'direction_name_en' : 'direction_name_zh'] || item.direction_name_zh || item.direction_name_en || ''
 const arrivalKey = (item) => `${item.route_direction_id}-${item.trip_id || item.planned_arrival_at || item.updated_at || item.eta_minutes}`
 const routeDirectionHref = (item) => `${props.routeHref}${encodeURIComponent(item.route_id)}&direction=${encodeURIComponent(item.route_direction_id)}`
-const vehicleLabel = (item) => String(item.vehicle_type).toUpperCase() === 'SHUTTLE' ? (busLanguage.value === 'zh' ? '电瓶车' : 'EV Shuttle') : (busLanguage.value === 'zh' ? '巴士' : 'Bus')
+const vehicleLabel = (item) => String(item.vehicle_type).toUpperCase() === 'SHUTTLE' ? busText('shuttle') : busText('bus')
 const showVehicleIcon = (item) => !['LAST_SERVICE_PASSED', 'NOT_OPERATING'].includes(String(item.unavailable_reason).toUpperCase())
-function time(value) { return value ? new Date(value).toLocaleTimeString(busLanguage.value === 'zh' ? 'zh-CN' : 'en', { hour: '2-digit', minute: '2-digit', hour12: false }) : '' }
+function time(value) { return value ? formatBusTime(value, busLanguage.value) : '' }
 function arrivalText(item) { return item.source === 'real_time' ? [realtimeArrivalText(item, busLanguage.value), arrivalDistance(item)].filter(Boolean).join(' ') : item.source === 'planned' ? busText('planAt', { time: time(item.planned_arrival_at) }) : busText(unavailableReasonTextKey(item.unavailable_reason)) }
 function arrivalDistance(item) { const meters = Number(item.distance ?? item.distance_to_stop ?? item.distance_to_next_stop ?? item.distance_meters); return Number.isFinite(meters) ? `${Math.round(meters)}m` : '' }
-function arrivalMeta(item) { return item.source === 'real_time' ? `${busLanguage.value === 'zh' ? '实时预测' : 'Real-time prediction'}${item.updated_at ? ` · ${busText('updated', { time: time(item.updated_at) })}` : ''}` : item.source === 'planned' ? (busLanguage.value === 'zh' ? '计划时间' : 'Scheduled time') : item.updated_at ? busText('updated', { time: time(item.updated_at) }) : '' }
+function arrivalMeta(item) { return item.source === 'real_time' ? `${busText('realTime')}${item.updated_at ? ` · ${busText('updated', { time: time(item.updated_at) })}` : ''}` : item.source === 'planned' ? busText('planned') : item.updated_at ? busText('updated', { time: time(item.updated_at) }) : '' }
 </script>
 
 <style scoped>

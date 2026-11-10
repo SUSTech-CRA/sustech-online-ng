@@ -1,16 +1,17 @@
 <template>
   <section class="bus-schedules" :lang="language === 'zh' ? 'zh-CN' : 'en'">
-    <header class="section-title"><div class="schedule-title"><h3>{{ text('全部时刻表', 'All schedules') }}</h3><p class="schedule-note">{{ text('表中时间均为首站发车时间。', 'Times are departures from the terminus.') }}</p></div></header>
-    <label class="day-select">{{ text('运营日期', 'Service date (Shanghai)') }}<input v-model="serviceDate" type="date" required @change="load" /></label>
+    <header class="section-title"><div class="schedule-title"><h3>{{ busText('allSchedulesTitle') }}</h3><p class="schedule-note">{{ busText('departureNote') }}</p></div></header>
+    <label class="day-select">{{ busText('serviceDate') }}<input v-model="serviceDate" type="date" required @change="load" /></label>
     <section v-if="loading && !groups.length" class="state">{{ busText('loading') }}</section>
     <section v-if="error" class="state error" role="alert"><strong>{{ busText('loadFailed') }}</strong><span>{{ error }}</span><button type="button" @click="load">{{ busText('retry') }}</button></section>
     <section v-if="!loading && !error && !groups.length" class="state">{{ busText('empty') }}</section>
     <BusScheduleRowsV2 v-if="groups.length" :groups="groups" :language="language" />
-    <p class="note">{{ text('“运行中”按线路预计运行时间加 20% 估算。', 'Running status uses the estimated route duration plus 20%.') }}</p>
+    <p class="note">{{ busText('runningNote') }}</p>
   </section>
 </template>
 
 <script setup>
+import { busServiceDate, busServiceMinutes } from './core.mjs'
 import { computed, onMounted, ref } from 'vue'
 import { busApi } from './api.mjs'
 import { groupSchedules } from './bus-v2-helpers.mjs'
@@ -19,17 +20,12 @@ import BusScheduleRowsV2 from './BusScheduleRowsV2.vue'
 
 let routesCache = null, routesRequest, scheduleRequest = 0
 const loadRoutes = () => routesCache ? Promise.resolve(routesCache) : (routesRequest ||= busApi.routes().then((data) => routesCache = Array.isArray(data) ? data : []).finally(() => { routesRequest = undefined }))
-const language = busLanguage; const schedules = ref([]); const routes = ref([]); const loading = ref(true); const error = ref(''); const serviceDate = ref(new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Shanghai' }).format(new Date())); const now = ref(new Date())
-const text = (zh, en) => language.value === 'zh' ? zh : en
-const nowMinutes = computed(() => {
-  const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Shanghai' }).format(now.value)
-  const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Shanghai', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(now.value).split(':')
-  return (Date.parse(today) - Date.parse(serviceDate.value)) / 60000 + Number(parts[0]) * 60 + Number(parts[1])
-})
+const language = busLanguage; const schedules = ref([]); const routes = ref([]); const loading = ref(true); const error = ref(''); const serviceDate = ref(busServiceDate()); const now = ref(new Date())
+const nowMinutes = computed(() => busServiceMinutes(now.value, serviceDate.value))
 const groups = computed(() => groupSchedules(schedules.value, nowMinutes.value, routes.value).map((item) => ({ ...item, color: item.route_color, routeName: item[language.value === 'zh' ? 'route_name_zh' : 'route_name_en'] || item.route_name_zh || item.route_name_en || item.route_id, directionName: item[language.value === 'zh' ? 'direction_name_zh' : 'direction_name_en'] || item.direction_name_zh || item.direction_name_en || item.route_direction_id })))
 async function load() {
   now.value = new Date()
-  if (!serviceDate.value) { error.value = text('请选择运营日期。', 'Select a service date.'); return }
+  if (!serviceDate.value) { error.value = busText('selectServiceDate'); return }
   const request = ++scheduleRequest
   loading.value = true
   error.value = ''

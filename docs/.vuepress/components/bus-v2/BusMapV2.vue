@@ -1,14 +1,15 @@
 <template>
   <section class="bus-map" :class="{ 'is-loading': loading }">
-    <div ref="mapElement" class="bus-map__canvas" :aria-label="language === 'zh' ? '车辆地图' : 'Vehicle map'" />
+    <div ref="mapElement" class="bus-map__canvas" :aria-label="busText('vehicleMap', {}, language)" />
     <p v-if="mapError" class="bus-map__message" role="alert">{{ mapError }}</p>
-    <p v-else-if="loading" class="bus-map__message">{{ language === 'zh' ? '正在加载地图…' : 'Loading map…' }}</p>
+    <p v-else-if="loading" class="bus-map__message">{{ busText('mapLoading', {}, language) }}</p>
     <BusVehicleLegendV2 class="bus-map__legend" :language="language" text-markers />
-    <label class="bus-map__overlap"><input v-model="avoidOverlap" type="checkbox" @change="refreshVehicleMarkers" /> {{ language === 'zh' ? '避免重叠' : 'Avoid overlap' }}</label>
+    <label class="bus-map__overlap"><input v-model="avoidOverlap" type="checkbox" @change="refreshVehicleMarkers" /> {{ busText('avoidOverlap', {}, language) }}</label>
   </section>
 </template>
 
 <script setup>
+import { busText } from './i18n.mjs'
 import { createApp, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import BusVehicleDetailV2 from './BusVehicleDetailV2.vue'
 import BusVehicleLegendV2 from './BusVehicleLegendV2.vue'
@@ -208,7 +209,7 @@ function showStopPopup(event) {
   closeVehiclePopup()
   activePopup?.remove()
   const content = document.createElement('strong')
-  content.textContent = feature.properties.name || (props.language === 'zh' ? '站点' : 'Stop')
+  content.textContent = feature.properties.name || busText('stopLabel', {}, props.language)
   activePopup = new maplibregl.Popup({ offset: 12 }).setLngLat(feature.geometry.coordinates).setDOMContent(content).addTo(map)
 }
 
@@ -263,7 +264,7 @@ function createInteractionLockControl() {
       const update = () => {
         ;['dragPan', 'boxZoom', 'doubleClickZoom', 'touchZoomRotate', 'scrollZoom'].forEach((key) => currentMap[key]?.[enabled ? 'enable' : 'disable']())
         button.className = `maplibregl-ctrl-icon bus-map__interaction-${enabled ? 'allow' : 'lock'}`
-        button.setAttribute('aria-label', props.language === 'zh' ? (enabled ? '锁定地图交互' : '解锁地图交互') : (enabled ? 'Lock map interactions' : 'Unlock map interactions'))
+        button.setAttribute('aria-label', busText(enabled ? 'lockMap' : 'unlockMap', {}, props.language))
         button.title = button.getAttribute('aria-label')
       }
       button.type = 'button'
@@ -328,7 +329,7 @@ async function initialise() {
     map.on('load', () => { loaded = true; addLayers(); fitToStops(); refresh(); requestAnimationFrame(() => mapElement.value?.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show')); loading.value = false })
     map.on('error', (event) => {
       if (!loaded && event.error) {
-        mapError.value = `${props.language === 'zh' ? '地图不可用：' : 'Map unavailable: '}${event.error.message}`
+        mapError.value = `${busText('mapUnavailable', {}, props.language)}${event.error.message}`
         loading.value = false
       }
     })
@@ -340,7 +341,7 @@ async function initialise() {
       }).catch((error) => console.error(`Failed to load ${kind} map icon:`, error))
     }
   } catch (error) {
-    mapError.value = `${props.language === 'zh' ? '地图不可用：' : 'Map unavailable: '}${error.message || error}`
+    mapError.value = `${busText('mapUnavailable', {}, props.language)}${error.message || error}`
     loading.value = false
     releaseProtocol()
   }

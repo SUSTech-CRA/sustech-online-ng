@@ -1,11 +1,12 @@
 <template>
-  <div class="vehicle-legend" :aria-label="language === 'zh' ? '车型图例' : 'Vehicle legend'">
-    <span><i v-if="textMarkers" class="vehicle-legend__marker" :style="{ color: vehicleTextColor('BUS') }" aria-hidden="true">1</i><BusVehicleIconV2 v-else type="BUS" aria-hidden="true" />{{ language === 'zh' ? '巴士' : 'Bus' }}</span>
-    <span><i v-if="textMarkers" class="vehicle-legend__marker shuttle" :style="{ color: vehicleTextColor('SHUTTLE') }" aria-hidden="true">1</i><BusVehicleIconV2 v-else type="SHUTTLE" aria-hidden="true" />{{ language === 'zh' ? '电瓶车' : 'EV Shuttle' }}</span>
+  <div class="vehicle-legend" :aria-label="busText('vehicleLegend', {}, language)">
+    <span><i v-if="textMarkers" class="vehicle-legend__marker" :style="{ color: vehicleTextColor('BUS') }" aria-hidden="true">1</i><BusVehicleIconV2 v-else type="BUS" aria-hidden="true" />{{ busText('bus', {}, language) }}</span>
+    <span><i v-if="textMarkers" class="vehicle-legend__marker shuttle" :style="{ color: vehicleTextColor('SHUTTLE') }" aria-hidden="true">1</i><BusVehicleIconV2 v-else type="SHUTTLE" aria-hidden="true" />{{ busText('shuttle', {}, language) }}</span>
   </div>
 </template>
 
 <script setup>
+import { busText } from './i18n.mjs'
 import BusVehicleIconV2 from './BusVehicleIconV2.vue'
 import { vehicleTextColor } from './core.mjs'
 defineProps({ language: { type: String, default: 'zh' }, textMarkers: Boolean })

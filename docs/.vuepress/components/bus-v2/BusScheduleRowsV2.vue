@@ -1,9 +1,9 @@
 <template>
   <div class="schedule-toolbar">
-    <div class="schedule-legend" :aria-label="text('时刻表图例', 'Schedule legend')">
-      <span><i class="swatch bus" />{{ text('巴士', 'Bus') }}</span><span><i class="swatch shuttle" />{{ text('电瓶车', 'EV Shuttle') }}</span><span><b class="time bus next">07:20</b>{{ text('下一班', 'Next') }}</span><span><b class="time bus running">07:10</b>{{ text('运行中', 'Running') }}</span>
+    <div class="schedule-legend" :aria-label="busText('scheduleLegend', {}, language)">
+      <span><i class="swatch bus" />{{ busText('bus', {}, language) }}</span><span><i class="swatch shuttle" />{{ busText('shuttle', {}, language) }}</span><span><b class="time bus next">07:20</b>{{ busText('nextTrip', {}, language) }}</span><span><b class="time bus running">07:10</b>{{ busText('running', {}, language) }}</span>
     </div>
-    <label class="schedule-filter"><input v-model="activeOnly" type="checkbox"> {{ text('仅显示运行中/待发车', 'Only running/upcoming') }}</label>
+    <label class="schedule-filter"><input v-model="activeOnly" type="checkbox"> {{ busText('activeTripsOnly', {}, language) }}</label>
   </div>
   <div class="schedule-list">
     <article v-for="group in groups" :key="group.key" class="schedule-row">
@@ -12,14 +12,15 @@
       </div>
       <div class="times">
         <span v-for="(item, index) in displayedTimes(group)" :key="index" :class="['time', item.status, item.vehicleType?.toLowerCase(), { changed: item.change === 'CANCELLED' || item.change === 'EXTRA' }]" :title="item.note || undefined"><del v-if="item.change === 'CANCELLED'">{{ item.time }}</del><template v-else>{{ item.time }}</template><small v-if="changeLabel(item)"> {{ changeLabel(item) }}</small></span>
-        <span v-if="!displayedTimes(group).length" class="muted">{{ text('无运行中或待发车班次', 'No running or upcoming trips') }}</span>
-        <button v-if="isCollapsed(group.key) && visibleTimes(group.times).length > 1" class="ellipsis" type="button" :aria-label="text('展开线路时刻表', 'Expand route schedule')" @click="toggleRoute(group.key)">······</button>
+        <span v-if="!displayedTimes(group).length" class="muted">{{ busText('noActiveTrips', {}, language) }}</span>
+        <button v-if="isCollapsed(group.key) && visibleTimes(group.times).length > 1" class="ellipsis" type="button" :aria-label="busText('expandSchedule', {}, language)" @click="toggleRoute(group.key)">······</button>
       </div>
     </article>
   </div>
 </template>
 
 <script setup>
+import { busText } from './i18n.mjs'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { serviceTypeLabel } from './core.mjs'
 
@@ -28,9 +29,8 @@ const activeOnly = ref(true)
 const collapsedRoutes = ref(new Set())
 const portrait = ref(false)
 let orientationQuery
-const text = (zh, en) => props.language === 'zh' ? zh : en
-const changeLabel = (item) => ({ EXTRA: text('加班', 'Extra'), CANCELLED: text('停运', 'Cancelled') })[item.change] || ''
-const serviceLabel = (group) => [group.serviceType && group.serviceType !== 'NORMAL' ? serviceTypeLabel(group.serviceType, props.language) : '', group.vehicleTypes?.map((type) => type === 'SHUTTLE' ? text('电瓶车', 'EV Shuttle') : type === 'BUS' ? text('巴士', 'Bus') : type).join(' / ')].filter(Boolean).join(' · ') || text('常规服务', 'Normal service')
+const changeLabel = (item) => ({ EXTRA: busText('extraTrip', {}, props.language), CANCELLED: busText('cancelledTrip', {}, props.language) })[item.change] || ''
+const serviceLabel = (group) => [group.serviceType && group.serviceType !== 'NORMAL' ? serviceTypeLabel(group.serviceType, props.language) : '', group.vehicleTypes?.map((type) => type === 'SHUTTLE' ? busText('shuttle', {}, props.language) : type === 'BUS' ? busText('bus', {}, props.language) : type).join(' / ')].filter(Boolean).join(' · ') || busText('normalService', {}, props.language)
 const visibleTimes = (times) => activeOnly.value ? times.filter((item) => item.status !== 'past') : times
 const isCollapsed = (groupKey) => portrait.value && collapsedRoutes.value.has(groupKey)
 const displayedTimes = (group) => isCollapsed(group.key) ? visibleTimes(group.times).slice(0, 1) : visibleTimes(group.times)

@@ -1,17 +1,17 @@
 <template>
   <main class="bus-detail" :lang="busLanguage === 'zh' ? 'zh-CN' : 'en'">
-    <BusRefreshButton :remaining="refreshRemaining" :label="busLanguage === 'zh' ? '立即刷新' : 'Refresh now'" @refresh="refresh" />
+    <BusRefreshButton :remaining="refreshRemaining" :label="busText('refreshNow')" @refresh="refresh" />
     <div class="detail-head">
       <div>
-        <p class="eyebrow">{{ label('route') }}</p>
+        <p class="eyebrow">{{ busText('routeLabel') }}</p>
         <h1 v-if="route">{{ displayName(route, busLanguage) }}</h1>
-        <h1 v-else>{{ label('route') }}</h1>
+        <h1 v-else>{{ busText('routeLabel') }}</h1>
       </div>
       <div class="head-actions">
-        <a class="plain-button" href="/transport/bustimer.html" :aria-label="label('home')" :title="label('home')">🏠</a>
+        <a class="plain-button" href="/transport/bustimer.html" :aria-label="busText('home')" :title="busText('home')">🏠</a>
         <button type="button" class="plain-button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button>
         <button v-if="route" type="button" class="plain-button" :aria-pressed="favorite" @click="toggleFavorite('route', route.id)">
-          {{ favorite ? label('saved') : label('save') }}
+          {{ favorite ? busText('saved') : busText('save') }}
         </button>
       </div>
     </div>
@@ -22,21 +22,21 @@
     <template v-else-if="route">
       <section class="panel route-summary" :style="{ '--route-color': route.color || '#2878c8' }">
         <span class="route-swatch" aria-hidden="true" />
-        <div><strong>{{ statusText(route.operation_status) }}</strong><span>{{ route.service_time || label('noServiceTime') }}</span></div>
-        <button type="button" class="plain-button" :aria-expanded="showSchedules" @click="toggleSchedules">{{ label('timetable') }}</button>
+        <div><strong>{{ statusText(route.operation_status) }}</strong><span>{{ route.service_time || busText('noServiceTime') }}</span></div>
+        <button type="button" class="plain-button" :aria-expanded="showSchedules" @click="toggleSchedules">{{ busText('timetable') }}</button>
       </section>
 
-      <section v-if="directions.length > 1" class="direction-tabs" :aria-label="label('direction')">
+      <section v-if="directions.length > 1" class="direction-tabs" :aria-label="busText('direction')">
         <button v-for="item in directions" :key="item.id" type="button" :class="{ active: item.id === directionId }" :aria-pressed="item.id === directionId" @click="selectDirection(item.id)">{{ displayName(item, busLanguage) }}</button>
       </section>
 
       <section v-if="showSchedules" class="panel schedules">
-        <div class="section-head"><h3>{{ label('timetable') }}</h3><button type="button" class="plain-button" @click="showSchedules = false">{{ label('close') }}</button></div>
+        <div class="section-head"><h3>{{ busText('timetable') }}</h3><button type="button" class="plain-button" @click="showSchedules = false">{{ busText('close') }}</button></div>
         <p v-if="scheduleLoading" class="muted">{{ busText('loading') }}</p>
         <p v-else-if="scheduleError" class="muted">{{ busText('unavailable') }}</p>
         <p v-else-if="!scheduleGroups.length" class="muted">{{ busText('empty') }}</p>
         <BusScheduleRowsV2 v-else :groups="scheduleGroups" :language="busLanguage" />
-        <a class="all-link" href="/transport/bustimer.html#schedules">{{ label('allSchedules') }}</a>
+        <a class="all-link" href="/transport/bustimer.html#schedules">{{ busText('allSchedules') }}</a>
       </section>
 
       <section class="panel notices">
@@ -46,7 +46,7 @@
       </section>
 
       <section v-if="selectedStop" class="panel arrivals" aria-live="polite">
-        <div class="section-head"><div class="selected-stop-title"><p class="eyebrow">{{ label('selectedStop') }}</p><h3><a :href="`${stopHref}${encodeURIComponent(selectedStop.id)}`">{{ routeStopName(selectedStop) }}</a></h3></div><button v-if="selectedArrivals.length > 2" type="button" class="plain-button" :aria-expanded="allArrivals" @click="allArrivals = !allArrivals">{{ allArrivals ? label('collapse') : label('allArrivals') }}</button></div>
+        <div class="section-head"><div class="selected-stop-title"><p class="eyebrow">{{ busText('selectedStop') }}</p><h3><a :href="`${stopHref}${encodeURIComponent(selectedStop.id)}`">{{ routeStopName(selectedStop) }}</a></h3></div><button v-if="selectedArrivals.length > 2" type="button" class="plain-button" :aria-expanded="allArrivals" @click="allArrivals = !allArrivals">{{ allArrivals ? busText('collapse') : busText('allArrivals') }}</button></div>
         <p v-if="arrivalState.loading && !arrivalState.items.length" class="muted">{{ busText('loading') }}</p>
         <p v-else-if="arrivalState.error && !arrivalState.items.length" class="muted">{{ busText('unavailable') }}</p>
         <p v-else-if="!selectedArrivals.length" class="muted">{{ busText('empty') }}</p>
@@ -54,7 +54,7 @@
       </section>
 
       <section class="panel route-stops" :style="{ '--route-color': route.color || '#2878c8' }">
-        <div class="section-head"><h3>{{ label('stops') }}</h3><small>{{ directionVehicles.length }} {{ label('vehicles') }}</small></div>
+        <div class="section-head"><h3>{{ busText('stops') }}</h3><small>{{ directionVehicles.length }} {{ busText('vehicleCountUnit') }}</small></div>
         <BusVehicleLegendV2 :language="busLanguage" />
         <p v-if="!currentDirection?.stops?.length" class="muted">{{ busText('empty') }}</p>
         <ol v-else>
@@ -68,8 +68,8 @@
         </ol>
       </section>
 
-      <section class="map-slot" :aria-label="label('map')">
-        <h3>{{ label('map') }}</h3>
+      <section class="map-slot" :aria-label="busText('map')">
+        <h3>{{ busText('map') }}</h3>
         <slot v-if="$slots.map" name="map" :route-id="route.id" :direction-id="directionId" />
         <BusMapV2 v-else :routes="[route]" :vehicles="vehicles" :stops="stops" :route-id="route.id" :language="busLanguage" />
       </section>
@@ -81,7 +81,7 @@
 import BusVehicleIconV2 from './BusVehicleIconV2.vue'
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { busApi, publicApi } from './api.mjs'
-import { displayName, displayStopName, formatLocalDateTime, realtimeArrivalText, serviceTypeLabel, unavailableReasonTextKey } from './core.mjs'
+import { formatBusTime, busServiceMinutes, displayName, displayStopName, formatLocalDateTime, realtimeArrivalText, serviceTypeLabel, unavailableReasonTextKey } from './core.mjs'
 import { groupSchedules } from './bus-v2-helpers.mjs'
 import { isFavorite, loadFavorites, toggleFavorite } from './favorites.mjs'
 import { busLanguage, busText, setBusLanguage } from './i18n.mjs'
@@ -111,22 +111,20 @@ const routeNotices = computed(() => notices.value.filter((notice) => (!notice.ro
 const selectedArrivals = computed(() => arrivalState.value.items.filter((item) => item.route_id === route.value?.id && (item.route_direction_id || item.direction_id) === directionId.value && (!item.stop_id || item.stop_id === selectedStopId.value)))
 const visibleArrivals = computed(() => allArrivals.value ? selectedArrivals.value : selectedArrivals.value.slice(0, 2))
 const currentSchedules = computed(() => schedules.value.filter((item) => item.route_id === route.value?.id && item.route_direction_id === directionId.value))
-const nowMinutes = computed(() => now.value.getHours() * 60 + now.value.getMinutes())
+const nowMinutes = computed(() => busServiceMinutes(now.value))
 const scheduleGroups = computed(() => groupSchedules(currentSchedules.value, nowMinutes.value, route.value ? [route.value] : []).map((item) => ({ ...item, color: route.value?.color, routeName: displayName(route.value, busLanguage.value) || route.value?.id, directionName: displayName(currentDirection.value, busLanguage.value) || directionId.value })))
 
-const labels = { zh: { route: '线路', home: '返回首页', saved: '已收藏', save: '收藏', noServiceTime: '未提供服务时间', timetable: '时刻表', direction: '方向', close: '收起', allSchedules: '查看全部时刻表', selectedStop: '当前站点', allArrivals: '查看全部到站', collapse: '收起', stops: '站点', vehicles: '车辆', map: '线路地图', normal: '正常运营', suspended: '暂停运营', updated: '更新于 {time}', planned: '计划时间', realTime: '实时预测', minutes: '{minutes} 分钟' }, en: { route: 'Route', home: 'Back to home', saved: 'Saved', save: 'Save', noServiceTime: 'Service time unavailable', timetable: 'Timetable', direction: 'Direction', close: 'Close', allSchedules: 'All schedules', selectedStop: 'Selected stop', allArrivals: 'All arrivals', collapse: 'Show less', stops: 'Stops', vehicles: 'vehicles', map: 'Route map', normal: 'In service', suspended: 'Suspended', updated: 'Updated {time}', planned: 'Scheduled time', realTime: 'Real-time prediction', minutes: '{minutes} min' } }
-const label = (key, values = {}) => (labels[busLanguage.value][key] || key).replace(/\{(\w+)\}/g, (_, name) => values[name] ?? '')
 const noticeTitle = (notice) => notice[busLanguage.value === 'en' ? 'title_en' : 'title_zh'] || notice.title_zh || notice.title_en
 const noticeTime = (notice) => formatLocalDateTime(notice.starts_at)
 const isNoticeOpen = (notice) => noticeIsOpen(noticeOpenStates.value, notice.id)
 const rememberNoticeOpen = (notice, event) => saveNoticeOpenState(noticeOpenStates.value, notice.id, event.target.open)
-const statusText = (value) => value === 'SUSPENDED' ? label('suspended') : label('normal')
+const statusText = (value) => value === 'SUSPENDED' ? busText('suspended') : busText('normal')
 const arrivalKey = (item) => `${item.route_direction_id}-${item.trip_id || item.planned_arrival_at || item.updated_at || item.eta_minutes}`
-function time(value) { return value ? new Date(value).toLocaleTimeString(busLanguage.value === 'zh' ? 'zh-CN' : 'en', { hour: '2-digit', minute: '2-digit', hour12: false }) : '' }
+function time(value) { return value ? formatBusTime(value, busLanguage.value) : '' }
 const arrivalSource = (item) => String(item.source || '').toLowerCase().replace('-', '_')
 function arrivalText(item) { return arrivalSource(item) === 'real_time' || arrivalSource(item) === 'realtime' ? [realtimeArrivalText(item, busLanguage.value), arrivalDistance(item)].filter(Boolean).join(' ') : arrivalSource(item) === 'planned' ? busText('planAt', { time: time(item.planned_arrival_at) }) : busText(unavailableReasonTextKey(item.unavailable_reason)) }
 function arrivalDistance(item) { const meters = Number(item.distance ?? item.distance_to_stop ?? item.distance_to_next_stop ?? item.distance_meters); return Number.isFinite(meters) ? `${Math.round(meters)}m` : '' }
-function arrivalMeta(item) { return arrivalSource(item) === 'real_time' || arrivalSource(item) === 'realtime' ? `${label('realTime')}${item.updated_at ? ` · ${label('updated', { time: time(item.updated_at) })}` : ''}` : arrivalSource(item) === 'planned' ? label('planned') : item.updated_at ? label('updated', { time: time(item.updated_at) }) : '' }
+function arrivalMeta(item) { return arrivalSource(item) === 'real_time' || arrivalSource(item) === 'realtime' ? `${busText('realTime')}${item.updated_at ? ` · ${busText('updated', { time: time(item.updated_at) })}` : ''}` : arrivalSource(item) === 'planned' ? busText('planned') : item.updated_at ? busText('updated', { time: time(item.updated_at) }) : '' }
 function routeStopName(stop) { return displayStopName({ ...stops.value.find((item) => item.id === stop?.id), ...stop }, busLanguage.value) || stop?.id || '' }
 function stopFor(vehicle) { const position = vehicle.current_position || {}; return position.next_stop_id || currentDirection.value?.stops?.find((stop) => stop.sequence === (position.next_stop_num || vehicle.route_sequence + (position.type === 'between_stops' ? 1 : 0)))?.id }
 const atStop = (stop) => directionVehicles.value.filter((vehicle) => vehicle.current_position?.type === 'at_stop' && stopFor(vehicle) === stop.id || !vehicle.current_position && vehicle.route_sequence === stop.sequence)

@@ -1,11 +1,12 @@
 <template>
-  <button class="bus-refresh-button" type="button" :aria-label="label" :title="label" @click="handleClick">
+  <button class="bus-refresh-button" type="button" :aria-label="label || busText('refreshNow')" :title="label || busText('refreshNow')" @click="handleClick">
     <svg viewBox="0 0 40 40" aria-hidden="true" class="bus-refresh-button__progress"><circle class="track" cx="20" cy="20" r="18" /><circle class="value" cx="20" cy="20" r="18" :style="{ strokeDashoffset: 113.1 * (1 - remaining / total) }" /></svg>
     <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
   </button>
 </template>
 <script setup>
-const props = defineProps({ remaining: { type: Number, default: 10 }, total: { type: Number, default: 10 }, label: { type: String, default: 'Refresh' }, reload: Boolean })
+import { busText } from './i18n.mjs'
+const props = defineProps({ remaining: { type: Number, default: 10 }, total: { type: Number, default: 10 }, label: { type: String, default: '' }, reload: Boolean })
 const emit = defineEmits(['refresh'])
 function handleClick() { if (props.reload && typeof window !== 'undefined') window.location.reload(); else emit('refresh') }
 </script>

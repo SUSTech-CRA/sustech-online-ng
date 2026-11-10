@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { closestArrivalsByRoute, displayName, displayStopName, haversineMeters, isTerminalArrival, lineBearingAt, matchesSearch, realtimeArrivalText, sortArrivalsByEstimatedTime, unavailableReasonTextKey, vehicleBearingAt, vehicleLocationText } from './core.mjs'
+import { isNearbyArrivalVisible } from './core.mjs'
+import { nearbyStopCandidates, closestArrivalsByRoute, displayName, displayStopName, haversineMeters, isTerminalArrival, lineBearingAt, matchesSearch, realtimeArrivalText, sortArrivalsByEstimatedTime, unavailableReasonTextKey, vehicleBearingAt, vehicleLocationText } from './core.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
 import { isCampusRoute, orderedStopProgress, serviceTypeLabel, vehicleRouteLabel, vehicleTextColor } from './core.mjs'
 
@@ -103,4 +104,38 @@ test('vehicle locations show route intervals and stops', () => {
   const stops = [{ id: 'a', group_name_zh: '欣园' }, { id: 'b', group_name_zh: '慧园' }]
   assert.equal(vehicleLocationText({ route_direction_id: 'outbound', current_position: { type: 'between_stops', next_stop_id: 'b', distance_to_next_stop: 238 } }, route, stops), '欣园 1 - 慧园 1 238m')
   assert.equal(vehicleLocationText({ route_direction_id: 'outbound', current_position: { type: 'at_stop', next_stop_id: 'a' } }, route, stops), '欣园 1 进站')
+})
+
+test('station selection returns all group platforms, including saved and unlocated platforms', () => {
+  const platforms = Array.from({ length: 7 }, (_, index) => ({ id: `dorm-${index + 1}`, group_id: 'dorm' }))
+  const stops = [...platforms, { id: 'other', group_id: 'other', latitude: 22, longitude: 114 }]
+  assert.deepEqual(nearbyStopCandidates(stops, null, ['dorm-1'], platforms[1]), platforms)
+  const ungrouped = [{ id: 'a' }, { id: 'b', group_id: null }]
+  assert.deepEqual(nearbyStopCandidates(ungrouped, null, [], ungrouped[0]), [ungrouped[0]])
+})
+
+test('location mode keeps distance ordering and excludes favorites and invalid coordinates', () => {
+  const center = { latitude: 22, longitude: 114 }
+  const stops = [
+    { id: 'far', latitude: 22.01, longitude: 114 },
+    { id: 'saved', ...center },
+    { id: 'near', latitude: 22.002, longitude: 114 },
+    { id: 'invalid', latitude: null, longitude: 114 },
+  ]
+  const result = nearbyStopCandidates(stops, center, ['saved'])
+  assert.deepEqual(result.map(stop => stop.id), ['near', 'far'])
+  assert.ok(result[0].distance < result[1].distance)
+})
+
+test('collapsed nearby arrivals hide inactive services and arrivals beyond 30 minutes', () => {
+  const now = Date.parse('2026-11-10T08:00:00+08:00')
+  for (const reason of ['LAST_SERVICE_PASSED', 'NOT_OPERATING', 'not_operating']) {
+    assert.equal(isNearbyArrivalVisible({ unavailable_reason: reason }, now), false)
+  }
+  for (const minutes of [0, 29, 30, 30.01, 60]) {
+    assert.equal(isNearbyArrivalVisible({ source: 'real_time', eta_minutes: minutes }, now), minutes <= 30)
+    assert.equal(isNearbyArrivalVisible({ source: 'planned', planned_arrival_at: new Date(now + minutes * 60000).toISOString() }, now), minutes <= 30)
+  }
+  assert.equal(isNearbyArrivalVisible({ source: 'unavailable', unavailable_reason: 'UNKNOWN' }, now), true)
+  assert.equal(isNearbyArrivalVisible({ source: 'planned', planned_arrival_at: 'invalid' }, now), true)
 })

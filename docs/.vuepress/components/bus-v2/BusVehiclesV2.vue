@@ -1,17 +1,18 @@
 <template>
   <section class="bus-vehicles" :lang="language === 'zh' ? 'zh-CN' : 'en'">
-    <header><h3>{{ text('所有车辆实时位置', 'All live vehicles') }}</h3><label class="all-vehicles"><input :checked="props.showAllVehicles" type="checkbox" @change="emit('update:showAllVehicles', $event.target.checked)"> {{ text('所有车辆（包括暂停服务）', 'All vehicles (including not in service)') }}</label></header>
+    <header><h3>{{ busText('liveVehicles') }}</h3><label class="all-vehicles"><input :checked="props.showAllVehicles" type="checkbox" @change="emit('update:showAllVehicles', $event.target.checked)"> {{ busText('includeInactive') }}</label></header>
     <p v-if="props.loading" class="state muted">{{ busText('loading') }}</p>
     <p v-else-if="props.error" class="state error" role="alert">{{ busText('unavailable') }}</p>
     <template v-else>
-      <div class="map-head"><time v-if="lastUpdated">{{ text('更新于', 'Updated') }} {{ lastUpdated }}</time></div>
+      <div class="map-head"><time v-if="lastUpdated">{{ busText('updatedPrefix') }} {{ lastUpdated }}</time></div>
       <BusMapV2 :routes="props.routes" :vehicles="props.vehicles" :stops="props.stops" :language="language" neutral />
-      <p v-if="!props.vehicles.length" class="state muted">{{ text('当前没有运营中的车辆。', 'No vehicles are currently in service.') }}</p>
+      <p v-if="!props.vehicles.length" class="state muted">{{ busText('noLiveVehicles') }}</p>
     </template>
   </section>
 </template>
 
 <script setup>
+import { formatBusDateTime } from './core.mjs'
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import BusMapV2 from './BusMapV2.vue'
 import { busLanguage, busText } from './i18n.mjs'
@@ -21,13 +22,12 @@ const emit = defineEmits(['update:showAllVehicles'])
 const language = busLanguage
 const now = ref(Date.now())
 let clock
-const text = (zh, en) => language.value === 'zh' ? zh : en
 const lastUpdated = computed(() => {
   const times = props.vehicles.map((vehicle) => vehicle.source_updated_at || vehicle.received_at).filter(Boolean).map(Date.parse).filter(Number.isFinite)
   if (!times.length) return ''
   const latest = Math.max(...times), age = Math.max(0, Math.floor((now.value - latest) / 1000))
-  if (age <= 120) return language.value === 'zh' ? `${age}s前` : `${age}s ago`
-  return new Date(latest).toLocaleString(language.value === 'zh' ? 'zh-CN' : 'en', { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' })
+  if (age <= 120) return busText('secondsAgo', { seconds: age })
+  return formatBusDateTime(latest, language.value)
 })
 onMounted(() => { clock = setInterval(() => { now.value = Date.now() }, 1000) })
 onBeforeUnmount(() => clearInterval(clock))

@@ -1,3 +1,5 @@
+import { busText } from './i18n.mjs'
+
 const DEV_API_BASE = 'https://buseta.sustcra.com'
 const PROD_API_BASE = 'https://buseta.sustcra.com'
 
@@ -7,8 +9,8 @@ export const isCampusRoute = (routeId) => ['line1', 'line2', 'k1', 'k2'].include
 export const vehicleRouteLabel = (routeId) => ({ line1: '1', line2: '2', k1: 'K1', k1a: 'K1', k2: 'K2', k2a: 'K2' })[String(routeId || '').toLowerCase()] || ''
 export const vehicleTextColor = (vehicleType) => String(vehicleType).toUpperCase() === 'SHUTTLE' ? '#193e29' : '#754600'
 export function serviceTypeLabel(serviceType, language = 'zh') {
-  const labels = { NORMAL: ['常规服务', 'Normal service'], SHORT_TURN: ['区间车', 'Short turn'], EXPRESS: ['快线', 'Express'] }
-  return labels[serviceType]?.[language === 'en' ? 1 : 0] || serviceType || ''
+  const key = { NORMAL: 'normalService', SHORT_TURN: 'shortTurn', EXPRESS: 'express' }[serviceType]
+  return key ? busText(key, {}, language) : serviceType || ''
 }
 
 export function displayName(item, language = 'zh') {
@@ -26,7 +28,25 @@ export function displayStopName(stop, language = 'zh') {
 export function formatLocalDateTime(value) {
   if (!value) return ''
   const date = new Date(value)
-  return Number.isNaN(date.getTime()) ? '' : date.toLocaleString('sv-SE', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false })
+  return Number.isNaN(date.getTime()) ? '' : date.toLocaleString('sv-SE', { timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false })
+}
+
+export function formatBusTime(value, language = 'zh') {
+  if (!value) return ''
+  return new Date(value).toLocaleTimeString(language === 'zh' ? 'zh-CN' : 'en', { timeZone: 'Asia/Shanghai', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
+}
+
+export function formatBusDateTime(value, language = 'zh') {
+  return new Date(value).toLocaleString(language === 'zh' ? 'zh-CN' : 'en', { timeZone: 'Asia/Shanghai', hour: '2-digit', minute: '2-digit', hourCycle: 'h23', month: 'short', day: 'numeric' })
+}
+
+export function busServiceDate(value = new Date()) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Shanghai' }).format(value)
+}
+
+export function busServiceMinutes(value, serviceDate = busServiceDate(value)) {
+  const [hour, minute] = formatBusTime(value, 'en').split(':').map(Number)
+  return (Date.parse(busServiceDate(value)) - Date.parse(serviceDate)) / 60000 + hour * 60 + minute
 }
 
 export function isTerminalArrival(arrival, stopId, routes) {
@@ -52,6 +72,12 @@ export function sortArrivalsByEstimatedTime(items, nowMs = Date.now()) {
   })
 }
 
+export function isNearbyArrivalVisible(arrival, nowMs = Date.now()) {
+  if (['LAST_SERVICE_PASSED', 'NOT_OPERATING'].includes(String(arrival.unavailable_reason).toUpperCase())) return false
+  const estimatedAt = arrivalEstimatedAt(arrival, nowMs)
+  return !Number.isFinite(estimatedAt) || estimatedAt <= nowMs + 30 * 60000
+}
+
 export function closestArrivalsByRoute(items, nowMs = Date.now()) {
   const closest = new Map()
   for (const arrival of sortArrivalsByEstimatedTime(items, nowMs)) {
@@ -67,8 +93,8 @@ export function unavailableReasonTextKey(reason) {
 
 export function realtimeArrivalText(arrival, language = 'zh') {
   const minutes = Number(arrival?.eta_minutes)
-  if (arrival?.eta_minutes != null && minutes === 0) return language === 'zh' ? '车辆进站' : 'Arriving'
-  return language === 'zh' ? `${arrival?.eta_minutes} 分钟` : `${arrival?.eta_minutes} min`
+  if (arrival?.eta_minutes != null && minutes === 0) return busText('arriving', {}, language)
+  return busText('minutes', { minutes: arrival?.eta_minutes }, language)
 }
 
 export function matchesSearch(item, query, language = 'zh') {
@@ -184,5 +210,13 @@ export function vehicleLocationText(vehicle, route, stops = [], language = 'zh')
     const distance = Number(position.distance_to_next_stop)
     return [previousName && `${previousName} - ${nextName}`, Number.isFinite(distance) && `${Math.round(distance)}m`].filter(Boolean).join(' ')
   }
-  return language === 'zh' ? `${nextName} 进站` : `At ${nextName}`
+  return busText('atStop', { name: nextName }, language)
+}
+
+export function nearbyStopCandidates(stops, coords, favoriteIds = [], selectedStop) {
+  if (selectedStop) return stops.filter(stop => selectedStop.group_id ? stop.group_id === selectedStop.group_id : stop.id === selectedStop.id)
+  return stops.filter(stop => !favoriteIds.includes(stop.id) && Number.isFinite(stop.latitude) && Number.isFinite(stop.longitude))
+    .map(stop => ({ ...stop, distance: haversineMeters(coords.latitude, coords.longitude, stop.latitude, stop.longitude) }))
+    .sort((left, right) => left.distance - right.distance)
+    .slice(0, 6)
 }

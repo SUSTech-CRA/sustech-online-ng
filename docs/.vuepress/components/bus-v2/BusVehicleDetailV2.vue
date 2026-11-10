@@ -1,19 +1,20 @@
 <template>
   <article v-if="vehicle" class="vehicle-detail" :style="{ '--route-color': route?.color || vehicle.route_color || '#2878c8' }">
-    <div class="vehicle-detail__head"><strong>{{ name }}</strong><button v-if="closable" type="button" :aria-label="language === 'zh' ? '关闭' : 'Close'" @click="$emit('close')">×</button></div>
+    <div class="vehicle-detail__head"><strong>{{ name }}</strong><button v-if="closable" type="button" :aria-label="busText('closeDialog', {}, language)" @click="$emit('close')">×</button></div>
     <p><i />{{ routeName }} <span v-if="directionName">· {{ directionName }}</span></p>
     <dl>
-      <template v-if="vehicle.service_type"><dt>{{ language === 'zh' ? '服务类型' : 'Service' }}</dt><dd>{{ serviceTypeLabel(vehicle.service_type, language) }}</dd></template>
-      <dt>{{ language === 'zh' ? '车型' : 'Vehicle' }}</dt><dd>{{ vehicle.vehicle_type || '—' }}</dd>
-      <template v-if="locationText"><dt>{{ language === 'zh' ? '运行位置' : 'Position' }}</dt><dd>{{ locationText }}</dd></template>
-      <dt>{{ language === 'zh' ? '更新时间' : 'Updated' }}</dt><dd>{{ updatedText }}</dd>
+      <template v-if="vehicle.service_type"><dt>{{ busText('serviceType', {}, language) }}</dt><dd>{{ serviceTypeLabel(vehicle.service_type, language) }}</dd></template>
+      <dt>{{ busText('vehicleType', {}, language) }}</dt><dd>{{ vehicle.vehicle_type || '—' }}</dd>
+      <template v-if="locationText"><dt>{{ busText('position', {}, language) }}</dt><dd>{{ locationText }}</dd></template>
+      <dt>{{ busText('updatedLabel', {}, language) }}</dt><dd>{{ updatedText }}</dd>
     </dl>
   </article>
 </template>
 
 <script setup>
+import { busText } from './i18n.mjs'
 import { computed } from 'vue'
-import { displayName, serviceTypeLabel, vehicleLocationText } from './core.mjs'
+import { formatBusDateTime, displayName, serviceTypeLabel, vehicleLocationText } from './core.mjs'
 
 const props = defineProps({ vehicle: Object, routes: { type: Array, default: () => [] }, stops: { type: Array, default: () => [] }, language: { type: String, default: 'zh' }, closable: Boolean })
 defineEmits(['close'])
@@ -25,7 +26,7 @@ const directionName = computed(() => displayName(direction.value, props.language
 const locationText = computed(() => vehicleLocationText(props.vehicle, route.value, props.stops, props.language))
 const updatedText = computed(() => {
   const value = props.vehicle?.source_updated_at || props.vehicle?.received_at
-  return value ? new Date(value).toLocaleString(props.language === 'zh' ? 'zh-CN' : 'en', { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' }) : '—'
+  return value ? formatBusDateTime(value, props.language) : '—'
 })
 </script>
 

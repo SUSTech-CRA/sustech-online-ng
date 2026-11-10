@@ -1,10 +1,10 @@
 <template>
   <main class="bus-home" :lang="busLanguage === 'zh' ? 'zh-CN' : 'en'">
-    <BusRefreshButton :remaining="refreshRemaining" :label="busLanguage === 'zh' ? '立即刷新' : 'Refresh now'" @refresh="refresh" />
+    <BusRefreshButton :remaining="refreshRemaining" :label="busText('refreshNow')" @refresh="refresh" />
     <header class="bus-home__header">
       <div>
-        <h1>{{ busLanguage === 'zh' ? '校园巴士' : 'Campus bus' }}</h1>
-        <p>{{ busLanguage === 'zh' ? '实时到站与出行信息。所有到站时间均为预测，仅供参考。' : 'Live arrivals and travel information. All arrival times are estimates and for reference only.' }}</p>
+        <h1>{{ busText('campusBus') }}</h1>
+        <p>{{ busText('arrivalDisclaimer') }}</p>
       </div>
       <div><button class="text-button" type="button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button></div>
     </header>
@@ -12,7 +12,7 @@
     <section class="panel search" :aria-label="busText('search')">
       <label class="sr-only" for="bus-search">{{ busText('search') }}</label>
       <input id="bus-search" v-model="query" type="search" :placeholder="busText('search')" @keydown.enter="openFirstResult">
-      <button v-if="query" class="search-clear" type="button" :aria-label="busLanguage === 'zh' ? '清空搜索' : 'Clear search'" @click="query = ''">×</button>
+      <button v-if="query" class="search-clear" type="button" :aria-label="busText('clearSearch')" @click="query = ''">×</button>
       <div v-if="query" class="search-results">
         <button v-for="result in searchResults" :key="`${result.kind}-${result.item.id}`" type="button" @click="openResult(result)">
           <small>{{ busText(result.kind === 'route' ? 'routeLabel' : 'stopLabel') }}</small>
@@ -40,6 +40,8 @@
         </details>
       </section>
 
+      <div class="home-overview">
+      <div class="overview-stops">
       <section class="panel favorites">
         <h3>{{ busText('favorites') }}</h3>
         <div v-if="favoriteRoutes.length" class="quick-links">
@@ -55,7 +57,7 @@
         <p v-if="!favoriteRoutes.length && !favoriteStops.length" class="muted">{{ busText('noFavorites') }}</p>
       </section>
 
-      <section class="panel nearby">
+      <section ref="nearbyCard" class="panel nearby" tabindex="-1">
         <div class="section-title">
           <div class="nearby-title"><h3>{{ busText('nearby') }}</h3><span v-if="locationUpdatedText" class="location-updated">{{ locationUpdatedText }}</span></div>
           <button type="button" :disabled="locationState === 'loading'" @click="locate">{{ busText(locationState === 'loading' ? 'locating' : 'locate') }}</button>
@@ -67,22 +69,26 @@
         <article v-for="stop in visibleNearbyStops" :key="stop.id" class="nearby-stop">
           <div class="nearby-stop__head">
             <button type="button" class="link-title" @click="openStop(stop.id)">{{ displayStopName(stop, busLanguage) }}</button>
-            <span>{{ formatDistance(stop.distance) }}</span>
+            <span v-if="!selectedNearbyStop && Number.isFinite(stop.distance)">{{ formatDistance(stop.distance) }}</span>
           </div>
           <p v-if="arrivals[stop.id]?.loading && !arrivals[stop.id]?.items?.length" class="muted">{{ busText('loading') }}</p>
           <p v-else-if="arrivals[stop.id]?.error && !arrivals[stop.id]?.items?.length" class="muted">{{ busText('unavailable') }}</p>
           <ul v-else class="arrival-list">
-            <li v-for="(arrival, index) in arrivals[stop.id]?.items" :key="index">
+            <li v-for="(arrival, index) in visibleNearbyArrivals[stop.id]" :key="index">
               <i :style="{ background: arrival.route_color || '#2878c8' }" />
               <a class="arrival-link" :href="routeDirectionHref(arrival)">{{ arrivalName(arrival) }}</a>
               <span>{{ arrivalText(arrival) }}</span>
               <BusVehicleIconV2 v-if="showVehicleIcon(arrival)" :type="arrival.vehicle_type" role="img" :aria-label="vehicleLabel(arrival)" />
             </li>
-            <li v-if="!arrivals[stop.id]?.items?.length" class="muted">{{ busText('empty') }}</li>
+            <li v-if="!visibleNearbyArrivals[stop.id]?.length" class="muted">{{ busText('empty') }}</li>
           </ul>
         </article>
-        <button v-if="nearbyStops.length > 2" type="button" class="nearby-toggle" :aria-expanded="allNearbyStops" @click="allNearbyStops = !allNearbyStops">{{ allNearbyStops ? (busLanguage === 'zh' ? '收起' : 'Show less') : (busLanguage === 'zh' ? '展开' : 'Show all') }}</button>
+        <button v-if="canExpandNearbyStops" type="button" class="nearby-toggle" :aria-expanded="allNearbyStops" @click="allNearbyStops = !allNearbyStops">{{ allNearbyStops ? busText('collapse') : busText('showAll') }}</button>
       </section>
+
+      </div>
+      <section class="panel diagram-card"><BusRouteDiagramV2 :routes="routes" :stops="stops" :vehicles="vehicles" :loading="vehiclesLoading" :error="vehiclesError" @select-stop="selectDiagramStop" /></section>
+      </div>
 
       <section class="panel live-vehicles">
         <BusVehiclesV2 :routes="routes" :stops="stops" :vehicles="vehicles" :loading="vehiclesLoading" :error="vehiclesError" :show-all-vehicles="showAllVehicles" @update:show-all-vehicles="setShowAllVehicles" />
@@ -90,16 +96,17 @@
 
       <section id="schedules" class="panel schedules-card"><BusSchedulesV2 /></section>
 
-      <nav class="feature-links" :aria-label="busLanguage === 'zh' ? '巴士功能' : 'Bus features'"><a :href="filesHref"><span>{{ busText('files') }}</span></a></nav>
+      <nav class="feature-links" :aria-label="busText('busFeatures')"><a :href="filesHref"><span>{{ busText('files') }}</span></a></nav>
     </template>
   </main>
 </template>
 
 <script setup>
 import BusVehicleIconV2 from './BusVehicleIconV2.vue'
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import BusRouteDiagramV2 from './BusRouteDiagramV2.vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { busApi } from './api.mjs'
-import { displayName, displayStopName, formatDistance, formatLocalDateTime, haversineMeters, isTerminalArrival, matchesSearch, realtimeArrivalText, sortArrivalsByEstimatedTime, unavailableReasonTextKey } from './core.mjs'
+import { formatBusTime, busServiceDate, displayName, displayStopName, formatDistance, formatLocalDateTime, haversineMeters, nearbyStopCandidates, isNearbyArrivalVisible, isTerminalArrival, matchesSearch, realtimeArrivalText, sortArrivalsByEstimatedTime, unavailableReasonTextKey } from './core.mjs'
 import { favoriteRouteIds, favoriteStopIds, loadFavorites } from './favorites.mjs'
 import { busLanguage, busText, setBusLanguage } from './i18n.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
@@ -128,6 +135,8 @@ const showAllVehicles = ref(false)
 const query = ref('')
 const arrivals = ref({})
 const favoriteArrivals = ref({})
+const nearbyCard = ref(null)
+const selectedNearbyStop = ref(null)
 const locationState = ref('idle')
 const locationErrorKey = ref('')
 const nearbyStops = ref([])
@@ -149,15 +158,22 @@ const searchResults = computed(() => [
 const favoriteRoutes = computed(() => routes.value.filter((route) => favoriteRouteIds.value.includes(route.id)))
 const favoriteStops = computed(() => stops.value.filter((stop) => favoriteStopIds.value.includes(stop.id)))
 const favoriteStopCards = computed(() => favoriteStops.value.map((stop) => location.value ? { ...stop, distance: haversineMeters(location.value.latitude, location.value.longitude, stop.latitude, stop.longitude) } : stop))
-const visibleNearbyStops = computed(() => nearbyStops.value.slice(0, allNearbyStops.value ? 5 : 2))
+const visibleNearbyStops = computed(() => selectedNearbyStop.value ? nearbyStops.value : nearbyStops.value.slice(0, allNearbyStops.value ? 5 : 2))
+const visibleNearbyArrivals = computed(() => Object.fromEntries(Object.entries(arrivals.value).map(([id, state]) => [id, allNearbyStops.value ? state.items : (state.items || []).filter(arrival => isNearbyArrivalVisible(arrival))])))
+const canExpandNearbyStops = computed(() => allNearbyStops.value || (!selectedNearbyStop.value && nearbyStops.value.length > 2) || nearbyStops.value.some(stop => (arrivals.value[stop.id]?.items?.length || 0) > (visibleNearbyArrivals.value[stop.id]?.length || 0)))
 const locationUpdatedText = computed(() => {
+  if (selectedNearbyStop.value) {
+    const stop = selectedNearbyStop.value
+    const name = stop[`group_name_${busLanguage.value}`] || displayStopName(stop, busLanguage.value)
+    return busText('allPlatforms', { name })
+  }
   const updated = new Date(locationUpdatedAt.value)
   if (!Number.isFinite(updated.getTime())) return ''
   const now = new Date()
-  const time = updated.toLocaleTimeString(busLanguage.value === 'zh' ? 'zh-CN' : 'en', { hour: '2-digit', minute: '2-digit', hour12: false })
-  const date = `${String(updated.getMonth() + 1).padStart(2, '0')}-${String(updated.getDate()).padStart(2, '0')}`
-  const value = updated.toDateString() === now.toDateString() ? time : date
-  return busLanguage.value === 'zh' ? `位置更新于 ${value}` : `Location updated ${value}`
+  const time = formatBusTime(updated, busLanguage.value)
+  const date = busServiceDate(updated).slice(5)
+  const value = busServiceDate(updated) === busServiceDate(now) ? time : date
+  return busText('locationUpdated', { time: value })
 })
 
 function go(href, id) {
@@ -174,7 +190,7 @@ const noticeTime = (notice) => formatLocalDateTime(notice.starts_at)
 const isNoticeOpen = (notice, defaultOpen = false) => noticeIsOpen(noticeOpenStates.value, notice.id, defaultOpen)
 const rememberNoticeOpen = (notice, event) => saveNoticeOpenState(noticeOpenStates.value, notice.id, event.target.open)
 const arrivalName = (arrival) => `${arrival[busLanguage.value === 'en' ? 'route_name_en' : 'route_name_zh'] || arrival.route_name_zh || arrival.route_name_en || ''} · ${arrival[busLanguage.value === 'en' ? 'direction_name_en' : 'direction_name_zh'] || arrival.direction_name_zh || arrival.direction_name_en || ''}`
-const vehicleLabel = (arrival) => String(arrival.vehicle_type).toUpperCase() === 'SHUTTLE' ? (busLanguage.value === 'zh' ? '电瓶车' : 'EV Shuttle') : (busLanguage.value === 'zh' ? '巴士' : 'Bus')
+const vehicleLabel = (arrival) => String(arrival.vehicle_type).toUpperCase() === 'SHUTTLE' ? busText('shuttle') : busText('bus')
 const showVehicleIcon = (arrival) => !['LAST_SERVICE_PASSED', 'NOT_OPERATING'].includes(String(arrival.unavailable_reason).toUpperCase())
 
 function arrivalText(arrival) {
@@ -183,8 +199,8 @@ function arrivalText(arrival) {
     return [realtimeArrivalText(arrival, busLanguage.value), Number.isFinite(meters) && `${Math.round(meters)}m`].filter(Boolean).join(' ')
   }
   if (arrival.source === 'planned') {
-    const time = new Date(arrival.planned_arrival_at).toLocaleTimeString(busLanguage.value === 'zh' ? 'zh-CN' : 'en', { hour: '2-digit', minute: '2-digit', hour12: false })
-    return busLanguage.value === 'zh' ? `预计 ${time}` : `Scheduled ${time}`
+    const time = formatBusTime(arrival.planned_arrival_at, busLanguage.value)
+    return busText('planAt', { time })
   }
   return busText(unavailableReasonTextKey(arrival.unavailable_reason))
 }
@@ -203,16 +219,17 @@ async function loadArrivals(stopList, target = arrivals) {
       return { stop, hidden: false }
     }
   }))
-  if (target === arrivals) nearbyStops.value = results.filter(({ hidden }) => !hidden).map(({ stop }) => stop)
+  if (target === arrivals && stopList === nearbyCandidates) nearbyStops.value = results.filter(({ hidden }) => selectedNearbyStop.value || !hidden).map(({ stop }) => stop)
   return results
 }
 
 async function refresh() {
   const position = typeof window === 'undefined' ? null : [window.scrollX, window.scrollY]
+  const request = locationRequest
   refreshRemaining.value = 10
   await load(true)
   if (nearbyCandidates.length) await loadArrivals(nearbyCandidates)
-  if (position) window.scrollTo(position[0], position[1])
+  if (position && request === locationRequest) window.scrollTo(position[0], position[1])
 }
 
 function saveLocation(coords, updatedAt) {
@@ -220,11 +237,27 @@ function saveLocation(coords, updatedAt) {
   try { localStorage.setItem(LOCATION_CACHE_KEY, JSON.stringify(value)) } catch { /* storage is unavailable */ }
 }
 
+async function selectDiagramStop(id) {
+  const stop = stops.value.find(stop => stop.id === id)
+  if (!stop) return
+  ++locationRequest
+  allNearbyStops.value = false
+  locationErrorKey.value = ''
+  selectedNearbyStop.value = stop
+  nearbyCandidates = nearbyStopCandidates(stops.value, null, [], stop)
+  nearbyStops.value = nearbyCandidates
+  locationState.value = 'ready'
+  const arrivalsLoad = loadArrivals(nearbyCandidates)
+  await nextTick()
+  nearbyCard.value?.focus({ preventScroll: true })
+  nearbyCard.value?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  await arrivalsLoad
+}
+
 async function useLocation(coords, updatedAt) {
+  selectedNearbyStop.value = null
   location.value = { latitude: +coords.latitude, longitude: +coords.longitude }
-  nearbyCandidates = stops.value.filter((stop) => !favoriteStopIds.value.includes(stop.id) && Number.isFinite(stop.latitude) && Number.isFinite(stop.longitude)).map((stop) => ({
-    ...stop, distance: haversineMeters(coords.latitude, coords.longitude, stop.latitude, stop.longitude),
-  })).sort((left, right) => left.distance - right.distance).slice(0, 6)
+  nearbyCandidates = nearbyStopCandidates(stops.value, coords, favoriteStopIds.value)
   nearbyStops.value = nearbyCandidates
   locationUpdatedAt.value = updatedAt
   locationState.value = 'ready'
@@ -232,6 +265,7 @@ async function useLocation(coords, updatedAt) {
 }
 
 function useCachedLocation() {
+  if (locationRequest) return
   try {
     const cached = JSON.parse(localStorage.getItem(LOCATION_CACHE_KEY) || 'null')
     if (Number.isFinite(cached?.latitude) && Number.isFinite(cached?.longitude) && Number.isFinite(cached?.updatedAt)) useLocation(cached, cached.updatedAt)
@@ -290,7 +324,7 @@ async function loadStatic() {
 async function loadVehicles(refreshing = false) {
   const request = ++vehicleRequest
   if (!refreshing) { vehiclesLoading.value = true; vehiclesError.value = false }
-  try { const result = await busApi.vehicles(showAllVehicles.value); if (request === vehicleRequest) vehicles.value = Array.isArray(result) ? result : [] } catch { if (request === vehicleRequest && !refreshing) vehiclesError.value = true } finally { if (request === vehicleRequest && !refreshing) vehiclesLoading.value = false }
+  try { const result = await busApi.vehicles(showAllVehicles.value); if (request === vehicleRequest) { vehicles.value = Array.isArray(result) ? result : []; vehiclesError.value = false } } catch { if (request === vehicleRequest && !refreshing) vehiclesError.value = true } finally { if (request === vehicleRequest) vehiclesLoading.value = false }
 }
 
 function setShowAllVehicles(value) { showAllVehicles.value = value; loadVehicles() }
@@ -309,7 +343,7 @@ defineExpose({ load, locate, refresh, openRoute, openStop, favoriteRouteIds, fav
 .notices details[open] > summary > span::after { content: ' ▾'; }
 .bus-home { max-width: 900px; margin: 0 auto; color: var(--bus-v2-text); }
 .bus-home__header, .section-title, .nearby-stop__head { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
-.nearby-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem; } .location-updated { color: var(--bus-v2-muted); font-size: .875rem; font-weight: 400; white-space: nowrap; }
+.nearby-title { min-width: 0; flex: 1; display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem; } .location-updated { color: var(--bus-v2-muted); font-size: .875rem; font-weight: 400; overflow-wrap: anywhere; }
 .bus-home__header { margin: .5rem 0 .75rem; } .bus-home__header h1, .panel h3 { margin: 0; padding-top: 0; } .bus-home__header h1 { font-size: 1.4rem; line-height: 1.25; } .bus-home__header p, .muted { color: var(--bus-v2-muted); }
 .panel h3 { font-size: 1rem; line-height: 1.3; }
 .panel { margin: 1rem 0; padding: 1rem; border: 1px solid var(--bus-v2-border); border-radius: .6rem; background: var(--bus-v2-bg); }
@@ -320,7 +354,12 @@ defineExpose({ load, locate, refresh, openRoute, openStop, favoriteRouteIds, fav
 .spinner { width: 1em; height: 1em; border: 2px solid var(--bus-v2-border); border-top-color: var(--bus-v2-link); border-radius: 50%; animation: spin .8s linear infinite; } @keyframes spin { to { transform: rotate(360deg); } }
 details + details { border-top: 1px solid var(--bus-v2-border); } summary { display: flex; justify-content: space-between; padding: .65rem 0; cursor: pointer; font-weight: 600; } .markdown { margin: 1rem 0 0; padding-bottom: .25rem; } .markdown :deep(p) { margin: 1rem 0 0; } .markdown :deep(:first-child) { margin-top: 0; } .markdown :deep(:last-child) { margin-bottom: 0; } .markdown :deep(code) { padding: .1em .3em; background: var(--bus-v2-bg-alt); border-radius: .2em; }
 .section-title button, .status button, .text-button { padding: .4rem .65rem; border: 1px solid var(--bus-v2-border); border-radius: .35rem; background: transparent; color: inherit; } .text-button { border: 0; color: var(--bus-v2-link); }
-.nearby .section-title button { border-color: var(--bus-v2-link-soft); background: var(--bus-v2-link-soft); color: var(--bus-v2-link); font-weight: 600; }
+.nearby { scroll-margin-top: calc(var(--navbar-height, 3.6rem) + 1rem); }
+.home-overview > *, .overview-stops { min-width: 0; }
+@media (min-width: 1100px) { .home-overview { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; align-items: start; } }
+.nearby .section-title { flex-wrap: wrap; }
+.nearby-stop__head > span { white-space: nowrap; }
+.nearby .section-title button { flex-shrink: 0; border-color: var(--bus-v2-link-soft); background: var(--bus-v2-link-soft); color: var(--bus-v2-link); font-weight: 600; }
 .nearby-stop { padding: .75rem 0; border-top: 1px solid var(--bus-v2-border); } .nearby-stop__head { align-items: baseline; } .link-title { padding: 0; border: 0; background: transparent; color: var(--bus-v2-link); font-weight: 700; text-align: left; }
 .nearby-toggle { padding: .4rem .65rem; border: 1px solid var(--bus-v2-border); border-radius: .35rem; background: transparent; color: inherit; font: inherit; }
 .arrival-list { margin: .45rem 0 0; padding: 0; list-style: none; } .arrival-list li { display: grid; grid-template-columns: .35rem minmax(0, 1fr) auto 1rem; gap: .4rem; align-items: center; padding: .3rem 0; } .arrival-list i { width: .3rem; height: 1.2rem; border-radius: 2px; } .arrival-link { color: var(--bus-v2-link); text-decoration: none; } .arrival-link:hover, .arrival-link:focus-visible { text-decoration: underline; } .arrival-list .muted { display: block; }
