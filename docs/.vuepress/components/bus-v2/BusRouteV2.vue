@@ -3,54 +3,42 @@
     <BusRefreshButton :remaining="refreshRemaining" :label="busText('refreshNow')" @refresh="refresh" />
     <div class="detail-head">
       <div>
-        <p class="eyebrow">{{ busText('routeLabel') }}</p>
-        <h1 v-if="route">{{ displayName(route, busLanguage) }}</h1>
+        <h1 v-if="route">{{ busText('routeLabel') }}{{ busLanguage === 'zh' ? '：' : ': ' }}{{ displayName(route, busLanguage) }}</h1>
         <h1 v-else>{{ busText('routeLabel') }}</h1>
       </div>
-      <div class="head-actions">
-        <a class="plain-button" href="/transport/bustimer.html" :aria-label="busText('home')" :title="busText('home')">🏠</a>
-        <button type="button" class="plain-button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button>
-        <button v-if="route" type="button" class="plain-button" :aria-pressed="favorite" @click="toggleFavorite('route', route.id)">
-          {{ favorite ? busText('saved') : busText('save') }}
-        </button>
+      <div class="head-actions header-actions">
+        <a class="icon-button" href="/transport/bustimer.html" :aria-label="busText('home')" :title="busText('home')">🏠<span class="icon-label">{{ busText('homeShort') }}</span></a>
+        <button type="button" class="icon-button" :aria-pressed="showNotices" :aria-label="busText('announcements')" :title="busText('announcements')" @click="showNotices = !showNotices">📢<i v-if="hasImportantNotice" class="icon-dot" aria-hidden="true" /><span class="icon-label">{{ busText('noticesShort') }}</span></button>
+        <button v-if="route" type="button" class="icon-button" :aria-pressed="favorite" :aria-label="busText('favorites')" @click="toggleFavorite('route', route.id)">⭐<span class="icon-label">{{ favorite ? busText('saved') : busText('save') }}</span></button>
+        <button type="button" class="text-button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button>
       </div>
     </div>
+
+    <BusPanelPopupV2 :open="showNotices" :title="busText('announcements')" @close="showNotices = false">
+      <div class="notices">
+        <p v-if="!routeNotices.length" class="muted">{{ busText('empty') }}</p>
+        <details v-for="notice in routeNotices" :key="notice.id" :class="{ 'bus-notice--important': isImportantNotice(notice) }" :open="isNoticeOpen(notice)" @toggle="rememberNoticeOpen(notice, $event)"><summary><span>{{ noticeTitle(notice) }}</span><time v-if="noticeTime(notice)" :datetime="notice.starts_at">{{ noticeTime(notice) }}</time></summary><div class="markdown" v-html="renderNoticeMarkdown(notice.body_markdown)" /></details>
+      </div>
+    </BusPanelPopupV2>
 
     <section v-if="loading" class="panel status"><span class="spinner" aria-hidden="true" /> {{ busText('loading') }}</section>
     <section v-else-if="error" class="panel status error" role="alert"><strong>{{ busText('loadFailed') }}</strong><span>{{ error }}</span><button type="button" @click="load">{{ busText('retry') }}</button></section>
 
     <template v-else-if="route">
-      <section class="panel route-summary" :style="{ '--route-color': route.color || '#2878c8' }">
-        <span class="route-swatch" aria-hidden="true" />
-        <div><strong>{{ statusText(route.operation_status) }}</strong><span>{{ route.service_time || busText('noServiceTime') }}</span></div>
-        <button type="button" class="plain-button" :aria-expanded="showSchedules" @click="toggleSchedules">{{ busText('timetable') }}</button>
-      </section>
-
       <section v-if="directions.length > 1" class="direction-tabs" :aria-label="busText('direction')">
         <button v-for="item in directions" :key="item.id" type="button" :class="{ active: item.id === directionId }" :aria-pressed="item.id === directionId" @click="selectDirection(item.id)">{{ displayName(item, busLanguage) }}</button>
       </section>
 
-      <section v-if="showSchedules" class="panel schedules">
-        <div class="section-head"><h3>{{ busText('timetable') }}</h3><button type="button" class="plain-button" @click="showSchedules = false">{{ busText('close') }}</button></div>
+      <section class="panel schedules" :style="{ '--route-color': route.color || '#2878c8' }">
+        <h3>{{ busText('timetable') }}</h3>
         <p v-if="scheduleLoading" class="muted">{{ busText('loading') }}</p>
         <p v-else-if="scheduleError" class="muted">{{ busText('unavailable') }}</p>
         <p v-else-if="!scheduleGroups.length" class="muted">{{ busText('empty') }}</p>
         <BusScheduleRowsV2 v-else :groups="scheduleGroups" :language="busLanguage" />
-        <a class="all-link" href="/transport/bustimer.html#schedules">{{ busText('allSchedules') }}</a>
-      </section>
-
-      <section class="panel notices">
-        <h3>{{ busText('announcements') }}</h3>
-        <p v-if="!routeNotices.length" class="muted">{{ busText('empty') }}</p>
-        <details v-for="notice in routeNotices" :key="notice.id" :class="{ 'bus-notice--important': isImportantNotice(notice) }" :open="isNoticeOpen(notice)" @toggle="rememberNoticeOpen(notice, $event)"><summary><span>{{ noticeTitle(notice) }}</span><time v-if="noticeTime(notice)" :datetime="notice.starts_at">{{ noticeTime(notice) }}</time></summary><div class="markdown" v-html="renderNoticeMarkdown(notice.body_markdown)" /></details>
-      </section>
-
-      <section v-if="selectedStop" class="panel arrivals" aria-live="polite">
-        <div class="section-head"><div class="selected-stop-title"><p class="eyebrow">{{ busText('selectedStop') }}</p><h3><a :href="`${stopHref}${encodeURIComponent(selectedStop.id)}`">{{ routeStopName(selectedStop) }}</a></h3></div><button v-if="selectedArrivals.length > 2" type="button" class="plain-button" :aria-expanded="allArrivals" @click="allArrivals = !allArrivals">{{ allArrivals ? busText('collapse') : busText('allArrivals') }}</button></div>
-        <p v-if="arrivalState.loading && !arrivalState.items.length" class="muted">{{ busText('loading') }}</p>
-        <p v-else-if="arrivalState.error && !arrivalState.items.length" class="muted">{{ busText('unavailable') }}</p>
-        <p v-else-if="!selectedArrivals.length" class="muted">{{ busText('empty') }}</p>
-        <ul v-else class="arrival-list"><li v-for="(arrival, index) in visibleArrivals" :key="index"><span>{{ arrivalText(arrival) }}</span><small v-if="arrivalMeta(arrival) || (arrival.service_type && arrivalSource(arrival) !== 'unavailable')">{{ arrivalMeta(arrival) }}<template v-if="arrival.service_type && arrivalSource(arrival) !== 'unavailable'">{{ arrivalMeta(arrival) ? ' · ' : '' }}{{ serviceTypeLabel(arrival.service_type, busLanguage) }}</template></small></li></ul>
+        <div class="schedules-foot">
+          <div class="route-status"><span class="route-swatch" aria-hidden="true" /><strong>{{ statusText(route.operation_status) }}</strong><span>{{ route.service_time || busText('noServiceTime') }}</span></div>
+          <a class="all-link" href="/transport/bustimer.html#schedules">{{ busText('allSchedules') }}</a>
+        </div>
       </section>
 
       <section class="panel route-stops" :style="{ '--route-color': route.color || '#2878c8' }">
@@ -68,8 +56,8 @@
         </ol>
       </section>
 
-      <section class="map-slot" :aria-label="busText('map')">
-        <h3>{{ busText('map') }}</h3>
+      <section class="panel map-slot" :aria-label="busText('map')">
+        <h3>{{ displayName(route, busLanguage) }} · {{ busText('map') }}</h3>
         <slot v-if="$slots.map" name="map" :route-id="route.id" :direction-id="directionId" />
         <BusMapV2 v-else :routes="[route]" :vehicles="vehicles" :stops="stops" :route-id="route.id" :language="busLanguage" />
       </section>
@@ -81,13 +69,14 @@
 import BusVehicleIconV2 from './BusVehicleIconV2.vue'
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { busApi, publicApi } from './api.mjs'
-import { formatBusTime, busServiceMinutes, displayName, displayStopName, formatLocalDateTime, realtimeArrivalText, serviceTypeLabel, unavailableReasonTextKey } from './core.mjs'
+import { busServiceMinutes, displayName, displayStopName, formatLocalDateTime } from './core.mjs'
 import { groupSchedules } from './bus-v2-helpers.mjs'
 import { isFavorite, loadFavorites, toggleFavorite } from './favorites.mjs'
 import { busLanguage, busText, setBusLanguage } from './i18n.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
 import { isImportantNotice, loadNoticeOpenStates, noticeIsOpen, saveNoticeOpenState } from './notice-state.mjs'
 import BusMapV2 from './BusMapV2.vue'
+import BusPanelPopupV2 from './BusPanelPopupV2.vue'
 import BusScheduleRowsV2 from './BusScheduleRowsV2.vue'
 import BusVehicleDetailV2 from './BusVehicleDetailV2.vue'
 import BusVehicleLegendV2 from './BusVehicleLegendV2.vue'
@@ -95,21 +84,19 @@ import BusRefreshButton from './BusRefreshButton.vue'
 
 const props = defineProps({ id: { type: String, default: '' }, direction: { type: String, default: '' }, stopHref: { type: String, default: '/transport/bustimer_v2_stop.html?id=' } })
 const route = ref(null), loading = ref(true), error = ref(''), directionId = ref(''), selectedStopId = ref('')
-const notices = ref([]), vehicles = ref([]), stops = ref([]), schedules = ref([]), showSchedules = ref(false), scheduleLoading = ref(false), scheduleError = ref(false)
+const notices = ref([]), vehicles = ref([]), stops = ref([]), schedules = ref([]), scheduleLoading = ref(false), scheduleError = ref(false), showNotices = ref(false)
 const noticeOpenStates = ref(loadNoticeOpenStates())
-const arrivalState = ref({ loading: false, error: false, items: [] }), allArrivals = ref(false), expandedVehicleKey = ref(''), now = ref(new Date())
+const expandedVehicleKey = ref(''), now = ref(new Date())
 const refreshRemaining = ref(10)
-let refreshTimer, arrivalRequest = 0
+let refreshTimer
 const id = computed(() => props.id || (typeof window === 'undefined' ? '' : new URLSearchParams(window.location.search).get('id') || ''))
 const requestedDirection = computed(() => props.direction || (typeof window === 'undefined' ? '' : new URLSearchParams(window.location.search).get('direction') || ''))
 const directions = computed(() => route.value?.directions || [])
 const currentDirection = computed(() => directions.value.find((item) => item.id === directionId.value) || directions.value[0])
 const directionVehicles = computed(() => vehicles.value.filter((vehicle) => vehicle.route_direction_id === directionId.value))
-const selectedStop = computed(() => currentDirection.value?.stops?.find((item) => item.id === selectedStopId.value))
 const favorite = computed(() => route.value && isFavorite('route', route.value.id))
 const routeNotices = computed(() => notices.value.filter((notice) => (!notice.route_id && !notice.stop_id) || notice.route_id === route.value?.id).sort((a, b) => b.priority - a.priority))
-const selectedArrivals = computed(() => arrivalState.value.items.filter((item) => item.route_id === route.value?.id && (item.route_direction_id || item.direction_id) === directionId.value && (!item.stop_id || item.stop_id === selectedStopId.value)))
-const visibleArrivals = computed(() => allArrivals.value ? selectedArrivals.value : selectedArrivals.value.slice(0, 2))
+const hasImportantNotice = computed(() => routeNotices.value.some(isImportantNotice))
 const currentSchedules = computed(() => schedules.value.filter((item) => item.route_id === route.value?.id && item.route_direction_id === directionId.value))
 const nowMinutes = computed(() => busServiceMinutes(now.value))
 const scheduleGroups = computed(() => groupSchedules(currentSchedules.value, nowMinutes.value, route.value ? [route.value] : []).map((item) => ({ ...item, color: route.value?.color, routeName: displayName(route.value, busLanguage.value) || route.value?.id, directionName: displayName(currentDirection.value, busLanguage.value) || directionId.value })))
@@ -119,24 +106,17 @@ const noticeTime = (notice) => formatLocalDateTime(notice.starts_at)
 const isNoticeOpen = (notice) => noticeIsOpen(noticeOpenStates.value, notice.id)
 const rememberNoticeOpen = (notice, event) => saveNoticeOpenState(noticeOpenStates.value, notice.id, event.target.open)
 const statusText = (value) => value === 'SUSPENDED' ? busText('suspended') : busText('normal')
-const arrivalKey = (item) => `${item.route_direction_id}-${item.trip_id || item.planned_arrival_at || item.updated_at || item.eta_minutes}`
-function time(value) { return value ? formatBusTime(value, busLanguage.value) : '' }
-const arrivalSource = (item) => String(item.source || '').toLowerCase().replace('-', '_')
-function arrivalText(item) { return arrivalSource(item) === 'real_time' || arrivalSource(item) === 'realtime' ? [realtimeArrivalText(item, busLanguage.value), arrivalDistance(item)].filter(Boolean).join(' ') : arrivalSource(item) === 'planned' ? busText('planAt', { time: time(item.planned_arrival_at) }) : busText(unavailableReasonTextKey(item.unavailable_reason)) }
-function arrivalDistance(item) { const meters = Number(item.distance ?? item.distance_to_stop ?? item.distance_to_next_stop ?? item.distance_meters); return Number.isFinite(meters) ? `${Math.round(meters)}m` : '' }
-function arrivalMeta(item) { return arrivalSource(item) === 'real_time' || arrivalSource(item) === 'realtime' ? `${busText('realTime')}${item.updated_at ? ` · ${busText('updated', { time: time(item.updated_at) })}` : ''}` : arrivalSource(item) === 'planned' ? busText('planned') : item.updated_at ? busText('updated', { time: time(item.updated_at) }) : '' }
 function routeStopName(stop) { return displayStopName({ ...stops.value.find((item) => item.id === stop?.id), ...stop }, busLanguage.value) || stop?.id || '' }
 function stopFor(vehicle) { const position = vehicle.current_position || {}; return position.next_stop_id || currentDirection.value?.stops?.find((stop) => stop.sequence === (position.next_stop_num || vehicle.route_sequence + (position.type === 'between_stops' ? 1 : 0)))?.id }
 const atStop = (stop) => directionVehicles.value.filter((vehicle) => vehicle.current_position?.type === 'at_stop' && stopFor(vehicle) === stop.id || !vehicle.current_position && vehicle.route_sequence === stop.sequence)
 const betweenStop = (stop) => directionVehicles.value.filter((vehicle) => vehicle.current_position?.type === 'between_stops' && stopFor(vehicle) === stop.id)
 const hasSpecialService = (items) => items.some((vehicle) => vehicle.service_type && vehicle.service_type !== 'NORMAL')
 function toggleVehicles(key) { expandedVehicleKey.value = expandedVehicleKey.value === key ? '' : key }
-function selectDirection(value) { directionId.value = value; selectedStopId.value = currentDirection.value?.stops?.[0]?.id || ''; allArrivals.value = false; expandedVehicleKey.value = ''; loadArrivals(true) }
-function selectStop(value) { selectedStopId.value = value; allArrivals.value = false; refresh(true) }
-async function loadArrivals(clear = false) { const stopId = selectedStopId.value, selectedDirection = directionId.value, request = ++arrivalRequest; if (!stopId || !selectedDirection) { arrivalState.value = { loading: false, error: false, items: [] }; return } const items = clear ? [] : arrivalState.value.items; arrivalState.value = { loading: true, error: false, items }; try { const result = await busApi.arrivals(stopId); if (request === arrivalRequest && selectedStopId.value === stopId && directionId.value === selectedDirection) arrivalState.value = { loading: false, error: false, items: result.arrivals || [] } } catch { if (request === arrivalRequest && selectedStopId.value === stopId && directionId.value === selectedDirection) arrivalState.value = { loading: false, error: true, items } } }
-async function refresh(clear = false) { const routeId = route.value?.id; refreshRemaining.value = 10; now.value = new Date(); if (!routeId) return; const arrivalLoad = loadArrivals(clear); try { const [noticeData, vehicleData] = await Promise.all([busApi.notices(), busApi.vehicles()]); notices.value = Array.isArray(noticeData) ? noticeData : []; vehicles.value = (Array.isArray(vehicleData) ? vehicleData : []).filter((vehicle) => vehicle.route_id === routeId) } catch { /* retain the last usable data */ } await arrivalLoad }
-async function toggleSchedules() { showSchedules.value = !showSchedules.value; if (!showSchedules.value || schedules.value.length || scheduleLoading.value) return; scheduleLoading.value = true; scheduleError.value = false; try { const result = await busApi.schedules(); schedules.value = Array.isArray(result) ? result : [] } catch { scheduleError.value = true } finally { scheduleLoading.value = false } }
-async function load() { arrivalRequest++; loading.value = true; error.value = ''; try { if (!id.value) throw new Error('Missing route id'); const [routeData, noticeData, vehicleData, stopData] = await Promise.all([publicApi(`/routes/${encodeURIComponent(id.value)}`), busApi.notices(), busApi.vehicles(), busApi.stops()]); route.value = routeData; notices.value = Array.isArray(noticeData) ? noticeData : []; vehicles.value = (Array.isArray(vehicleData) ? vehicleData : []).filter((vehicle) => vehicle.route_id === routeData.id); stops.value = Array.isArray(stopData) ? stopData : []; directionId.value = routeData.directions?.some((item) => item.id === requestedDirection.value) ? requestedDirection.value : routeData.directions?.[0]?.id || ''; selectedStopId.value = currentDirection.value?.stops?.[0]?.id || ''; await loadArrivals(true) } catch (reason) { error.value = reason.message || String(reason) } finally { loading.value = false } }
+function selectDirection(value) { directionId.value = value; selectedStopId.value = currentDirection.value?.stops?.[0]?.id || ''; expandedVehicleKey.value = '' }
+function selectStop(value) { selectedStopId.value = value }
+async function refresh() { const routeId = route.value?.id; refreshRemaining.value = 10; now.value = new Date(); if (!routeId) return; try { const [noticeData, vehicleData] = await Promise.all([busApi.notices(), busApi.vehicles()]); notices.value = Array.isArray(noticeData) ? noticeData : []; vehicles.value = (Array.isArray(vehicleData) ? vehicleData : []).filter((vehicle) => vehicle.route_id === routeId) } catch { /* retain the last usable data */ } }
+async function loadSchedules() { scheduleLoading.value = true; scheduleError.value = false; try { const result = await busApi.schedules(); schedules.value = Array.isArray(result) ? result : [] } catch { scheduleError.value = true } finally { scheduleLoading.value = false } }
+async function load() { loading.value = true; error.value = ''; loadSchedules(); try { if (!id.value) throw new Error('Missing route id'); const [routeData, noticeData, vehicleData, stopData] = await Promise.all([publicApi(`/routes/${encodeURIComponent(id.value)}`), busApi.notices(), busApi.vehicles(), busApi.stops()]); route.value = routeData; notices.value = Array.isArray(noticeData) ? noticeData : []; vehicles.value = (Array.isArray(vehicleData) ? vehicleData : []).filter((vehicle) => vehicle.route_id === routeData.id); stops.value = Array.isArray(stopData) ? stopData : []; directionId.value = routeData.directions?.some((item) => item.id === requestedDirection.value) ? requestedDirection.value : routeData.directions?.[0]?.id || ''; selectedStopId.value = currentDirection.value?.stops?.[0]?.id || '' } catch (reason) { error.value = reason.message || String(reason) } finally { loading.value = false } }
 onMounted(() => { loadFavorites(); load(); refreshTimer = setInterval(() => { if (--refreshRemaining.value < 1) refresh() }, 1000) })
 onBeforeUnmount(() => clearInterval(refreshTimer))
 watch(id, (value, old) => { if (value && value !== old) load() })
@@ -151,7 +131,7 @@ defineExpose({ load, refresh, selectDirection, selectStop })
 .notices summary > span::after { content: ' ▸'; color: #687386; }
 .notices details[open] > summary > span::after { content: ' ▾'; }
 .notices summary time { color: #687386; font-size: .8rem; font-weight: 400; white-space: nowrap; }
-.bus-detail { max-width: 900px; margin: 0 auto; color: var(--c-text, #243043); } .detail-head, .head-actions, .section-head, .route-summary { display: flex; align-items: center; gap: .75rem; } .detail-head, .section-head { justify-content: space-between; } .detail-head h1, .panel h3, .map-slot > h3 { margin: 0; padding-top: 0; } .detail-head h1 { font-size: 1.4rem; line-height: 1.25; } p { margin-top: 0; } .panel h3, .map-slot > h3 { font-size: 1rem; line-height: 1.3; } .eyebrow { margin-bottom: .2rem; color: #687386; font-size: .82rem; } .head-actions { align-self: flex-start; } .plain-button { border: 1px solid #aec5dc; border-radius: .35rem; padding: .4rem .65rem; background: transparent; color: inherit; font: inherit; cursor: pointer; } .panel { margin: 1rem 0; padding: 1rem; border: 1px solid var(--c-border, #dce2ea); border-radius: .6rem; background: var(--c-bg-soft, #fff); } .status { display: flex; align-items: center; gap: .5rem; } .error { color: #a32727; } .spinner { width: 1em; height: 1em; border: 2px solid #b7c9dd; border-top-color: #2672bc; border-radius: 50%; animation: spin .8s linear infinite; } @keyframes spin { to { transform: rotate(360deg); } } .route-summary { flex-wrap: wrap; padding-top: .5rem; padding-bottom: .5rem; border-left: .5rem solid var(--route-color); justify-content: space-between; } .route-summary div { display: flex; flex-wrap: wrap; min-width: 0; align-items: baseline; gap: .5rem; } .route-swatch { width: .9rem; height: .9rem; border-radius: 50%; background: var(--route-color); } .direction-tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; } .direction-tabs button { border: 1px solid #cbd9e7; border-radius: 999px; padding: .45rem .8rem; background: transparent; color: inherit; font: inherit; cursor: pointer; } .direction-tabs .active { border-color: var(--c-brand, #2878c8); background: #eaf3fc; color: #175f9f; font-weight: 700; } .muted { color: #687386; } .selected-stop-title, .arrival-list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .5rem; } .selected-stop-title > *, .arrival-list li > * { white-space: nowrap; } .arrival-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; margin: .5rem 0; padding: 0; list-style: none; } .arrival-list li { padding: .55rem; border: 1px solid #e7edf4; border-radius: .35rem; } .arrival-list small { color: #687386; } .all-link { display: inline-block; margin-top: .75rem; color: #1765ac; } details + details { border-top: 1px solid #e7edf4; } summary { padding: .65rem 0; cursor: pointer; font-weight: 600; } .markdown { margin: 1rem 0 0; padding-bottom: .25rem; } .markdown :deep(p) { margin: 1rem 0 0; } .markdown :deep(:first-child) { margin-top: 0; } .markdown :deep(:last-child) { margin-bottom: 0; } .route-stops { max-height: 18rem; overflow-y: auto; } .route-stops ol { margin: 0; padding: 0; list-style: none; } .route-stops li { position: relative; display: grid; grid-template-columns: 1.6rem minmax(0, 1fr); min-height: 2.25rem; } .stop-line { position: relative; display: flex; justify-content: center; } .stop-line::before { content: ''; position: absolute; z-index: 0; top: 0; bottom: 0; width: 4px; background: var(--route-color); } .stop-line > i { z-index: 1; width: .75rem; height: .75rem; margin-top: .65rem; border: 3px solid var(--route-color); border-radius: 50%; background: #fff; } .selected .stop-line > i { background: var(--route-color); box-shadow: 0 0 0 4px color-mix(in srgb, var(--route-color) 25%, transparent); } .stop-main { padding: .25rem .25rem .25rem .5rem; } .stop-main a { color: inherit; font: inherit; text-decoration: none; } .stop-main a:hover, .stop-main a:focus-visible { color: var(--route-color); text-decoration: underline; } .selected .stop-main strong { color: var(--route-color); } .vehicle-markers { position: absolute; z-index: 2; inset: 0; pointer-events: none; } .vehicle-marker { position: absolute; left: 50%; transform: translateX(-50%); border: 0; border-radius: 999px; padding: .2rem .3rem; background: #e8f2fb; font: inherit; font-size: .78rem; cursor: pointer; pointer-events: auto; white-space: nowrap; } .vehicle-marker.at { top: .25rem; } .vehicle-marker.between { top: 2.1rem; background: #fff4d9; } .vehicle-marker em { margin-left: .1rem; color: #9a5200; font-size: .7rem; font-style: normal; font-weight: 800; } .vehicle-marker b { margin-left: .15rem; } .vehicle-details { display: grid; grid-column: 2; gap: .4rem; margin: 0 .5rem .6rem; } .vehicle-details :deep(.vehicle-detail) { box-sizing: border-box; min-width: 0; box-shadow: none; } .map-slot { margin: 1rem 0; } @media (max-width: 560px) { .detail-head { align-items: flex-start; } .head-actions { flex-wrap: wrap; justify-content: flex-end; } .panel { margin: .75rem 0; } .arrival-list { grid-template-columns: 1fr; } }
+.bus-detail { max-width: 900px; margin: 0 auto; color: var(--c-text, #243043); } .detail-head, .head-actions, .section-head { display: flex; align-items: center; gap: .75rem; } .detail-head, .section-head { justify-content: space-between; } .detail-head h1, .panel h3, .map-slot > h3 { margin: 0; padding-top: 0; } .detail-head h1 { font-size: 1.4rem; line-height: 1.25; } p { margin-top: 0; } .panel h3, .map-slot > h3 { font-size: 1rem; line-height: 1.3; } .head-actions { align-self: center; } .plain-button { border: 1px solid #aec5dc; border-radius: .35rem; padding: .4rem .65rem; background: transparent; color: inherit; font: inherit; cursor: pointer; } .panel { margin: 1rem 0; padding: 1rem; border: 1px solid var(--c-border, #dce2ea); border-radius: .6rem; background: var(--c-bg-soft, #fff); } .status { display: flex; align-items: center; gap: .5rem; } .error { color: #a32727; } .spinner { width: 1em; height: 1em; border: 2px solid #b7c9dd; border-top-color: #2672bc; border-radius: 50%; animation: spin .8s linear infinite; } @keyframes spin { to { transform: rotate(360deg); } } .schedules { border-left: .5rem solid var(--route-color); } .schedules-foot { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem .75rem; margin-top: .75rem; } .route-status { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem; min-width: 0; } .route-swatch { width: .9rem; height: .9rem; border-radius: 50%; background: var(--route-color); } .direction-tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; } .direction-tabs button { border: 1px solid #cbd9e7; border-radius: 999px; padding: .45rem .8rem; background: transparent; color: inherit; font: inherit; cursor: pointer; } .direction-tabs .active { border-color: var(--c-brand, #2878c8); background: #eaf3fc; color: #175f9f; font-weight: 700; } .muted { color: #687386; } .all-link { display: inline-block; color: #1765ac; } details + details { border-top: 1px solid #e7edf4; } summary { padding: .65rem 0; cursor: pointer; font-weight: 600; } .markdown { margin: 1rem 0 0; padding-bottom: .25rem; } .markdown :deep(p) { margin: 1rem 0 0; } .markdown :deep(:first-child) { margin-top: 0; } .markdown :deep(:last-child) { margin-bottom: 0; } .route-stops { max-height: 18rem; overflow-y: auto; } .route-stops ol { margin: 0; padding: 0; list-style: none; } .route-stops li { position: relative; display: grid; grid-template-columns: 1.6rem minmax(0, 1fr); min-height: 2.25rem; } .stop-line { position: relative; display: flex; justify-content: center; } .stop-line::before { content: ''; position: absolute; z-index: 0; top: 0; bottom: 0; width: 4px; background: var(--route-color); } .stop-line > i { z-index: 1; width: .75rem; height: .75rem; margin-top: .65rem; border: 3px solid var(--route-color); border-radius: 50%; background: #fff; } .selected .stop-line > i { background: var(--route-color); box-shadow: 0 0 0 4px color-mix(in srgb, var(--route-color) 25%, transparent); } .stop-main { padding: .25rem .25rem .25rem .5rem; } .stop-main a { color: inherit; font: inherit; text-decoration: none; } .stop-main a:hover, .stop-main a:focus-visible { color: var(--route-color); text-decoration: underline; } .selected .stop-main strong { color: var(--route-color); } .vehicle-markers { position: absolute; z-index: 2; inset: 0; pointer-events: none; } .vehicle-marker { position: absolute; left: 50%; transform: translateX(-50%); border: 0; border-radius: 999px; padding: .2rem .3rem; background: #e8f2fb; font: inherit; font-size: .78rem; cursor: pointer; pointer-events: auto; white-space: nowrap; } .vehicle-marker.at { top: .25rem; } .vehicle-marker.between { top: 2.1rem; background: #fff4d9; } .vehicle-marker em { margin-left: .1rem; color: #9a5200; font-size: .7rem; font-style: normal; font-weight: 800; } .vehicle-marker b { margin-left: .15rem; } .vehicle-details { display: grid; grid-column: 2; gap: .4rem; margin: 0 .5rem .6rem; } .vehicle-details :deep(.vehicle-detail) { box-sizing: border-box; min-width: 0; box-shadow: none; } .map-slot { margin: 1rem 0; } .map-slot > h3 { margin-bottom: .75rem; } @media (max-width: 560px) { .detail-head { align-items: center; } .head-actions { flex-wrap: wrap; justify-content: flex-end; } .panel { margin: .75rem 0; } }
 .route-stops .stop-line > i { background: var(--bus-v2-bg); }
 .route-stops .vehicle-marker { transform: translate(-64%, -50%); background: var(--bus-v2-link-soft); color: var(--bus-v2-text); }
 .route-stops .vehicle-marker.at { top: 1rem; }
@@ -162,11 +142,11 @@ defineExpose({ load, refresh, selectDirection, selectStop })
 .route-stops .vehicle-marker.between { background: transparent; }
 .route-stops .vehicle-icon { display: block; width: 1.2rem; height: 1.2rem; }
 .head-actions { gap: .3rem; }
-.plain-button, .selected-stop-title a { color: inherit; text-decoration: none; }
-.selected-stop-title a:hover, .selected-stop-title a:focus-visible { color: var(--bus-v2-link); text-decoration: underline; }
+.plain-button { color: inherit; text-decoration: none; }
+.text-button { padding: .4rem .25rem; border: 0; background: transparent; color: var(--bus-v2-link); font: inherit; cursor: pointer; }
 .bus-detail { color: var(--bus-v2-text); }
-.bus-detail .eyebrow, .bus-detail .muted, .bus-detail .arrival-list small, .bus-detail .notices summary time, .bus-detail .notices summary > span::after { color: var(--bus-v2-muted); }
+.bus-detail .muted, .bus-detail .notices summary time, .bus-detail .notices summary > span::after { color: var(--bus-v2-muted); }
 .bus-detail .panel { border-color: var(--bus-v2-border); background: var(--bus-v2-bg); }
-.bus-detail .plain-button, .bus-detail .direction-tabs button, .bus-detail .arrival-list li, .bus-detail details + details { border-color: var(--bus-v2-border); }
+.bus-detail .plain-button, .bus-detail .direction-tabs button, .bus-detail details + details { border-color: var(--bus-v2-border); }
 .bus-detail .direction-tabs .active { background: var(--bus-v2-link-soft); color: var(--bus-v2-link); }
 </style>
