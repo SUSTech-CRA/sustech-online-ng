@@ -6,21 +6,60 @@
         <h1>{{ busText('campusBus') }}</h1>
         <p>{{ busText('arrivalDisclaimer') }}</p>
       </div>
-      <div><button class="text-button" type="button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button></div>
+      <div class="header-actions">
+        <button class="icon-button" type="button" :aria-pressed="activePanel === 'search'" :aria-label="busText('search')" :title="busText('search')" @click="togglePanel('search')">🔍<span class="icon-label">{{ busText('searchShort') }}</span></button>
+        <button class="icon-button" type="button" :aria-pressed="activePanel === 'notices'" :aria-label="busText('announcements')" :title="busText('announcements')" @click="togglePanel('notices')">📢<i v-if="hasImportantNotice" class="icon-dot" aria-hidden="true" /><span class="icon-label">{{ busText('noticesShort') }}</span></button>
+        <button class="icon-button" type="button" :aria-pressed="activePanel === 'favorites'" :aria-label="busText('favorites')" :title="busText('favorites')" @click="togglePanel('favorites')">⭐<i v-if="favoriteCount" class="icon-badge" aria-hidden="true">{{ favoriteCount }}</i><span class="icon-label">{{ busText('favoritesShort') }}</span></button>
+        <button class="text-button" type="button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button>
+      </div>
     </header>
 
-    <section class="panel search" :aria-label="busText('search')">
-      <label class="sr-only" for="bus-search">{{ busText('search') }}</label>
-      <input id="bus-search" v-model="query" type="search" :placeholder="busText('search')" @keydown.enter="openFirstResult">
-      <button v-if="query" class="search-clear" type="button" :aria-label="busText('clearSearch')" @click="query = ''">×</button>
-      <div v-if="query" class="search-results">
-        <button v-for="result in searchResults" :key="`${result.kind}-${result.item.id}`" type="button" @click="openResult(result)">
-          <small>{{ busText(result.kind === 'route' ? 'routeLabel' : 'stopLabel') }}</small>
-          {{ result.kind === 'stop' ? displayStopName(result.item, busLanguage) : displayName(result.item, busLanguage) }}
-        </button>
-        <p v-if="!searchResults.length" class="muted">{{ busText('searchEmpty') }}</p>
+    <BusPanelPopupV2 :open="!!activePanel" :title="panelTitle" @close="closePanel">
+      <template v-if="activePanel === 'search'">
+        <div class="popup-search">
+          <label class="sr-only" for="bus-search">{{ busText('search') }}</label>
+          <input id="bus-search" ref="searchInput" v-model="query" type="search" :placeholder="busText('search')" @keydown.enter="openFirstResult">
+          <button v-if="query" class="search-clear" type="button" :aria-label="busText('clearSearch')" @click="query = ''">×</button>
+        </div>
+        <div v-if="query" class="search-results">
+          <button v-for="result in searchResults" :key="`${result.kind}-${result.item.id}`" type="button" @click="openResult(result)">
+            <small>{{ busText(result.kind === 'route' ? 'routeLabel' : 'stopLabel') }}</small>
+            {{ result.kind === 'stop' ? displayStopName(result.item, busLanguage) : displayName(result.item, busLanguage) }}
+          </button>
+          <p v-if="!searchResults.length" class="muted">{{ busText('searchEmpty') }}</p>
+        </div>
+      </template>
+      <div v-else-if="activePanel === 'notices'" class="notices">
+        <p v-if="loading" class="muted">{{ busText('loading') }}</p>
+        <p v-else-if="error" class="muted">{{ busText('loadFailed') }}</p>
+        <template v-else>
+          <p v-if="!notices.length" class="muted">{{ busText('empty') }}</p>
+          <details v-for="notice in notices" :key="notice.id" :class="{ 'bus-notice--important': isImportantNotice(notice) }" :open="isNoticeOpen(notice, noticeScope(notice) === 'global')" @toggle="rememberNoticeOpen(notice, $event)">
+            <summary>
+              <span>{{ noticeTitle(notice) }}</span>
+              <small>{{ busText(noticeScope(notice)) }}<template v-if="noticeTime(notice)"> · <time :datetime="notice.starts_at">{{ noticeTime(notice) }}</time></template></small>
+            </summary>
+            <div class="markdown" v-html="renderNoticeMarkdown(notice.body_markdown)" />
+          </details>
+        </template>
       </div>
-    </section>
+      <template v-else>
+        <p v-if="loading" class="muted">{{ busText('loading') }}</p>
+        <template v-else>
+          <div v-if="favoriteRoutes.length" class="quick-links">
+            <button v-for="route in favoriteRoutes" :key="route.id" type="button" @click="openRoute(route.id)">🚌 {{ displayName(route, busLanguage) }}</button>
+          </div>
+          <BusVehicleLegendV2 v-if="favoriteStopCards.length" :language="busLanguage" />
+          <article v-for="stop in favoriteStopCards" :key="stop.id" class="nearby-stop">
+            <div class="nearby-stop__head"><button type="button" class="link-title" @click="openStop(stop.id)">{{ displayStopName(stop, busLanguage) }}</button><span v-if="stop.distance != null">{{ formatDistance(stop.distance) }}</span></div>
+            <p v-if="favoriteArrivals[stop.id]?.loading && !favoriteArrivals[stop.id]?.items?.length" class="muted">{{ busText('loading') }}</p>
+            <p v-else-if="favoriteArrivals[stop.id]?.error && !favoriteArrivals[stop.id]?.items?.length" class="muted">{{ busText('unavailable') }}</p>
+            <ul v-else class="arrival-list"><li v-for="(arrival, index) in favoriteArrivals[stop.id]?.items" :key="index"><i :style="{ background: arrival.route_color || '#2878c8' }" /><a class="arrival-link" :href="routeDirectionHref(arrival)">{{ arrivalName(arrival) }}</a><span>{{ arrivalText(arrival) }}</span><BusVehicleIconV2 v-if="showVehicleIcon(arrival)" :type="arrival.vehicle_type" role="img" :aria-label="vehicleLabel(arrival)" /></li><li v-if="!favoriteArrivals[stop.id]?.items?.length" class="muted">{{ busText('empty') }}</li></ul>
+          </article>
+          <p v-if="!favoriteRoutes.length && !favoriteStops.length" class="muted">{{ busText('noFavorites') }}</p>
+        </template>
+      </template>
+    </BusPanelPopupV2>
 
     <section v-if="loading" class="panel status"><span class="spinner" aria-hidden="true" /> {{ busText('loading') }}</section>
     <section v-else-if="error" class="panel status error" role="alert">
@@ -28,36 +67,13 @@
     </section>
 
     <template v-else>
-      <section class="panel notices">
-        <h3>{{ busText('announcements') }}</h3>
-        <p v-if="!notices.length" class="muted">{{ busText('empty') }}</p>
-        <details v-for="notice in notices" :key="notice.id" :class="{ 'bus-notice--important': isImportantNotice(notice) }" :open="isNoticeOpen(notice, noticeScope(notice) === 'global')" @toggle="rememberNoticeOpen(notice, $event)">
-          <summary>
-            <span>{{ noticeTitle(notice) }}</span>
-            <small>{{ busText(noticeScope(notice)) }}<template v-if="noticeTime(notice)"> · <time :datetime="notice.starts_at">{{ noticeTime(notice) }}</time></template></small>
-          </summary>
-          <div class="markdown" v-html="renderNoticeMarkdown(notice.body_markdown)" />
-        </details>
-      </section>
-
       <div class="home-overview">
-      <div class="overview-stops">
-      <section class="panel favorites">
-        <h3>{{ busText('favorites') }}</h3>
-        <div v-if="favoriteRoutes.length" class="quick-links">
-          <button v-for="route in favoriteRoutes" :key="route.id" type="button" @click="openRoute(route.id)">🚌 {{ displayName(route, busLanguage) }}</button>
-        </div>
-        <BusVehicleLegendV2 v-if="favoriteStopCards.length" :language="busLanguage" />
-        <article v-for="stop in favoriteStopCards" :key="stop.id" class="nearby-stop">
-          <div class="nearby-stop__head"><button type="button" class="link-title" @click="openStop(stop.id)">{{ displayStopName(stop, busLanguage) }}</button><span v-if="stop.distance != null">{{ formatDistance(stop.distance) }}</span></div>
-          <p v-if="favoriteArrivals[stop.id]?.loading && !favoriteArrivals[stop.id]?.items?.length" class="muted">{{ busText('loading') }}</p>
-          <p v-else-if="favoriteArrivals[stop.id]?.error && !favoriteArrivals[stop.id]?.items?.length" class="muted">{{ busText('unavailable') }}</p>
-          <ul v-else class="arrival-list"><li v-for="(arrival, index) in favoriteArrivals[stop.id]?.items" :key="index"><i :style="{ background: arrival.route_color || '#2878c8' }" /><a class="arrival-link" :href="routeDirectionHref(arrival)">{{ arrivalName(arrival) }}</a><span>{{ arrivalText(arrival) }}</span><BusVehicleIconV2 v-if="showVehicleIcon(arrival)" :type="arrival.vehicle_type" role="img" :aria-label="vehicleLabel(arrival)" /></li><li v-if="!favoriteArrivals[stop.id]?.items?.length" class="muted">{{ busText('empty') }}</li></ul>
-        </article>
-        <p v-if="!favoriteRoutes.length && !favoriteStops.length" class="muted">{{ busText('noFavorites') }}</p>
-      </section>
-
-      <section ref="nearbyCard" class="panel nearby" tabindex="-1">
+      <div class="overview-tabs" role="tablist">
+        <button type="button" role="tab" :aria-selected="mobileTab === 'nearby'" @click="mobileTab = 'nearby'">{{ busText('nearby') }}</button>
+        <button type="button" role="tab" :aria-selected="mobileTab === 'diagram'" @click="mobileTab = 'diagram'">{{ busText('diagramShort') }}</button>
+        <button type="button" role="tab" :aria-selected="mobileTab === 'vehicles'" @click="mobileTab = 'vehicles'">{{ busText('vehiclesShort') }}</button>
+      </div>
+      <section ref="nearbyCard" class="panel nearby" :class="{ 'tab-hidden': mobileTab !== 'nearby' }" tabindex="-1">
         <div class="section-title">
           <div class="nearby-title"><h3>{{ busText('nearby') }}</h3><span v-if="locationUpdatedText" class="location-updated">{{ locationUpdatedText }}</span></div>
           <button type="button" :disabled="locationState === 'loading'" @click="locate">{{ busText(locationState === 'loading' ? 'locating' : 'locate') }}</button>
@@ -86,17 +102,16 @@
         <button v-if="canExpandNearbyStops" type="button" class="nearby-toggle" :aria-expanded="allNearbyStops" @click="allNearbyStops = !allNearbyStops">{{ allNearbyStops ? busText('collapse') : busText('showAll') }}</button>
       </section>
 
-      </div>
-      <section class="panel diagram-card"><BusRouteDiagramV2 :routes="routes" :stops="stops" :vehicles="vehicles" :loading="vehiclesLoading" :error="vehiclesError" @select-stop="selectDiagramStop" /></section>
-      </div>
+      <section class="panel diagram-card" :class="{ 'tab-hidden': mobileTab !== 'diagram' }"><BusRouteDiagramV2 :routes="routes" :stops="stops" :vehicles="vehicles" :loading="vehiclesLoading" :error="vehiclesError" @select-stop="selectDiagramStop" /></section>
 
-      <section class="panel live-vehicles">
+      <section class="panel live-vehicles" :class="{ 'tab-hidden': mobileTab !== 'vehicles' }">
         <BusVehiclesV2 :routes="routes" :stops="stops" :vehicles="vehicles" :loading="vehiclesLoading" :error="vehiclesError" :show-all-vehicles="showAllVehicles" @update:show-all-vehicles="setShowAllVehicles" />
       </section>
+      </div>
 
       <section id="schedules" class="panel schedules-card"><BusSchedulesV2 /></section>
 
-      <nav class="feature-links" :aria-label="busText('busFeatures')"><a :href="filesHref"><span>{{ busText('files') }}</span></a></nav>
+      <a class="files-link" :href="filesHref">{{ busText('files') }}</a>
     </template>
   </main>
 </template>
@@ -104,6 +119,7 @@
 <script setup>
 import BusVehicleIconV2 from './BusVehicleIconV2.vue'
 import BusRouteDiagramV2 from './BusRouteDiagramV2.vue'
+import BusPanelPopupV2 from './BusPanelPopupV2.vue'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { busApi } from './api.mjs'
 import { formatBusTime, busServiceDate, displayName, displayStopName, formatDistance, formatLocalDateTime, haversineMeters, nearbyStopCandidates, isNearbyArrivalVisible, isTerminalArrival, matchesSearch, realtimeArrivalText, sortArrivalsByEstimatedTime, unavailableReasonTextKey } from './core.mjs'
@@ -133,6 +149,9 @@ const vehiclesLoading = ref(true)
 const vehiclesError = ref(false)
 const showAllVehicles = ref(false)
 const query = ref('')
+const activePanel = ref(null)
+const mobileTab = ref('diagram')
+const searchInput = ref(null)
 const arrivals = ref({})
 const favoriteArrivals = ref({})
 const nearbyCard = ref(null)
@@ -156,6 +175,14 @@ const searchResults = computed(() => [
   ...stops.value.filter((stop) => matchesSearch(stop, query.value, busLanguage.value)).map((item) => ({ kind: 'stop', item })),
 ].slice(0, 8))
 const favoriteRoutes = computed(() => routes.value.filter((route) => favoriteRouteIds.value.includes(route.id)))
+const favoriteCount = computed(() => favoriteRouteIds.value.length + favoriteStopIds.value.length)
+const hasImportantNotice = computed(() => notices.value.some(isImportantNotice))
+const panelTitle = computed(() => busText(activePanel.value === 'search' ? 'search' : activePanel.value === 'notices' ? 'announcements' : 'favorites'))
+function togglePanel(name) {
+  activePanel.value = activePanel.value === name ? null : name
+  if (activePanel.value === 'search') nextTick(() => searchInput.value?.focus())
+}
+const closePanel = () => { activePanel.value = null }
 const favoriteStops = computed(() => stops.value.filter((stop) => favoriteStopIds.value.includes(stop.id)))
 const favoriteStopCards = computed(() => favoriteStops.value.map((stop) => location.value ? { ...stop, distance: haversineMeters(location.value.latitude, location.value.longitude, stop.latitude, stop.longitude) } : stop))
 const visibleNearbyStops = computed(() => selectedNearbyStop.value ? nearbyStops.value : nearbyStops.value.slice(0, allNearbyStops.value ? 5 : 2))
@@ -240,6 +267,7 @@ function saveLocation(coords, updatedAt) {
 async function selectDiagramStop(id) {
   const stop = stops.value.find(stop => stop.id === id)
   if (!stop) return
+  mobileTab.value = 'nearby'
   ++locationRequest
   allNearbyStops.value = false
   locationErrorKey.value = ''
@@ -344,19 +372,31 @@ defineExpose({ load, locate, refresh, openRoute, openStop, favoriteRouteIds, fav
 .bus-home { max-width: 900px; margin: 0 auto; color: var(--bus-v2-text); }
 .bus-home__header, .section-title, .nearby-stop__head { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
 .nearby-title { min-width: 0; flex: 1; display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem; } .location-updated { color: var(--bus-v2-muted); font-size: .875rem; font-weight: 400; overflow-wrap: anywhere; }
-.bus-home__header { margin: .5rem 0 .75rem; } .bus-home__header h1, .panel h3 { margin: 0; padding-top: 0; } .bus-home__header h1 { font-size: 1.4rem; line-height: 1.25; } .bus-home__header p, .muted { color: var(--bus-v2-muted); }
+.bus-home__header { margin: .5rem 0 .75rem; } .bus-home__header h1, .panel h3 { margin: 0; padding-top: 0; } .bus-home__header h1 { font-size: 1.4rem; line-height: 1.25; } .bus-home .bus-home__header p { margin: .25rem 0 0; } .bus-home__header p, .muted { color: var(--bus-v2-muted); }
 .panel h3 { font-size: 1rem; line-height: 1.3; }
 .panel { margin: 1rem 0; padding: 1rem; border: 1px solid var(--bus-v2-border); border-radius: .6rem; background: var(--bus-v2-bg); }
-.search { position: relative; padding: 0; } .search input { box-sizing: border-box; width: 100%; padding: .85rem 2.5rem .85rem 1rem; border: 0; border-radius: .6rem; font: inherit; background: transparent; color: inherit; } .search-clear { position: absolute; top: 40%; right: .65rem; border: 0; padding: 0; transform: translateY(-50%); background: transparent; color: var(--bus-v2-muted); font-size: 1.4rem; line-height: 1; }
-.search-results { position: absolute; z-index: 2; top: calc(100% + .25rem); width: 100%; overflow: hidden; border: 1px solid var(--bus-v2-border); border-radius: .5rem; background: var(--bus-v2-bg); box-shadow: 0 .5rem 1rem var(--vp-c-shadow); }
+.popup-search { position: relative; margin-top: .75rem; }
+.popup-search input { box-sizing: border-box; width: 100%; padding: .65rem 2.25rem .65rem .75rem; border: 1px solid var(--bus-v2-border); border-radius: .5rem; font: inherit; background: transparent; color: inherit; }
+.search-clear { position: absolute; top: 50%; right: .65rem; border: 0; padding: 0; transform: translateY(-50%); background: transparent; color: var(--bus-v2-muted); font-size: 1.4rem; line-height: 1; }
+.search-results { margin-top: .5rem; overflow: hidden; border: 1px solid var(--bus-v2-border); border-radius: .5rem; }
+.search-results .muted { margin: 0; padding: .65rem 1rem; }
 .search-results button, .quick-links button { display: block; width: 100%; padding: .65rem 1rem; border: 0; text-align: left; background: transparent; color: inherit; cursor: pointer; } .search-results button:hover, .quick-links button:hover { background: var(--bus-v2-control); }
 .search-results small, summary small { margin-right: .5rem; color: var(--bus-v2-muted); } .status { display: flex; align-items: center; gap: .5rem; } .error { color: #b42318; } button { font: inherit; cursor: pointer; } button:disabled { cursor: wait; opacity: .6; }
 .spinner { width: 1em; height: 1em; border: 2px solid var(--bus-v2-border); border-top-color: var(--bus-v2-link); border-radius: 50%; animation: spin .8s linear infinite; } @keyframes spin { to { transform: rotate(360deg); } }
 details + details { border-top: 1px solid var(--bus-v2-border); } summary { display: flex; justify-content: space-between; padding: .65rem 0; cursor: pointer; font-weight: 600; } .markdown { margin: 1rem 0 0; padding-bottom: .25rem; } .markdown :deep(p) { margin: 1rem 0 0; } .markdown :deep(:first-child) { margin-top: 0; } .markdown :deep(:last-child) { margin-bottom: 0; } .markdown :deep(code) { padding: .1em .3em; background: var(--bus-v2-bg-alt); border-radius: .2em; }
 .section-title button, .status button, .text-button { padding: .4rem .65rem; border: 1px solid var(--bus-v2-border); border-radius: .35rem; background: transparent; color: inherit; } .text-button { border: 0; color: var(--bus-v2-link); }
 .nearby { scroll-margin-top: calc(var(--navbar-height, 3.6rem) + 1rem); }
-.home-overview > *, .overview-stops { min-width: 0; }
-@media (min-width: 1100px) { .home-overview { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; align-items: start; } }
+.home-overview > * { min-width: 0; }
+.overview-tabs { display: none; }
+@media (min-width: 1100px) { .home-overview { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; align-items: start; } .live-vehicles { grid-column: 1 / -1; } }
+@media (max-width: 720px) {
+  .home-overview { padding: .75rem; border: 1px solid var(--bus-v2-border); border-radius: .6rem; background: var(--bus-v2-bg); }
+  .overview-tabs { display: flex; gap: .25rem; padding: .25rem; border-radius: .5rem; background: var(--bus-v2-bg-alt); }
+  .overview-tabs button { flex: 1; padding: .5rem .25rem; border: 0; border-radius: .4rem; background: transparent; color: var(--bus-v2-muted); font: inherit; font-size: .85rem; cursor: pointer; }
+  .overview-tabs button[aria-selected="true"] { background: var(--bus-v2-bg); color: var(--bus-v2-link); font-weight: 600; box-shadow: 0 1px 3px var(--vp-c-shadow); }
+  .home-overview > .panel { margin: .75rem 0 0; padding: 0; border: 0; border-radius: 0; background: transparent; }
+  .home-overview > .panel.tab-hidden { display: none; }
+}
 .nearby .section-title { flex-wrap: wrap; }
 .nearby-stop__head > span { white-space: nowrap; }
 .nearby .section-title button { flex-shrink: 0; border-color: var(--bus-v2-link-soft); background: var(--bus-v2-link-soft); color: var(--bus-v2-link); font-weight: 600; }
@@ -364,7 +404,7 @@ details + details { border-top: 1px solid var(--bus-v2-border); } summary { disp
 .nearby-toggle { padding: .4rem .65rem; border: 1px solid var(--bus-v2-border); border-radius: .35rem; background: transparent; color: inherit; font: inherit; }
 .arrival-list { margin: .45rem 0 0; padding: 0; list-style: none; } .arrival-list li { display: grid; grid-template-columns: .35rem minmax(0, 1fr) auto 1rem; gap: .4rem; align-items: center; padding: .3rem 0; } .arrival-list i { width: .3rem; height: 1.2rem; border-radius: 2px; } .arrival-link { color: var(--bus-v2-link); text-decoration: none; } .arrival-link:hover, .arrival-link:focus-visible { text-decoration: underline; } .arrival-list .muted { display: block; }
 .quick-links { display: flex; flex-wrap: wrap; gap: .5rem; } .quick-links button { width: auto; border: 1px solid var(--bus-v2-border); border-radius: .35rem; }
-.feature-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; } .feature-links a { display: flex; min-height: 4rem; align-items: center; justify-content: center; padding: 0 .75rem; border-radius: .6rem; background: var(--bus-v2-link-soft); color: var(--bus-v2-link); text-align: center; text-decoration: none; font-weight: 600; }
+.files-link { display: inline-block; margin: .25rem 0 1rem; color: var(--bus-v2-link); text-decoration: none; } .files-link:hover, .files-link:focus-visible { text-decoration: underline; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
-@media (max-width: 560px) { .panel { margin: .75rem 0; } .feature-links { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .panel { margin: .75rem 0; } }
 </style>
