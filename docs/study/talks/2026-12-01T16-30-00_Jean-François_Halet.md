@@ -1,0 +1,18 @@
+﻿# 《格拉布斯大讲堂 第48讲》Jean-François Halet 教授：固态稀土硼碳化物中的零维、一维与二维硼碳骨架
+
+> 以下内容根据公开信息整理，并经大模型处理生成，可能存在疏漏或误差，请以实际信息为准。
+
+
+* 题目: 固态稀土硼碳化物中的零维、一维与二维硼碳骨架
+* 主讲人：Jean-François Halet 教授 @ University of Rennes
+* 时间：2026年12月1日 16:30
+* 地点：Room 104, Chuangyuan 5
+
+## 主讲人简介
+Prof. Jean-François Halet is CNRS Emeritus Research Director at the Institute of Chemical Sciences of Rennes (ISCR), France, since May 2025. He received his Ph.D. in Spectroscopy and Chemistry in Paris in 1984, followed by research at Oxford with D. M. P. Mingos and at Cornell with Nobel laureate Roald Hoffmann. His work uses quantum chemistry and density theory to understand chemical bonding, electronic structure, and physical properties in inorganic molecular and solid-state systems, including clusters, boron-containing compounds, and thermoelectric materials. He has published approximately 360 papers, delivered over 240 lectures and seminars, and supervised or co-supervised more than 30 Ph.D. students. He received the CNRS Bronze Medal in 1992 and the French Chemical Society Award in Coordination Chemistry in 1995. He is a Fellow of the Royal Society of Chemistry and was elected to the European Academy of Sciences and Arts in 2019. He is a member of the CNRS–ANU MAITAI 2 international research project (2026–2030) and, since 2021, Visiting Teaching Professor at the Chinese-French Institute Chimie Shanghai, East China University of Science and Technology.
+
+## 讲座简介
+Though boron and carbon, neighbors on the periodic table, have some conspicuous electronic differences, they behave rather similarly when combined together in a more or less equal content with rare earth metals, leading to the formation of ternary boride carbide (generally called borocarbide) compounds RxByCz (R = rare earth element - R refers not only to lanthanide elements but also to Sc, Y, and actinide elements). Borocarbide chemistry has blossomed over the last fifty years or so, offering today a broad diversity of original topologies and physical properties, most of them unique, especially due to the size of rare earth atoms and the peculiar bonding within the nonmetal atom frameworks. Indeed, boron and carbon have a particular affinity with rare earth elements. The latter supply electrons to stabilize zero-, one- or two-dimensional boron-carbon frameworks whereas its d or f-electron shell affords attractive properties like electric conduction, superconductivity, or magnetism for instance. A survey of these rare earth borocarbides discussing their structural arrangements and bonding properties, and, where relevant, their comparison with all-boron or all-carbon compounds will be presented.
+
+## 海报链接
+![](https://gtimg.liziwl.cn/post-img/2026-12-01T16-30-00_Jean-Fran%C3%A7ois_Halet.jpg)
