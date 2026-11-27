@@ -1,5 +1,6 @@
 import { busText } from './i18n.mjs'
 
+// const DEV_API_BASE = 'http://127.0.0.1:8000'
 const DEV_API_BASE = 'https://buseta.sustcra.com'
 const PROD_API_BASE = 'https://buseta.sustcra.com'
 

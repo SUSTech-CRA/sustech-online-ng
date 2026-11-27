@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { classifyDepartures, groupSchedules, parseGeometry, scheduleRunMinutes } from './bus-v2-helpers.mjs'
+import { classifyDepartures, groupSchedules, isRecentDeparture, parseGeometry, scheduleRunMinutes } from './bus-v2-helpers.mjs'
 
 assert.deepEqual(parseGeometry('[[113,22],[114,23]]'), [[113, 22], [114, 23]])
 assert.deepEqual(parseGeometry('invalid'), [])
@@ -40,7 +40,13 @@ const adjusted = classifyDepartures([
   { time: '08:40', change: 'NORMAL' }
 ], 8 * 60 + 30, 10)
 assert.deepEqual(adjusted.map(({ status }) => status), ['past', 'past', 'running', 'cancelled', 'next'])
-assert.deepEqual(adjusted.filter((item) => item.status !== 'past').map(({ time }) => time), ['08:25', '08:30', '08:40'])
+assert.deepEqual(adjusted.filter(item => isRecentDeparture(item, 8 * 60 + 30)).map(({ time }) => time), ['08:25', '08:30', '08:40'])
+const windowStart = 8 * 60 + 30
+const nextHour = classifyDepartures(['08:20', '08:30', '09:30', '09:31'], windowStart, 20)
+assert.deepEqual(nextHour.filter(item => isRecentDeparture(item, windowStart)).map(({ time }) => time), ['08:20', '08:30', '09:30'])
+assert.equal(isRecentDeparture(classifyDepartures(['12:00'], windowStart)[0], windowStart), false)
+const cancellations = classifyDepartures(['09:30', '09:31'].map(time => ({ time, change: 'CANCELLED' })), windowStart)
+assert.deepEqual(cancellations.filter(item => isRecentDeparture(item, windowStart)).map(({ time }) => time), ['09:30'])
 assert.deepEqual(classifyDepartures([
   { time: '08:30', status: 'MISSED', change: 'NORMAL' },
   { time: '09:00', status: 'COMPLETED', change: 'NORMAL' }

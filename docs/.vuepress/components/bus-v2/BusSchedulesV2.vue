@@ -5,14 +5,14 @@
     <section v-if="loading && !groups.length" class="state">{{ busText('loading') }}</section>
     <section v-if="error" class="state error" role="alert"><strong>{{ busText('loadFailed') }}</strong><span>{{ error }}</span><button type="button" @click="load">{{ busText('retry') }}</button></section>
     <section v-if="!loading && !error && !groups.length" class="state">{{ busText('empty') }}</section>
-    <BusScheduleRowsV2 v-if="groups.length" :groups="groups" :language="language" />
+    <BusScheduleRowsV2 v-if="groups.length" v-model:recent-only="recentOnly" :groups="groups" :language="language" :now-minutes="nowMinutes" :allow-recent-filter="isToday" />
     <p class="note">{{ busText('runningNote') }}</p>
   </section>
 </template>
 
 <script setup>
 import { busServiceDate, busServiceMinutes } from './core.mjs'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { busApi } from './api.mjs'
 import { groupSchedules } from './bus-v2-helpers.mjs'
 import { busLanguage, busText } from './i18n.mjs'
@@ -21,6 +21,8 @@ import BusScheduleRowsV2 from './BusScheduleRowsV2.vue'
 let routesCache = null, routesRequest, scheduleRequest = 0
 const loadRoutes = () => routesCache ? Promise.resolve(routesCache) : (routesRequest ||= busApi.routes().then((data) => routesCache = Array.isArray(data) ? data : []).finally(() => { routesRequest = undefined }))
 const language = busLanguage; const schedules = ref([]); const routes = ref([]); const loading = ref(true); const error = ref(''); const serviceDate = ref(busServiceDate()); const now = ref(new Date())
+const recentOnly = ref(true)
+const isToday = computed(() => serviceDate.value === busServiceDate(now.value))
 const nowMinutes = computed(() => busServiceMinutes(now.value, serviceDate.value))
 const groups = computed(() => groupSchedules(schedules.value, nowMinutes.value, routes.value).map((item) => ({ ...item, color: item.route_color, routeName: item[language.value === 'zh' ? 'route_name_zh' : 'route_name_en'] || item.route_name_zh || item.route_name_en || item.route_id, directionName: item[language.value === 'zh' ? 'direction_name_zh' : 'direction_name_en'] || item.direction_name_zh || item.direction_name_en || item.route_direction_id })))
 async function load() {
@@ -41,7 +43,13 @@ async function load() {
     if (request === scheduleRequest) loading.value = false
   }
 }
-onMounted(load); defineExpose({ load })
+let scheduleClock
+onMounted(() => {
+  load()
+  scheduleClock = setInterval(() => { now.value = new Date() }, 10000)
+})
+onBeforeUnmount(() => clearInterval(scheduleClock))
+defineExpose({ load })
 </script>
 
 <style scoped lang="scss">

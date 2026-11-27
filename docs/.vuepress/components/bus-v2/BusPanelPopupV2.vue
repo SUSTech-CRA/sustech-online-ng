@@ -1,10 +1,10 @@
 <template>
   <div v-if="open" class="popup-layer">
     <div class="popup-backdrop" @click="emit('close')" />
-    <section class="popup" role="dialog" :aria-label="title">
+    <section ref="dialog" class="popup" role="dialog" aria-modal="true" :aria-label="title">
       <div class="popup__head">
         <h3>{{ title }}</h3>
-        <button class="popup__close" type="button" :aria-label="busText('closeDialog')" @click="emit('close')">×</button>
+        <button ref="closeButton" class="popup__close" type="button" :aria-label="busText('closeDialog')" @click="emit('close')">×</button>
       </div>
       <div class="popup__body"><slot /></div>
     </section>
@@ -12,14 +12,73 @@
 </template>
 
 <script setup>
-import { onBeforeUnmount, onMounted } from 'vue'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { busText } from './i18n.mjs'
 
-defineProps({ open: Boolean, title: String })
+const props = defineProps({ open: Boolean, title: String })
 const emit = defineEmits(['close'])
-const onKeydown = (event) => { if (event.key === 'Escape') emit('close') }
-onMounted(() => { if (typeof window !== 'undefined' && window.addEventListener) window.addEventListener('keydown', onKeydown) })
-onBeforeUnmount(() => { if (typeof window !== 'undefined' && window.removeEventListener) window.removeEventListener('keydown', onKeydown) })
+const dialog = ref(null)
+const closeButton = ref(null)
+let previousFocus
+
+function focusDialog() {
+  if (props.open && dialog.value && !dialog.value.contains(document.activeElement)) {
+    closeButton.value?.focus({ preventScroll: true })
+  }
+}
+
+function enterDialog() {
+  previousFocus = document.activeElement
+  focusDialog()
+}
+
+function restoreFocus() {
+  if (previousFocus?.isConnected) previousFocus.focus({ preventScroll: true })
+  previousFocus = undefined
+}
+
+function onKeydown(event) {
+  if (!dialog.value || event.defaultPrevented) return
+  if (event.key === 'Escape') {
+    event.preventDefault()
+    emit('close')
+    return
+  }
+  if (event.key !== 'Tab') return
+
+  const focusable = [...dialog.value.querySelectorAll('a[href], button, input, select, textarea, summary, [tabindex]')].filter(element => {
+    if (element.tabIndex < 0 && !element.matches('summary:not([tabindex])')) return false
+    if (element.matches(':disabled') || !element.getClientRects().length) return false
+    // A collapsed details element exposes only its summary to keyboard navigation.
+    const collapsed = element.closest('details:not([open])')
+    return !collapsed || collapsed.firstElementChild === element
+  })
+  const first = focusable[0]
+  const last = focusable.at(-1)
+  const active = document.activeElement
+  if (!focusable.includes(active) || active === (event.shiftKey ? first : last)) {
+    event.preventDefault()
+    const target = event.shiftKey ? last : first
+    target?.focus()
+  }
+}
+
+watch(() => props.open, open => {
+  if (open) enterDialog()
+  else restoreFocus()
+}, { flush: 'post' })
+watch(() => props.title, focusDialog, { flush: 'post' })
+
+onMounted(() => {
+  window.addEventListener('keydown', onKeydown)
+  document.addEventListener('focusin', focusDialog)
+  if (props.open) enterDialog()
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', onKeydown)
+  document.removeEventListener('focusin', focusDialog)
+  restoreFocus()
+})
 </script>
 
 <style scoped lang="scss">

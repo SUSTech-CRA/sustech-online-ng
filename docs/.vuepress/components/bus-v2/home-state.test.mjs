@@ -4,23 +4,24 @@ import test from 'node:test'
 import { computed, nextTick, ref } from 'vue'
 import * as core from './core.mjs'
 import { busLanguage, busText } from './i18n.mjs'
+import { useNoticePopup } from './notice-state.mjs'
 
 // Exercise the component's setup logic without a browser or an extra test dependency.
 const source = readFileSync(new URL('./BusHomeV2.vue', import.meta.url), 'utf8')
   .split('<script setup>')[1].split('</script>')[0].replace(/^import .*$/gm, '')
 const stops = [{ id: 'a', group_id: 'a', latitude: 22, longitude: 114 }, { id: 'b', group_id: 'b', latitude: 23, longitude: 114 }]
 const deferred = () => { let resolve; const promise = new Promise(done => { resolve = done }); return { promise, resolve } }
-function home(vehicles) {
+function home(vehicles, notices = async () => []) {
   let mount
   const env = {
     ...core, ref, computed, nextTick, defineProps: () => ({}), defineExpose: () => {},
     onMounted: fn => { mount = fn }, onBeforeUnmount: () => {}, setInterval: () => 0,
-    loadNoticeOpenStates: () => ({}), loadFavorites: () => {},
+    useNoticePopup, loadFavorites: () => {},
     favoriteRouteIds: ref([]), favoriteStopIds: ref([]), busLanguage, busText,
     localStorage: { getItem: () => JSON.stringify({ latitude: 22, longitude: 114, updatedAt: Date.now() }) },
-    busApi: { routes: async () => [], stops: async () => stops, notices: async () => [], arrivals: async () => ({ arrivals: [] }), vehicles },
+    busApi: { routes: async () => [], stops: async () => stops, notices, arrivals: async () => ({ arrivals: [] }), vehicles },
   }
-  const state = Function(...Object.keys(env), `${source}\nreturn { load, loadVehicles, refresh, loading, vehicles, vehiclesLoading, vehiclesError, selectDiagramStop, selectedNearbyStop, nearbyStops, locate, arrivals, allNearbyStops, visibleNearbyArrivals, canExpandNearbyStops, locationErrorKey, locationState, arrivalText, locationUpdatedText };`)(...Object.values(env))
+  const state = Function(...Object.keys(env), `${source}\nreturn { load, loadVehicles, refresh, loading, activePanel, togglePanel, closePanel, isNoticeOpen, vehicles, vehiclesLoading, vehiclesError, selectDiagramStop, selectedNearbyStop, nearbyStops, locate, arrivals, allNearbyStops, visibleNearbyArrivals, canExpandNearbyStops, locationErrorKey, locationState, arrivalText, locationUpdatedText };`)(...Object.values(env))
   return { ...state, mount }
 }
 
@@ -118,4 +119,23 @@ test('location failures and planned arrivals use the selected language', (t) => 
     page.selectedNearbyStop.value = { group_name_zh: '欣园', group_name_en: 'Joy Highland' }
     assert.equal(page.locationUpdatedText.value, language === 'zh' ? '欣园 · 全部站台' : 'Joy Highland · All platforms')
   }
+})
+
+test('new announcements wait for search and stay expanded on manual reopen', async () => {
+  const notice = { id: 'home-test-new-notice', priority: 15 }
+  const page = home(async () => [], async () => [notice])
+  page.togglePanel('search')
+  await page.load()
+  assert.equal(page.activePanel.value, 'search')
+
+  page.closePanel()
+  await nextTick()
+  assert.equal(page.activePanel.value, 'notices')
+  assert.equal(page.isNoticeOpen(notice), true)
+
+  page.closePanel()
+  await page.refresh()
+  assert.equal(page.activePanel.value, null)
+  page.togglePanel('notices')
+  assert.equal(page.isNoticeOpen(notice), true)
 })

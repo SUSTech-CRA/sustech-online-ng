@@ -3,12 +3,12 @@
     <BusRefreshButton :remaining="refreshRemaining" :label="busText('refreshNow')" @refresh="refresh" />
     <header class="detail-head">
       <div><h1 v-if="stop">{{ busText('stopLabel') }}{{ busLanguage === 'zh' ? '：' : ': ' }}{{ stopName }}</h1><h1 v-else>{{ busText('stopLabel') }}</h1></div>
-      <div class="head-actions header-actions"><a class="icon-button" href="/transport/bustimer.html" :aria-label="busText('home')" :title="busText('home')">🏠<span class="icon-label">{{ busText('homeShort') }}</span></a><button type="button" class="icon-button" :aria-pressed="showNotices" :aria-label="busText('announcements')" :title="busText('announcements')" @click="showNotices = !showNotices">📢<i v-if="hasImportantNotice" class="icon-dot" aria-hidden="true" /><span class="icon-label">{{ busText('noticesShort') }}</span></button><button v-if="stop" type="button" class="icon-button" :aria-pressed="favorite" :aria-label="busText('favorites')" @click="toggleFavorite('stop', stop.id)">⭐<span class="icon-label">{{ favorite ? busText('saved') : busText('save') }}</span></button><button type="button" class="text-button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button></div>
+      <div class="head-actions header-actions"><a class="icon-button" href="/transport/bustimer.html" :aria-label="busText('home')" :title="busText('home')">🏠<span class="icon-label">{{ busText('homeShort') }}</span></a><button type="button" class="icon-button" :aria-pressed="showNotices" :aria-label="busText('announcements')" :title="busText('announcements')" @click="showNotices ? closeNotices() : showNotices = true">📢<i v-if="hasImportantNotice" class="icon-dot" aria-hidden="true" /><span class="icon-label">{{ busText('noticesShort') }}</span></button><button v-if="stop" type="button" class="icon-button" :aria-pressed="favorite" :aria-label="busText('favorites')" @click="toggleFavorite('stop', stop.id)">⭐<span class="icon-label">{{ favorite ? busText('saved') : busText('save') }}</span></button><button type="button" class="text-button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button></div>
     </header>
-    <BusPanelPopupV2 :open="showNotices" :title="busText('announcements')" @close="showNotices = false">
+    <BusPanelPopupV2 :open="showNotices" :title="busText('announcements')" @close="closeNotices">
       <div class="notices">
         <p v-if="!stopNotices.length" class="muted">{{ busText('empty') }}</p>
-        <details v-for="notice in stopNotices" :key="notice.id" :class="{ 'bus-notice--important': isImportantNotice(notice) }" :open="isNoticeOpen(notice)" @toggle="rememberNoticeOpen(notice, $event)"><summary><span>{{ noticeTitle(notice) }}</span><time v-if="noticeTime(notice)" :datetime="notice.starts_at">{{ noticeTime(notice) }}</time></summary><div class="markdown" v-html="renderNoticeMarkdown(notice.body_markdown)" /></details>
+        <details v-for="notice in stopNotices" :key="notice.id" :class="{ 'bus-notice--important': isImportantNotice(notice) }" :open="isNoticeOpen(notice)"><summary @click.prevent="toggleNotice(notice)"><span>{{ noticeTitle(notice) }}</span><time v-if="noticeTime(notice)" :datetime="notice.starts_at">{{ noticeTime(notice) }}</time></summary><div class="markdown" v-html="renderNoticeMarkdown(notice.body_markdown)" /></details>
       </div>
     </BusPanelPopupV2>
     <section v-if="loading" class="panel status"><span class="spinner" aria-hidden="true" /> {{ busText('loading') }}</section>
@@ -28,7 +28,7 @@ import { closestArrivalsByRoute, displayName, displayStopName, formatLocalDateTi
 import { isFavorite, loadFavorites, toggleFavorite } from './favorites.mjs'
 import { busLanguage, busText, setBusLanguage } from './i18n.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
-import { isImportantNotice, loadNoticeOpenStates, noticeIsOpen, saveNoticeOpenState } from './notice-state.mjs'
+import { isImportantNotice, useNoticePopup } from './notice-state.mjs'
 import BusStopArrivalsV2 from './BusStopArrivalsV2.vue'
 import BusPanelPopupV2 from './BusPanelPopupV2.vue'
 import BusVehicleLegendV2 from './BusVehicleLegendV2.vue'
@@ -36,18 +36,16 @@ import BusRefreshButton from './BusRefreshButton.vue'
 
 const props = defineProps({ id: { type: String, default: '' }, routeHref: { type: String, default: '/transport/bustimer_v2_route.html?id=' }, stopHref: { type: String, default: '/transport/bustimer_v2_stop.html?id=' } })
 const stop = ref(null), platforms = ref([]), notices = ref([]), loading = ref(true), error = ref(''), allArrivals = ref(false), arrivalState = ref({ loading: false, error: false, items: [] }), platformArrivals = ref({}), expandedPlatforms = ref({}), refreshRemaining = ref(10), showNotices = ref(false)
-const noticeOpenStates = ref(loadNoticeOpenStates())
 let refreshTimer
 const id = computed(() => props.id || (typeof window === 'undefined' ? '' : new URLSearchParams(window.location.search).get('id') || ''))
 const favorite = computed(() => stop.value && isFavorite('stop', stop.value.id))
 const stopName = computed(() => displayStopName(stop.value, busLanguage.value))
 const stopNotices = computed(() => notices.value.filter((notice) => (!notice.route_id && !notice.stop_id) || notice.stop_id === stop.value?.id).sort((a, b) => b.priority - a.priority))
+const { closeNotices, isNoticeOpen, toggleNotice } = useNoticePopup(stopNotices, showNotices)
 const hasImportantNotice = computed(() => stopNotices.value.some(isImportantNotice))
 const otherPlatforms = computed(() => platforms.value.filter((item) => item.id !== stop.value?.id))
 const noticeTitle = (notice) => notice[busLanguage.value === 'en' ? 'title_en' : 'title_zh'] || notice.title_zh || notice.title_en
 const noticeTime = (notice) => formatLocalDateTime(notice.starts_at)
-const isNoticeOpen = (notice) => noticeIsOpen(noticeOpenStates.value, notice.id)
-const rememberNoticeOpen = (notice, event) => saveNoticeOpenState(noticeOpenStates.value, notice.id, event.target.open)
 const hasMoreArrivals = (state) => (state?.items?.length || 0) > closestArrivalsByRoute(state?.items || []).length
 function togglePlatformArrivals(platformId) { expandedPlatforms.value = { ...expandedPlatforms.value, [platformId]: !expandedPlatforms.value[platformId] } }
 function openPlatform(value) { if (typeof window !== 'undefined') window.location.assign(`${props.stopHref}${encodeURIComponent(value)}`) }

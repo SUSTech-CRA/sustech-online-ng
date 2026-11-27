@@ -3,17 +3,18 @@
     <div class="schedule-legend" :aria-label="busText('scheduleLegend', {}, language)">
       <span><i class="swatch bus" />{{ busText('bus', {}, language) }}</span><span><i class="swatch shuttle" />{{ busText('shuttle', {}, language) }}</span><span><b class="time bus next">07:20</b>{{ busText('nextTrip', {}, language) }}</span><span><b class="time bus running">07:10</b>{{ busText('running', {}, language) }}</span>
     </div>
-    <label class="schedule-filter"><input v-model="activeOnly" type="checkbox"> {{ busText('activeTripsOnly', {}, language) }}</label>
+    <label v-if="allowRecentFilter" class="schedule-filter"><input :checked="recentOnly" @change="setRecentOnly($event.target.checked)" type="checkbox"> {{ busText('recentTripsOnly', {}, language) }}</label>
   </div>
   <div class="schedule-list">
-    <article v-for="group in groups" :key="group.key" class="schedule-row">
+    <article v-for="{ group, displayed, hasEarlier, hasLater } in scheduleRows" :key="group.key" class="schedule-row">
       <div class="route-info" :style="{ borderColor: group.color || '#2878c8' }" :class="{ collapsible: portrait }" :role="portrait ? 'button' : undefined" :tabindex="portrait ? 0 : undefined" @click="toggleRoute(group.key)" @keydown.enter.prevent="toggleRoute(group.key)" @keydown.space.prevent="toggleRoute(group.key)">
         <strong>{{ group.routeName }}</strong><span>{{ group.directionName }}</span><small>{{ serviceLabel(group) }}</small>
       </div>
       <div class="times">
-        <span v-for="(item, index) in displayedTimes(group)" :key="index" :class="['time', item.status, item.vehicleType?.toLowerCase(), { changed: item.change === 'CANCELLED' || item.change === 'EXTRA' }]" :title="item.note || undefined"><del v-if="item.change === 'CANCELLED'">{{ item.time }}</del><template v-else>{{ item.time }}</template><small v-if="changeLabel(item)"> {{ changeLabel(item) }}</small></span>
-        <span v-if="!displayedTimes(group).length" class="muted">{{ busText('noActiveTrips', {}, language) }}</span>
-        <button v-if="isCollapsed(group.key) && visibleTimes(group.times).length > 1" class="ellipsis" type="button" :aria-label="busText('expandSchedule', {}, language)" @click="toggleRoute(group.key)">······</button>
+        <button v-if="hasEarlier" class="ellipsis" type="button" :aria-label="busText('showAllTrips', {}, language)" @click="revealTrips(group.key)">······</button>
+        <span v-for="(item, index) in displayed" :key="index" :class="['time', item.status, item.vehicleType?.toLowerCase(), { changed: item.change === 'CANCELLED' || item.change === 'EXTRA' }]" :title="item.note || undefined"><del v-if="item.change === 'CANCELLED'">{{ item.time }}</del><template v-else>{{ item.time }}</template><small v-if="changeLabel(item)"> {{ changeLabel(item) }}</small></span>
+        <span v-if="!displayed.length" class="muted">{{ busText('noRecentTrips', {}, language) }}</span>
+        <button v-if="hasLater" class="ellipsis" type="button" :aria-label="busText('showAllTrips', {}, language)" @click="revealTrips(group.key)">······</button>
       </div>
     </article>
   </div>
@@ -21,19 +22,37 @@
 
 <script setup>
 import { busText } from './i18n.mjs'
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { serviceTypeLabel } from './core.mjs'
+import { isRecentDeparture } from './bus-v2-helpers.mjs'
 
-const props = defineProps({ groups: { type: Array, default: () => [] }, language: { type: String, default: 'zh' } })
-const activeOnly = ref(true)
+const props = defineProps({ groups: { type: Array, default: () => [] }, language: { type: String, default: 'zh' }, nowMinutes: { type: Number, required: true }, allowRecentFilter: { type: Boolean, default: true } })
+const recentOnly = defineModel('recentOnly', { type: Boolean, default: true })
+const filterRecentTrips = computed(() => props.allowRecentFilter && recentOnly.value)
 const collapsedRoutes = ref(new Set())
 const portrait = ref(false)
 let orientationQuery
 const changeLabel = (item) => ({ EXTRA: busText('extraTrip', {}, props.language), CANCELLED: busText('cancelledTrip', {}, props.language) })[item.change] || ''
 const serviceLabel = (group) => [group.serviceType && group.serviceType !== 'NORMAL' ? serviceTypeLabel(group.serviceType, props.language) : '', group.vehicleTypes?.map((type) => type === 'SHUTTLE' ? busText('shuttle', {}, props.language) : type === 'BUS' ? busText('bus', {}, props.language) : type).join(' / ')].filter(Boolean).join(' · ') || busText('normalService', {}, props.language)
-const visibleTimes = (times) => activeOnly.value ? times.filter((item) => item.status !== 'past') : times
-const isCollapsed = (groupKey) => portrait.value && collapsedRoutes.value.has(groupKey)
-const displayedTimes = (group) => isCollapsed(group.key) ? visibleTimes(group.times).slice(0, 1) : visibleTimes(group.times)
+const scheduleRows = computed(() => props.groups.map((group) => {
+  const { times } = group
+  const visible = filterRecentTrips.value ? times.filter(item => isRecentDeparture(item, props.nowMinutes)) : times
+  const displayed = portrait.value && collapsedRoutes.value.has(group.key) ? visible.slice(0, 1) : visible
+  return {
+    group,
+    displayed,
+    hasEarlier: displayed.length ? displayed[0] !== times[0] : times.some(item => item.minutes < props.nowMinutes),
+    hasLater: displayed.length ? displayed.at(-1) !== times.at(-1) : times.some(item => item.minutes >= props.nowMinutes),
+  }
+}))
+function setRecentOnly(enabled) {
+  recentOnly.value = enabled
+  if (!enabled) collapsedRoutes.value.clear()
+}
+function revealTrips(groupKey) {
+  if (filterRecentTrips.value) setRecentOnly(false)
+  else collapsedRoutes.value.delete(groupKey)
+}
 function toggleRoute(groupKey) { if (!portrait.value) return; const next = new Set(collapsedRoutes.value); next.has(groupKey) ? next.delete(groupKey) : next.add(groupKey); collapsedRoutes.value = next }
 function updatePortrait() { portrait.value = orientationQuery?.matches ?? false }
 onMounted(() => { orientationQuery = window.matchMedia('(orientation: portrait)'); updatePortrait(); orientationQuery.addEventListener?.('change', updatePortrait); window.addEventListener('resize', updatePortrait) })

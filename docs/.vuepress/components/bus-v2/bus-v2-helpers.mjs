@@ -33,6 +33,11 @@ export function classifyDepartures(times, nowMinutes, runMinutes = 0) {
   })
 }
 
+export function isRecentDeparture(item, nowMinutes) {
+  return item.status === 'running' ||
+    (['next', 'future', 'cancelled'].includes(item.status) && item.minutes - nowMinutes <= 60)
+}
+
 export function groupSchedules(schedules, nowMinutes, routes = []) {
   const groups = new Map()
   for (const item of schedules || []) {

@@ -8,16 +8,16 @@
       </div>
       <div class="head-actions header-actions">
         <a class="icon-button" href="/transport/bustimer.html" :aria-label="busText('home')" :title="busText('home')">🏠<span class="icon-label">{{ busText('homeShort') }}</span></a>
-        <button type="button" class="icon-button" :aria-pressed="showNotices" :aria-label="busText('announcements')" :title="busText('announcements')" @click="showNotices = !showNotices">📢<i v-if="hasImportantNotice" class="icon-dot" aria-hidden="true" /><span class="icon-label">{{ busText('noticesShort') }}</span></button>
+        <button type="button" class="icon-button" :aria-pressed="showNotices" :aria-label="busText('announcements')" :title="busText('announcements')" @click="showNotices ? closeNotices() : showNotices = true">📢<i v-if="hasImportantNotice" class="icon-dot" aria-hidden="true" /><span class="icon-label">{{ busText('noticesShort') }}</span></button>
         <button v-if="route" type="button" class="icon-button" :aria-pressed="favorite" :aria-label="busText('favorites')" @click="toggleFavorite('route', route.id)">⭐<span class="icon-label">{{ favorite ? busText('saved') : busText('save') }}</span></button>
         <button type="button" class="text-button" @click="setBusLanguage(busLanguage === 'zh' ? 'en' : 'zh')">{{ busText('language') }}</button>
       </div>
     </div>
 
-    <BusPanelPopupV2 :open="showNotices" :title="busText('announcements')" @close="showNotices = false">
+    <BusPanelPopupV2 :open="showNotices" :title="busText('announcements')" @close="closeNotices">
       <div class="notices">
         <p v-if="!routeNotices.length" class="muted">{{ busText('empty') }}</p>
-        <details v-for="notice in routeNotices" :key="notice.id" :class="{ 'bus-notice--important': isImportantNotice(notice) }" :open="isNoticeOpen(notice)" @toggle="rememberNoticeOpen(notice, $event)"><summary><span>{{ noticeTitle(notice) }}</span><time v-if="noticeTime(notice)" :datetime="notice.starts_at">{{ noticeTime(notice) }}</time></summary><div class="markdown" v-html="renderNoticeMarkdown(notice.body_markdown)" /></details>
+        <details v-for="notice in routeNotices" :key="notice.id" :class="{ 'bus-notice--important': isImportantNotice(notice) }" :open="isNoticeOpen(notice)"><summary @click.prevent="toggleNotice(notice)"><span>{{ noticeTitle(notice) }}</span><time v-if="noticeTime(notice)" :datetime="notice.starts_at">{{ noticeTime(notice) }}</time></summary><div class="markdown" v-html="renderNoticeMarkdown(notice.body_markdown)" /></details>
       </div>
     </BusPanelPopupV2>
 
@@ -34,7 +34,7 @@
         <p v-if="scheduleLoading" class="muted">{{ busText('loading') }}</p>
         <p v-else-if="scheduleError" class="muted">{{ busText('unavailable') }}</p>
         <p v-else-if="!scheduleGroups.length" class="muted">{{ busText('empty') }}</p>
-        <BusScheduleRowsV2 v-else :groups="scheduleGroups" :language="busLanguage" />
+        <BusScheduleRowsV2 v-else :groups="scheduleGroups" :language="busLanguage" :now-minutes="nowMinutes" />
         <div class="schedules-foot">
           <div class="route-status"><span class="route-swatch" aria-hidden="true" /><strong>{{ statusText(route.operation_status) }}</strong><span>{{ route.service_time || busText('noServiceTime') }}</span></div>
           <a class="all-link" href="/transport/bustimer.html#schedules">{{ busText('allSchedules') }}</a>
@@ -74,7 +74,7 @@ import { groupSchedules } from './bus-v2-helpers.mjs'
 import { isFavorite, loadFavorites, toggleFavorite } from './favorites.mjs'
 import { busLanguage, busText, setBusLanguage } from './i18n.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
-import { isImportantNotice, loadNoticeOpenStates, noticeIsOpen, saveNoticeOpenState } from './notice-state.mjs'
+import { isImportantNotice, useNoticePopup } from './notice-state.mjs'
 import BusMapV2 from './BusMapV2.vue'
 import BusPanelPopupV2 from './BusPanelPopupV2.vue'
 import BusScheduleRowsV2 from './BusScheduleRowsV2.vue'
@@ -85,7 +85,6 @@ import BusRefreshButton from './BusRefreshButton.vue'
 const props = defineProps({ id: { type: String, default: '' }, direction: { type: String, default: '' }, stopHref: { type: String, default: '/transport/bustimer_v2_stop.html?id=' } })
 const route = ref(null), loading = ref(true), error = ref(''), directionId = ref(''), selectedStopId = ref('')
 const notices = ref([]), vehicles = ref([]), stops = ref([]), schedules = ref([]), scheduleLoading = ref(false), scheduleError = ref(false), showNotices = ref(false)
-const noticeOpenStates = ref(loadNoticeOpenStates())
 const expandedVehicleKey = ref(''), now = ref(new Date())
 const refreshRemaining = ref(10)
 let refreshTimer
@@ -96,6 +95,7 @@ const currentDirection = computed(() => directions.value.find((item) => item.id 
 const directionVehicles = computed(() => vehicles.value.filter((vehicle) => vehicle.route_direction_id === directionId.value))
 const favorite = computed(() => route.value && isFavorite('route', route.value.id))
 const routeNotices = computed(() => notices.value.filter((notice) => (!notice.route_id && !notice.stop_id) || notice.route_id === route.value?.id).sort((a, b) => b.priority - a.priority))
+const { closeNotices, isNoticeOpen, toggleNotice } = useNoticePopup(routeNotices, showNotices)
 const hasImportantNotice = computed(() => routeNotices.value.some(isImportantNotice))
 const currentSchedules = computed(() => schedules.value.filter((item) => item.route_id === route.value?.id && item.route_direction_id === directionId.value))
 const nowMinutes = computed(() => busServiceMinutes(now.value))
@@ -103,8 +103,6 @@ const scheduleGroups = computed(() => groupSchedules(currentSchedules.value, now
 
 const noticeTitle = (notice) => notice[busLanguage.value === 'en' ? 'title_en' : 'title_zh'] || notice.title_zh || notice.title_en
 const noticeTime = (notice) => formatLocalDateTime(notice.starts_at)
-const isNoticeOpen = (notice) => noticeIsOpen(noticeOpenStates.value, notice.id)
-const rememberNoticeOpen = (notice, event) => saveNoticeOpenState(noticeOpenStates.value, notice.id, event.target.open)
 const statusText = (value) => value === 'SUSPENDED' ? busText('suspended') : busText('normal')
 function routeStopName(stop) { return displayStopName({ ...stops.value.find((item) => item.id === stop?.id), ...stop }, busLanguage.value) || stop?.id || '' }
 function stopFor(vehicle) { const position = vehicle.current_position || {}; return position.next_stop_id || currentDirection.value?.stops?.find((stop) => stop.sequence === (position.next_stop_num || vehicle.route_sequence + (position.type === 'between_stops' ? 1 : 0)))?.id }

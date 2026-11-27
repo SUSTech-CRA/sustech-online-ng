@@ -30,12 +30,12 @@
         </div>
       </template>
       <div v-else-if="activePanel === 'notices'" class="notices">
-        <p v-if="loading" class="muted">{{ busText('loading') }}</p>
-        <p v-else-if="error" class="muted">{{ busText('loadFailed') }}</p>
+        <p v-if="loading && !notices.length" class="muted">{{ busText('loading') }}</p>
+        <p v-else-if="error && !notices.length" class="muted">{{ busText('loadFailed') }}</p>
         <template v-else>
           <p v-if="!notices.length" class="muted">{{ busText('empty') }}</p>
-          <details v-for="notice in notices" :key="notice.id" :class="{ 'bus-notice--important': isImportantNotice(notice) }" :open="isNoticeOpen(notice, noticeScope(notice) === 'global')" @toggle="rememberNoticeOpen(notice, $event)">
-            <summary>
+          <details v-for="notice in notices" :key="notice.id" :class="{ 'bus-notice--important': isImportantNotice(notice) }" :open="isNoticeOpen(notice)">
+            <summary @click.prevent="toggleNotice(notice)">
               <span>{{ noticeTitle(notice) }}</span>
               <small>{{ busText(noticeScope(notice)) }}<template v-if="noticeTime(notice)"> · <time :datetime="notice.starts_at">{{ noticeTime(notice) }}</time></template></small>
             </summary>
@@ -126,7 +126,7 @@ import { formatBusTime, busServiceDate, displayName, displayStopName, formatDist
 import { favoriteRouteIds, favoriteStopIds, loadFavorites } from './favorites.mjs'
 import { busLanguage, busText, setBusLanguage } from './i18n.mjs'
 import { renderNoticeMarkdown } from './markdown.mjs'
-import { isImportantNotice, loadNoticeOpenStates, noticeIsOpen, saveNoticeOpenState } from './notice-state.mjs'
+import { isImportantNotice, useNoticePopup } from './notice-state.mjs'
 import BusVehicleLegendV2 from './BusVehicleLegendV2.vue'
 import BusVehiclesV2 from './BusVehiclesV2.vue'
 import BusSchedulesV2 from './BusSchedulesV2.vue'
@@ -143,13 +143,17 @@ const error = ref('')
 const routes = ref([])
 const stops = ref([])
 const notices = ref([])
-const noticeOpenStates = ref(loadNoticeOpenStates())
 const vehicles = ref([])
 const vehiclesLoading = ref(true)
 const vehiclesError = ref(false)
 const showAllVehicles = ref(false)
 const query = ref('')
 const activePanel = ref(null)
+const showNotices = computed({
+  get: () => activePanel.value === 'notices',
+  set: (open) => { activePanel.value = open ? 'notices' : null },
+})
+const { closeNotices, isNoticeOpen, toggleNotice } = useNoticePopup(notices, showNotices, () => !activePanel.value || showNotices.value)
 const mobileTab = ref('diagram')
 const searchInput = ref(null)
 const arrivals = ref({})
@@ -179,10 +183,15 @@ const favoriteCount = computed(() => favoriteRouteIds.value.length + favoriteSto
 const hasImportantNotice = computed(() => notices.value.some(isImportantNotice))
 const panelTitle = computed(() => busText(activePanel.value === 'search' ? 'search' : activePanel.value === 'notices' ? 'announcements' : 'favorites'))
 function togglePanel(name) {
-  activePanel.value = activePanel.value === name ? null : name
-  if (activePanel.value === 'search') nextTick(() => searchInput.value?.focus())
+  if (activePanel.value === name) return closePanel()
+  if (showNotices.value) closeNotices()
+  activePanel.value = name
+  if (name === 'search') nextTick(() => searchInput.value?.focus())
 }
-const closePanel = () => { activePanel.value = null }
+function closePanel() {
+  if (showNotices.value) closeNotices()
+  else activePanel.value = null
+}
 const favoriteStops = computed(() => stops.value.filter((stop) => favoriteStopIds.value.includes(stop.id)))
 const favoriteStopCards = computed(() => favoriteStops.value.map((stop) => location.value ? { ...stop, distance: haversineMeters(location.value.latitude, location.value.longitude, stop.latitude, stop.longitude) } : stop))
 const visibleNearbyStops = computed(() => selectedNearbyStop.value ? nearbyStops.value : nearbyStops.value.slice(0, allNearbyStops.value ? 5 : 2))
@@ -214,8 +223,6 @@ const openFirstResult = () => { if (searchResults.value[0]) openResult(searchRes
 const noticeScope = (notice) => notice.route_id ? 'route' : notice.stop_id ? 'stop' : 'global'
 const noticeTitle = (notice) => notice[busLanguage.value === 'en' ? 'title_en' : 'title_zh'] || notice.title_zh || notice.title_en
 const noticeTime = (notice) => formatLocalDateTime(notice.starts_at)
-const isNoticeOpen = (notice, defaultOpen = false) => noticeIsOpen(noticeOpenStates.value, notice.id, defaultOpen)
-const rememberNoticeOpen = (notice, event) => saveNoticeOpenState(noticeOpenStates.value, notice.id, event.target.open)
 const arrivalName = (arrival) => `${arrival[busLanguage.value === 'en' ? 'route_name_en' : 'route_name_zh'] || arrival.route_name_zh || arrival.route_name_en || ''} · ${arrival[busLanguage.value === 'en' ? 'direction_name_en' : 'direction_name_zh'] || arrival.direction_name_zh || arrival.direction_name_en || ''}`
 const vehicleLabel = (arrival) => String(arrival.vehicle_type).toUpperCase() === 'SHUTTLE' ? busText('shuttle') : busText('bus')
 const showVehicleIcon = (arrival) => !['LAST_SERVICE_PASSED', 'NOT_OPERATING'].includes(String(arrival.unavailable_reason).toUpperCase())
@@ -386,6 +393,10 @@ defineExpose({ load, locate, refresh, openRoute, openStop, favoriteRouteIds, fav
 details + details { border-top: 1px solid var(--bus-v2-border); } summary { display: flex; justify-content: space-between; padding: .65rem 0; cursor: pointer; font-weight: 600; } .markdown { margin: 1rem 0 0; padding-bottom: .25rem; } .markdown :deep(p) { margin: 1rem 0 0; } .markdown :deep(:first-child) { margin-top: 0; } .markdown :deep(:last-child) { margin-bottom: 0; } .markdown :deep(code) { padding: .1em .3em; background: var(--bus-v2-bg-alt); border-radius: .2em; }
 .section-title button, .status button, .text-button { padding: .4rem .65rem; border: 1px solid var(--bus-v2-border); border-radius: .35rem; background: transparent; color: inherit; } .text-button { border: 0; color: var(--bus-v2-link); }
 .nearby { scroll-margin-top: calc(var(--navbar-height, 3.6rem) + 1rem); }
+@media (orientation: portrait) {
+  .bus-home .header-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bus-home .header-actions .text-button { align-self: stretch; }
+}
 .home-overview > * { min-width: 0; }
 .overview-tabs { display: none; }
 @media (min-width: 1100px) { .home-overview { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; align-items: start; } .live-vehicles { grid-column: 1 / -1; } }
