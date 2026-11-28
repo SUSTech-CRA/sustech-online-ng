@@ -1,0 +1,21 @@
+{
+    "type": "FeatureCollection",
+    "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+    "features": [
+        { "type": "Feature", "properties": { "name": "工学院\nCOE", "dist": 0.0 }, "geometry": { "type": "Point", "coordinates": [113.9902, 22.60336] } },
+        { "type": "Feature", "properties": { "name": "科研楼\nResearch Bldg.", "dist": 542.89970148591362 }, "geometry": { "type": "Point", "coordinates": [113.99153, 22.599643] } },
+        { "type": "Feature", "properties": { "name": "七号门\nGate7", "dist": 907.62735789785825 }, "geometry": { "type": "Point", "coordinates": [113.990399, 22.597132] } },
+        { "type": "Feature", "properties": { "name": "行政楼\nAdmin. Bldg.", "dist": 1149.0456938127084 }, "geometry": { "type": "Point", "coordinates": [113.992403, 22.597011] } },
+        { "type": "Feature", "properties": { "name": "1号门\nGate 1", "dist": 1513.4263569176362 }, "geometry": { "type": "Point", "coordinates": [113.994898, 22.59569] } },
+        { "type": "Feature", "properties": { "name": "2号门\nGate 2", "dist": 1752 }, "geometry": { "type": "Point", "coordinates": [113.99585,22.59788] } },
+        { "type": "Feature", "properties": { "name": "3号门\nGate 3", "dist": 2230.3249460522952 }, "geometry": { "type": "Point", "coordinates": [113.99939, 22.599893] } },
+        { "type": "Feature", "properties": { "name": "专家公寓\nGuest Houses", "dist": 2546.2198658400307 }, "geometry": { "type": "Point", "coordinates": [113.998329, 22.601975] } },
+        { "type": "Feature", "properties": { "name": "教工餐厅\nFaculty Cafeteria", "dist": 2727.0013627137873 }, "geometry": { "type": "Point", "coordinates": [113.997811, 22.603325] } },
+        { "type": "Feature", "properties": { "name": "社康中心\nHealth Center", "dist": 2939.8507316668038 }, "geometry": { "type": "Point", "coordinates": [113.995981, 22.60293] } },
+        { "type": "Feature", "properties": { "name": "学生宿舍\nStu. Dormitories", "dist": 3238.416725109053 }, "geometry": { "type": "Point", "coordinates": [113.993824, 22.604854] } },
+        { "type": "Feature", "properties": { "name": "荔园\nLychee Hill", "dist": 3621.0661168663187 }, "geometry": { "type": "Point", "coordinates": [113.995238, 22.606518] } },
+        { "type": "Feature", "properties": { "name": "创园\nChuang Yuan", "dist": 3804.8412646531024 }, "geometry": { "type": "Point", "coordinates": [113.996732, 22.606278] } },
+        { "type": "Feature", "properties": { "name": "慧园\nHui Yuan", "dist": 3991.5552242009744 }, "geometry": { "type": "Point", "coordinates": [113.998372, 22.606102] } },
+        { "type": "Feature", "properties": { "name": "欣园\nJoy Highland", "dist": 4592.7727333861958 }, "geometry": { "type": "Point", "coordinates": [113.997473, 22.610667] } }
+    ]
+}
